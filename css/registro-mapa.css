@@ -1,0 +1,48 @@
+
+/*==============  REGISTRO-MAPA ============== */
+
+/** Mapa **/
+#registro-mapa{
+	background-image:url('../img/mapa.png');
+    width: 100vw;
+    height: 100vh;
+	padding:0;
+}
+
+/** Título y dirección **/
+#registro-mapa #title-registro-container {
+    padding: 0;
+    padding-top: 7%;
+	background:rgba(251, 247, 247, 0.88)!important;
+}
+
+#registro-mapa #campos-container form input {
+    margin-bottom: 10%;
+    border: none;
+    border-bottom: 1px solid #CECECE;
+    width: 70%;
+    font-family: 'HelveticaNeueLTStdLight';
+    font-weight: 100;
+    color: #ababab;
+    letter-spacing: 4.5px;
+    background: transparent;
+    font-size: 2rem;
+}
+
+
+/** Continuar **/
+
+#registro-mapa #registroMapa-continue-btn{
+	background:#0a3a49;
+    background: #0a3a49;
+    height: 9vh;
+    text-transform: uppercase;
+    font-family: 'HelveticaNeueLTStd';
+    margin-top: 85%;
+    border: none;
+    width: 80%;
+    color: white;
+    letter-spacing: 4.5px;
+    margin-left: 10%;
+    font-size: 2rem;
+}

@@ -45,6 +45,7 @@
 	font-weight:100;
 	color:  #ababab;
 	letter-spacing: 4.5px;
+	background: #EEEEEE;
 }
 
 #campos-container form input:focus{
