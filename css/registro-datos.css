@@ -44,3 +44,15 @@
 	background:transparent;
 	border: 1px solid #0a3a49;
  }
+ 
+/* Titulo */
+.title-registro{
+    text-align: center;
+	color:#99c835;
+	font-family:'HelveticaNeueLTStdBlack';
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: 6px;
+    padding-top: 15%;
+    margin: 0;
+}
