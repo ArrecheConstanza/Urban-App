@@ -10,13 +10,17 @@
 	<!-- Title -->
 	<title>URBAN</title>
 	
-	<!-- BOOTSTRAP CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- BOOTSTRAP CSS 
+	<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	
-	<!-- CSS -->
+	<!-- CSS 
 	<link href="css/style.css" rel="stylesheet">
+	
+	<link href="css/login.css" rel="stylesheet">-->
 	<link href="css/fonts.css" rel="stylesheet">
-	<link href="css/login.css" rel="stylesheet">
+    <link rel="stylesheet/less" href="./css/less/bootstrap.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
+	
 	
 </head>
 
@@ -26,28 +30,27 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	
 		<!-- Titulo container -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title-app-container">
+		<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 margin-bottom-sm">
 			<!-- Icono -->
-			<figure>
-				<img src="img/icons/png/urban.png" alt="Urban-icon" />
+			<figure style="display:inline-block">
+				<img src="img/icons/png/urban.png" alt="Urban-icon" class="img-responsive" />
 			</figure>
 			<!-- Texto -->
 			<h1 class="title-app">Urban</h1>
 		</div>
 	
-	
 		<!--Campos container -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="campos-container">
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-lg">
 		
 			<!-- Formulario -->
-			<form action="vistas/home-usuario.html">
+			<form action="vistas/home-usuario.html" class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 form-group">
 			
 				<!-- Email -->
-				<input type="text" name="email" placeholder="email" required>
+				<input type="text" name="email" placeholder="email" class="form-control" required>
 				<!-- Contraseña -->
-				<input type="password" name="email" placeholder="contraseña" required>
+				<input type="password" name="email" placeholder="contraseña" class="form-control" required>
 				<!-- Enviar -->
-				<input type="submit" value="Ingresar">
+				<input type="submit"  class="btn btn-default form-control" value="Ingresar">
 				
 			</form>
 		
@@ -55,13 +58,13 @@
 	
 	
 		<!--Botones container -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" id="botones-container">
-		
-			<!-- Registrar-->
-			<a href="vistas/registro-datos.html"><button type="button" class="btn btn-default col-lg-10 col-md-10 col-sm-10 col-xs-10 text-center" id="registrar-btn">Registrarse</button></a>
-			<!-- Facebook -->
-			<button type="button" class="btn btn-default" id="fcbk-btn">Ingresar con facebook</button>
-			
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 form-group">
+				<!-- Registrar-->
+				<a href="vistas/registro-datos.html"><button type="button" class="btn btn-primary form-control" id="registrar-btn">Registrarse</button></a>
+				<!-- Facebook -->
+				<button type="button" class="form-control btn btn-default" id="fcbk-btn">Ingresar con facebook</button>
+			</div>
 		</div>
 	
 	</div>
