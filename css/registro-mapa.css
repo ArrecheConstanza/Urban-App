@@ -35,7 +35,7 @@
  .box-circle-registro{
     margin-top: 10px;
     padding: 0;
-    padding-left: 25%;
+   padding-left: 25%!important;
  }
  
 /** Continuar **/
