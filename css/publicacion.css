@@ -1,0 +1,69 @@
+
+/*==============  PUBLICACION ============== */
+ 
+ #title-publicacion-container{
+	padding:0;
+	padding-top:7%;
+	margin-bottom:0;
+ }
+ /*Icono  .volver-icon span se agrega a glyphicon.less para reutilizarlo*/
+.volver-icon{
+    padding: 0;
+}
+/* Titulo */
+h1{
+    display: inline-block;
+    float: left;
+    font-size: 1.8em;
+	padding-top:.1em;
+    margin: 0;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+/*Formulario */
+#publicar-datos #campos-container {
+    padding-top: 20%;
+}
+
+.col-xs-2{
+	width:0;
+}
+
+textarea{
+	resize:none;
+	background:none;
+	border:1px solid #a8a8a8;
+	width:100%;
+	padding:6px 12px;
+	color:#555555;
+	border-radius:1px;
+	margin-bottom:8%;
+	letter-spacing:4.5px;
+}
+.upload-file{
+	background:url('../img/icons/png/clip.png') no-repeat;
+	display:inline-block;
+	width:42px;
+	height:40px;
+	float:right;
+	margin-right:1em;
+	margin-top:1em;
+}
+.upload-file:hover{
+	cursor:pointer;
+}
+select{
+    margin-top: 7%;
+    padding-left: 2%;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #A0A0A0;
+    background: #E2E2E2;
+    border: none;
+    width: 100%;
+    height: 30px;
+    margin-left: 1%;
+    outline: none;
+    font-family: 'HelveticaNeueLTStdLight';
+}
