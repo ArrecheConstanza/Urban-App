@@ -8,6 +8,24 @@
     font-size: 1.1rem;
 }
 
+#dropdownMenu1{
+ background: transparent;
+ color:#0b3a4a;
+ border: none;
+ font-size: 2.5rem;
+ box-shadow: none;
+
+}
+
+#dropdownMenu1:focus{
+ outline:none;   
+}
+
+.dropdown{
+ height: 8.5vh; 
+ position:relative;
+ padding:0;
+}
 // Base styles
 // --------------------------------------------------
 
@@ -169,4 +187,70 @@ input[type="button"] {
   &.btn-block {
     width: 100%;
   }
+}
+
+
+// MÁS
+#more-btn{
+    float: right;
+    padding: 0;
+    margin-right: 10%;
+    padding-top: 10px
+}
+
+#more-btn a{
+    padding:0;   
+}
+
+
+// MENÚ
+.dropdown-menu li{
+    list-style:none;
+    color:#333333;
+    font-family: 'HelveticaNeueLTStdLight';
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+.dropdown-menu li img{
+    margin-right:5px;    
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 200px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 1px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+}
+
+.dropdown-menu li a{
+    color: #333333;    
+}
+
+.dropdown-menu li ul li a{
+    color:#616060;
+}
+.dropdown-menu li img{
+     width: 17px;  
+}
+
+#mapa-menu-img{
+    width: 22px;    
 }

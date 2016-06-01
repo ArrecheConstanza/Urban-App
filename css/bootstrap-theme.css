@@ -75,8 +75,9 @@ fieldset[disabled] .btn-danger {
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #e0e0e0;
-  background-position: 0 -15px;
+    color: #fff;
+    background-color: #0a3a49;
+    border-color: #07343f;
 }
 .btn-default:active,
 .btn-default.active {

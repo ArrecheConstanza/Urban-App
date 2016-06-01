@@ -17,7 +17,7 @@
 }
 
 #registro-mapa #campos-container form input {
-    margin-bottom: 10%;
+	margin-bottom: 10%;
     border: none;
     border-bottom: 1px solid #CECECE;
     width: 70%;
@@ -27,9 +27,17 @@
     letter-spacing: 4.5px;
     background: transparent;
     font-size: 2rem;
+    margin-left: 12%;
+    margin-top: 7%;
 }
 
-
+ /*Circulos*/
+ .box-circle-registro{
+    margin-top: 10px;
+    padding: 0;
+    padding-left: 25%;
+ }
+ 
 /** Continuar **/
 
 #registro-mapa #registroMapa-continue-btn{

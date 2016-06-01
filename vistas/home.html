@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Title -->
+	<title>URBAN</title>
+	
+	<!-- BOOTSTRAP CSS 
+	<link href="../css/bootstrap.min.css" rel="stylesheet">-->
+	
+	<!-- CSS ef="../css/style.css" rel="stylesheet">
+	<link href="../css/fonts.css" rel="stylesheet">
+	<link href="../css/login.css" rel="stylesheet"> -->
+	<link href="../css/fonts.css" rel="stylesheet">
+    <link rel="stylesheet/less" href="../css/less/bootstrap.less">
+	<link href="../css/registro-datos.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body id="home">
+	
+	<!----- HEADER  ------->
+	<header class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		
+		<!-- MENÚ DROPDOWN -->
+		<div class="dropdown col-lg-6 col-xs-6 col-sm-6">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="javascript:void(0)"><img src="../img/icons/png/menu-nombre.png" alt="nombre" /> Juan</a>
+					<ul>
+						<li><a href="#"><img src="../img/icons/png/grupo-color.png" alt="grupo" />Grupo uno</a></li>
+						<li><a href="#"><img src="../img/icons/png/grupo-color-2.png" alt="grupo" />Grupo dos</a></li>
+					</ul></li>
+				<li><a href="#"><img src="../img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu-img"/>Mapa</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="#"><img src="../img/icons/png/menu-preferencias.png" alt="preferencias" id="mapa-menu-img"/>Preferencias</a></li>
+				<li><a href="#"><img src="../img/icons/png/menu-ayuda.png" alt="ayuda" id="mapa-menu-img"/>Ayuda</a></li>
+			</ul>
+		</div>
+		
+		<!-- ALARMA -->
+		<a href="alarmas-select-html" class="col-lg-6 col-xs-6 col-sm-6">
+		<div class="alarm-icon">
+			<img src="../img/icons/png/alarm.png" alt="alarma" />
+		</div>
+		</a>
+		
+	</header>
+	
+	
+	<!------- CONTENIDO ----->
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+		<!-- OPCIONES -->
+		<select>
+			<option value="todos">Todos</option>
+			<option value="ofertas">Ofertas</option>
+			<option value="animales">Animales</option>
+			<option value="publicidades">Publicidades</option>
+		</select>
+		
+		
+		<!-- PUBLICACIONES -->
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicaciones">
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/todo.png" alt="todo" />
+				<p>TODOS</p>
+			</div>
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/animal.png" alt="animal" />
+				<p>ANIMAL PERDIDO</p>
+			</div>
+		
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/ofertas.png" alt="oferta" />
+				<p>OFERTA</p>
+			</div>
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/animal.png" alt="animal" />
+				<p>ANIMAL PERDIDO</p>
+			</div>	
+			
+		</div>
+		
+		<!-- MÁS -->
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="more-btn">
+			<a href="" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/mas.png" alt="mas" />
+			</a>
+		</div>
+	
+	</div>
+	
+</body>
+</html>

@@ -96,6 +96,19 @@ output {
 //
 // select
 // textarea
+//input
+.form-control:focus{
+    background: transparent!important;
+    box-shadow: none!important;
+    outline:none;
+}
+
+#registro-datos form #continue-registro:focus{
+    color: #fff;
+    background-color: #0a3a49!important;
+    border-color: #07343f!important;
+    outline:none;
+}
 // input[type="text"]
 // input[type="password"]
 // input[type="datetime"]
@@ -119,7 +132,7 @@ output {
   font-size: @font-size-base;
   line-height: @line-height-base;
   letter-spacing: 4.5px;
-  color: @input-color;
+  color: @input-color-registro;
   background-color: @body-bg;
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: none;
