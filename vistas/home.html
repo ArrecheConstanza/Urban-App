@@ -28,7 +28,7 @@
 
 <body id="home">
 	
-	<!----- HEADER  ------->
+	<!-- - - - HEADER  - - - - - -->
 	<header class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
 		<!-- MENÚ DROPDOWN -->
@@ -50,34 +50,65 @@
 		</div>
 		
 		<!-- ALARMA -->
-		<a href="alarmas-select-html" class="col-lg-6 col-xs-6 col-sm-6">
-		<div class="alarm-icon">
-			<img src="../img/icons/png/alarm.png" alt="alarma" />
+		<a href="alarmas.html" class="col-lg-6 col-xs-6 col-sm-6">
+		<div class="pull-right alarm-icon">
+			 <span class="glyphicon glyphicon-bell"></span>
 		</div>
 		</a>
 		
 	</header>
 	
 	
-	<!------- CONTENIDO ----->
+	<!--- - - - - CONTENIDO - - - -->
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	
-		<!-- OPCIONES -->
-		<select class="select">
-			<option value="todos">Todos</option>
-			<option value="ofertas">Ofertas</option>
-			<option value="animales">Animales</option>
-			<option value="publicidades">Publicidades</option>
-		</select>
-		
-		
+		<!-- OPCIONES
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<select class="select">
+				<option value="todos">Todos</option>
+				<option value="ofertas">Ofertas</option>
+				<option value="animales">Animales</option>
+				<option value="publicidades">Publicidades</option>
+			</select>
+		</div> -->
+		<!-- O SEARCH -->
+		<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"  style="padding-top:1em">
+			<input type="search" name="filtro" placeholder="Filtrar" class="form-control">
+		</div>
+		<div class="col-lg- 1 col-md-1 col-sm-1 col-xs-1 volver-icon" style="padding-top:1.5em">
+			<span class="glyphicon glyphicon-search"></span>
+		</div>
 		<!-- PUBLICACIONES -->
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicaciones">
 			
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img src="../img/icons/png/todo.png" alt="todo" />
-				<p>TODOS</p>
+				<img src="../img/icons/png/evento.png" alt="todo" />
+				<p>Reunion de consorcio</p>
+			</div>
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/animal.png" alt="animal" />
+				<p>Manchitas se perdio</p>
+			</div>
+		
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/ofertas.png" alt="oferta" />
+				<p>2x1 en congelados!</p>
+			</div>
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/animal.png" alt="animal" />
+				<p>Mileno (boxer marron)</p>
+			</div>	
+			
+			<!-- img y titulo -->
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/evento.png" alt="todo" />
+				<p>Pago de expensas</p>
 			</div>
 			
 			<!-- img y titulo -->
@@ -89,21 +120,15 @@
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="../img/icons/png/ofertas.png" alt="oferta" />
-				<p>OFERTA</p>
+				<p>20% en envasados</p>
 			</div>
-			
-			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img src="../img/icons/png/animal.png" alt="animal" />
-				<p>ANIMAL PERDIDO</p>
-			</div>	
 			
 		</div>
 		
 		<!-- MÁS -->
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" id="more-btn">
-			<a href="publicacion.html" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img src="../img/icons/png/mas.png" alt="mas" />
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-fixed-bottom pull-right" >
+			<a href="publicacion.html" class="pull-right">
+				<img src="../img/icons/png/mas.png" alt="mas"  role="button"/>
 			</a>
 		</div>
 	
