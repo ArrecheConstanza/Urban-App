@@ -23,7 +23,7 @@
  .box-circle-registro{
     margin-top: 10px;
     padding: 0;
-    padding-left: 25%;
+    padding-left: 25% !important;
  }
  
  .complete-task-circle{
@@ -66,4 +66,12 @@
 
 #registro-datos #campos-container form input[type=submit] {
     margin-top: 15%;
+}
+
+/* Mensaje validacion */
+.mensaje-validacion{
+	color:red;
+	position:absolute;
+	text-align:right;
+	margin-top:2.5em !important;
 }
