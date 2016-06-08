@@ -1,4 +1,4 @@
-/////////////////////////////////////////////FUNCIONES GLOBALES
+/****************************************FUNCIONES GLOBALES****************************************/
 
 function ce(e){
 	return document.createElement(e);
@@ -23,12 +23,12 @@ function txt(s){
 }
 
 /////////VALIDACION DEL FORM REGISTRO UNO
-function validar_form_registro_uno(e){
+function validar_form_registro_uno(e,estado){
 	switch(e.name){
 		case 'nombre': case 'apellido':
 			if(!validar_nombre_apellido(e.value)){
 				if(!e.value==''){
-					var tx=txt('Solo puede poseer letras y espacios');				
+					var tx=txt('Solo puede poseer letras y espacios');		
 				}
 			}
 			break;
@@ -54,25 +54,30 @@ function validar_form_registro_uno(e){
 			}
 		}
 		else{
-			e.style.borderBottom='1px solid #aaa';
-			var p=tn(e.parentNode,'p',0);
-			if(p!=undefined){
-				rc(p.parentNode,p);
+			if(!estado){
+				e.style.borderBottom='1px solid #aaa';
+				var p=tn(e.parentNode,'p',0);
+				if(p!=undefined){
+					rc(p.parentNode,p);
+				}
 			}
 		}
 }
 
-///////////////////////////////////////////
+
+/***********************************VARIABLES GLOBALES*******************************************/
+
+var union;
 
 
-
-
-/////MODULOS
+/******************************************MODULOS***********************************************/
 
 var Urban = angular.module('Urban', [
   'ngRoute',
   'mobile-angular-ui',
-  'mobile-angular-ui.gestures'
+  'mobile-angular-ui.gestures',
+  //'google-maps'
+  'uiGmapgoogle-maps'
 //  'ngFileUpload' -> para update de fotos (a futuro)
 ]);
 
@@ -95,28 +100,32 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/registro-datos.html',
 			controller : 'registroUnoCtrl'
 		})
-		.when('/registroDos', {
+		/*.when('/registroDos', {
 			templateUrl : 'vistas/registro-mapa.html',
-			//controller : 'registroDosCtrl'
-		})
+			controller : 'registroDosCtrl'
+		})*/
 		.otherwise({
 			redirectTo: '/'
 		});
 });
+
+
+
+/*****************************************************CONTROLLERS************************************************/
 
 /////CONTROLLER INDEX (login)
 Urban.controller("indexCtrl", function ($scope, $http) { 
 
 });
 
-/////CONTROLLER REGISTRO UNO (registro parte 1)
-Urban.controller("registroUnoCtrl", function ($scope, $http) { 
 
-	////validar los inputs en el onblur
+/////CONTROLLER REGISTRO UNO 
+Urban.controller("registroUnoCtrl", function ($scope, $window) { 
+
+	//validar los inputs en el onblur
 	var datos_registro_uno=tn(tn(document,'form',0),'input');
 	for(var i=0;i<datos_registro_uno.length;i++){
 		datos_registro_uno[i].onblur=function(){
-			console.log(this);
 			validar_form_registro_uno(this);
 		}
 	}
@@ -134,28 +143,32 @@ Urban.controller("registroUnoCtrl", function ($scope, $http) {
 		for(var i in usuario){
 			item.push( i+'='+usuario[i] ); 
 		}
+		//validar inputs en el submit
 		for(var i=0;i<datos_registro_uno.length;i++){
-			validar_form_registro_uno(datos_registro_uno[i]);
+			validar_form_registro_uno(datos_registro_uno[i],"submit");
 		}
-		var union = item.join('&');	
+		var mensaje=tn(tn(document,'form',0),'p');
+		if(!mensaje.length){
+			union = item.join('&');	
+			//redireccion a vistas/registro-mapa, guardado de datos en variable global union
+			$window.location.href = '/vistas/registro-mapa.html';
+			 //$location.path( "/registroDos" );
+		}
 	}
+	
 });
 
 
+/////CONTROLLER REGISTRO DOS MAPA
+Urban.controller("registroDosCtrl", function ($scope, $location) { 
+		//tn(document,'body',0).innerHTML+="<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAuu2muyyLJjvAAmi3JEzmA3IT9NKalS9A&callback=initMap'> </script>";
+	
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+window.addEventListener('DOMContentLoaded', function() {
+	
+});
 
 
 
