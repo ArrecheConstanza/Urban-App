@@ -14,6 +14,7 @@
     padding: 0;
     padding-top: 7%;
 	background:rgba(251, 247, 247, 0.88)!important;
+	z-index:3;
 }
 
 #registro-mapa #campos-container form input {
@@ -41,12 +42,12 @@
 /** Continuar **/
 
 #registro-mapa #registroMapa-continue-btn{
-	background:#0a3a49;
     background: #0a3a49;
     height: 9vh;
     text-transform: uppercase;
     font-family: 'HelveticaNeueLTStd';
-    margin-top: 85%;
+    margin-top: 75vh;
+	bottom:0;
     border: none;
     width: 80%;
     color: white;
@@ -55,12 +56,6 @@
     font-size: 2rem;
 }
 
-/*Mapa*/
-
-#map{ 
-	height:100vh; 
-	width:100vw; 
-}
 
 
 

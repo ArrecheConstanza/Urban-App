@@ -67,8 +67,6 @@ function validar_form_registro_uno(e,estado){
 
 /***********************************VARIABLES GLOBALES*******************************************/
 
-var union;
-
 
 /******************************************MODULOS***********************************************/
 
@@ -149,9 +147,10 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 		}
 		var mensaje=tn(tn(document,'form',0),'p');
 		if(!mensaje.length){
-			union = item.join('&');	
+			var union = item.join('&');	
+			localStorage.setItem("dts_user",union);
 			//redireccion a vistas/registro-mapa, guardado de datos en variable global union
-			$window.location.href = '/vistas/registro-mapa.html';
+			$window.location.href = '/urban-app/vistas/registro-mapa.html';
 			 //$location.path( "/registroDos" );
 		}
 	}
@@ -160,14 +159,28 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 
 
 /////CONTROLLER REGISTRO DOS MAPA
-Urban.controller("registroDosCtrl", function ($scope, $location) { 
-		//tn(document,'body',0).innerHTML+="<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAuu2muyyLJjvAAmi3JEzmA3IT9NKalS9A&callback=initMap'> </script>";
-	
-});
-
-
-window.addEventListener('DOMContentLoaded', function() {
-	
+Urban.controller("registroDosCtrl", function ($scope,$http) { 
+	id("registroMapa-continue-btn").onclick=function(){
+		var direccion=tn(tn(document,'form',0),'input',0).value;
+		if(localStorage.getItem("dts_user")!=null){
+			var union=localStorage.getItem("dts_user");
+			union+="&DIRECCION="+direccion;
+			localStorage.setItem("dts_user",union);
+		}
+		union+="&direccion="+direccion;
+		$http({
+			method: 'POST',
+			url:"php/abm/registro.usuario.php",
+			data: union,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(mdata){
+			
+		})
+		.error(function(){
+			
+		});
+	}
 });
 
 
