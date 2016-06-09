@@ -80,6 +80,8 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
     left: 118px;
 }
 
+/*********Mapa******/
+
 #map{
 	position:absolute!important;
 	top:0;
@@ -88,3 +90,27 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 	bottom:0;
 	z-index:1;
 }
+
+
+/*********Input Direccion******/
+#pac-input{
+	display:inline-block;
+	width:70vw;
+	padding:1em;
+	margin-top:15em;
+	font-size:1em;
+	margin-left:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

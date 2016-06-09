@@ -10,7 +10,6 @@ class Usuario{
 	private $latitud;
 	private $direccion;
 	private $direccion_estado;
-	private $nivel;
 	private $fecha_alta;
 	private $banneado;
 	private $nivel;
@@ -149,11 +148,11 @@ class Usuario{
 			return 0;
 		}
 	}
-	public function cambiar_nivel_usuario($array){
+	/*public function cambiar_nivel_usuario($array){
 		$query = "UPDATE " . static::$tabla . "  SET NIVEL=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["nivel"],$array["id"]]);
-	}
+	}*/
 	public function crear_usuario($array){
 		$query = "INSERT INTO " . static::$tabla . " (MAIL, USUARIO, CONTRASENIA, NIVEL, FECHA_NACIMIENTO, SEXO)
 				VALUES (?, ?, ?, ?, ?, ?)";
@@ -161,7 +160,7 @@ class Usuario{
 		return $stmt->execute([$array["mail"],$array["usuario"],$array["contrasenia"],$array["nivel"],$array["fecha_nacimiento"],$array["sexo"]]);
 	}
 	public function verificar_usuario($mail, $contrasenia){
-		$query = "SELECT * FROM " . static::$tabla . " WHERE MAIL=? AND CONTRASENIA=md5(?)";
+		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=md5(?)";
 		$stmt = DBcnx::getStatement($query);
 		$array=[];
 		if($stmt->execute([$mail,$contrasenia])){

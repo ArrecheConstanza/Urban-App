@@ -23,7 +23,7 @@ function txt(s){
 }
 
 /////////VALIDACION DEL FORM REGISTRO UNO
-function validar_form_registro_uno(e,estado){
+function validar_form(e,estado){
 	switch(e.name){
 		case 'nombre': case 'apellido':
 			if(!validar_nombre_apellido(e.value)){
@@ -98,10 +98,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/registro-datos.html',
 			controller : 'registroUnoCtrl'
 		})
-		/*.when('/registroDos', {
-			templateUrl : 'vistas/registro-mapa.html',
-			controller : 'registroDosCtrl'
-		})*/
+		.when('/home', {
+			templateUrl : 'vistas/home.html',
+			controller : 'homeCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -112,19 +112,70 @@ Urban.config(function($routeProvider) {
 /*****************************************************CONTROLLERS************************************************/
 
 /////CONTROLLER INDEX (login)
-Urban.controller("indexCtrl", function ($scope, $http) { 
-
+Urban.controller("indexCtrl", function ($scope, $http, $location) { 
+	
+	//validar inputs en el onblur
+	var datos_login=tn(tn(document,'form',0),'input');
+	for(var i=0;i<datos_login.length;i++){
+		datos_login[i].onblur=function(){
+			validar_form(this);
+		}
+	}
+	
+	//envio del form
+	$scope.login = function (usuario){
+		var datos={
+			EMAIL : usuario.EMAIL,
+			CLAVE : usuario.CLAVE
+		}; 
+		var item = [];
+		var datos_login=tn(tn(document,'form',0),'input');
+		for(var i in usuario){
+			item.push( i+'='+usuario[i] ); 
+		}
+		//validar inputs en el submit
+		for(var i=0;i<datos_login.length;i++){
+			validar_form(datos_login[i],"submit");
+		}
+		var mensaje=tn(tn(document,'form',0),'p');
+		if(!mensaje.length){
+			var union = item.join('&');	
+			//ABM: login
+			$http({
+				method: 'POST',
+				url:"php/abm/login.usuario.php",
+				data: union,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data){
+				if(!isNaN(data.ID)){
+					//redireccion a home de usuario
+					$location.path( "/home" );
+				}
+				else if(data==='Usuario no existente'){
+					var p=ce('p');
+					p.className='mensaje-validacion';
+					p.innerHTML='Mail o contraseña incorrecto';
+					datos_login[0].parentNode.insertBefore(p,datos_login[0]);
+				}
+			})
+			.error(function(){
+				//mensaje Sin conexion 
+			});
+		}
+	}
+	
 });
 
 
-/////CONTROLLER REGISTRO UNO 
+/////CONTROLLER REGISTRO UNO (datos)
 Urban.controller("registroUnoCtrl", function ($scope, $window) { 
 
-	//validar los inputs en el onblur
+	//validar inputs en el onblur
 	var datos_registro_uno=tn(tn(document,'form',0),'input');
 	for(var i=0;i<datos_registro_uno.length;i++){
 		datos_registro_uno[i].onblur=function(){
-			validar_form_registro_uno(this);
+			validar_form(this);
 		}
 	}
 	
@@ -143,24 +194,24 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 		}
 		//validar inputs en el submit
 		for(var i=0;i<datos_registro_uno.length;i++){
-			validar_form_registro_uno(datos_registro_uno[i],"submit");
+			validar_form(datos_registro_uno[i],"submit");
 		}
 		var mensaje=tn(tn(document,'form',0),'p');
 		if(!mensaje.length){
 			var union = item.join('&');	
 			localStorage.setItem("dts_user",union);
-			//redireccion a vistas/registro-mapa, guardado de datos en variable global union
+			//redireccion a vistas/registro-mapa, guardado de datos en LocalStorage de variable union
 			$window.location.href = '/urban-app/vistas/registro-mapa.html';
-			 //$location.path( "/registroDos" );
 		}
 	}
 	
 });
 
 
-/////CONTROLLER REGISTRO DOS MAPA
+/////CONTROLLER REGISTRO DOS (mapa)
 Urban.controller("registroDosCtrl", function ($scope,$http) { 
-	id("registroMapa-continue-btn").onclick=function(){
+	
+	/*id("registroMapa-continue-btn").onclick=function(){
 		var direccion=tn(tn(document,'form',0),'input',0).value;
 		if(localStorage.getItem("dts_user")!=null){
 			var union=localStorage.getItem("dts_user");
@@ -170,7 +221,7 @@ Urban.controller("registroDosCtrl", function ($scope,$http) {
 		union+="&direccion="+direccion;
 		$http({
 			method: 'POST',
-			url:"php/abm/registro.usuario.php",
+			url:"../php/abm/registro.usuario.php",
 			data: union,	
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
@@ -180,10 +231,12 @@ Urban.controller("registroDosCtrl", function ($scope,$http) {
 		.error(function(){
 			
 		});
-	}
+	}*/
 });
 
 
+/////CONTROLLER HOME (home usuario)
+Urban.controller("homeCtrl", function ($scope,$http) { 
 
 
-
+});
