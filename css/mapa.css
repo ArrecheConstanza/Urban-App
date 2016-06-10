@@ -92,16 +92,6 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 }
 
 
-/*********Input Direccion******/
-#pac-input{
-	display:inline-block;
-	width:70vw;
-	padding:1em;
-	margin-top:15em;
-	font-size:1em;
-	margin-left:0;
-}
-
 
 
 
