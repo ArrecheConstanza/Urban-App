@@ -107,9 +107,13 @@
 
 			<!-- Buscador -->
 			var input=id('pac-input');
-			
 			var searchBox = new google.maps.places.SearchBox(input);
-			/*map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);*/
+			
+			<!--Continuar-->
+			var continuar=id('registroMapa-continue-btn');
+			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(continuar);
+			/*continuar.style.left="0!important";
+			continuar.style.fontSize="1em!important";*/
 
 			map.addListener('bounds_changed', function() {
 				searchBox.setBounds(map.getBounds());
@@ -150,7 +154,7 @@
 			});
 			markers = [];
 
-			<!-- Por cadda lugar pedir el icono, nombre y location -->
+			<!-- Por cada lugar pedir el icono, nombre y location -->
 			var bounds = new google.maps.LatLngBounds();
 			places.forEach(function(place) {
 			  var icon = {
