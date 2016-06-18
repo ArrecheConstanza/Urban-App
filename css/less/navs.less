@@ -23,7 +23,8 @@
       &:hover,
       &:focus {
         text-decoration: none;
-        background-color: @nav-link-hover-bg;
+        padding-bottom: 5px;
+        border-bottom: 5px solid #fff; 
       }
     }
 
@@ -239,4 +240,27 @@
   margin-top: -1px;
   // Remove the top rounded corners here since there is a hard edge above the menu
   .border-top-radius(0);
+}
+
+#mas{ 
+    position: absolute;
+    bottom: 3px;
+    right: 0;
+}
+#masMenu{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    a{
+       margin-top: 10%;
+       display: inline-block;  
+    }
+}    
+
+#nombreGrupo{  
+    background: #0a384a;
+    color: #fff;
+    margin-bottom: 0;
+    padding: .5em;
+    z-index: initial;
 }

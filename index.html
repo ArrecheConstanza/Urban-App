@@ -10,20 +10,20 @@
 	<!-- Title -->
 	<title>URBAN</title>
 	
+	
+	<!-- CSS -->
+	<link href="css/mobile-angular-ui-base.css" rel="stylesheet">
+	<link href="css/fonts.css" rel="stylesheet">
+
 	<!-- BOOTSTRAP CSS 
 	<link href="css/bootstrap.min.css" rel="stylesheet">-->
-	
-	<!-- CSS 
-	<link href="css/style.css" rel="stylesheet">
-	
-	<link href="css/login.css" rel="stylesheet">-->
-	<link href="css/mapa.css" rel="stylesheet">
-	<link href="css/registro-datos.css" rel="stylesheet">
-	<link href="css/registro-mapa.css" rel="stylesheet">
-	<link href="css/fonts.css" rel="stylesheet">
     <link rel="stylesheet/less" href="./css/less/bootstrap.less">
+
+	<!-- COMPILADOR LESS (despues de compilarlo lo saco)  -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
 	
+	<!-- CSS que pisa al bootstrap-->
+	<link href="css/style.css" rel="stylesheet">
 	
    <!-- <script src="assets/scripts/controllers/dragzoom.js"></script>-->
 	
@@ -46,10 +46,8 @@
 	
 </head>
 
-<body ng-app ='Urban'>
-	<header>
-	
-	</header>
+<body ng-app ='Urban'
+    ui-prevent-touchmove-defaults>
 	<main>
 		<div ng-view>
 		

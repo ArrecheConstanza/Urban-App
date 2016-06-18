@@ -210,7 +210,7 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 
 /////CONTROLLER REGISTRO DOS (mapa)
 Urban.controller("registroDosCtrl", function ($scope,$http,$window) { 
-	tn(id("title-registro-container"),'a',0).onclick=function(){
+	tn(id("title-container"),'a',0).onclick=function(){
 		$window.location.href = '/urban-app/index.html#/registroUno';
 	}
 	id("registroMapa-continue-btn").onclick=function(){

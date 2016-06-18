@@ -2,18 +2,39 @@
 ***************************************************CSS ***************************************************
 ***********************************************************************************************************/
 
-/*==============  GENERAL ======= ======= */
 
-*{
+/***TITULOS***/
+ /** Container de Titulo y Volver */
+ #title-container{
 	padding:0;
-	margin:0;
+	padding-top:7%;
+ }
+
+ /** Clase que se agrega a etiqueta <a> contenedora del <span> 
+  ** Icono .volver-icon <span> se agrega a glyphicon.less para reutilizarlo*/
+.volver-icon{
+    padding: 0;
+	width:0;
 }
 
-html{
-	padding:0;
-	margin:0;
+/* Titulo */
+ #title-container h1{
+    display: inline-block;
+    float: left;
+    font-size: 1.8em;
+	padding-top:.22em;
+    margin: 0;
+    margin-bottom: 1em;
+    width: 100%;
 }
 
-body{ 
-	background-color: #eeeeee;
+
+/***FORM***/
+/** Mensaje validacion */
+.mensaje-validacion{
+	color:red;
+	position:absolute;
+	text-align:right;
+	margin-top:2.5em !important;
 }
+

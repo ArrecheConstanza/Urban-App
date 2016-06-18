@@ -10,129 +10,206 @@
 	<!-- Title -->
 	<title>URBAN</title>
 	
+	<!-- AngularJS -->
+	<link href="../css/mobile-angular-ui-base.css" rel="stylesheet">
+  	<script src="../js/modulos/angular.js"></script> 
+
 	<!-- BOOTSTRAP CSS 
 	<link href="../css/bootstrap.min.css" rel="stylesheet">-->
-	
-	<!-- CSS ef="../css/style.css" rel="stylesheet">
-	<link href="../css/fonts.css" rel="stylesheet">
-	<link href="../css/login.css" rel="stylesheet"> -->
-	<link href="../css/fonts.css" rel="stylesheet">
     <link rel="stylesheet/less" href="../css/less/bootstrap.less">
-	<link href="../css/registro-datos.css" rel="stylesheet">
+	
+	<!-- CSS  -->
+	<link href="../css/fonts.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../css/home.css" rel="stylesheet">
+
+	<!-- COMPILADOR LESS  -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
 
+
+    <!-- MODULOS JQUERY / BOOTSTRAP  -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 </head>
 
 
-<body id="home">
-	
+<body ng-app=''
+    ui-prevent-touchmove-defaults> 
+
+	<!-- ***VISTA*** -->
+
+	<!-- Estilos propios de la vista -->
+	<style> @import "../css/home.css"; </style>
+
+	<div id="home" class=""> <!-- sidebar-left-in sidebar-left-visible-->
+		
+	<!-- CONTENEDOR DE MENÚ SIDEBAR-LEFT  despues sacar "../"-->
+	 <div ng-include="'../includes/sidebar.html'"
+         class="sidebar sidebar-left">
+	 </div>
 	<!-- - - - HEADER  - - - - - -->
-	<header class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		
-		<!-- MENÚ DROPDOWN -->
-		<div class="dropdown col-lg-6 col-xs-6 col-sm-6">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				<span class="glyphicon glyphicon-menu-hamburger"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li><a href="javascript:void(0)"><img src="../img/icons/png/menu-nombre.png" alt="nombre" /> Juan</a>
-					<ul>
-						<li><a href="#"><img src="../img/icons/png/grupo-color.png" alt="grupo" />Grupo uno</a></li>
-						<li><a href="#"><img src="../img/icons/png/grupo-color-2.png" alt="grupo" />Grupo dos</a></li>
-					</ul></li>
-				<li><a href="#"><img src="../img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu"/>Mapa</a></li>
-				<li role="separator" class="divider"></li>
-				<li><a href="#"><img src="../img/icons/png/menu-preferencias.png" alt="preferencias" id="pref"/>Preferencias</a></li>
-				<li><a href="#"><img src="../img/icons/png/menu-ayuda.png" alt="ayuda" id="ayuda"/>Ayuda</a></li>
-			</ul>
+	<header class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >
+		<div class="">
+			<!-- BOTON MENÚ SIDEBAR-LEFT -->
+			<div class="pull-left" >
+	          <div class="menuIcon" ui-toggle="uiSidebarLeft" 
+	          		type="button" class="sidebar-toggle">
+	            <span class="glyphicon glyphicon-sm glyphicon-menu-hamburger"></span>
+	          </div>
+	        </div>
+			<!-- MENÚ DROPDOWN 
+			<div class="dropdown col-lg-6 col-xs-6 col-sm-6">
+				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<span class="glyphicon glyphicon-menu-hamburger"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+					<li><a href="javascript:void(0)"><img src="../img/icons/png/menu-nombre.png" alt="nombre" /> Juan</a>
+						<ul>
+							<li><a href="#"><img src="../img/icons/png/grupo-color.png" alt="grupo" />Grupo uno</a></li>
+							<li><a href="#"><img src="../img/icons/png/grupo-color-2.png" alt="grupo" />Grupo dos</a></li>
+						</ul></li>
+					<li><a href="#"><img src="../img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu"/>Mapa</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#"><img src="../img/icons/png/menu-preferencias.png" alt="preferencias" id="pref"/>Preferencias</a></li>
+					<li><a href="#"><img src="../img/icons/png/menu-ayuda.png" alt="ayuda" id="ayuda"/>Ayuda</a></li>
+				</ul>
+			</div>-->
+
+
+			<!-- ALARMA -->
+			<a href="alarmas.html" class=" pull-right">
+			<div class="pull-right alarm-icon">
+				 <span class="glyphicon glyphicon-bell"></span>
+			</div>
+			</a>
+			<!-- BUSCADOR -->
+			<a href="#/buscador" class="pull-right menuIcon">
+			<div class="pull-right">
+				<span class="glyphicon glyphicon-search glyphicon-sm"></span>
+			</div>
+			</a>
 		</div>
-		
-		<!-- ALARMA -->
-		<a href="alarmas.html" class="col-lg-6 col-xs-6 col-sm-6">
-		<div class="pull-right alarm-icon">
-			 <span class="glyphicon glyphicon-bell"></span>
+		<!--div class="btn-group justified text-center nav navbar-nav"--> 
+		<div class="scrolleable-min">
+		<ul class="nav navbar-nav col-lg-12 col-xs-12 col-sm-12 text-center">
+        <li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Publicaciones" >Publicaciones</a></li>
+		<li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Chats">Chats</a></li>
+		<li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Encuestas">Encuestas</a></li>
+		</ul>	
 		</div>
-		</a>
-		
 	</header>
 	
 	
-	<!--- - - - - CONTENIDO - - - -->
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	
-		<!-- OPCIONES
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<select class="select">
-				<option value="todos">Todos</option>
-				<option value="ofertas">Ofertas</option>
-				<option value="animales">Animales</option>
-				<option value="publicidades">Publicidades</option>
-			</select>
-		</div> -->
-		<!-- O SEARCH -->
+	<!--- ******CONTENIDO (VISTA PUBLICACIONES)****** -->
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+		ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+		ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+	 
+		<!-- SEARCH 
 		<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"  style="padding-top:1em">
 			<input type="search" name="filtro" placeholder="Filtrar" class="form-control">
 		</div>
 		<div class="col-lg- 1 col-md-1 col-sm-1 col-xs-1 volver-icon" style="padding-top:1.5em">
 			<span class="glyphicon glyphicon-search"></span>
-		</div>
+		</div>-->
 		<!-- PUBLICACIONES -->
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicaciones">
 			
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 				<img src="../img/icons/png/evento.png" alt="todo" />
-				<p>Reunion de consorcio</p>
+				<div>
+					<h2>Reunion de consorcio</h2>
+				</div>
+				<small>04:12 12/06</small>
 			</div>
 			
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
 				<img src="../img/icons/png/animal.png" alt="animal" />
-				<p>Manchitas se perdio</p>
+				<div>
+					<h2>Manchitas se perdio</h2>
+					<p>Manchitas se perdio</p>
+				</div>
+				<small>04:12 12/06</small>
 			</div>
 		
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<img src="../img/icons/png/temaOfertas.png" alt="todo" class="temaChat"/>
 				<img src="../img/icons/png/ofertas.png" alt="oferta" />
-				<p>2x1 en congelados!</p>
+				<div>
+					<h2>Manchitas se perdio</h2>
+					<p>2x1 en congelados!</p>
+				</div>
+				<small>04:12 12/06</small>
 			</div>
 			
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img src="../img/icons/png/animal.png" alt="animal" />
-				<p>Mileno (boxer marron)</p>
+				<img src="../img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
+				<img src="../img/icons/png/animal.png" alt="animal" /> 
+				<div>
+					<h2>Mileno (boxer marron)</h2>
+				</div>
 			</div>	
 			
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="../img/icons/png/evento.png" alt="todo" />
-				<p>Pago de expensas</p>
-			</div>
-			
-			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<img src="../img/icons/png/animal.png" alt="animal" />
-				<p>ANIMAL PERDIDO</p>
+				<div>
+					<h2>pago de expensas</h2>
+				</div>
 			</div>
 		
 			<!-- img y titulo -->
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="../img/icons/png/ofertas.png" alt="oferta" />
-				<p>20% en envasados</p>
+				<div>
+					<h2>20% en envasados</h2>
+				</div>
 			</div>
 			
 		</div>
-		
-		<!-- MÁS -->
+
+		<!-- FOOTER -->
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-fixed-bottom pull-right" >
-			<a href="publicacion.html" class="pull-right">
-				<img src="../img/icons/png/mas.png" alt="mas"  role="button"/>
+			
+			<div class="navbar-fixed-bottom" id="nombreGrupo">Nombre del grupo</div>
+
+			<!-- MAS -->
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas">
+			<a href="#/menuMas">
+				<img src="../img/icons/png/mas.png" alt="mas"  role="button" class="img-responsive"/>
 			</a>
+			</div>
+
+			<!-- MENU MAS  style="display:none" -->
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="masMenu">
+				<a href="#/newEvento"><span class="label label-default">Evento</span>
+					<img src="../img/icons/png/newEvento.png" alt="mas"  role="button" class="img-responsive" />
+				</a>
+				<a href="#/newEncuesta"><span class="label label-default">Encuesta</span>
+					<img src="../img/icons/png/newEncuesta.png" alt="mas"  role="button" class="img-responsive"/>
+				</a>
+				<a href="#/newItemChat"><span class="label label-default">Item de Chat</span>
+					<img src="../img/icons/png/newChat.png" alt="mas"  role="button" class="img-responsive"/>
+				</a>
+				<a href="#/newPublicacion"><span class="label label-default">Publicacion</span>
+					<img src="../img/icons/png/newPublicacion.png" alt="mas"  role="button" class="img-responsive"/>
+				</a>
+			</div>
 		</div>
 	
 	</div>
+	</div> <!-- FIN VISTA -->
 	
+	<!--Modulos angular-->
+	<script src="../js/modulos/mobile-angular-ui.min.js"></script>
+	<script src="../js/modulos/mobile-angular-ui.gestures.min.js"></script>
+  	<script src="../js/modulos/angular-route.js"></script> 
+  	<script src="../js/validacion/funciones.js"></script> 
 </body>
 </html>
