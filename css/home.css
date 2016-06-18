@@ -1,26 +1,4 @@
 
-
-/***HEADER***/
-/* navBar principal */
-@media (min-width: 768px){
-    .navbar-nav > li > a {
-        padding-bottom: 10px;
-    }
-}
-
-@media (max-width: 505px){
-
-    .scrolleable-min {
-      width: 100%;
-      overflow:scroll;
-    }
-     .navbar-nav {
-        width: 481px;
-    }
-    .navbar-nav > li {
-        width: auto;
-    }
-}
 /********************************************* *************************************************************
 ***************************************************CSS ***************************************************
 ***********************************************************************************************************/
@@ -37,7 +15,7 @@
 
     .scrolleable-min {
       width: 100%;
-      overflow:scroll;
+      overflow:auto;
     }
      .navbar-nav {
         width: 481px;
