@@ -77,14 +77,10 @@ main section:nth-child(2) ul li{
 	background:url('../img/square-gradient.png') no-repeat left center;
 }
 footer{
-	background: rgb(85,153,255); /* Old browsers */
-	background:  -moz-linear-gradient(left, rgba(85,153,255,1) 0%, rgba(9,53,70,1) 91%) ; /* FF3.6-15 */
-	background: -webkit-linear-gradient(left, rgba(85,153,255,1) 0%,rgba(9,53,70,1) 91%) ; /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to right, rgba(85,153,255,1) 0%,rgba(9,53,70,1) 91%) ; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5599ff', endColorstr='#093546',GradientType=1 );
+	background:  url('../img/header-background.png') no-repeat left bottom rgb(85,153,255) ;
 	display:inline-block;
 	width:100vw;
-	height:20%;
+	height:150px;
 	padding:.5em;
 	margin-top:5em;
 }
