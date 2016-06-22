@@ -10,16 +10,29 @@
 	<!-- Title -->
 	<title>URBAN</title>
 	
-	<!-- BOOTSTRAP CSS 
-	<link href="../css/bootstrap.min.css" rel="stylesheet">-->
-	
-	<!-- CSS ef="../css/style.css" rel="stylesheet">
+	<!-- CSS -->
 	<link href="../css/fonts.css" rel="stylesheet">
-	<link href="../css/login.css" rel="stylesheet"> -->
-	<link href="../css/fonts.css" rel="stylesheet">
+
+	<!-- BOOTSTRAP CSS -->
     <link rel="stylesheet/less" href="../css/less/bootstrap.less">
-	<link href="../css/publicacion.css" rel="stylesheet">
+	<!-- link href="css/bootstrap.min.css" rel="stylesheet" -->
+
+	<link href="../css/style.css" rel="stylesheet">
+
+	<!-- COMPILADOR LESS  -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>
+	
+	<!-- AngularJS -->
+  	<script src="../js/modulos/angular.js"></script> 
+	
+	<!-- angular-google-maps -->
+   <script src="../js/modulos/mapa/lodash.underscore.min.js"></script>
+    <script src="../js/modulos/mapa/angular-google-maps.min.js"></script>
+	<script src="../js/modulos/mapa/dev_deps.js"></script>
+    <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
+	<script src="../js/modulos/mapa/angular-google-maps_dev_mapped.js"></script>
+    <!--<script src="js/modulos/mapa/mapaController.js"></script>-->
+	
 	
 </head>
 
@@ -55,10 +68,10 @@
 	<!-- Contenedor registro -->
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title-publicacion-container">
 	
-		<!-- Titulo Registro, Volver y circulos -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm">
+		<!-- Titulo Alarmas y Volver -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
 			<!-- Icono -->
-			<a href="../index.html" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="#/" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			
 			<!-- Texto -->
 			<h1 class="text-center">Alarmas</h1>
