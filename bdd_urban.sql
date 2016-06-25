@@ -2,8 +2,6 @@ DROP DATABASE IF EXISTS urban;
 CREATE DATABASE urban;
 USE urban;
 
---TABLAS--
-
 CREATE TABLE multimedia(
 	ID INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	DIR VARCHAR(45) NOT NULL
@@ -282,8 +280,6 @@ CREATE TABLE denuncia_evento(
 	FOREIGN KEY (FKEVENTO) REFERENCES evento(ID)
 );
 
---INDEXES--
-
 CREATE INDEX index_titulo_grupo
 ON grupo (NOMBRE);
 
@@ -311,8 +307,8 @@ ON encuesta (PREGUNTA);
 CREATE INDEX index_titulo_evento
 ON evento (TITULO);
 
-CREATE INDEX index_titulo_list_item
-ON list_item (TITULO);
+CREATE INDEX index_nombre_list_item
+ON list_item (NOMBRE);
 
 CREATE INDEX index_fecha_desde_list_item
 ON list_item (FECHA_DESDE);
