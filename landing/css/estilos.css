@@ -115,7 +115,8 @@ header div figure:nth-child(1) picture img{
 
 /* M A I N   C O N T E N T */
 main{
-	margin-top:4em;
+	margin-top: 16%;
+    height: 39vh;
 }
 
 main section{
