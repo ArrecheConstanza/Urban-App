@@ -34,7 +34,7 @@
     <!--<script src="js/modulos/mapa/mapaController.js"></script>-->
 	
 </head>
-
+<header>@import "../includes/sidebar.html";</header>
 <body ng-app ='Urban'>
 	<main>
 
@@ -112,8 +112,6 @@
 			<!--Continuar-->
 			var continuar=id('registroMapa-continue-btn');
 			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(continuar);
-			/*continuar.style.left="0!important";
-			continuar.style.fontSize="1em!important";*/
 
 			map.addListener('bounds_changed', function() {
 				searchBox.setBounds(map.getBounds());
@@ -125,25 +123,28 @@
 			searchBox.addListener('places_changed', function() {
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 			
-			var direc=places[0].name;
-			<!-- Saco la lat y la long -->
-			var lat=places[0].geometry.location.lat();
-			var lon=places[0].geometry.location.lng();
-			
-			/*var obj_direccion={
-				DIRECCION : direc,
-				LATITUD : lat,
-				LONGITUD : lon
+			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
+			id('registroMapa-continue-btn').onclick=function(){
+				<!--Saco la direc-->
+				var direc=places[0].name;
+				
+				<!-- Saco la lat y la long -->
+				var lat=places[0].geometry.location.lat();
+				var lon=places[0].geometry.location.lng();
+				
+				<!--Guardo todo en localStorage-->
+				var obj_direccion={
+					DIRECCION : direc,
+					LATITUD : lat,
+					LONGITUD : lon
+				}
+				localStorage.setItem("direc_user",JSON.stringify(obj_direccion));
+				
+				<!---------------REDIRECCION A INEDX----------------->
+				if(localStorage.getItem("direc_user")!=null){
+					window.location.href="../index.html#/home";	
+				}
 			}
-			localStorage.setItem("direc_user",JSON.stringify(obj_direccion));
-			console.log(JSON.stringify(obj_direccion));
-			
-			/*if(localStorage.getItem("dts_user")!=null){
-				var datos_usuario=JSON.parse(localStorage.getItem("dts_user"));
-			}
-			else{
-				//error, datos borrados de localstorage
-			}*/
 			if (places.length == 0) {
 			  return;
 			}
@@ -182,6 +183,8 @@
 			map.fitBounds(bounds);
 		  });
 	  }
+		
+	  
 	</script>
 	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuu2muyyLJjvAAmi3JEzmA3IT9NKalS9A&amp;libraries=places&amp;callback=initMap"

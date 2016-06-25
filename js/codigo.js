@@ -42,6 +42,11 @@ function validar_form(e,estado){
 					var tx=txt('Minimo 3 caracteres, máximo 15. Sin espacios.');
 				}
 			break;
+			case 'edad':
+				if(!validar_fecha(e.value)){
+					var tx=txt('Debes ser mayor de 16 años.');
+				}
+			break;
 		}
 		if(tx){
 			e.style.borderBottom='solid red 1px';
@@ -76,7 +81,7 @@ var Urban = angular.module('Urban', [
   'mobile-angular-ui.gestures',
   //'google-maps'
   'uiGmapgoogle-maps'
-//  'ngFileUpload' -> para update de fotos (a futuro)
+//  'ngFileUpload' -> para update de fotos 
 ]);
 
 
@@ -91,8 +96,8 @@ Urban.run(function($transform) {
 Urban.config(function($routeProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl : 'vistas/index-cont.html',
-			controller : 'indexCtrl'
+			templateUrl : 'vistas/iniciar-sesion.html',
+			controller : 'iniciarSesionCtrl'
 		})
 		.when('/registroUno', {
 			templateUrl : 'vistas/registro-datos.html',
@@ -111,8 +116,8 @@ Urban.config(function($routeProvider) {
 
 /********************************************CONTROLLERS***************************************/
 
-/////CONTROLLER INDEX (login)
-Urban.controller("indexCtrl", function ($scope, $http, $location) { 
+/////CONTROLLER LOGIN (login)
+Urban.controller("iniciarSesionCtrl", function ($scope, $http, $location) { 
 	
 	//validar inputs en el onblur
 	var datos_login=tn(tn(document,'form',0),'input');
@@ -181,11 +186,13 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 	
 	//envio del form
 	$scope.submit = function (usuario){
+		console.log(usuario.EDAD);
 		var datos={
 			EMAIL : usuario.EMAIL,
 			CLAVE : usuario.CLAVE,
 			NOMBRE : usuario.NOMBRE,
-			APELLIDO : usuario.APELLIDO
+			APELLIDO : usuario.APELLIDO,
+			APELLIDO : usuario.EDAD
 		}; 
 		var item = [];
 		var datos_registro_uno=tn(tn(document,'form',0),'input');
@@ -214,8 +221,7 @@ Urban.controller("registroDosCtrl", function ($scope,$http,$window) {
 		$window.location.href = '/urban-app/index.html#/registroUno';
 	}
 	id("registroMapa-continue-btn").onclick=function(){
-		
-		/*var direccion=tn(tn(document,'form',0),'input',0).value;
+		var direccion=tn(tn(document,'form',0),'input',0).value;
 		if(localStorage.getItem("dts_user")!=null){
 			var union=localStorage.getItem("dts_user");
 			union+="&DIRECCION="+direccion;
@@ -233,13 +239,14 @@ Urban.controller("registroDosCtrl", function ($scope,$http,$window) {
 		})
 		.error(function(){
 			
-		});*/
+		});
 	}
 });
 
 
 /////CONTROLLER HOME (home usuario)
-Urban.controller("homeCtrl", function ($scope,$http) { 
-
-
-});
+//if(localStorage.getItem("direc_user")!=null){
+	Urban.controller("homeCtrl", function ($scope,$http) { 
+		
+	});
+//}
