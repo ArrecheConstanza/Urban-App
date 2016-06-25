@@ -1,8 +1,6 @@
-/********************************************CONTROLLER LOGIN***************************************/
+/********************************************CONTROLLER HOME***************************************/
 
-
-/////CONTROLLER HOME (home usuario)
-	Urban.controller("homeCtrl", function ($scope,$http) { 
+Urban.controller("homeCtrl", function ($scope,$http) { 
 		
-	});
+});
 
