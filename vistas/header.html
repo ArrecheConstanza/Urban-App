@@ -1,0 +1,81 @@
+
+	<!-- Estilos propios de la vista -->
+	<!--<style> @import "css/home.css"; </style>
+
+	<!-- - - - HEADER  - - - - - -->
+	<!--<header class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " >-->
+		<div class="">
+			<!-- BOTON MENÚ SIDEBAR-LEFT -->
+			<div class="pull-left" >
+	          <div class="menuIcon" id="menu-hamburger"
+	          		type="button" class="sidebar-toggle">
+	            <span class="glyphicon glyphicon-sm glyphicon-menu-hamburger"></span>
+	          </div>
+	        </div>
+
+			<!-- ALARMA -->
+			<a href="alarmas.html" class=" pull-right" id="alarma">
+			<div class="pull-right alarm-icon">
+				 <span class="glyphicon glyphicon-bell"></span>
+			</div>
+			</a>
+
+			<!-- BUSCADOR -->
+			<a href="#/buscador" class="pull-right menuIcon">
+			<div class="pull-right">
+				<span class="glyphicon glyphicon-search glyphicon-sm"></span>
+			</div>
+			</a>
+		</div>
+
+		<!-- navBar --> 
+		<div class="scrolleable-min">
+		<ul class="nav navbar-nav col-lg-12 col-xs-12 col-sm-12 text-center">
+        <li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Publicaciones" >Publicaciones</a></li>
+		<li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Chats">Chats</a></li>
+		<li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Encuestas">Encuestas</a></li>
+		</ul>	
+		</div>
+		
+		<!----Sidebar------>
+		
+		<div class=" scrollable" id="sidebar">
+		  <div class="scrollable-content">
+			<div class="list-group sidebar-left" ui-turn-off='uiSidebarLeft' ng-controller="sidebarCtrl">
+
+				 <span class="h4 app-name"><a href="javascript:void(0)">
+					<a class="list-group-item" href="#/perfil">
+						<img src="../img/icons/png/menu-nombre.png" alt="nombre" /> Juan
+					</a>
+				 </span> 
+
+				<div class="list-group-item">
+					 <a class="list-group-item" href="#/grupo1">
+						<img src="../img/icons/png/grupo-color.png" alt="grupo" /> Grupo uno
+					 </a>
+					 <a class="list-group-item" href="#/grupo2">
+						<img src="../img/icons/png/grupo-color-2.png" alt="grupo" />Grupo dos
+					 </a>
+				</div>
+
+				<a class="list-group-item" href="#/grupo1">
+					<img src="../img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu"/>Mapa
+				</a>
+
+				<a class="list-group-item" href="#/preferencias">
+					<img src="../img/icons/png/menu-preferencias.png" alt="preferencias" id="pref"/>Preferencias
+				</a>
+
+				 <a class="list-group-item" href="#/ayuda">
+					<img src="../img/icons/png/menu-ayuda.png" alt="ayuda" id="ayuda"/>Ayuda
+				 </a>
+				 
+				 <a class="list-group-item" href="#">
+					<img src="../img/icons/png/cerrar-sesion.png" alt="cerrar" id="cerrar"/>Cerrar Sesión
+				 </a>
+			</div>
+		  </div>
+		</div>
+
+		
+<!--</header>-->

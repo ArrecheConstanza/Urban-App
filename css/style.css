@@ -30,6 +30,7 @@
 
 
 /***FORM***/
+
 /** Mensaje validacion */
 .mensaje-validacion{
 	color:red;
@@ -38,3 +39,13 @@
 	margin-top:2.5em !important;
 }
 
+/****Body****/
+body{
+	height: 100vh;
+}
+
+/****Sidebar****/
+#sidebar>div>div{
+	position:absolute;
+	height:100vh;
+}

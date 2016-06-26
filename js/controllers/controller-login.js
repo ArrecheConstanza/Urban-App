@@ -1,6 +1,6 @@
 /********************************************CONTROLLER LOGIN***************************************/
 
-Urban.controller("iniciarSesionCtrl", function ($scope, $http, $location) { 
+Urban.controller("iniciarSesionCtrl", function ($scope, $http, $location, $window) { 
 	
 	//validar inputs en el onblur
 	var datos_login=tn(tn(document,'form',0),'input');
@@ -37,8 +37,9 @@ Urban.controller("iniciarSesionCtrl", function ($scope, $http, $location) {
 			})
 			.success(function(data){
 				if(!isNaN(data.ID)){
+					localStorage.setItem("user_urban",JSON.stringify(data));
 					//redireccion a home de usuario
-					$location.path( "/home" );
+					$window.location.href = '/urban-app/index.html';
 				}
 				else if(data==='Usuario no existente'){
 					var p=ce('p');

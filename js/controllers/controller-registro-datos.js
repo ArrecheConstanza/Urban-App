@@ -61,6 +61,7 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 				//redireccion a home de usuario
 				window.localStorage.removeItem("dts_user");
 				window.localStorage.removeItem("direc_user");
+				localStorage.setItem("user_urban",JSON.stringify(data));
 				$location.path( "/home" );
 			}
 			else if(data===''){

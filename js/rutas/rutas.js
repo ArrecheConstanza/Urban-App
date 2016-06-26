@@ -14,6 +14,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/home.html',
 			controller : 'homeCtrl'
 		})
+		.when('/newPublicacion', {
+			templateUrl : 'vistas/publicacion.html',
+			controller : 'newPublicacionCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
