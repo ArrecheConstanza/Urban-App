@@ -47,25 +47,24 @@
 	</style>
 	 
 	<!-- Contenedor registro -->
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="registro-mapa" ng-controller='registroDosCtrl'>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="registro-mapa" >
 	
 		<!-- Titulo Registro, Volver y circulos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title-container">
 			<!-- Volver -->
-			<a href="#" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="/urban-app/index.html#/registroUno" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			
 			<!-- Texto -->
 			<h1 class="text-center">Registro</h1>
 				
 			<!-- Dirección container-->
 			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="campos-container">
-				
 				<!-- Formulario -->
 				<form>
 					<!-- Dirección  -->
 					<input type="text" name="direccion" id="pac-input" class="form-control" placeholder="dirección" required> 
-
 				</form>
+				<p>Tu dirección no será visible para otros usuarios.</p>
 			</div>
 			
 		</div>	
@@ -140,9 +139,9 @@
 				}
 				localStorage.setItem("direc_user",JSON.stringify(obj_direccion));
 				
-				<!---------------REDIRECCION A INEDX----------------->
+				<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
 				if(localStorage.getItem("direc_user")!=null){
-					window.location.href="../index.html#/home";	
+					window.location.href="../index.html#/registroUno";	
 				}
 			}
 			if (places.length == 0) {
@@ -198,9 +197,6 @@
 	
 	<!--Rutas-->
 	<script src="../js/rutas/rutas.js"></script>
-	
-	<!--Controller registro-mapa-->
-	<script src="../js/controllers/controller-registro-mapa.js"></script>
 	
 </body>
 </html>

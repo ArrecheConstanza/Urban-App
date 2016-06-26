@@ -1,4 +1,5 @@
 <?php
+
 class Usuario{
 	private $codigo_usuario;
 	private $email;
@@ -154,10 +155,10 @@ class Usuario{
 		return $stmt->execute([$array["nivel"],$array["id"]]);
 	}*/
 	public function crear_usuario($array){
-		$query = "INSERT INTO " . static::$tabla . " (MAIL, USUARIO, CONTRASENIA, NIVEL, FECHA_NACIMIENTO, SEXO)
-				VALUES (?, ?, ?, ?, ?, ?)";
+		$query = "INSERT INTO " . static::$tabla . " (EMAIL, CLAVE, NOMBRE, APELLIDO, EDAD, DIRECCION, LATITUD, LONGITUD, FECHA_ALTA)
+				VALUES (?, md5(?), ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["mail"],$array["usuario"],$array["contrasenia"],$array["nivel"],$array["fecha_nacimiento"],$array["sexo"]]);
+		return $stmt->execute([$array["EMAIL"],$array["CLAVE"],$array["NOMBRE"],$array["APELLIDO"],$array["EDAD"],$array["DIRECCION"],$array["LATITUD"],$array["LONGITUD"],$array["FECHA_ALTA"]]);
 	}
 	public function verificar_usuario($mail, $contrasenia){
 		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=md5(?)";
@@ -171,7 +172,7 @@ class Usuario{
 		$json=json_encode($array);
 		return $json;
 	}
-	public static function all(){
+	/*public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla;
 		$stmt = DBcnx::getStatement($query);
@@ -189,5 +190,5 @@ class Usuario{
 			}
 		}
 		return $salida;
-	}
+	}*/
 }

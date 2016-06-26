@@ -18,14 +18,14 @@ class Validacion{
 						$this->{$forma}($campo);
 					}
 				}
-				else if($unaValidacion=="set"){
+				else if($unaValidacion=="email"){
 					$forma = '_' . $unaValidacion;
 					if(method_exists($this, $forma)) {
 						$this->{$forma}($campo);
 					}
 				}
-				else if($unaValidacion=="email"){
-					$forma = '_' . $unaValidacion;
+				else if($unaValidacion=="nombre"||$unaValidacion=="apellido"){
+					$forma = '_nombre';
 					if(method_exists($this, $forma)) {
 						$this->{$forma}($campo);
 					}
@@ -40,14 +40,6 @@ class Validacion{
 					$forma = '_' . $unaValidacion;
 					if(method_exists($this, $forma)) {
 						$this->{$forma}($campo);
-					}
-				}
-				else if(substr($unaValidacion,0,1)=="m"){
-					$reglas = explode(':', $unaValidacion);
-					$forma = '_' . $reglas[0];
-					$cantidad=$reglas[1];
-					if(method_exists($this, $forma)) {
-						$this->{$forma}($campo,$cantidad);
 					}
 				}
 			}
@@ -75,30 +67,22 @@ class Validacion{
 			$this->addError($campo, "El campo " . $campo . " es obligatorio. ");
 		}
 	}
-	protected function _min($campo,$cantidad){
-		if(strlen($this->dts[$campo])<$cantidad) {
-			$this->addError($campo, "El campo " . $campo . " debe tener como minimo ".$cantidad." caracteres. ");
-		}
-	}
-	protected function _max($campo,$cantidad){
-		if(strlen($this->dts[$campo])>$cantidad) {
-			$this->addError($campo, "El campo " . $campo . " debe tener como maximo ".$cantidad." caracteres. ");
-		}
-	}
-	protected function _set($campo){
-		if(!($this->dts[$campo]=="Otro"||$this->dts[$campo]=="Mujer"||$this->dts[$campo]=="Hombre")) {
-			$this->addError($campo, "El campo " . $campo . " debe ser correcto.");
-		}
-	}
 	protected function _email($campo){
 		if (filter_var($this->dts[$campo], FILTER_VALIDATE_EMAIL) === false) {
 			$this->addError($campo, "El campo " . $campo . " debe ser correcto. ");
 		}
 	}
-	protected function _date($campo){
-		$exp="/^(19[0-9][0-9])(\/|\-)(0?[1-9]|1[0-2])(\/|\-)(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/";
+	protected function _nombre($campo){
+		$exp="/^[a-záéíóúñ\s]{3,60}$/i";
 		if (!preg_match($exp,$this->dts[$campo])) {
-			$this->addError($campo, "El campo Fecha Nacimiento debe ser correcto. (+18) ");
+			$this->addError($campo, "El campo " . $campo . " solo puede poseer letras y espacios. minimo 3 caracteres ");
+		}
+	}
+	protected function _date($campo){
+		$campo=join("-",array_reverse(explode('-',substr($this->dts[$campo],0,10)),true));
+		$exp='/^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])(\/|\-)(0?[1-9]|1[0-2])(\/|\-)(19[2-9][0-9]|2000)$/';
+		if (!preg_match($exp,$campo)) {
+			$this->addError($campo, "Debes ser mayor de 16 años.");
 		}
 	}
 	protected function _clave($campo){

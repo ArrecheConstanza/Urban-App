@@ -91,7 +91,15 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 	z-index:1;
 }
 
+p{
+	text-align:center;
+	color:darkgrey;
+	margin-bottom:8%;
+}
 
+#pac-input{
+	margin-bottom:4%!important;
+}
 
 
 

@@ -1,6 +1,6 @@
 /********************************************CONTROLLER REGISTRO UNO***************************************/
 
-Urban.controller("registroUnoCtrl", function ($scope, $window) { 
+Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location) { 
 
 	//validar inputs en el onblur
 	var datos_registro_uno=tn(tn(document,'form',0),'input');
@@ -12,15 +12,12 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 	
 	//envio del form
 	$scope.submit = function (usuario){
-		var edad = new Date(usuario.EDAD);
-		var edad=edad.getDate()+"-"+(edad.getMonth()+1)+"-"+edad.getFullYear();
-		console.log(edad);
 		var datos={
 			EMAIL : usuario.EMAIL,
 			CLAVE : usuario.CLAVE,
 			NOMBRE : usuario.NOMBRE,
 			APELLIDO : usuario.APELLIDO,
-			APELLIDO : usuario.EDAD
+			EDAD : usuario.EDAD
 		}; 
 		var item = [];
 		var datos_registro_uno=tn(tn(document,'form',0),'input');
@@ -33,12 +30,55 @@ Urban.controller("registroUnoCtrl", function ($scope, $window) {
 		}
 		var mensaje=tn(tn(document,'form',0),'p');
 		if(!mensaje.length){
-			var union = item.join('&');	
-			localStorage.setItem("dts_user",union);
+			localStorage.setItem("dts_user",JSON.stringify(datos));
 			//redireccion a vistas/registro-mapa, guardado de datos en LocalStorage de variable union
 			$window.location.href = '/urban-app/vistas/registro-mapa.html';
 		}
+	
+	}
+	
+	//Guardado de datos en bdd para creacion de usuario
+	if(localStorage.getItem("direc_user")!=null&&localStorage.getItem("dts_user")!=null){
+		var dts_user=JSON.parse(localStorage.getItem("dts_user"));
+		var direc_user=JSON.parse(localStorage.getItem("direc_user"));
+		var item = [];
+		for(var i in dts_user){
+			item.push( i+'='+dts_user[i] ); 
+		}
+		for(var i in direc_user){
+			item.push( i+'='+direc_user[i] ); 
+		}
+		var union = item.join('&');	
+		//ABM: registro
+		$http({
+			method: 'POST',
+			url:"php/abm/registro.usuario.php",
+			data: union,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data){
+			if(!isNaN(data.ID)){
+				//redireccion a home de usuario
+				window.localStorage.removeItem("dts_user");
+				window.localStorage.removeItem("direc_user");
+				$location.path( "/home" );
+			}
+			else if(data===''){
+				var p=ce('p');
+				p.className='mensaje-validacion';
+				p.innerHTML='Usuario ya existente';
+				var datos_login=tn(tn(document,'form',0),'input');
+				datos_login[0].parentNode.insertBefore(p,datos_login[0]);
+			}
+		})
+		.error(function(){
+			//mensaje Sin conexion 
+		});
+	}
+	else{
+		//falta alguno de los datos en localStorage, volver a completar el registro. modal con mensaje de error.
 	}
 	
 });
+
 
