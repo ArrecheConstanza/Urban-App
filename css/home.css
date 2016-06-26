@@ -24,3 +24,8 @@
         width: auto;
     }
 }
+
+.label-default{
+	font-size:1.1em!important;
+	margin-top:.1em!important;
+}
