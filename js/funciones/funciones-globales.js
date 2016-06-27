@@ -70,3 +70,4 @@ function validar_form(e,estado){
 			}
 		}
 }
+

@@ -17,6 +17,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/publicacion.html',
 			controller : 'newPublicacionCtrl'
 		})
+		.when('/alarmas', {
+			templateUrl : 'vistas/alarmas.html',
+			controller : ''
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

@@ -15,19 +15,16 @@
 		
 			<!-- Formulario -->
 			<form action="#">
-			<select   class="select">
-				<option value="todos">Todos los grupos</option>
-				<option value="grupo1">Grupo uno</option>
-				<option value="grupo2">Grupo dos</option>
-				<option value="grupo3">Grupo tres</option>
+			<select class="select" ng-model="publicacion.GRUPO" ng-init="traerGrupos()">
+				<option ng-repeat="x in GRUPOS" value="{{x.ID}}">{{x.NOMBRE}}</option>
 			</select>
 				<!-- File -->
-				<div class="upload-file"></div>
+				<div class="upload-file" ng-model="publicacion.FILE"></div>
 				<!-- Titulo -->
-				<input type="text" name="titulo" placeholder="titulo" class="form-control" required>
+				<input type="text" name="titulo" placeholder="titulo" class="form-control" required  ng-model="publicacion.TITULO">
 				
 				<!-- Publicacion -->
-				<textarea cols='10' rows='6' placeholder='descripcion' class="form-control" required></textarea>
+				<textarea cols='10' rows='6' placeholder='descripcion' class="form-control" required ng-model="publicacion.DESCRIPCION"></textarea>
 				
 				<!-- Enviar-->
 				<input type="submit" class="form-control btn btn-default" value="Enviar">
