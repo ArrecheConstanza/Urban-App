@@ -10,8 +10,10 @@ CREAR new.publicacion.php
 
 Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Upload) { 
 
-	$scope.$back=back;
-
+	//funcion volver atras
+	$scope.$back = function() { 
+		window.history.back();
+	};
 	/*$scope.traerGrupos = function(  ){
 		$http( { 
 			url: 'php/traer.grupos.php' ,
