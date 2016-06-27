@@ -22,6 +22,11 @@ function txt(s){
 	return document.createTextNode(s);
 }
 
+/****************************************VARIABLES GLOBALES****************************************/
+
+var header, footer;
+
+
 /////////VALIDACION DEL FORM REGISTRO UNO
 function validar_form(e,estado){
 	switch(e.name){

@@ -4,8 +4,10 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 
 	//funcion volver atras
 	$scope.$back = function() { 
+		
 		window.history.back();
 	};
+	
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		$http({
@@ -15,7 +17,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 		})
 		.success(function(data){
 			////////CONTROL DEL SIDEBAR
-			var header=tn(document,'header',0);
+			header=tn(document,'header',0);
 			header.innerHTML=data;
 			id("sidebar").style.display="none";
 			id("menu-hamburger").onclick=function(e){
@@ -49,7 +51,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			var footer=tn(document,'footer',0);
+			footer=tn(document,'footer',0);
 			footer.innerHTML=data;
 			id("masMenu").style.display="none";
 			id("menuMas").onclick=function(e){
@@ -60,7 +62,11 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 				id("masMenu").style.display="none";	
 			}
 		});
+		//header.style.display="inline!important";
+		//footer.style.display="inline!important";
 		$location.path( "/publicaciones" );
+		//console.log(header);
+		//console.log(footer);
 	}
 	//Si el usuario no esta logeado lo mando al login
 	if(localStorage.getItem("user_urban")==null){
