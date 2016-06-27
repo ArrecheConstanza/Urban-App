@@ -6,7 +6,7 @@ var Urban = angular.module('Urban', [
   'mobile-angular-ui.gestures',
   //'google-maps'
   'uiGmapgoogle-maps',
- 'ngFileUpload'
+  'ngFileUpload'
 ]);
 
 
