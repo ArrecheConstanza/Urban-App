@@ -90,12 +90,12 @@ class Publicacion{
 					case "borrado":
 						$this->setBorrado($valor);
 					break;
-					/*case "fk_grupo":
+					case "fk_grupo":
 						$this->setFkGrupo($valor);
 					break;
 					case "fk_usuario":
 						$this->setFkUsuario($valor);
-					break;*/
+					break;
 				}
 			}
 		}
@@ -113,8 +113,8 @@ class Publicacion{
 				$publicacion->avalado = $fila['AVALADO'];
 				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
 				$publicacion->borrado = $fila['BORRADO'];
-				/*$publicacion->fk_grupo = $fila['FKGRUPO'];
-				$publicacion->fk_usuario = $fila['FKUSUARIO'];*/
+				$publicacion->fk_grupo = $fila['FKGRUPO'];
+				$publicacion->fk_usuario = $fila['FKUSUARIO'];
 				$publicacion->cargarDatos($fila);
 				$salida[] = $publicacion;
 			}

@@ -6,7 +6,8 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
 			url:"php/abm/publicaciones.listado.php",
 		})
 		.success(function(data, status){
-			console.log(data);
+			var rta=angular.fromJson(data);
+			console.log(rta);
 			//$scope.datosSQLpublicaciones=data;
 		});
 			
