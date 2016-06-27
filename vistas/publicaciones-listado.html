@@ -2,10 +2,28 @@
 	<!--- ******CONTENIDO (VISTA PUBLICACIONES)****** -->
 	
 		<!-- PUBLICACIONES -->
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicaciones" ng-controller='headerFooterCtrl'>
+		<div class="scrollable">
+		<a href="#newPublicacion" >Crear publicacion</a>	
+		  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicaciones" ng-controller='publicacionesListadoCtrl'>
+			
+			<!--<div class="list-group">
+			  <div ng-repeat="item in datosSQLpublicaciones track by $index " ng-click="cargar()" href="#verPublicacion" class="list-group-item">
+				<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
+				<img ng-src="{{ 'img/animal.png' }}" />
+				<h2>{{ item.TITULO }}</h2>  
+				<p>{{ item.DESCRIPCION }}</p>  
+				<span>{{ item.FECHA_CREACION }}</span>  
+			  </div>
+			</div>-->
+		  </div>
+		</div>
+			
+			
+			
 			
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 				<img src="img/icons/png/evento.png" alt="todo" />
 				<div>
 					<h2>Reunion de consorcio</h2>
@@ -14,7 +32,7 @@
 			</div>
 			
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
 				<img src="img/icons/png/animal.png" alt="animal" />
 				<div>
@@ -25,7 +43,7 @@
 			</div>
 		
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="img/icons/png/temaOfertas.png" alt="todo" class="temaChat"/>
 				<img src="img/icons/png/ofertas.png" alt="oferta" />
 				<div>
@@ -36,7 +54,7 @@
 			</div>
 			
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
 				<img src="img/icons/png/animal.png" alt="animal" /> 
 				<div>
@@ -45,7 +63,7 @@
 			</div>	
 			
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="img/icons/png/evento.png" alt="todo" />
 				<div>
 					<h2>pago de expensas</h2>
@@ -53,7 +71,7 @@
 			</div>
 		
 			<!-- img y titulo -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<img src="img/icons/png/ofertas.png" alt="oferta" />
 				<div>
 					<h2>20% en envasados</h2>

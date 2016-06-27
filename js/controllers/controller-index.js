@@ -4,7 +4,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 
 	//funcion volver atras
 	$scope.$back = function() { 
-		
 		window.history.back();
 	};
 	
@@ -62,11 +61,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 				id("masMenu").style.display="none";	
 			}
 		});
-		//header.style.display="inline!important";
-		//footer.style.display="inline!important";
 		$location.path( "/publicaciones" );
-		//console.log(header);
-		//console.log(footer);
 	}
 	//Si el usuario no esta logeado lo mando al login
 	if(localStorage.getItem("user_urban")==null){
