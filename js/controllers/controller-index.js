@@ -1,6 +1,12 @@
 /********************************************CONTROLLER INDEX***************************************/
 
-Urban.controller("indexCtrl", function ($location,$http) {
+Urban.controller("indexCtrl", function ($location,$http,$scope) {
+	
+	//funcion volver atras
+	$scope.$back = function() { 
+		window.history.back();
+	};
+	
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		$http({
@@ -15,7 +21,6 @@ Urban.controller("indexCtrl", function ($location,$http) {
 			id("sidebar").style.display="none";
 			id("menu-hamburger").onclick=function(e){
 				id("sidebar").style.display="inline";
-				console.log(e);
 				e.stopPropagation();
 			}
 			id("sidebar").parentNode.parentNode.parentNode.onclick=function(){
