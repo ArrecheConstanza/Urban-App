@@ -22,6 +22,11 @@ function txt(s){
 	return document.createTextNode(s);
 }
 
+//funcion volver atras
+function back() { 
+	window.history.back();
+};
+
 /////////VALIDACION DEL FORM REGISTRO UNO
 function validar_form(e,estado){
 	switch(e.name){

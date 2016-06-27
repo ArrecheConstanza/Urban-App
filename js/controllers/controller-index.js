@@ -1,12 +1,7 @@
 /********************************************CONTROLLER INDEX***************************************/
 
 Urban.controller("indexCtrl", function ($location,$http,$scope) {
-	
-	//funcion volver atras
-	$scope.$back = function() { 
-		window.history.back();
-	};
-	
+
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		$http({

@@ -8,7 +8,9 @@ CREAR new.publicacion.php
 **/
 
 
-Urban.controller("newPublicacionCtrl", function ($scope, $http, $location) { 
+Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Upload) { 
+
+	$scope.$back=back;
 
 	/*$scope.traerGrupos = function(  ){
 		$http( { 
@@ -37,12 +39,6 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location) {
 	
 	//envio del form
 	$scope.submit = function (publicacion){
-		var datos={
-			GRUPO : publicacion.GRUPO,
-			FILE : publicacion.FILE,
-			TITULO : publicacion.TITULO,
-			DESCRIPCION : publicacion.DESCRIPCION
-		}; 
 
 		//validar inputs en el submit
 		var datos_new_publicacion=tn(tn(document,'form',0),'input');
@@ -53,12 +49,81 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location) {
 
 	 	//Guardado de datos en bdd para creacion de publicacion
 		if(!mensaje.length){
-			localStorage.setItem("dts_publi",JSON.stringify(datos));
+
+			//guardar en localstorage
+			if(!window.localStorage.getItem("dts_publi")){
+				$scope.datos_en_push=[];
+			}else{
+				//Si existe en localStorage lo pido y guardo en variable datos_en_push
+				$scope.datos_en_push = localStorage.getItem("dts_publi"); 
+				$scope.datos_en_push = JSON.parse($scope.datos_en_push);
+			}
+
+			var datos={
+				GRUPO : publicacion.GRUPO,
+				FILE : publicacion.FILE,
+				TITULO : publicacion.TITULO,
+				DESCRIPCION : publicacion.DESCRIPCION
+			}; 
+		
+			$scope.datos_en_push.push(datos);
+
+			 //Guarda en localStorage datos_en_push, pasado a string como key dts_publi
+			localStorage.setItem("dts_publi", JSON.stringify($scope.datos_en_push));
+			
 			for(var i in publicacion){
 				item.push( i+'='+publicacion[i]); 
 			}
 			var union = item.join('&');	
-			//ABM: registro
+			//ABM: publicacion
+			publicacion.FILE.upload = Upload.upload({
+				method: 'POST',
+				url:"php/abm/new.publicacion.php",
+				data: union,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			});
+
+		    publicacion.FILE.upload.then(function (response) {
+		    	// si el envio es exitoso
+			    $timeout(function () {
+		        publicacion.FILE.result = response.data; 
+
+				//guarda la respuesta en local como string
+				localStorage.setItem("sql_previos", JSON.stringify(response.data)) 
+				
+				
+				$scope.datos_base = JSON.parse(localStorage.getItem("sql_previos"));
+				$scope.pendientes = JSON.parse(localStorage.getItem("pendientes"));
+					  
+		      });
+		    }, function (response) { 
+		    	//si el envio fracasa
+				if(!window.localStorage.getItem("pendientes")){
+					$scope.datos_pend=[]; 
+				}else{
+					$scope.datos_pend = localStorage.getItem("pendientes"); 
+					$scope.datos_pend = angular.fromJson($scope.datos_pend) 
+			    }
+	
+				$scope.fallidos ={	GRUPO : publicacion.GRUPO,
+									FILE : publicacion.FILE,
+									src_img: publicacion.FILE.$ngfBlobUrl,
+									TITULO : publicacion.TITULO,
+									DESCRIPCION : publicacion.DESCRIPCION			
+								} 
+						
+				$scope.datos_pend.push($scope.fallidos);
+
+				//guarda en localStorage datos_pendientes, pasado a string.
+				localStorage.setItem("pendientes", angular.toJson($scope.datos_pend)); 
+	
+				$scope.datos_base = JSON.parse(localStorage.getItem("sql_previos"))
+				$scope.pendientes = JSON.parse(localStorage.getItem("pendientes"));
+				
+		   });
+
+
+			/*ABM: registro
 			$http({
 				method: 'POST',
 				url:"php/abm/new.publicacion.php",
@@ -73,7 +138,7 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location) {
 			})
 			.error(function(){
 				//mensaje Sin conexion 
-			});
+			});*/
 		}
 	
 	}
