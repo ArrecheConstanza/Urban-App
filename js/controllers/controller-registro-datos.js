@@ -62,7 +62,7 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 				window.localStorage.removeItem("dts_user");
 				window.localStorage.removeItem("direc_user");
 				localStorage.setItem("user_urban",JSON.stringify(data));
-				$location.path( "/home" );
+				$location.path( "/" );
 			}
 			else if(data===''){
 				var p=ce('p');

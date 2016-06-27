@@ -56,6 +56,6 @@ Urban.controller("indexCtrl", function ($location,$http) {
 				id("masMenu").style.display="none";	
 			}
 		});
-		$location.path( "/home" );
+		$location.path( "/publicaciones" );
 	}
 });

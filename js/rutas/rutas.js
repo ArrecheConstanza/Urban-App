@@ -10,9 +10,8 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/registro-datos.html',
 			controller : 'registroUnoCtrl'
 		})
-		.when('/home', {
-			templateUrl : 'vistas/home.html',
-			controller : 'homeCtrl'
+		.when('/publicaciones', {
+			templateUrl : 'vistas/publicaciones-listado.html'
 		})
 		.when('/newPublicacion', {
 			templateUrl : 'vistas/publicacion.html',
