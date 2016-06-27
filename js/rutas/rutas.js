@@ -22,6 +22,6 @@ Urban.config(function($routeProvider) {
 			controller : ''
 		})
 		.otherwise({
-			redirectTo: '/'
+			redirectTo: '/publicaciones'
 		});
 });
