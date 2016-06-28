@@ -1,4 +1,4 @@
-/********************************************CONTROLLER HEADER-FOOTER**************************************/
+/********************************************CONTROLLER PUBLICACIONES LISTADO**************************************/
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
 	//pido datos de bdd
@@ -9,5 +9,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
 			var rta=angular.fromJson(data);
 			$scope.datosSQLpublicaciones=rta;
 		});
+
+		
 			
 });

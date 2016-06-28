@@ -121,6 +121,26 @@ class Publicacion{
 		}
 		return $salida;
 	}
+	public static function detalle($id){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla . "WHERE ID='" . $id ."'";
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$publicacion = new Publicacion;
+				$publicacion->codigo_publicacion = $fila['ID'];
+				$publicacion->titulo = $fila['TITULO'];
+				$publicacion->descripcion = $fila['DESCRIPCION'];
+				$publicacion->avalado = $fila['AVALADO'];
+				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
+				$publicacion->borrado = $fila['BORRADO'];
+				$publicacion->fk_grupo = $fila['FKGRUPO'];
+				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->cargarDatos($fila);
+			}
+		}
+		return $publicacion;
+	}
 	/*
 	public function eliminar_usuario($array){
 		$query = "DELETE FROM confesion WHERE FKUSUARIO=?";
