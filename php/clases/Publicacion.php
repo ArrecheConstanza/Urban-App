@@ -155,11 +155,11 @@ class Publicacion{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["titulo"],$array["confesion"],$array["num_confesion"]]);
 	}
-	/*
-	public function eliminar_usuario($array){
-		$query = "DELETE FROM confesion WHERE FKUSUARIO=?";
+
+	public function eliminar_publicacion($array){
+		$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$array["id"]]);
+		$stmt->execute([$array["ID"]]);
 		if($stmt){
 			$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
 			$stmt = DBcnx::getStatement($query);
@@ -169,6 +169,7 @@ class Publicacion{
 			return 0;
 		}
 	}
+	
 	/*public function cambiar_nivel_usuario($array){
 		$query = "UPDATE " . static::$tabla . "  SET NIVEL=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);

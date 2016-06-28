@@ -9,7 +9,7 @@ CREAR new.publicacion.php
 
 
 Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Upload) { 
-
+	var input_titulo;
 	header.style.display="none";
 	footer.style.display="none";
 	//funcion volver atras
@@ -25,8 +25,7 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
    		{ID : "2", NOMBRE : "Grupo 2"},
    		{ID : "3", NOMBRE : "Grupo 3"}
  	];*/
-
-
+	
 	//validar inputs en el onblur
 	var datos_new_publicacion=tn(tn(document,'form',0),'input');
 	var textarea=tn(tn(document,'form',0),'textarea');

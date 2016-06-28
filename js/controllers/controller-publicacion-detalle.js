@@ -1,6 +1,6 @@
 /********************************************CONTROLLER PUBLICACIONES DETALLE**************************************/
 
-Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
+Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 	header.style.display="none";
 	footer.style.display="none";
 	//funcion volver atras
@@ -21,9 +21,19 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
 			})
 			.success(function(data){
 				var rta=angular.fromJson(data[0]);
+				$scope.ID=data[0].ID;
 				$scope.TITULO=data[0].TITULO;
 				$scope.DESCRIPCION=data[0].DESCRIPCION;
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
+				
+				$scope.editar=function(){
+					localStorage.setItem("publi_edit",angular.toJson(data[0]));
+					$location.path("/editPublicacion");
+				}
+				
+				
+				
+				
 			})
 			.error(function(){
 				//mensaje Sin conexion 
