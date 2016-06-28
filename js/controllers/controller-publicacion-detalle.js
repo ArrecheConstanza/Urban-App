@@ -28,7 +28,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				
 				$scope.editar=function(){
 					localStorage.setItem("publi_edit",angular.toJson(data[0]));
-					$location.path("/editPublicacion");
+					$location.path("/newPublicacion");
 				}
 				
 				
