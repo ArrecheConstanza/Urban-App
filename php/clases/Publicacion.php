@@ -121,6 +121,17 @@ class Publicacion{
 		}
 		return $salida;
 	}
+	public function crear_publicacion($array){
+		$query = "INSERT INTO " . static::$tabla . " (TITULO, DESCRIPCION, FECHA_CREACION, FKGRUPO, FKUSUARIO)
+				VALUES (?,?,?,?,?)";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"]]);
+	}
+	public function editar_publicacion($array){
+		$query = "UPDATE " . static::$tabla . "  SET TITULO=?,CONFESION=? WHERE ID=? ";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["titulo"],$array["confesion"],$array["num_confesion"]]);
+	}
 	/*
 	public function eliminar_usuario($array){
 		$query = "DELETE FROM confesion WHERE FKUSUARIO=?";

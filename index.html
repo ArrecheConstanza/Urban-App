@@ -37,6 +37,20 @@
     <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
 	<script src="js/modulos/mapa/angular-google-maps_dev_mapped.js"></script>	
 
+	<script>
+	FileAPI = {
+        //only one of jsPath or jsUrl.
+        jsPath: 'js/FileAPI.min.js/',
+        //jsUrl: 'mgd-studio.com.ar/phps/js/FileAPI.min.js',
+
+        //only one of staticPath or flashUrl.
+        staticPath: 'js/FileAPI.flash.swf/',
+        //flashUrl: 'mgd-studio.com.ar/phps/js/FileAPI.flash.swf',
+
+        //forceLoad: true, html5: false //to debug flash in HTML5 browsers
+        //noContentTimeout: 10000 (see #528)
+    }
+	</script>
 	<!-- angular-upload   -->
 	<script src="js/modulos/ng-file-upload-shim.js"></script> <!--no html5 support -->
 	<script src="js/modulos/ng-file-upload.js"></script>

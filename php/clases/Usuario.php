@@ -149,11 +149,6 @@ class Usuario{
 			return 0;
 		}
 	}
-	/*public function cambiar_nivel_usuario($array){
-		$query = "UPDATE " . static::$tabla . "  SET NIVEL=? WHERE ID=? ";
-		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["nivel"],$array["id"]]);
-	}*/
 	public function crear_usuario($array){
 		$query = "INSERT INTO " . static::$tabla . " (EMAIL, CLAVE, NOMBRE, APELLIDO, EDAD, DIRECCION, LATITUD, LONGITUD, FECHA_ALTA)
 				VALUES (?, md5(?), ?, ?, ?, ?, ?, ?, ?)";
