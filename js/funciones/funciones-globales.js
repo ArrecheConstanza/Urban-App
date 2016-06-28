@@ -79,14 +79,21 @@ function validar_form(e,estado){
 
 /////////VALIDACION DE PUBLICACION
 function validar_publicacion(e,estado){
-	switch(e.name){
-		case 'file':
-			if (e.value) {
-				if(!validar_foto(e.value)){
-					var tx=txt('Solo puede subir imagenes jpg jpeg y png');
+		switch(e.name){
+			case 'file':
+				if (e.value) {
+					if(!validar_foto(e.value)){
+						var tx=txt('Solo puede subir imagenes jpg, jpeg y png');
+					}
 				}
-			}
-		break;
+			break;
+			case 'titulo':case 'descripcion':
+				if (e.value) {
+					if(!validar_titulo(e.value)){
+						var tx=txt('Minimo 3 caracteres');
+					}
+				}
+			break;
 		}
 		if(tx){
 			e.style.borderBottom='solid red 1px';

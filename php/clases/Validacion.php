@@ -42,6 +42,12 @@ class Validacion{
 						$this->{$forma}($campo);
 					}
 				}
+				else if($unaValidacion=="titulo"){
+					$forma = '_' . $unaValidacion;
+					if(method_exists($this, $forma)) {
+						$this->{$forma}($campo);
+					}
+				}
 			}
 		}
 	}
@@ -89,6 +95,12 @@ class Validacion{
 		$exp="/^([a-zA-Z\d_#,;~@%&\\\!\$\^\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,15})?$/";
 		if (!preg_match($exp,$this->dts[$campo])) {
 			$this->addError($campo, "Minimo 3 caracteres, maximo 15. Sin espacios.");
+		}
+	}
+	protected function _titulo($campo){
+		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,200})?$/";
+		if (!preg_match($exp,$this->dts[$campo])) {
+			$this->addError($campo, "Minimo 3 caracteres.");
 		}
 	}
 }

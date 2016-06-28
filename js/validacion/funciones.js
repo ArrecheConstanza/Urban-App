@@ -1,5 +1,5 @@
 	function validar_nombre_apellido(val){
-		var exp=/^[a-zαινσϊρ\s]+$/i;
+		var exp=/^[a-zaeiouαινσϊρ\s]+$/i;
 		return exp.test( val);
 	}
 	function validar_fecha(val){
@@ -18,11 +18,7 @@
 		var exp=/^([a-zA-Z\d_#,;~@%&\\\!\$\^\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,15})?$/;
 		return exp.test( val);
 	}
-	function validar_calle(val){
-		var exp=/^([a-z\d\-]+)?$/i;
-		return exp.test(val); 
-	}
-	function validar_numero(val){
-		var exp=/^(\d*)?$/;
-		return exp.test(val); 
+	function validar_titulo(val){
+		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,200})?$/;
+		return exp.test( val);
 	}
