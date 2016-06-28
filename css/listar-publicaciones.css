@@ -1,0 +1,39 @@
+/**************************STYLE LISTAR PUBLICACIONES***************************/
+*{margin:0;padding:0;}
+
+#publicaciones_listado_crear_publicacion{
+	display:inline-block;
+	background:grey;
+	text-transform:uppercase;
+	font-size:1.2em;
+	color:white;
+	box-shadow:2px 2px black;
+	padding:1em;
+	width:100%;
+	text-align:center;
+	letter-spacing:.1em;
+}
+
+#publicaciones{
+   padding-top:0!important;
+}
+
+#listado-publicaciones li img:nth-child(1){
+	position:absolute;
+}
+#listado-publicaciones li img:nth-child(2){
+	padding-left:2%;
+}
+#listado-publicaciones li p{
+	display:inline-block;
+}
+#listado-publicaciones li span{
+	bottom:0;
+	padding-bottom:.5em;
+}
+#listado-publicaciones li h2{
+	display:inline-block;
+	font-size:1.3em;
+	text-transform:none;
+	padding-left:.5em;
+}

@@ -7,8 +7,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
 		})
 		.success(function(data, status){
 			var rta=angular.fromJson(data);
-			console.log(rta);
-			//$scope.datosSQLpublicaciones=data;
+			$scope.datosSQLpublicaciones=rta;
 		});
 			
 });
