@@ -139,8 +139,8 @@ class Publicacion{
 				$publicacion->fk_usuario = $fila['FKUSUARIO'];
 				$publicacion->cargarDatos($fila);
 			}
+			return $publicacion;
 		}
-		return $publicacion;
 	}
 	
 	public function crear_publicacion($array){

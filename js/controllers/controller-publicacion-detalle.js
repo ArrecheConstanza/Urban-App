@@ -1,7 +1,6 @@
-/********************************************CONTROLLER PUBLICACIONES LISTADO**************************************/
+/********************************************CONTROLLER PUBLICACIONES DETALLE**************************************/
 
 Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
-
 	header.style.display="none";
 	footer.style.display="none";
 	//funcion volver atras
@@ -10,14 +9,25 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
 		footer.style.display="inline";
 		window.history.back();
 	};
-
+	
 	//pido datos de bdd
-		$http({ 
-			url:"php/abm/publicacion.detalle.php",
-		})
-		.success(function(data, status){
-			var rta=angular.fromJson(data);
-			$scope.item=rta;
-		});
+	if(localStorage.getItem("id_publi")!=null){
+		var union="ID="+localStorage.getItem("id_publi");
+		$http({
+				method: 'POST',
+				url:"php/abm/publicacion.detalle.php",
+				data: union,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data){
+				var rta=angular.fromJson(data[0]);
+				$scope.TITULO=data[0].TITULO;
+				$scope.DESCRIPCION=data[0].DESCRIPCION;
+				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
+			})
+			.error(function(){
+				//mensaje Sin conexion 
+			});
+	}
 
 });

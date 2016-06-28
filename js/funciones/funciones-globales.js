@@ -115,3 +115,25 @@ function validar_publicacion(e,estado){
 			}
 		}
 }
+
+/////////////detallePublicacion
+
+function detallePublicacion(publi){
+	var num_publi=tn(publi,"input",0).value;
+	localStorage.setItem("id_publi",num_publi);
+	window.location.href="/urban-app/index.html#/detallePublicacion";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

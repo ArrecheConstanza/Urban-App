@@ -12,12 +12,12 @@
 		<!--Detalle publicacion -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
-			<h2 class="text-center">{item.TITULO}}</h2>
+			<h2 class="text-center">{{TITULO}}</h2>
 
 			<img ng-src="{{ 'img/fotos/animal.png' }}" class="img-responsive" />
-			<p>{ item.DESCRIPCION }}</p>  
+			<p>{{ DESCRIPCION }}</p>  
 		
-			<small class="pull-right  margin-bottom-sm">{ item.FECHA_CREACION }}</small>  
+			<small class="pull-right  margin-bottom-sm">{{ FECHA_CREACION }}</small>  
 			
 			<!-- Comentar -->
 			<form  ng-submit="submit(comentario)" enctype="multipart/form-data" name="publi">

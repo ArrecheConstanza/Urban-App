@@ -1,6 +1,7 @@
 /********************************************CONTROLLER PUBLICACIONES LISTADO**************************************/
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
+	
 	//pido datos de bdd
 		$http({ 
 			url:"php/abm/publicaciones.listado.php",
@@ -10,6 +11,4 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http){
 			$scope.datosSQLpublicaciones=rta.reverse();
 		});
 
-		
-			
 });
