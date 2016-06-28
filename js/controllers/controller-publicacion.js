@@ -19,15 +19,6 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
 		window.history.back();
 	};
 	
-	/*$scope.traerGrupos = function(  ){
-		$http( { 
-			url: 'php/traer.grupos.php' ,
-		} ).success( function(data, status) {
-			$scope.GRUPOS = data ;
-		});
-	}*/
-
-	//cargar select hardcodeado
 	$scope.GRUPOS = [
     	{ID : "0", NOMBRE : "Todos"},
     	{ID : "1", NOMBRE : "Grupo 1"},
@@ -82,11 +73,12 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
 			if(!window.localStorage.getItem("pendientes")){
 				$scope.pendientes=[];
 			}else{
-				//Si existe en localStorage lo pido y guardo en variable pendientes
+				//Si existe en localStorage lo pido y guardo en variable pendientes hasta poder subirlos a la bdd
 				$scope.pendientes = localStorage.getItem("pendientes"); 
 				$scope.pendientes = JSON.parse($scope.pendientes);
 			} 
 			$scope.pendientes.push(datos);
+
 			//Guarda en localStorage pendientes, pasado a string como key pendientes
 			localStorage.setItem("pendientes", JSON.stringify($scope.pendientes));
 
@@ -101,10 +93,13 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
 			.success(function(data){
 				//modal con mensaje de exito 
 
-				window.localStorage.removeItem("pendientes");
+				//modificar el data.ID
+				if(!isNaN(data.ID)){
+					window.localStorage.removeItem("pendientes");
 
-				//redireccion a home de publicaciones
-				$location.path( "/home" );
+					//redireccion a home de publicaciones
+					$location.path( "/publicaciones" );
+				}
 			})
 			.error(function(){
 				//mensaje Sin conexion 
@@ -114,5 +109,4 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
 		}
 	
 	}
-	
 });

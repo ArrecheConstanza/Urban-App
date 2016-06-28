@@ -63,8 +63,10 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 		});
 		$location.path( "/publicaciones" );
 	}
-	//Si el usuario no esta logeado lo mando al login
-	if(localStorage.getItem("user_urban")==null){
+	else if(localStorage.getItem("user_urban")==null&&localStorage.getItem("dts_user")!=null&&localStorage.getItem("direc_user")!=null){
+		$location.path( "/registroUno" );
+	}
+	else{
 		$location.path( "/" );
 	}
 	

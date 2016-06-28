@@ -38,9 +38,9 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 	}
 	
 	//Guardado de datos en bdd para creacion de usuario
-	if(localStorage.getItem("direc_user")!=null&&localStorage.getItem("dts_user")!=null){
-		var dts_user=JSON.parse(localStorage.getItem("dts_user"));
-		var direc_user=JSON.parse(localStorage.getItem("direc_user"));
+	if(window.localStorage.getItem("direc_user")!=null&&window.localStorage.getItem("dts_user")!=null){
+		var dts_user=JSON.parse(window.localStorage.getItem("dts_user"));
+		var direc_user=JSON.parse(window.localStorage.getItem("direc_user"));
 		var item = [];
 		for(var i in dts_user){
 			item.push( i+'='+dts_user[i] ); 
@@ -62,7 +62,7 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 				window.localStorage.removeItem("dts_user");
 				window.localStorage.removeItem("direc_user");
 				localStorage.setItem("user_urban",JSON.stringify(data));
-				$location.path( "/" );
+				$window.location.href= "../urban-app/index.html" ;
 			}
 			else if(data===''){
 				var p=ce('p');
@@ -76,10 +76,6 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 			//mensaje Sin conexion 
 		});
 	}
-	else{
-		//falta alguno de los datos en localStorage, volver a completar el registro. modal con mensaje de error.
-	}
-	
 });
 
 

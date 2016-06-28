@@ -5,8 +5,8 @@ var Urban = angular.module('Urban', [
   'mobile-angular-ui',
   'mobile-angular-ui.gestures',
   //'google-maps'
-  'uiGmapgoogle-maps',
-  'ngFileUpload'
+  'ngFileUpload',
+  'uiGmapgoogle-maps'
 ]);
 
 
