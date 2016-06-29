@@ -18,7 +18,7 @@
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
 			<!-- Formulario -->
-			<form ng-submit="submit(usuario)" role="form" class='form'>
+			<form ng-submit="submit(usuario)" role="form" class='form' id="form-ingreso">
 				<!-- Email -->
 				<input type="text" name="email" placeholder="Email" class="form-control" required ng-model="usuario.EMAIL">
 				<!-- Contraseña -->
@@ -28,6 +28,7 @@
 				<!-- Apellido -->
 				<input type="text" name="apellido" placeholder="Apellido" class="form-control  margin-bottom-sm" required ng-model="usuario.APELLIDO">
 				<!-- Edad -->
+				<p id="edad-registro">Edad</p>
 				<input type="date" name="edad" placeholder="Edad" class="form-control  margin-bottom-sm" required ng-model="usuario.EDAD">
 				<!-- Continuar-->
 				<input type="submit" class="form-control btn btn-default" value="Continuar" id="continue-registro">

@@ -4186,6 +4186,7 @@ label {
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
+  color:grey;
 }
 
 input[type="search"] {
@@ -8724,7 +8725,7 @@ a.list-group-item .icon.pull-right {
 
 input.ng-invalid,
 textarea.ng-invalid {
-  border-color: #ffcc00;
+  border-color:#c5c3b9;
 }
 
 .ng-dirty input.ng-invalid {

@@ -291,7 +291,18 @@ th {
   font-size: 30px;
   color: #c50809;
   vertical-align: -webkit-baseline-middle;
+  padding: 0;
+  width: 53%;
 }
+
+.alarm-icon img{
+    width:100%;    
+}
+#buscador{
+    margin-right: -9%!important;
+    margin-top: 1.3%;    
+}
+
 .upload-file {
   display: inline-block;
   float: right;
