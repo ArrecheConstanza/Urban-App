@@ -25,7 +25,21 @@
 	padding-left:2%;
 }
 #listado-publicaciones li p{
-	display:inline-block;
+	display: block;
+    text-align: left;
+    margin-left: 32%;
+    color: #484848;
+    letter-spacing: 2.5px;
+	font-family:'HelveticaNeueLTStdLight';
+	font-weight:600;
+	font-size:15px;
+}
+#listado-publicaciones li small{
+    text-align: right;
+    display: block;
+    color: #b3b3b3;
+	font-family:'HelveticaNeueLTStdLight';
+    letter-spacing: 1px;
 }
 #listado-publicaciones li span{
 	bottom:0;
@@ -36,4 +50,7 @@
 	font-size:1.3em;
 	text-transform:none;
 	padding-left:.5em;
+	font-family:'HelveticaNeueLTStd';
+    color: #0a384a;
+    letter-spacing: 2px;
 }
