@@ -12,10 +12,7 @@
 	/****** Creo publicacion ******/
 	if(isset($_SESSION["s_id"])){
 	$publicacion = new Publicacion();
-	$_POST["FECHA_CREACION"]=getDatetimeNow();
-	$_POST["FKGRUPO"]=1;
-	$_POST["FKUSUARIO"]=$_SESSION["s_id"];
-	$fin=json_decode($publicacion->crear_publicacion($_POST),true);
+	$fin=json_decode($publicacion->editar_publicacion($_POST),true);
 		echo $fin;
 	}
 	else{
