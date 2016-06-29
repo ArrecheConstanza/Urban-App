@@ -55,3 +55,9 @@ body{
 	height:100vh;
 }
 	
+#edad-registro{
+  color: #afadad!important;
+    letter-spacing: 3px;
+    font-weight: 300;
+    margin-left: 4%;  
+}
