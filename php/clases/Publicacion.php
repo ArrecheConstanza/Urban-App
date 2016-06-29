@@ -102,7 +102,7 @@ class Publicacion{
 	}
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' " ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -155,8 +155,14 @@ class Publicacion{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["titulo"],$array["confesion"],$array["num_confesion"]]);
 	}
-
+	
 	public function eliminar_publicacion($array){
+		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["ID"]]);
+	}
+
+	/*public function eliminar_publicacion($array){
 		$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
 		$stmt = DBcnx::getStatement($query);
 		$stmt->execute([$array["ID"]]);

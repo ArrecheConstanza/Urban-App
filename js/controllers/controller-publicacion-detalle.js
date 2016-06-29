@@ -30,6 +30,28 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					localStorage.setItem("publi_edit",angular.toJson(data[0]));
 					$location.path("/newPublicacion");
 				}
+				$scope.eliminar=function(){
+					var union="ID="+data[0].ID;
+					$http({
+						method: 'POST',
+						url:"php/abm/publicacion.eliminar.php",
+						data: union,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							header.style.display="inline";
+							footer.style.display="inline";
+							$location.path("/publicaciones");
+						}
+						else{
+							//No se pudo borrar
+						}
+					})
+					.error(function(){
+						//Sin conexion
+					});
+				}
 				
 				
 				

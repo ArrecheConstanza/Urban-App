@@ -19,6 +19,7 @@ Urban.controller("newPublicacionCtrl", function ($scope, $http, $location, Uploa
 		window.history.back();
 	};
 	
+	/////EDITAR
 	if(localStorage.getItem("publi_edit")!=null){
 		var datos_anteriores=angular.fromJson(localStorage.getItem("publi_edit"));
 		console.log(datos_anteriores);
