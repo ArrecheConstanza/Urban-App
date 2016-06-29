@@ -105,5 +105,36 @@
 #detalle-publicacion .edit-delete-container #link-borrar{
 	margin-top: -15%;
     float: right;
+}
 
+#pref{
+    width: 32px;
+    margin-right: 5%;
+}
+
+#ayuda{
+	width:30px;
+    margin-right: 5%;
+}
+
+#cerrar{
+	width:27px;
+    margin-right: 5%;
+}
+
+#mapa-menu{
+	width:27px;
+    margin-right: 5%;
+}
+
+.group-menu{
+	margin-right:3%;
+}
+
+.group-menu-2{
+	margin-right:5%;
+}
+
+#nombre-menu{
+    color: #0f5773;
 }
