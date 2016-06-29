@@ -151,9 +151,9 @@ class Publicacion{
 	}
 
 	public function editar_publicacion($array){
-		$query = "UPDATE " . static::$tabla . "  SET TITULO=?,CONFESION=? WHERE ID=? ";
+		$query = "UPDATE " . static::$tabla . "  SET TITULO=?,DESCRIPCION=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["titulo"],$array["confesion"],$array["num_confesion"]]);
+		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["ID"]]);
 	}
 	
 	public function eliminar_publicacion($array){
