@@ -1,6 +1,6 @@
 /********************************************CONTROLLER PUBLICACIONES DETALLE**************************************/
 
-Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
+Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 	header.style.display="none";
 	footer.style.display="none";
 	//funcion volver atras
@@ -21,9 +21,41 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http){
 			})
 			.success(function(data){
 				var rta=angular.fromJson(data[0]);
+				$scope.ID=data[0].ID;
 				$scope.TITULO=data[0].TITULO;
 				$scope.DESCRIPCION=data[0].DESCRIPCION;
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
+				
+				$scope.editar=function(){
+					localStorage.setItem("publi_edit",angular.toJson(data[0]));
+					$location.path("/newPublicacion");
+				}
+				$scope.eliminar=function(){
+					var union="ID="+data[0].ID;
+					$http({
+						method: 'POST',
+						url:"php/abm/publicacion.eliminar.php",
+						data: union,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							header.style.display="inline";
+							footer.style.display="inline";
+							$location.path("/publicaciones");
+						}
+						else{
+							//No se pudo borrar
+						}
+					})
+					.error(function(){
+						//Sin conexion
+					});
+				}
+				
+				
+				
+				
 			})
 			.error(function(){
 				//mensaje Sin conexion 
