@@ -8729,7 +8729,7 @@ textarea.ng-invalid {
 }
 
 .ng-dirty input.ng-invalid {
-  border-color: #ffcc00;
+  border-color: #c5c3b9;
 }
 
 .ng-dirty input.ng-invalid ~ span.ko {
