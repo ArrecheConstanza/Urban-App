@@ -16,16 +16,16 @@ function publicaciones_parsear_fecha($fecha){
      ' año'        => $secs / 31556926 % 12,
      ' semana'        => $secs / 604800 % 52,
      ' día'        => $secs / 86400 % 7,
-     ' hora'        => $secs / 3600 % 24,
-     ' minuto'    => $secs / 60 % 60,
-     ' segundo'    => $secs % 60
+     ' h'        => $secs / 3600 % 24,
+     ' min'    => $secs / 60 % 60,
+     ' seg'    => $secs % 60
      );
-	$ret[]= "hace ";
+	$ret[]= "Hace ";
 	foreach($bit as $k => $v){
 		if($v > 1)$ret[] = $v . $k . 's';
 		if($v == 1)$ret[] = $v . $k;
 	}
-	array_splice($ret, count($ret)-1, 0, 'y');
+	array_splice($ret, count($ret)-1, 0);
 	//$ret[] = 'ago.';
 	return join(' ', $ret);
 }
