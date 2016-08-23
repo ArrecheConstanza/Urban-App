@@ -4,6 +4,7 @@
 	/****** Clases *****/
 	
 	require_once('../config.php');
+	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Publicacion.php');
 	
