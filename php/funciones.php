@@ -26,7 +26,6 @@ function publicaciones_parsear_fecha($fecha){
 		if($v == 1)$ret[] = $v . $k;
 	}
 	array_splice($ret, count($ret)-1, 0);
-	//$ret[] = 'ago.';
 	return join(' ', $ret);
 }
 

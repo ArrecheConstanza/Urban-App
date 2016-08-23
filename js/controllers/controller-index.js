@@ -57,14 +57,27 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 				}
 				id("menuMas").onclick=function(e){
 					id("masMenu").style.display="inline";
+					id("masMenu").style.zIndex="3";
+					var div=ce("div");
+					div.id="fondo";
+					div.style.background="rgba(107, 103, 103, 0.4)";
+					div.style.width="100vw";
+					div.style.padding="0";
+					div.style.margin="0";
+					div.style.height="100vh";
+					div.style.position="fixed";
+					div.style.zIndex="2";
+					id("publicaciones").insertBefore(div,tn(id("publicaciones"),"ul",0));
 					e.stopPropagation();
 				}
 				id("masMenu").parentNode.parentNode.parentNode.onclick=function(){
 					if(id("masMenu")!=null){
 						id("masMenu").style.display="none";
+						if(id("fondo")!=undefined){
+							rc(id("fondo").parentNode,id("fondo"));
+						}
 					}					
 				}
-			//}
 		});
 		$location.path( "/publicaciones" );
 	}
