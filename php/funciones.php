@@ -13,12 +13,12 @@ function cambiar_formato_fecha($fecha,$b){
 function publicaciones_parsear_fecha($fecha){
 	$secs=strtotime('now') - strtotime($fecha);
 	$bit = array(
-     ' año'        => $secs / 31556926 % 12,
-     ' semana'        => $secs / 604800 % 52,
-     ' día'        => $secs / 86400 % 7,
-     ' h'        => $secs / 3600 % 24,
-     ' min'    => $secs / 60 % 60,
-     ' seg'    => $secs % 60
+     ' año' => $secs / 31556926 % 12,
+     ' semana' => $secs / 604800 % 52,
+     ' día' => $secs / 86400 % 7,
+     ' h' => $secs / 3600 % 24,
+     ' min' => $secs / 60 % 60,
+     ' seg' => $secs % 60
      );
 	$ret[]= "Hace ";
 	foreach($bit as $k => $v){

@@ -26,6 +26,13 @@
 }
 
 .label-default{
-	font-size:1.2em!important;
+	/*font-size:1.2em!important;*/
 	margin-top:.8em!important;
+	background-color: #ffffff;
+    color: black;
+    font-size: 1em;
+}
+
+#masMenu a{
+    max-width: none!important;
 }

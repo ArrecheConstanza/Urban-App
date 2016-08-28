@@ -26,6 +26,92 @@ function txt(s){
 
 var header, footer;
 
+//////////VENTANA MODAL MENSAJES
+
+function modal(v,nombre){
+	var div=document.createElement("div");
+	div.className="modal";
+	var di=document.createElement("div");
+	di.className="modal-backdrop in";
+	div.appendChild(di);
+	var di=document.createElement("div");
+	di.className="modal-dialog";
+	div.appendChild(di);
+	var d=document.createElement("div");
+	d.className="modal-content";
+	di.appendChild(d);
+	var x=document.createElement("a");
+	x.href="javascript:void(0);";
+	var txt=document.createTextNode("x");
+	x.appendChild(txt);
+	x.className="close";
+	x.style.color="red";
+	x.href='#empresa';
+	var div2=document.createElement("div");
+	div2.className="form-group botones";
+	x.onclick=function(){
+		document.getElementsByTagName("body")[0].removeChild(div);
+	}
+	var h4=document.createElement("h4");
+	h4.className="modal-header";
+	h4.style.textAlign='center';
+	var body=document.createElement("div");
+	body.className="modal-body";
+	body.appendChild(x);
+	switch(v){
+		case 'e':
+			var txt=document.createTextNode("Ups!! Se ha producido un error!");
+				h4.appendChild(txt);
+				body.appendChild(h4);
+
+		break;
+		case 'r':
+			var txt=document.createTextNode("No dispone de red en este momento. Datos almacenados en LocalStorage");
+				h4.appendChild(txt);
+				body.appendChild(h4);
+
+		break;
+		case 'o':
+			var txt=document.createTextNode("Operación realizada con éxito");
+				h4.appendChild(txt);
+				body.appendChild(h4);
+				x.href='#empresas';
+
+		break;
+		case 'a':
+			var txt=document.createTextNode("Datos de asistencia  almacenados con éxito");
+			h4.appendChild(txt);
+			body.appendChild(h4);
+		break;
+		default:
+			var txt=document.createTextNode(v);
+			var btn1=document.createElement("input");
+			var btn1a=document.createElement("a");
+			h4.appendChild(txt);
+			body.appendChild(h4);
+			btn1.type="button";
+			btn1.value="SI";
+			btn1.className="form-control pull-right";
+			btn1a.href="#empresas";
+			btn1.onclick=function(){
+				document.getElementsByTagName("body")[0].removeChild(div);
+				nid=nombre;
+			}
+			btn1a.appendChild(btn1);
+			body.appendChild(btn1a);
+			var btn2=document.createElement("input");
+			btn2.type="button";
+			btn2.value="NO";
+			btn2.className="form-control pull-left";
+			btn2.onclick=function(){
+				document.getElementsByTagName("body")[0].removeChild(div);
+			}
+			body.appendChild(btn2);
+		break;
+	}
+	d.appendChild(body);
+	document.getElementsByTagName("body")[0].appendChild(div);
+}
 
 /////////VALIDACION DEL FORM REGISTRO UNO
 function validar_form(e,estado){
