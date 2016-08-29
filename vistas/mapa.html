@@ -55,25 +55,25 @@
 		<!-- Titulo Registro, Volver y circulos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title-container">
 			<!-- Volver -->
-			<a href="/urban-app/index.html#/registroUno" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="/urban-app/index.html#/publicaciones" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			
 			<!-- Texto -->
 			<h1 class="text-center">Mapa</h1>
 				
 			<!-- Dirección container-->
-			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="campos-container">
+			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<!-- Formulario -->
 				<form>
 					<!-- Dirección  -->
+					<p>Unite a un grupo o crea uno nuevo</p>
 					<input type="text" name="direccion" id="pac-input" class="form-control" placeholder="dirección" required> 
 				</form>
-				<!--<p>Tu dirección no será visible para otros usuarios.</p>-->
 			</div>
 			
 		</div>	
 		
-			<input type='button' value='Continuar' class="form-control btn btn-default" id='registroMapa-continue-btn'>
-
+			<input id='nuevo_grupo' title='Nuevo Grupo' value='Nuevo Grupo' type='button' class='form-control btn btn-default'></input>
+			
 		<!--Mapa-->
 		<div id="map"></div>
 	</div>
@@ -111,9 +111,9 @@
 			var input=id('pac-input');
 			var searchBox = new google.maps.places.SearchBox(input);
 			
-			<!--Continuar-->
-			var continuar=id('registroMapa-continue-btn');
-			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(continuar);
+			<!--Nuevo Grupo-->
+			var nuevo_grupo=id('nuevo_grupo');
+			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(nuevo_grupo);
 
 			map.addListener('bounds_changed', function() {
 				searchBox.setBounds(map.getBounds());
@@ -126,24 +126,21 @@
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 			
 			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
-			id('registroMapa-continue-btn').onclick=function(){
-				<!--Saco la direc-->
-				var direc=places[0].name;
-				
+			id('nuevo_grupo').onclick=function(){
+			
 				<!-- Saco la lat y la long -->
 				var lat=places[0].geometry.location.lat();
 				var lon=places[0].geometry.location.lng();
 				
 				<!--Guardo todo en localStorage-->
 				var obj_direccion={
-					DIRECCION : direc,
 					LATITUD : lat,
 					LONGITUD : lon
 				}
-				localStorage.setItem("direc_user",JSON.stringify(obj_direccion));
+				localStorage.setItem("direc_grupo",JSON.stringify(obj_direccion));
 				
 				<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
-				if(localStorage.getItem("direc_user")!=null){
+				if(localStorage.getItem("direc_grupo")!=null){
 					window.location.href="../index.html#/registroUno";	
 				}
 			}
@@ -161,11 +158,11 @@
 			var bounds = new google.maps.LatLngBounds();
 			places.forEach(function(place) {
 			  var icon = {
-				url: "../img/icons/png/urban.png",
-				size: new google.maps.Size(71, 71),
+				url: "../img/icons/png/marker-map-grupo.png",
+				size: new google.maps.Size(100, 100),
 				origin: new google.maps.Point(0, 0),
 				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(50, 50)
+				scaledSize: new google.maps.Size(60, 70)
 			  };
 
 			  <!-- Crear un marker para ese lugar -->
