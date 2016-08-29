@@ -1,6 +1,6 @@
-/********************************************CONTROLLER INDEX***************************************/
+/********************************************CONTROLLER INDEX (header y footer)***************************************/
 
-Urban.controller("indexCtrl", function ($location,$http,$scope) {
+Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 
 	//funcion volver atras
 	$scope.$back = function() { 
@@ -9,6 +9,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 	
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
+		// ------------------ HEADER
 		$http({
 			method: 'GET',
 			url:"vistas/header.html",
@@ -19,16 +20,16 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 			header=tn(document,'header',0);
 			header.innerHTML=data;
 			id("sidebar").style.display="none";
-			id("menu-hamburger").onclick=function(e){
+			id("menu-hamburger").onclick=function(e){ //abrir sidebar
 				id("sidebar").style.display="inline";
 				e.stopPropagation();
 			}
-			id("sidebar").parentNode.parentNode.parentNode.onclick=function(){
+			id("sidebar").parentNode.parentNode.parentNode.onclick=function(){ //cerrar sidebar
 				if(id("sidebar")!=null){
 					id("sidebar").style.display="none";	
 				}
 			}
-			id("cerrar").parentNode.onclick=function(){
+			id("cerrar").parentNode.onclick=function(){ //cerrar sesion
 				$http({
 					method: 'GET',
 					url:"php/abm/logout.usuario.php",
@@ -42,8 +43,14 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 						$location.path("/");
 					}
 				});
-	}	
+			}
+			if(id("boton-mapa")!=null){ //redireccion a mapa
+				id("boton-mapa").onclick=function(){
+					$window.location.href = '/urban-app/vistas/mapa.html';
+				}
+			}			
 		});
+		// ------------------ FOOTER
 		$http({
 			method: 'GET',
 			url:"vistas/footer.html",
@@ -52,10 +59,10 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 		.success(function(data){
 			footer=tn(document,'footer',0);
 				footer.innerHTML=data;
-				if(id("masMenu")!=null){
+				if(id("masMenu")!=null){  //cerrar menu mas
 					id("masMenu").style.display="none";
 				}
-				id("menuMas").onclick=function(e){
+				id("menuMas").onclick=function(e){ //abrir menu mas
 					id("masMenu").style.display="inline";
 					id("masMenu").style.zIndex="3";
 					var div=ce("div");
@@ -70,7 +77,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope) {
 					id("publicaciones").insertBefore(div,tn(id("publicaciones"),"ul",0));
 					e.stopPropagation();
 				}
-				id("masMenu").parentNode.parentNode.parentNode.onclick=function(){
+				id("masMenu").parentNode.parentNode.parentNode.onclick=function(){ //cerrar menu mas
 					if(id("masMenu")!=null){
 						id("masMenu").style.display="none";
 						if(id("fondo")!=undefined){
