@@ -1,0 +1,116 @@
+<?php
+	
+class Grupo{
+	private $codigo_grupo;
+	private $nombre;
+	private $longitud;
+	private $latitud;
+	private $estado;
+	private $borrado;
+	private $fk_multimedia;
+	public static $tabla = "grupo";
+	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA'];
+
+	public function setCodigoGrupo($a){
+		$this->codigo_grupo = $a;
+	}
+	public function getCodigoGrupo(){
+		return $this->codigo_grupo;
+	}
+	public function setNombre($a){
+		$this->nombre = $a;
+	}
+	public function getNombre(){
+		return $this->nombre;
+	}
+	public function setLongitud($a){
+		$this->longitud = $a;
+	}
+	public function getLatitud(){
+		return $this->latitud;
+	}
+	public function setLatitud($a){
+		$this->latitud = $a;
+	}
+	public function getEstado(){
+		return $this->estado;
+	}
+	public function setBorrado($a){
+		$this->borrado = $a;
+	}
+	public function getBorrado(){
+		return $this->borrado;
+	}
+	public function setFkMultimedia($a){
+		$this->fk_multimedia = $a;
+	}
+	public function getFkMultimedia(){
+		return $this->fk_multimedia;
+	}
+	
+	public function getByPk($id){
+		$this->codigo_grupo = $id;
+		$query = "SELECT * FROM " . static::$tabla . "
+					WHERE ID = ?";
+		$stmt = DBcnx::getStatement($query);
+		$stmt->execute([$id]);
+		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+	}
+	public function cargarDatos($fila){
+		foreach($fila as $prop => $valor) {
+			if(in_array($prop, static::$fila)) {
+				switch($prop){
+					case "nombre":
+						$this->setNombre($valor);
+					break;
+					case "estado":
+						$this->setEstado($valor);
+					break;
+					case "latitud":
+						$this->setLatitud($valor);
+					break;
+					case "longitud":
+						$this->setLongitud($valor);
+					break;
+					case "borrado":
+						$this->setBorrado($valor);
+					break;
+					case "fk_multimeda":
+						$this->setFkMultimedia($valor);
+					break;
+				}
+			}
+		}
+	}
+	public function eliminar_grupo($array){
+		$query = "DELETE FROM grupo WHERE ID=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["id"]]);
+	}
+	public function crear_grupo($array){
+		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LATITUD, LONGITUD, ESTADO, BORRADO, FKMULTIMEDA)
+				VALUES (?, ?, ?, ?, ?, ?)";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["NOMBRE"],$array["LATITUD"],$array["LONGITUD"],$array["ESTADO"],$array["BORRADO"],$array["FKMULTIMEDA"]]);
+	}
+	public static function all(){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$grupo = new Grupo;
+				$grupo->codigo_grupo = $fila['ID'];
+				$grupo->nombre = $fila['NOMBRE'];
+				$grupo->latitud = $fila['LATITUD'];
+				$grupo->longitud = $fila['LONGITUD'];
+				$grupo->estado = $fila['ESTADO'];
+				$grupo->borrado = $fila['BORRADO'];
+				$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
+				$grupo->cargarDatos($fila);
+				$salida[] = $grupo;
+			}
+		}
+		return $salida;
+	}
+}
