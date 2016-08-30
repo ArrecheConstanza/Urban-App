@@ -101,7 +101,13 @@ p{
 	margin-bottom:4%!important;
 }
 
-
+#informacion h3{
+	font-size:1em;
+	text-transform:none;
+	letter-spacing:normal;
+	margin:0;
+	text-align:left;
+}
 
 
 

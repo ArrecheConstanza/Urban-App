@@ -164,7 +164,16 @@
 				anchor: new google.maps.Point(17, 34),
 				scaledSize: new google.maps.Size(60, 70)
 			  };
-
+			  //inicio for
+			  
+			  //informacion de grupo
+			  var cantidad_usuarios=1;
+			  var titulo_grupo="Vecinos washington";
+			  
+			  var infowindow = new google.maps.InfoWindow({ 
+				content: '<div id="informacion"><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p></div>'
+			  });  
+			  
 			  <!-- Crear un marker para ese lugar -->
 			  markers.push(new google.maps.Marker({
 				map: map,
@@ -172,6 +181,11 @@
 				title: place.name,
 				position: place.geometry.location
 			  }));
+			  
+			   markers[0].addListener('click', function() {
+				infowindow.open(map, markers[0]); 
+			  });
+			  //fin for
 
 			  if (place.geometry.viewport) {
 				bounds.union(place.geometry.viewport);
