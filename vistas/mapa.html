@@ -66,13 +66,13 @@
 				<form>
 					<!-- Dirección  -->
 					<p>Unite a un grupo o crea uno nuevo</p>
-					<input type="text" name="direccion" id="pac-input" class="form-control" placeholder="dirección" required> 
+					<input id='nuevo_grupo' title='Nuevo Grupo' value='Nuevo Grupo' type='button' class='form-control btn btn-default'></input>
+					<input type="text" name="Direccion" id="pac-input" class="form-control" placeholder="Dirección" required> 
 				</form>
 			</div>
 			
 		</div>	
 		
-			<input id='nuevo_grupo' title='Nuevo Grupo' value='Nuevo Grupo' type='button' class='form-control btn btn-default'></input>
 			
 		<!--Mapa-->
 		<div id="map"></div>
@@ -103,7 +103,7 @@
 			<!--Creacion del mapa-->
 			map = new google.maps.Map(id('map'), { 
 				center: {lat: -34.568101 , lng: -58.470378499999995},
-				zoom: 16,
+				zoom: 13,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
@@ -112,8 +112,8 @@
 			var searchBox = new google.maps.places.SearchBox(input);
 			
 			<!--Nuevo Grupo-->
-			var nuevo_grupo=id('nuevo_grupo');
-			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(nuevo_grupo);
+			/*var nuevo_grupo=id('nuevo_grupo');
+			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(nuevo_grupo);*/
 
 			map.addListener('bounds_changed', function() {
 				searchBox.setBounds(map.getBounds());
@@ -167,11 +167,12 @@
 			  //inicio for
 			  
 			  //informacion de grupo
-			  var cantidad_usuarios=1;
+			  var cantidad_usuarios=23;
 			  var titulo_grupo="Vecinos washington";
-			  
+			  //var foto_grupo="/urban-app/img/fotos/muestra.jpg";
+			  //<img alt="vecinos washington" src="'+foto_grupo+'"></img>
 			  var infowindow = new google.maps.InfoWindow({ 
-				content: '<div id="informacion"><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p></div>'
+				content: '<div id="informacion"><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" value="Unirme" class="form-control btn btn-default"></input></div>'
 			  });  
 			  
 			  <!-- Crear un marker para ese lugar -->
@@ -184,7 +185,11 @@
 			  
 			   markers[0].addListener('click', function() {
 				infowindow.open(map, markers[0]); 
+				tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",2).style.display="none";
+				tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0).style.backgroundColor="#0a3a49!important";
+				console.log(tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0));
 			  });
+			  
 			  //fin for
 
 			  if (place.geometry.viewport) {
@@ -195,6 +200,7 @@
 			  }
 			});
 			map.fitBounds(bounds);
+
 		  });
 	  }
 		

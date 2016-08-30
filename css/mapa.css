@@ -101,6 +101,10 @@ p{
 	margin-bottom:4%!important;
 }
 
+#informacion{
+	text-align:center;
+	display:inline-block;
+}
 #informacion h3{
 	font-size:1em;
 	text-transform:none;
@@ -108,7 +112,16 @@ p{
 	margin:0;
 	text-align:left;
 }
-
+#informacion img{
+	max-width:100px;
+	max-height:100px;
+	overflow:hidden;
+}
+#informacion p{
+	text-align:left;
+	padding-top:.2em;
+	color:black;
+}
 
 
 
