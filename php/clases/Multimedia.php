@@ -3,14 +3,21 @@
 class Multimedia{
 	private $codigo_multimedia;
 	private $path;
+	private $borrado;
 	public static $tabla = "multimedia";
-	private static $fila = ['DIR'];
+	private static $fila = ['DIR','BORRADO'];
 
 	public function setCodigoMultimedia($a){
 		$this->codigo_multimedia = $a;
 	}
 	public function getCodigoMultimedia(){
 		return $this->codigo_multimedia;
+	}
+	public function setBorrado($a){
+		$this->borrado = $a;
+	}
+	public function getBorrado(){
+		return $this->borrado;
 	}
 	public function setPath($a){
 		$this->path = $a;
@@ -34,6 +41,9 @@ class Multimedia{
 					case "path":
 						$this->setNombre($valor);
 					break;
+					case "borrado":
+						$this->setNombre($valor);
+					break;
 				}
 			}
 		}
@@ -44,8 +54,8 @@ class Multimedia{
 		return $stmt->execute([$array["id"]]);
 	}
 	public function crear_multimedia($array){
-		$query = "INSERT INTO " . static::$tabla . " (DIR)
-				VALUES (?)";
+		$query = "INSERT INTO " . static::$tabla . " (DIR, BORRADO)
+				VALUES (?,?)";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["DIR"]]);
 	}
