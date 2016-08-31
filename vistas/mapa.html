@@ -123,8 +123,8 @@
 			<!-- Detalles del lugar -->
 			searchBox.addListener('places_changed', function() {
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
-			
-			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
+
+			<!----------places[0].geometry.location.lng()ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
 			/*id('nuevo_grupo').onclick=function(){
 			
 				<!-- Saco la lat y la long -->
@@ -152,12 +152,47 @@
 			  marker.setMap(null);
 			});
 			markers = [];
+			var infowindow = [];
 
 			<!-- Por cada lugar pedir el icono, nombre y location -->
 			var bounds = new google.maps.LatLngBounds();
 			
 			places.forEach(function(place) {
-			//donde esta parado el usuario
+			  
+			 //TRAER LOS GRUPOS
+			  for(var i=0;i<grupos.length;i++){
+			  
+				//creo el lugar del grupo
+				var lugar = {lat: parseFloat(grupos[i]["LATITUD"]), lng: parseFloat(grupos[i]["LONGITUD"])};
+				
+				//creo el icono
+				 var icon = {
+					url: "../img/icons/png/marker-map-grupo.png", //si tiene menos de 20 usuarios mostrar el iconito con 1 solo edificio
+					size: new google.maps.Size(100, 100),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(17, 34),
+					scaledSize: new google.maps.Size(40, 50)
+				  };
+				  
+				  //informacion de grupo
+				  var cantidad_usuarios=23;
+				  var titulo_grupo=grupos[i]["NOMBRE"];
+				  var foto_grupo="/urban-app/img/fotos/muestra.jpg"; 
+				  
+				  infowindow.push(new google.maps.InfoWindow({ 
+					content: '<div id="informacion"><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" value="Unirme" class="form-control btn btn-default"></input></div>'
+				  }));  
+				  
+				  // crear un marker para el lugar donde esta el grupo
+				  markers.push(new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: titulo_grupo,
+					position: lugar
+				  }));
+			  }
+			  
+			  //DONDE ESTA EL USUARIO
 			  var icon = {
 				url: "../img/icons/png/marker-map-orange.png", 
 				size: new google.maps.Size(100, 100),
@@ -166,53 +201,18 @@
 				scaledSize: new google.maps.Size(60, 60)
 			  };
 			  
-			 //traer los grupos
-			  //grupos_en_zona();
-			  for(var i=0;i<grupos.length;i++){
-				console.log(grupos[i]);
-			  }
-			 // console.log(grupos);
-				  //inicio for
-				 /* var icon = {
-					url: "../img/icons/png/marker-map-grupo.png", //si tiene menos de 20 usuarios mostrar el iconito con 1 solo edificio
-					size: new google.maps.Size(100, 100),
-					origin: new google.maps.Point(0, 0),
-					anchor: new google.maps.Point(17, 34),
-					scaledSize: new google.maps.Size(60, 70)
-				  };*/
-				
-				///////////////
-				  
-				  //informacion de grupo
-				  var cantidad_usuarios=23;
-				  var titulo_grupo="Vecinos washington";
-				  var foto_grupo="/urban-app/img/fotos/muestra.jpg";
-				  
-				  var infowindow = new google.maps.InfoWindow({ 
-					content: '<div id="informacion"><img alt="vecinos washington" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" value="Unirme" class="form-control btn btn-default"></input></div>'
-				  });  
-				  
-				  <!-- Crear un marker para ese lugar -->
-				  markers.push(new google.maps.Marker({
-					map: map,
-					icon: icon,
-					title: place.name,
-					position: place.geometry.location
-				  }));
-				  
-				   markers[0].addListener('click', function() {
-					infowindow.open(map, markers[0]); 
-					tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",2).style.display="none";
-					tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0).style.backgroundColor="#0a3a49!important";//esta mierda no esta andando
-					
-					//BOTON UNIRME
-					tn(id("informacion"),"input",0).onclick=function(){
-						alert("click");
-					}
-				  });
+			<!-- Crear un marker para el lugar donde esta el usuario-->
+			  markers.push(new google.maps.Marker({
+				map: map,
+				icon: icon,
+				title: place.name,
+				position: place.geometry.location
+			  }));
 			  
-			  //fin for
-
+			  infowindow.push(new google.maps.InfoWindow({ 
+					content: '<div id="informacion"><h3>'+place.name+'</h3><input type="button" value="CREAR GRUPO" class="form-control btn btn-default"></input></div>'
+				}));  
+			  
 			  if (place.geometry.viewport) {
 				bounds.union(place.geometry.viewport);
 			  } 
@@ -222,6 +222,23 @@
 			});
 			map.fitBounds(bounds);
 			map.setZoom(15); 
+			
+			
+			for(var j=0;j<markers.length;j++){ //aca
+				console.log(infowindow[j]);
+				markers[j].addListener('click', function() {
+					for(var i=0;i<infowindow.length;i++){
+						infowindow[i].open(map, markers[j]); 
+						tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",2).style.display="none";
+						tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0).style.backgroundColor="#0a3a49!important";//esta mierda no esta andando
+					}
+					
+				});
+					//BOTON UNIRME
+					/*tn(id("informacion"),"input",0).onclick=function(){
+						alert("click");
+					}*/
+			}
 
 		  });
 	  }
