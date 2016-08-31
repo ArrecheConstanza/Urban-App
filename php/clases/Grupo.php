@@ -23,6 +23,9 @@ class Grupo{
 	public function getNombre(){
 		return $this->nombre;
 	}
+	public function getLongitud(){
+		return $this->longitud;
+	}
 	public function setLongitud($a){
 		$this->longitud = $a;
 	}
@@ -66,11 +69,11 @@ class Grupo{
 					case "estado":
 						$this->setEstado($valor);
 					break;
-					case "latitud":
-						$this->setLatitud($valor);
-					break;
 					case "longitud":
 						$this->setLongitud($valor);
+					break;
+					case "latitud":
+						$this->setLatitud($valor);
 					break;
 					case "borrado":
 						$this->setBorrado($valor);
@@ -88,10 +91,10 @@ class Grupo{
 		return $stmt->execute([$array["id"]]);
 	}
 	public function crear_grupo($array){
-		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LATITUD, LONGITUD, ESTADO, BORRADO, FKMULTIMEDA)
+		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO, BORRADO, FKMULTIMEDA)
 				VALUES (?, ?, ?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["NOMBRE"],$array["LATITUD"],$array["LONGITUD"],$array["ESTADO"],$array["BORRADO"],$array["FKMULTIMEDA"]]);
+		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"],$array["BORRADO"],$array["FKMULTIMEDA"]]);
 	}
 	public static function all(){
 		$salida = [];
@@ -102,8 +105,8 @@ class Grupo{
 				$grupo = new Grupo;
 				$grupo->codigo_grupo = $fila['ID'];
 				$grupo->nombre = $fila['NOMBRE'];
-				$grupo->latitud = $fila['LATITUD'];
 				$grupo->longitud = $fila['LONGITUD'];
+				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
 				$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];

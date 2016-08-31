@@ -24,7 +24,7 @@ function txt(s){
 
 /****************************************VARIABLES GLOBALES****************************************/
 
-var header, footer;
+var header, footer, grupos;
 
 //////////VENTANA MODAL MENSAJES
 

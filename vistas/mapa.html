@@ -74,7 +74,7 @@
 		</div>	
 		
 		<!--Mapa-->
-		<div id="map"></div>
+		<div id="map" ng-controller="mapaCtrl"></div>
 	</div>
 
 	</main>	
@@ -125,7 +125,7 @@
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 			
 			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
-			id('nuevo_grupo').onclick=function(){
+			/*id('nuevo_grupo').onclick=function(){
 			
 				<!-- Saco la lat y la long -->
 				var lat=places[0].geometry.location.lat();
@@ -142,7 +142,7 @@
 				if(localStorage.getItem("direc_grupo")!=null){
 					window.location.href="../index.html#/registroUno";	
 				}
-			}
+			}*/
 			if (places.length == 0) {
 			  return;
 			}
@@ -155,43 +155,61 @@
 
 			<!-- Por cada lugar pedir el icono, nombre y location -->
 			var bounds = new google.maps.LatLngBounds();
+			
 			places.forEach(function(place) {
+			//donde esta parado el usuario
 			  var icon = {
-				url: "../img/icons/png/marker-map-grupo.png", //si tiene menos de 20 usuarios mostrar el iconito con 1 solo edificio
+				url: "../img/icons/png/marker-map-orange.png", 
 				size: new google.maps.Size(100, 100),
 				origin: new google.maps.Point(0, 0),
 				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(60, 70)
+				scaledSize: new google.maps.Size(60, 60)
 			  };
-			  //inicio for
 			  
-			  //informacion de grupo
-			  var cantidad_usuarios=23;
-			  var titulo_grupo="Vecinos washington";
-			  //var foto_grupo="/urban-app/img/fotos/muestra.jpg";
-			  //<img alt="vecinos washington" src="'+foto_grupo+'"></img>
-			  var infowindow = new google.maps.InfoWindow({ 
-				content: '<div id="informacion"><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" value="Unirme" class="form-control btn btn-default"></input></div>'
-			  });  
-			  
-			  <!-- Crear un marker para ese lugar -->
-			  markers.push(new google.maps.Marker({
-				map: map,
-				icon: icon,
-				title: place.name,
-				position: place.geometry.location
-			  }));
-			  
-			   markers[0].addListener('click', function() {
-				infowindow.open(map, markers[0]); 
-				tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",2).style.display="none";
-				tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0).style.backgroundColor="#0a3a49!important";//esta mierda no esta andando
+			 //traer los grupos
+			  //grupos_en_zona();
+			  for(var i=0;i<grupos.length;i++){
+				console.log(grupos[i]);
+			  }
+			 // console.log(grupos);
+				  //inicio for
+				 /* var icon = {
+					url: "../img/icons/png/marker-map-grupo.png", //si tiene menos de 20 usuarios mostrar el iconito con 1 solo edificio
+					size: new google.maps.Size(100, 100),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(17, 34),
+					scaledSize: new google.maps.Size(60, 70)
+				  };*/
 				
-				//BOTON UNIRME
-				tn(id("informacion"),"input",0).onclick=function(){
-					alert("click");
-				}
-			  });
+				///////////////
+				  
+				  //informacion de grupo
+				  var cantidad_usuarios=23;
+				  var titulo_grupo="Vecinos washington";
+				  var foto_grupo="/urban-app/img/fotos/muestra.jpg";
+				  
+				  var infowindow = new google.maps.InfoWindow({ 
+					content: '<div id="informacion"><img alt="vecinos washington" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" value="Unirme" class="form-control btn btn-default"></input></div>'
+				  });  
+				  
+				  <!-- Crear un marker para ese lugar -->
+				  markers.push(new google.maps.Marker({
+					map: map,
+					icon: icon,
+					title: place.name,
+					position: place.geometry.location
+				  }));
+				  
+				   markers[0].addListener('click', function() {
+					infowindow.open(map, markers[0]); 
+					tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",2).style.display="none";
+					tn(tn(tn(id("informacion").parentNode.parentNode.parentNode.parentNode,"div",0),"div",3),"div",0).style.backgroundColor="#0a3a49!important";//esta mierda no esta andando
+					
+					//BOTON UNIRME
+					tn(id("informacion"),"input",0).onclick=function(){
+						alert("click");
+					}
+				  });
 			  
 			  //fin for
 
@@ -219,6 +237,7 @@
 	
 	<!--Modulos-->
 	<script src="../js/modulos/modulos.js"></script>
+	<script src="../js/controllers/controller-mapa.js"></script>
 	
 	<!--Rutas-->
 	<script src="../js/rutas/rutas.js"></script>
