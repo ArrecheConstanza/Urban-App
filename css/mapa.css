@@ -101,28 +101,28 @@ p{
 	margin-bottom:4%!important;
 }
 
-#informacion{
+.informacion{
 	text-align:center;
 	display:inline-block;
 }
-#informacion h3{
+.informacion h3{
 	font-size:1em;
 	text-transform:none;
 	letter-spacing:normal;
 	margin:0;
 	text-align:left;
 }
-#informacion img{
+.informacion img{
 	max-width:100px;
 	max-height:100px;
 	overflow:hidden;
 }
-#informacion p{
+.informacion p{
 	text-align:left;
 	padding-top:.2em;
 	color:black;
 }
-#informacion input{
+.informacion input{
 	margin:0;
 	padding:.2em;
 }
