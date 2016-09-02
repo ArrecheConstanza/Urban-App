@@ -94,13 +94,16 @@ img[src*="gstatic.com/"], img[src*="googleapis.com/"] {
 p{
 	text-align:center;
 	color:darkgrey;
-	margin-bottom:8%;
+	/*margin-bottom:8%;*/
 }
 
 #pac-input{
 	margin-bottom:4%!important;
 }
 
+#title-container h1{
+	margin-bottom:.4em;
+}
 .informacion{
 	text-align:center;
 	display:inline-block;
@@ -120,19 +123,15 @@ p{
 .informacion p{
 	text-align:left;
 	padding-top:.2em;
-	color:black;
+	color:black!important;
 }
 .informacion input{
 	margin:0;
 	padding:.2em;
 }
-.Privado{
-	background:url('../img/icons/png/privado-mini.png') no-repeat left top;
+.nuevo_grupo{
+	padding:.3em .9em!important;
 }
-.Publico{
-	background:url('../img/icons/png/publico-mini.png') no-repeat left top;
-}
-
 
 
 
