@@ -126,7 +126,12 @@ p{
 	margin:0;
 	padding:.2em;
 }
-
+.Privado{
+	background:url('../img/icons/png/privado-mini.png') no-repeat left top;
+}
+.Publico{
+	background:url('../img/icons/png/publico-mini.png') no-repeat left top;
+}
 
 
 
