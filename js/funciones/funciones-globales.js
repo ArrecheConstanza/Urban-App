@@ -28,7 +28,7 @@ var header, footer, grupos;
 
 //////////VENTANA MODAL MENSAJES
 
-function modal(v,nombre){
+function modal(v){
 	var div=document.createElement("div");
 	div.className="modal";
 	var di=document.createElement("div");
@@ -46,70 +46,49 @@ function modal(v,nombre){
 	x.appendChild(txt);
 	x.className="close";
 	x.style.color="red";
-	x.href='#empresa';
+	//x.href='#empresa';
 	var div2=document.createElement("div");
 	div2.className="form-group botones";
 	x.onclick=function(){
+		alert("entre");
 		document.getElementsByTagName("body")[0].removeChild(div);
 	}
 	var h4=document.createElement("h4");
 	h4.className="modal-header";
 	h4.style.textAlign='center';
-	var body=document.createElement("div");
-	body.className="modal-body";
-	body.appendChild(x);
+	var caja_modal=document.createElement("div");
+	caja_modal.className="modal-body";
+	caja_modal.appendChild(x);
 	switch(v){
-		case 'e':
+		case 'nuevo_grupo':
+			var txt=document.createTextNode("Crear grupo");
+				h4.appendChild(txt);
+				caja_modal.appendChild(h4);
+				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
+		break;
+		case 'error':
 			var txt=document.createTextNode("Ups!! Se ha producido un error!");
 				h4.appendChild(txt);
-				body.appendChild(h4);
+				caja_modal.appendChild(h4);
 
 		break;
-		case 'r':
-			var txt=document.createTextNode("No dispone de red en este momento. Datos almacenados en LocalStorage");
+		case 'sin_red':
+			var txt=document.createTextNode("No dispone de red en este momento. Datos almacenados en telefono");
 				h4.appendChild(txt);
-				body.appendChild(h4);
+				caja_modal.appendChild(h4);
 
 		break;
-		case 'o':
+		case 'ok':
 			var txt=document.createTextNode("Operación realizada con éxito");
 				h4.appendChild(txt);
-				body.appendChild(h4);
-				x.href='#empresas';
-
-		break;
-		case 'a':
-			var txt=document.createTextNode("Datos de asistencia  almacenados con éxito");
-			h4.appendChild(txt);
-			body.appendChild(h4);
+				caja_modal.appendChild(h4);
+				//x.href='#empresas';
 		break;
 		default:
-			var txt=document.createTextNode(v);
-			var btn1=document.createElement("input");
-			var btn1a=document.createElement("a");
-			h4.appendChild(txt);
-			body.appendChild(h4);
-			btn1.type="button";
-			btn1.value="SI";
-			btn1.className="form-control pull-right";
-			btn1a.href="#empresas";
-			btn1.onclick=function(){
-				document.getElementsByTagName("body")[0].removeChild(div);
-				nid=nombre;
-			}
-			btn1a.appendChild(btn1);
-			body.appendChild(btn1a);
-			var btn2=document.createElement("input");
-			btn2.type="button";
-			btn2.value="NO";
-			btn2.className="form-control pull-left";
-			btn2.onclick=function(){
-				document.getElementsByTagName("body")[0].removeChild(div);
-			}
-			body.appendChild(btn2);
+			//
 		break;
 	}
-	d.appendChild(body);
+	d.appendChild(caja_modal);
 	document.getElementsByTagName("body")[0].appendChild(div);
 }
 

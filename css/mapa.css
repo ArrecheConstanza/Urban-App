@@ -132,8 +132,9 @@ p{
 .nuevo_grupo{
 	padding:.3em .9em!important;
 }
-
-
+.modal{
+	display:inline-block;
+}
 
 
 

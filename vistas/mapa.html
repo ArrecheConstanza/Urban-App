@@ -11,6 +11,7 @@
 	<title>URBAN</title>
 	
 	<!-- CSS -->
+	<link href="../css/mobile-angular-ui-base.css" rel="stylesheet">
 	<link href="../css/fonts.css" rel="stylesheet">
 
 	<!-- BOOTSTRAP CSS -->
@@ -238,32 +239,38 @@
 			//recorrer todos los markers y generar en el onclick la ventana de informacion de cada grupo
 			for(var j=0;j<markers.length;j++){ 
 				markers[j].addListener('click', function() {
-				
+
+					var marker=this;
 					//toggle si es el marker del usuario
 					if(this.mas==markers.length-1){
 						toggleBounce(this);
 					}
 					if(infowindow[this.mas]!=undefined){
-						//abrir la ventana de informacion
+						//abrir la ventana de informacion 
 						infowindow[this.mas].open(map, markers[this.mas]); 
 						
 						//guardo todas las ventanas de informacion abiertas para ver cual elige el usuario
 						var ventana_info=document.getElementsByClassName("informacion");
 						for(var i=0;i<ventana_info.length;i++){
 							tn(ventana_info[i],"input",0).onclick=function(){
-								alert(this.id);
-
+							
 								/****************** CREAR GRUPO **********************/
-								if(!this.id){														
-									<!-- Saco la lat y la long -->
-									var lat=places[0].geometry.location.lat();
-									var lon=places[0].geometry.location.lng();
+								if(this.id=="0"){					
+									<!-- Saco la lat y la long del marker-->
+									var lat=marker.getPosition().lat();
+									var lng=marker.getPosition().lng();
 									
-									<!--Guardo todo en localStorage-->
-									var obj_direccion={
+									<!--Guardo todo en un objeto-->
+									var nuevo_grupo_position={
 										LATITUD : lat,
-										LONGITUD : lon
+										LONGITUD : lng
 									}
+
+									//abrir modal para completar datos de nuevo grupo
+									//esta funcion contiene el form de crear grupo en el archivo js/funciones/funciones-globales.js
+									modal('nuevo_grupo');
+									
+									//	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA'];
 								}
 							}
 						
