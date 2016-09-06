@@ -10,6 +10,9 @@
 	<!-- Title -->
 	<title>URBAN</title>
 	
+	<!-- Libreria para importacion de html -->
+	<script src="http://www.w3schools.com/lib/w3data.js"></script>
+	
 	<!-- CSS -->
 	<link href="../css/mobile-angular-ui-base.css" rel="stylesheet">
 	<link href="../css/fonts.css" rel="stylesheet">
@@ -49,11 +52,14 @@
 		@import "../css/mapa.css";
 		@import	"../css/registro-mapa.css"; 
 	</style>
-	 
-	<!-- Contenedor registro -->
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="registro-mapa" >
 	
-		<!-- Titulo Registro, Volver y circulos -->
+		<!--Incluir la vista nuevo-grupo.html (tiene el form para crear grupo)-->
+		<div w3-include-html="nuevo-grupo.html" id="container-nuevo-grupo"></div>
+	 
+	<!-- Contenedor Mapa -->
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="registro-mapa" >
+		
+		<!-- Titulo Mapa y Volver-->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title-container">
 			<!-- Volver -->
 			<a href="/urban-app/index.html#/publicaciones" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -76,11 +82,11 @@
 		
 		<!--Mapa-->
 		<div id="map" ng-controller="mapaCtrl"></div>
+		
 	</div>
 
 	</main>	
 	<footer>
-	
 	</footer>
 	<!-- BOOTSTRAP JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -97,6 +103,7 @@
 	<!-- Google Maps Javascript API -->
 
 	<script>
+
 		var map; 
 		var markers = [];
 		var marker_usuario;
@@ -126,25 +133,6 @@
 			searchBox.addListener('places_changed', function() {
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 
-			<!----------places[0].geometry.location.lng()ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
-			/*id('nuevo_grupo').onclick=function(){
-			
-				<!-- Saco la lat y la long -->
-				var lat=places[0].geometry.location.lat();
-				var lon=places[0].geometry.location.lng();
-				
-				<!--Guardo todo en localStorage-->
-				var obj_direccion={
-					LATITUD : lat,
-					LONGITUD : lon
-				}
-				localStorage.setItem("direc_grupo",JSON.stringify(obj_direccion));
-				
-				<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
-				if(localStorage.getItem("direc_grupo")!=null){
-					window.location.href="../index.html#/registroUno";	
-				}
-			}*/
 			if (places.length == 0) {
 			  return;
 			}
@@ -199,7 +187,7 @@
 			  
 			  //DONDE ESTA EL USUARIO
 			  var icon = {
-				url: "../img/icons/png/marker-map-orange-mas.png", 
+				url: "../img/icons/png/marker-map-orange-mas-2.png", 
 				size: new google.maps.Size(100, 100),
 				origin: new google.maps.Point(0, 0),
 				anchor: new google.maps.Point(17, 34),
@@ -229,9 +217,6 @@
 			  else {
 				bounds.extend(place.geometry.location);
 			  }
-				/*map.addListener('dragend', function() {
-					marker_usuario.setBounds(map.getPosition());
-				});*/
 			});
 			map.fitBounds(bounds);
 			map.setZoom(15); 
@@ -266,11 +251,10 @@
 										LONGITUD : lng
 									}
 
-									//abrir modal para completar datos de nuevo grupo
-									//esta funcion contiene el form de crear grupo en el archivo js/funciones/funciones-globales.js
-									modal('nuevo_grupo');
-									
-									//	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA'];
+									//abrir vista vistas/nuevo-grupo.html que contiene form para completar datos de nuevo grupo [nombre, estado y foto]
+									id("container-nuevo-grupo").style.height="100vh";
+									id("container-nuevo-grupo").style.overflow="hidden";
+									w3IncludeHTML();
 								}
 							}
 						

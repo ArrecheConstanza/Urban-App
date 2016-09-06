@@ -42,17 +42,13 @@ function modal(v){
 	di.appendChild(d);
 	var x=document.createElement("a");
 	x.href="javascript:void(0);";
+	x.id="cerrar_modal";
 	var txt=document.createTextNode("x");
 	x.appendChild(txt);
 	x.className="close";
-	x.style.color="red";
-	//x.href='#empresa';
+	x.style.color="black";
 	var div2=document.createElement("div");
 	div2.className="form-group botones";
-	x.onclick=function(){
-		alert("entre");
-		document.getElementsByTagName("body")[0].removeChild(div);
-	}
 	var h4=document.createElement("h4");
 	h4.className="modal-header";
 	h4.style.textAlign='center';
@@ -64,7 +60,7 @@ function modal(v){
 			var txt=document.createTextNode("Crear grupo");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
-				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
+				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
 		break;
 		case 'error':
 			var txt=document.createTextNode("Ups!! Se ha producido un error!");
@@ -82,7 +78,6 @@ function modal(v){
 			var txt=document.createTextNode("Operación realizada con éxito");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
-				//x.href='#empresas';
 		break;
 		default:
 			//
@@ -90,6 +85,11 @@ function modal(v){
 	}
 	d.appendChild(caja_modal);
 	document.getElementsByTagName("body")[0].appendChild(div);
+	
+	//cerrado de modal
+	id("cerrar_modal").onclick=function(){
+		document.getElementsByTagName("body")[0].removeChild(div);
+	}
 }
 
 /////////VALIDACION DEL FORM REGISTRO UNO
