@@ -119,10 +119,6 @@
 			<!-- Buscador -->
 			var input=id('pac-input');
 			var searchBox = new google.maps.places.SearchBox(input);
-			
-			<!--Nuevo Grupo-->
-			/*var nuevo_grupo=id('nuevo_grupo');
-			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(nuevo_grupo);*/
 
 			map.addListener('bounds_changed', function() {
 				searchBox.setBounds(map.getBounds());
@@ -225,7 +221,7 @@
 			for(var j=0;j<markers.length;j++){ 
 				markers[j].addListener('click', function() {
 
-					var marker=this;
+					marker=this;
 					//toggle si es el marker del usuario
 					if(this.mas==markers.length-1){
 						toggleBounce(this);
@@ -250,11 +246,18 @@
 										LATITUD : lat,
 										LONGITUD : lng
 									}
-
+									localStorage.setItem("nuevo_grupo_position",JSON.stringify(nuevo_grupo_position));
+									
+									<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
+									if(localStorage.getItem("nuevo_grupo_position")!=null){
+										window.location.href="/urban-app/index.html#/newGrupo";
+										
+									}
 									//abrir vista vistas/nuevo-grupo.html que contiene form para completar datos de nuevo grupo [nombre, estado y foto]
-									id("container-nuevo-grupo").style.height="100vh";
+									/*id("container-nuevo-grupo").style.height="100vh";
 									id("container-nuevo-grupo").style.overflow="hidden";
-									w3IncludeHTML();
+									w3IncludeHTML();*/
+									//control_nuevo_grupo();
 								}
 							}
 						
@@ -284,6 +287,7 @@
 	<!--Modulos-->
 	<script src="../js/modulos/modulos.js"></script>
 	<script src="../js/controllers/controller-mapa.js"></script>
+	<script src="../js/controllers/controller-nuevo-grupo.js"></script>
 	
 	<!--Rutas-->
 	<script src="../js/rutas/rutas.js"></script>

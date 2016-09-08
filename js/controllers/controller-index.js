@@ -86,7 +86,15 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 					}					
 				}
 		});
-		$location.path( "/publicaciones" );
+		
+		if($location.path()==""){ //usuario recien logueado enviado a listado de publicaciones
+			$location.path( "/publicaciones" );
+		}
+		else{ //hay path, usuario enviado a esa locacion
+			var path=$location.path();
+			$location.path( path );
+		}
+		
 	}
 	else if(localStorage.getItem("user_urban")==null&&localStorage.getItem("dts_user")!=null&&localStorage.getItem("direc_user")!=null){
 		$location.path( "/registroUno" );

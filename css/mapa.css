@@ -146,28 +146,6 @@ p{
    margin-top: 43%!important;
 }
 
-#title-container-nuevo-grupo{
-	margin-bottom:0!important;
-	padding-left: 8px;
-    padding-right: 7px;
-    padding-top: 7%;
-}
-
-#title-container-nuevo-grupo h1{
-    display: inline-block;
-    float: left;
-    font-size: 1.8em;
-    padding-top: .22em;
-    margin: 0;
-    margin-bottom: 1em;
-    width: 100%;
-}
-#container-nuevo-grupo{
-    width: 100vw;
-	/*height:100vh;
-	overflow:hidden;*/
-}
-
 
 
 

@@ -8,10 +8,4 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 			.success(function(data, status){
 				grupos=data;
 			});
-			
-	//CREAR GRUPO
-	function crear_grupo(grupo){
-		alert("entre");
-		console.log(gurpo);
-	}
 });

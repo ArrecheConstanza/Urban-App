@@ -91,10 +91,30 @@ class Grupo{
 		return $stmt->execute([$array["id"]]);
 	}
 	public function crear_grupo($array){
-		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO, BORRADO, FKMULTIMEDA)
-				VALUES (?, ?, ?, ?, ?, ?)";
+		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO)
+				VALUES (?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"],$array["BORRADO"],$array["FKMULTIMEDA"]]);
+		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"]]);
+	}
+	public function ultimo_grupo_creado(){
+		$salida = [];
+		$query = "SELECT * FROM ".static::$tabla." ORDER BY ID DESC LIMIT 1";
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$grupo = new Grupo;
+				$grupo->codigo_grupo = $fila['ID'];
+				$grupo->nombre = $fila['NOMBRE'];
+				$grupo->longitud = $fila['LONGITUD'];
+				$grupo->latitud = $fila['LATITUD'];
+				$grupo->estado = $fila['ESTADO'];
+				$grupo->borrado = $fila['BORRADO'];
+				$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
+				$grupo->cargarDatos($fila);
+				$salida[] = $grupo;
+			}
+		}
+		return $salida;
 	}
 	public static function all(){
 		$salida = [];
@@ -108,8 +128,8 @@ class Grupo{
 				$grupo->longitud = $fila['LONGITUD'];
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
-				$grupo->borrado = $fila['BORRADO'];
-				$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
+				//$grupo->borrado = $fila['BORRADO'];
+				//$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}

@@ -16,8 +16,8 @@
 		
 			<!-- Formulario -->
 		<form  role='form' name='publi' ng-submit='crear_publicacion(publicacion)'>
-			<select class='select' name='grupo'>
-				<option  value='Todos'  ng-model='publicacion.GRUPO'>Todos</option>
+			<select class='select' name='grupo' ng-model='publicacion.GRUPO' ng-init="publicacion.GRUPO='Todos'">
+				<option  value='Todos'>Todos</option>
 				<option  value='Uno'>Uno</option><option  value='Dos'>Dos</option>
 			</select>
 			<div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 

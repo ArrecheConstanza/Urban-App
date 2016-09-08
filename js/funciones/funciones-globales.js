@@ -24,9 +24,9 @@ function txt(s){
 
 /****************************************VARIABLES GLOBALES****************************************/
 
-var header, footer, grupos;
+var header, footer, grupos, marker;
 
-//////////VENTANA MODAL MENSAJES
+//////////VENTANA MODAL PARA MENSAJES
 
 function modal(v){
 	var div=document.createElement("div");
@@ -56,20 +56,20 @@ function modal(v){
 	caja_modal.className="modal-body";
 	caja_modal.appendChild(x);
 	switch(v){
-		case 'nuevo_grupo':
+		/*case 'nuevo_grupo':
 			var txt=document.createTextNode("Crear grupo");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
 				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
-		break;
+		break;*/
 		case 'error':
-			var txt=document.createTextNode("Ups!! Se ha producido un error!");
+			var txt=document.createTextNode("Ups!! Se ha producido un error! Vuelva a intentarlo más tarde.");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
 
 		break;
 		case 'sin_red':
-			var txt=document.createTextNode("No dispone de red en este momento. Datos almacenados en telefono");
+			var txt=document.createTextNode("No dispone de red en este momento. Datos almacenados en teléfono");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
 
