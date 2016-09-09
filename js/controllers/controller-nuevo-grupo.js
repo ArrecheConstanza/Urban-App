@@ -34,13 +34,15 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 			data: datos_grupo,
 		})
 		.then(function(response){
-			console.log(response);
-			alert("ok");
+			if(response.data=="1"){
+				modal("ok");
+			}
+			else{
+				modal("error");
+			}
 		}
 		,function(response){
-			console.log(response);
-			alert("mal");
-			
+			modal("error");
 		});
 	}
 	

@@ -7,6 +7,7 @@
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Grupo.php');
+	require_once('../clases/Multimedia.php');
 	
 	//FALTA validacion de datos por POST
 	
@@ -18,23 +19,39 @@
 		
 		if($fin==1){ //grupo creado ok
 		
-			$ultimo_grupo=$grupo->ultimo_grupo_creado(); //crear carpeta para grupo
-			$ultimo_grupo = new Grupo($ultimo_grupo);
-			var_dump($ultimo_grupo->getCodigoGrupo());////////////
-			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo->getCodigoGrupo())){
-				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo->getCodigoGrupo());
+			//eligo el ultimo grupo creado para tener el ID y crear la carpeta, ya que los nombres pueden repetirse pero los ids no
+			$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
+
+			//crear carpeta para grupo "grupos/grupo__id"
+			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
+				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo());
 			}
 			
 			//si hay foto
 			if(!empty($_FILES)&&$_FILES['FOTO']['name']){
+				
+				//Guardado de foto en carpeta local
 				$foto = $_FILES['FOTO']['name']; 
-				$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$_POST["NOMBRE"]."__".$ultimo_grupo->getCodigoGrupo().'/'.$foto; //<- este despues se cambia por el de abajo
+				$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$_POST["NOMBRE"]."__".$ultimo_grupo[0]->getCodigoGrupo().'/'.$foto; //<- este despues se cambia por el de abajo
 				// $destino='http://urban-app.com.ar/'.$destino; <- para guardarlo en hosting
+				
+				//Guardado de foto en tabla multimedia
+				$multimedia = new Multimedia();
+				$multimedia->crear_multimedia($destino);
+				$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
+				$ids=[];
+				$ids["fk_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
+				$ids["id"]=$ultimo_grupo[0]->getCodigoGrupo();
+				$rta=$ultima_multimedia[0]->cambiar_fkmultimedia($ids,"grupo");
+
+				//mover foto a carpeta
 				move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
+				echo $rta;
+				return 0;
 			}
 			echo 1;
 		}
-		else{
+		else{ //error al crear grupo
 			echo 0;
 		}
 	}
