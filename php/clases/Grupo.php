@@ -54,7 +54,7 @@ class Grupo{
 	public function getByPk($id){
 		$this->codigo_grupo = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					WHERE ID = ?";
+					 WHERE ID = ?";
 		$stmt = DBcnx::getStatement($query);
 		$stmt->execute([$id]);
 		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
@@ -78,7 +78,7 @@ class Grupo{
 					case "borrado":
 						$this->setBorrado($valor);
 					break;
-					case "fk_multimeda":
+					case "fk_multimedia":
 						$this->setFkMultimedia($valor);
 					break;
 				}
@@ -118,7 +118,7 @@ class Grupo{
 	}
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No'";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -128,8 +128,8 @@ class Grupo{
 				$grupo->longitud = $fila['LONGITUD'];
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
-				//$grupo->borrado = $fila['BORRADO'];
-				//$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
+				$grupo->borrado = $fila['BORRADO'];
+				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}

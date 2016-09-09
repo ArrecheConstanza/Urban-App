@@ -10,7 +10,6 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 	//posicion de grupo almacenada en localstorage
 	if(localStorage.getItem("nuevo_grupo_position")!=null && localStorage.getItem("nuevo_grupo_position")!=""){
 		var position=angular.fromJson(localStorage.getItem("nuevo_grupo_position"));
-		console.log(position);
 	}
 	else{
 		modal("error");
@@ -34,8 +33,14 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 			data: datos_grupo,
 		})
 		.then(function(response){
-			if(response.data=="1"){
+			if(response.data){
 				modal("ok");
+				if(id("boton_modal")!=undefined){ //redireccion a las publicaciones de ese grupo
+					id("boton_modal").onclick=function(){
+						localStorage.setItem("urban_selected_group", grupo.NOMBRE);
+						$location.path("\publicaciones");
+					}
+				}
 			}
 			else{
 				modal("error");

@@ -27,6 +27,9 @@
 				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo());
 			}
 			
+			//unir al usuario a ese grupo
+			
+			
 			//si hay foto
 			if(!empty($_FILES)&&$_FILES['FOTO']['name']){
 				

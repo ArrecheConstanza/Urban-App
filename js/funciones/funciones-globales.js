@@ -24,7 +24,7 @@ function txt(s){
 
 /****************************************VARIABLES GLOBALES****************************************/
 
-var header, footer, grupos, marker;
+var header, footer, grupos=[], marker;
 
 //////////VENTANA MODAL PARA MENSAJES
 
@@ -78,6 +78,8 @@ function modal(v){
 			var txt=document.createTextNode("Operación realizada con éxito");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
+				rc(x.parentNode,x);
+				caja_modal.innerHTML="<input id='boton_modal' type='button' class='form-control btn btn-default' value='Continuar'>";
 		break;
 		default:
 			//

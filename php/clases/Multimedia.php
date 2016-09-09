@@ -29,20 +29,20 @@ class Multimedia{
 	public function getByPk($id){
 		$this->codigo_multimedia = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					WHERE ID = ?";
+					 WHERE ID=?";
 		$stmt = DBcnx::getStatement($query);
 		$stmt->execute([$id]);
-		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
 	}
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
 					case "path":
-						$this->setNombre($valor);
+						$this->setPath($valor);
 					break;
 					case "borrado":
-						$this->setNombre($valor);
+						$this->setBorrado($valor);
 					break;
 				}
 			}
@@ -82,12 +82,14 @@ class Multimedia{
 	
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No'";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$multimedia = new Multimedia;
 				$multimedia->codigo_multimedia = $fila['ID'];
+				$multimedia->path = $fila['DIR'];
+				$multimedia->borrado = $fila['BORRADO'];
 				$multimedia->cargarDatos($fila);
 				$salida[] = $multimedia;
 			}

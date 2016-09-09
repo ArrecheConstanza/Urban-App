@@ -68,7 +68,7 @@ class Publicacion{
 					WHERE ID = ?";
 		$stmt = DBcnx::getStatement($query);
 		$stmt->execute([$id]);
-		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
 	}
 	
 	public function cargarDatos($fila){

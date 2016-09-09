@@ -61,3 +61,22 @@ body{
     font-weight: 300;
     margin-left: 4%;  
 }
+
+/****Modal****/
+.modal{
+	display:block!important;
+}
+.modal div:nth-child(2){
+	padding-top:25%;
+}
+.modal h4{
+	line-height:1.8em;
+}
+
+
+
+
+
+
+
+

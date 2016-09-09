@@ -10,6 +10,7 @@
 	
 	$grupo=Grupo::all();
 	$arrayFinal=array();
+	
 	foreach($grupo as $unGrupo){
 		$array=[
 			"ID"=>$unGrupo->getCodigoGrupo(),
@@ -24,3 +25,4 @@
 	}
 	echo json_encode($arrayFinal);
 ?> 
+
