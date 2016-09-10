@@ -10,7 +10,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		// ------------------ HEADER
-		$http({
+		/*$http({
 			method: 'GET',
 			url:"vistas/header.html",
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
@@ -19,8 +19,18 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			////////CONTROL DEL SIDEBAR
 			header=tn(document,'header',0);
 			header.innerHTML=data;
-			id("sidebar").style.display="none";
+			/*id("sidebar").style.display="none";
+			var usuario=angular.fromJson(localStorage.getItem("user_urban"));
 			id("menu-hamburger").onclick=function(e){ //abrir sidebar
+			
+				//nombre de usuario
+				if(tn(id("nombre-menu"),"p",0)==undefined){
+					id("nombre-menu").innerHTML+="<p>"+usuario["NOMBRE"]+"</p>";
+				}
+				
+				//grupos del usuario
+				
+				
 				id("sidebar").style.display="inline";
 				e.stopPropagation();
 			}
@@ -48,7 +58,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 				id("boton-mapa").onclick=function(){
 					$window.location.href = '/urban-app/vistas/mapa.html';
 				}
-			}			
+			}	
 		});
 		// ------------------ FOOTER
 		$http({
@@ -94,7 +104,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			var path=$location.path();
 			$location.path( path );
 		}
-		
+		*/
 	}
 	else if(localStorage.getItem("user_urban")==null&&localStorage.getItem("dts_user")!=null&&localStorage.getItem("direc_user")!=null){
 		$location.path( "/registroUno" );

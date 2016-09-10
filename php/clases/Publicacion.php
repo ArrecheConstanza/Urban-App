@@ -161,42 +161,4 @@ class Publicacion{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["ID"]]);
 	}
-
-	/*public function eliminar_publicacion($array){
-		$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
-		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$array["ID"]]);
-		if($stmt){
-			$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
-			$stmt = DBcnx::getStatement($query);
-			return $stmt->execute([$array["id"]]);
-		}
-		else{
-			return 0;
-		}
-	}
-	
-	/*public function cambiar_nivel_usuario($array){
-		$query = "UPDATE " . static::$tabla . "  SET NIVEL=? WHERE ID=? ";
-		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["nivel"],$array["id"]]);
-	}*/
-	/*public function crear_usuario($array){
-		$query = "INSERT INTO " . static::$tabla . " (EMAIL, CLAVE, NOMBRE, APELLIDO, EDAD, DIRECCION, LATITUD, LONGITUD, FECHA_ALTA)
-				VALUES (?, md5(?), ?, ?, ?, ?, ?, ?, ?)";
-		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["EMAIL"],$array["CLAVE"],$array["NOMBRE"],$array["APELLIDO"],$array["EDAD"],$array["DIRECCION"],$array["LATITUD"],$array["LONGITUD"],$array["FECHA_ALTA"]]);
-	}
-	public function verificar_usuario($mail, $contrasenia){
-		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=md5(?)";
-		$stmt = DBcnx::getStatement($query);
-		$array=[];
-		if($stmt->execute([$mail,$contrasenia])){
-			while($f = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$array=$f;
-			}
-		}
-		$json=json_encode($array);
-		return $json;
-	}*/
 }

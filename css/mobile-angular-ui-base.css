@@ -8857,3 +8857,48 @@ ui-switch {
 .dropdown-menu {
   display: block;
 }
+
+.sidebar-left-in .app, .sidebar-right-in .app {
+    width: 100%;
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+}
+
+.sidebar-left {
+    left: 0;
+    right: auto;
+}
+.sidebar {
+    z-index: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: none;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+    pointer-events: none;
+}
+
+.app, .app-body {
+    height: 100%;
+    overflow: hidden;
+}
+.app {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transition: -webkit-transform 400ms ease;
+    -moz-transition: -moz-transform 400ms ease;
+    -o-transition: -o-transform 400ms ease;
+    transition: transform 400ms ease;
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,.4);
+    box-shadow: 0 0 4px rgba(0,0,0,.4);
+}
