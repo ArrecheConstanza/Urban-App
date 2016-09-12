@@ -17,9 +17,8 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			console.log(data);
-			/*var rta=angular.fromJson(data);
-			$scope.datosSQLpublicaciones=rta.reverse();*/
+			var rta=angular.fromJson(data);
+			$scope.datosSQLgrupos=rta.reverse();
 		});
 	
 		//redireccion a mapa

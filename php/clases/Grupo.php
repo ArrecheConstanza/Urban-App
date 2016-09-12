@@ -52,12 +52,24 @@ class Grupo{
 	}
 	
 	public function getByPk($id){
-		$this->codigo_grupo = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					 WHERE ID = ?";
+					 WHERE ID = '$id'";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$id]);
-		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$grupo = new Grupo;
+				$grupo->codigo_grupo = $fila['ID'];
+				$grupo->nombre = $fila['NOMBRE'];
+				$grupo->longitud = $fila['LONGITUD'];
+				$grupo->latitud = $fila['LATITUD'];
+				$grupo->estado = $fila['ESTADO'];
+				$grupo->borrado = $fila['BORRADO'];
+				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$grupo->cargarDatos($fila);
+				$salida[] = $grupo;
+			}
+		}
+		return $salida;
 	}
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
@@ -109,7 +121,7 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
-				$grupo->fk_multimeda = $fila['FKMULTIMEDIA'];
+				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}

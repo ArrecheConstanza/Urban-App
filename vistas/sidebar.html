@@ -10,14 +10,12 @@
 				
 				<!---- GRUPOS --->
 				<div class="list-group-item">
-					 <a class="list-group-item" href="#/grupo1">
-						<img src="img/icons/png/grupo-color.png" alt="grupo" class="group-menu"/> Grupo uno
-					 </a>
-					 <a class="list-group-item" href="#/grupo2">
-						<img src="img/icons/png/grupo-color-2.png" alt="grupo" class="group-menu-2" />Grupo dos
+					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="">
+						<img src="img/icons/png/grupo-color.png" alt="{{item.NOMBRE}}" class="group-menu"/> {{ item.NOMBRE }}
 					 </a>
 				</div>
 
+				<!--- MAPA -->
 				<a class="list-group-item" id="boton-mapa">
 					<img src="img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu"/>Mapa
 				</a>

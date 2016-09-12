@@ -27,10 +27,7 @@
 			//crear carpeta para grupo "grupos/grupo__id"
 			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
 				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo());
-			}
-			
-			//unir al usuario a ese grupo
-			
+			}			
 			
 			//si hay foto
 			if(!empty($_FILES)&&$_FILES['FOTO']['name']){
@@ -51,7 +48,7 @@
 
 				//mover foto a carpeta
 				move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
-				echo $rta;
+				//echo $rta;
 				return $ultimo_grupo[0]->getCodigoGrupo();
 			}
 			

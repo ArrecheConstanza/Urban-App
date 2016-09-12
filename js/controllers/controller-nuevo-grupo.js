@@ -29,7 +29,6 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 			data: datos_grupo,
 		})
 		.then(function(response){
-			console.log(response);
 			if(response.data){
 				datos="id_grupo="+response.data;
 				//unir el usuario a ese grupo
