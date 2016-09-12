@@ -28,6 +28,7 @@ var header, footer, grupos=[], marker;
 
 //////////VENTANA MODAL PARA MENSAJES
 
+/*
 function modal(v){
 	var div=document.createElement("div");
 	div.className="modal";
@@ -62,7 +63,7 @@ function modal(v){
 				caja_modal.appendChild(h4);
 				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
 		break;*/
-		case 'error':
+		/*case 'error':
 			var txt=document.createTextNode("Ups!! Se ha producido un error! Vuelva a intentarlo más tarde.");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
@@ -92,7 +93,7 @@ function modal(v){
 	id("cerrar_modal").onclick=function(){
 		document.getElementsByTagName("body")[0].removeChild(div);
 	}
-}
+}*/
 
 /////////VALIDACION DEL FORM REGISTRO UNO
 function validar_form(e,estado){

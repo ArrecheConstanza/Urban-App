@@ -8,6 +8,7 @@
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Grupo.php');
 	require_once('../clases/Multimedia.php');
+	require_once('../clases/Usuario_Grupo.php');
 	
 	//FALTA validacion de datos por POST
 	
@@ -17,10 +18,11 @@
 		$grupo = new Grupo();
 		$fin=json_decode($grupo->crear_grupo($_POST),true);
 		
+		//eligo el ultimo grupo creado para tener el ID y crear la carpeta, ya que los nombres pueden repetirse pero los ids no
+		$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
+		
 		if($fin==1){ //grupo creado ok
 		
-			//eligo el ultimo grupo creado para tener el ID y crear la carpeta, ya que los nombres pueden repetirse pero los ids no
-			$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
 
 			//crear carpeta para grupo "grupos/grupo__id"
 			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
@@ -50,9 +52,10 @@
 				//mover foto a carpeta
 				move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
 				echo $rta;
-				return 0;
+				return $ultimo_grupo[0]->getCodigoGrupo();
 			}
-			echo 1;
+			
+			echo $ultimo_grupo[0]->getCodigoGrupo();
 		}
 		else{ //error al crear grupo
 			echo 0;

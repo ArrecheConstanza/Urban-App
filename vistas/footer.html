@@ -1,24 +1,24 @@
 <!-- FOOTER -->
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-fixed-bottom pull-right" >
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 navbar-fixed-bottom pull-right" ng-controller="footerCtrl">
 			
 			<div class="navbar-fixed-bottom" id="nombreGrupo">Nombre del grupo</div>
 
 			<!-- MAS -->
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas" ng-click="mostrar=true" ng-hide="mostrar">
 			<div id="menuMas">
 				<img src="img/icons/png/mas.png" alt="mas"  role="button" class="img-responsive"/>
 			</div>
 			</div>
 
-			<!-- MENU MAS  style="display:none" -->
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="masMenu" >
+			<!-- MENU MAS -->
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="masMenu" ng-click="mostrar=false" ng-show="mostrar">
 				<a href="#/newEvento"><span class="label label-default">Evento</span>
 					<img src="img/icons/png/newEvento.png" alt="mas"  role="button" class="img-responsive" />
 				</a>
 				<a href="#/newEncuesta"><span class="label label-default">Encuesta</span>
 					<img src="img/icons/png/newEncuesta.png" alt="mas"  role="button" class="img-responsive"/>
 				</a>
-				<a href="#/newItemChat"><span class="label label-default">Item de Chat</span>
+				<a href="#/newItemChat"><span class="label label-default">Chat</span>
 					<img src="img/icons/png/newChat.png" alt="mas"  role="button" class="img-responsive"/>
 				</a>
 				<a href="#/newPublicacion"><span class="label label-default">Publicacion</span>

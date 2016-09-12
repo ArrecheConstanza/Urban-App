@@ -1,13 +1,14 @@
-<div class="scrollable">
+<div class="scrollable" ng-controller="sidebarCtrl">
 		  <div class="scrollable-content">
 			<div class="list-group sidebar-left" ui-turn-off='uiSidebarLeft'>
 
 				 <span class="h4 app-name"><a href="javascript:void(0)">
 					<a class="list-group-item" href="#/perfil" id="nombre-menu" >
-						<img src="img/icons/png/menu-nombre.png" alt="nombre" /> <!--Nombre de usuario-->
+						<img src="img/icons/png/menu-nombre.png" alt="nombre" /> {{ nombre_usuario }}
 					</a>
 				 </span> 
-
+				
+				<!---- GRUPOS --->
 				<div class="list-group-item">
 					 <a class="list-group-item" href="#/grupo1">
 						<img src="img/icons/png/grupo-color.png" alt="grupo" class="group-menu"/> Grupo uno

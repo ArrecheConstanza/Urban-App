@@ -2,13 +2,9 @@
 
 Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	var input_titulo;
-	header.style.display="none";
-	footer.style.display="none";
 	//funcion volver atras
 	$scope.$back = function() { 
 		window.localStorage.removeItem("publi_edit");
-		header.style.display="inline";
-		footer.style.display="inline";
 		window.history.back();
 	};
 	
@@ -31,8 +27,6 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			.success(function(data){
 				if(data==1){
 					window.localStorage.removeItem("publi_edit");
-					header.style.display="inline";
-					footer.style.display="inline";
 					$location.path("/publicaciones");
 				}
 				else{

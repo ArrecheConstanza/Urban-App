@@ -3,10 +3,6 @@
 
 Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
-	//ocultado de header y footer
-	header.style.display="none";
-	footer.style.display="none";
-	
 	//posicion de grupo almacenada en localstorage
 	if(localStorage.getItem("nuevo_grupo_position")!=null && localStorage.getItem("nuevo_grupo_position")!=""){
 		var position=angular.fromJson(localStorage.getItem("nuevo_grupo_position"));
@@ -33,8 +29,22 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 			data: datos_grupo,
 		})
 		.then(function(response){
+			console.log(response);
 			if(response.data){
-				modal("ok");
+				datos="id_grupo="+response.data;
+				//unir el usuario a ese grupo
+				$http({
+					method: 'POST',
+					url:"php/abm/usuario.grupos.unir.php",
+					data: datos,	
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					console.log(data);
+					/*var rta=angular.fromJson(data);
+					$scope.datosSQLpublicaciones=rta.reverse();*/
+				});
+				//modal("ok");
 				if(id("boton_modal")!=undefined){ //redireccion a las publicaciones de ese grupo
 					id("boton_modal").onclick=function(){
 						localStorage.setItem("urban_selected_group", grupo.NOMBRE);

@@ -13,10 +13,22 @@
 }
 
 /**body**/
+body{
+	z-index:1;
+}
 .app{
     background-color: #eee;
 }
 
+#fondo_activo{
+	width:100vw;
+	height:100vh;
+	background:rgba(107, 103, 103, 0.4);
+	z-index:2;
+	position:fixed;
+	padding:0;
+	margin:0;
+}
 
 /***TITULOS***/
  /** Container de Titulo y Volver */
@@ -88,8 +100,11 @@ body{
 	line-height:1.8em;
 }
 
+/*** footer ***/
 
-
+footer{
+	z-index:3;
+}
 
 
 
