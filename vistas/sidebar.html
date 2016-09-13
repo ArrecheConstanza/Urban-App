@@ -9,9 +9,9 @@
 				 </span> 
 				
 				<!---- GRUPOS --->
-				<div class="list-group-item">
+				<div class="list-group-item" id="grupos_usuario">
 					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="">
-						<img src="img/icons/png/grupo-color.png" alt="{{item.NOMBRE}}" class="group-menu"/> {{ item.NOMBRE }}
+						<img ng-src="{{ item.FOTO }}" alt="{{item.NOMBRE}}" class="group-menu"/> {{ item.NOMBRE }}
 					 </a>
 				</div>
 

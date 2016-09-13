@@ -1,13 +1,5 @@
 <?php
 
-/*CREATE TABLE usuario_grupo(
-	FKUSUARIO INT(9) UNSIGNED NOT NULL,
-	FKGRUPO INT(9) UNSIGNED NOT NULL,
-
-	FOREIGN KEY (FKUSUARIO) REFERENCES usuario(ID),
-	FOREIGN KEY (FKGRUPO) REFERENCES grupo(ID)
-);*/
-
 class Usuario_Grupo{
 	private $codigo_grupo;
 	private $codigo_usuario;

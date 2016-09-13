@@ -6,6 +6,7 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				url:"../php/abm/grupos.listado.php",
 			})
 			.success(function(data, status){
+				
 				//cambio fk_multimedia por la direccion de la foto
 				$http({ 
 					url:"../php/abm/traer.multimedia.php"
@@ -27,6 +28,8 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				.error(function(data){
 					//modal("error");
 				});
+				
+				//variable global para listar grupos en google-maps
 				grupos=data;
 			});
 });

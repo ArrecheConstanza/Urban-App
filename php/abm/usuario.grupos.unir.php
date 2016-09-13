@@ -11,7 +11,7 @@
 	if(isset($_POST["id_grupo"])){
 		$_POST["id_usuario"]=$_SESSION["s_id"];
 		$usuario_grupo= new Usuario_Grupo();
-		return $usuario_grupo->crear_usuario_grupo($_POST);
+		echo $usuario_grupo->crear_usuario_grupo($_POST);
 	}
 	else{
 		echo 0;

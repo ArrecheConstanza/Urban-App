@@ -106,5 +106,10 @@ footer{
 	z-index:3;
 }
 
+/***Sidebar ****/
+#grupos_usuario img{
+	max-width:40px;
+	max-height:40px;
+}
 
 

@@ -6,6 +6,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 	//posicion de grupo almacenada en localstorage
 	if(localStorage.getItem("nuevo_grupo_position")!=null && localStorage.getItem("nuevo_grupo_position")!=""){
 		var position=angular.fromJson(localStorage.getItem("nuevo_grupo_position"));
+		localStorage.removeItem("nuevo_grupo_position");
 	}
 	else{
 		modal("error");
@@ -40,16 +41,14 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				})
 				.success(function(data, status){
 					console.log(data);
-					/*var rta=angular.fromJson(data);
-					$scope.datosSQLpublicaciones=rta.reverse();*/
-				});
-				//modal("ok");
-				if(id("boton_modal")!=undefined){ //redireccion a las publicaciones de ese grupo
-					id("boton_modal").onclick=function(){
-						localStorage.setItem("urban_selected_group", grupo.NOMBRE);
-						$location.path("\publicaciones");
+					if(data!="0"){
+						localStorage.setItem("grupo_seleccionado_urban",data);
 					}
-				}
+					else{
+						//modal, error al crear grupo
+					}
+					//rutear a publicaciones de ese grupo
+				});
 			}
 			else{
 				modal("error");

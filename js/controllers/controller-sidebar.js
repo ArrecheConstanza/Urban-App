@@ -17,8 +17,29 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			var rta=angular.fromJson(data);
-			$scope.datosSQLgrupos=rta.reverse();
+			//cambio fk_multimedia por la direccion de la foto
+				$http({ 
+					url:"/urban-app/php/abm/traer.multimedia.php"
+				})
+				.success(function(data2, status){
+					for(var j in data2){
+						for(var i in data){
+							if(data[i]["FKMULTIMEDIA"]==data2[j]["ID"]){
+								foto=data2[j]["PATH"].substring(25,data2[j]["PATH"].length);
+								data[i]["FOTO"]="/urban-app"+foto;
+							}
+							else if(data[i]["FKMULTIMEDIA"]==null){ //foto por defecto si no tiene
+								data[i]["FOTO"]="/urban-app/img/fotos/muestra.jpg"; 
+							}
+						}
+						
+					}
+				})
+				.error(function(data){
+					//modal("error");
+				});
+				var rta=angular.fromJson(data);
+				$scope.datosSQLgrupos=rta.reverse();
 		});
 	
 		//redireccion a mapa

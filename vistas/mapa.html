@@ -234,31 +234,37 @@
 						var ventana_info=document.getElementsByClassName("informacion");
 						for(var i=0;i<ventana_info.length;i++){
 							tn(ventana_info[i],"input",0).onclick=function(){
-							
 								/****************** CREAR GRUPO **********************/
 								if(this.id=="0"){					
 									<!-- Saco la lat y la long del marker-->
-									var lat=marker.getPosition().lat();
-									var lng=marker.getPosition().lng();
+										var lat=marker.getPosition().lat();
+										var lng=marker.getPosition().lng();
+										
+										<!--Guardo todo en un objeto-->
+										var position={
+											LATITUD : lat,
+											LONGITUD : lng
+										}
+									localStorage.setItem("nuevo_grupo_position",JSON.stringify(position));
 									
-									<!--Guardo todo en un objeto-->
-									var nuevo_grupo_position={
-										LATITUD : lat,
-										LONGITUD : lng
-									}
-									localStorage.setItem("nuevo_grupo_position",JSON.stringify(nuevo_grupo_position));
-									
-									<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
+									<!---------------REDIRECCION A INEDX newGrupo para guardado de datos en bdd----------------->
 									if(localStorage.getItem("nuevo_grupo_position")!=null){
 										window.location.href="/urban-app/index.html#/newGrupo";
-										
 									}
-									//abrir vista vistas/nuevo-grupo.html que contiene form para completar datos de nuevo grupo [nombre, estado y foto]
-									/*id("container-nuevo-grupo").style.height="100vh";
-									id("container-nuevo-grupo").style.overflow="hidden";
-									w3IncludeHTML();*/
-									//control_nuevo_grupo();
 								}
+								
+								/******************** UNIRSE A GRUPO *******************/
+								else{
+									unir_a_grupo_id=this.id;
+									localStorage.setItem("unir_a_grupo_id", unir_a_grupo_id);
+									
+									<!---------------REDIRECCION A INEDX para guardado de datos en bdd----------------->
+									if(localStorage.getItem("unir_a_grupo_id")!=null){
+										window.location.href="/urban-app/index.html#/";
+									}
+								}
+								
+								
 							}
 						
 						}

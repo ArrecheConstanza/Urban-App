@@ -71,6 +71,7 @@
 	    <div ng-include="'vistas/alarmas.html'" 
             class="sidebar sidebar-right"></div>
 			
+		<!-- body app -->
 		<div class="app" 
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
          ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
@@ -99,7 +100,7 @@
 			</a>
 		
 		<!-- navBar --> 
-		<div class="scrolleable-min">
+		<div class="scrolleable-min" id="nav-bar">
 		<ul class="nav navbar-nav col-lg-12 col-xs-12 col-sm-12 text-center">
         <li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/publicaciones" >Publicaciones</a></li>
 		<li class=" col-lg-4 col-xs-4 col-sm-4">  <a href="#/Chats">Chats</a></li>
