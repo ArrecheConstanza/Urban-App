@@ -27,6 +27,9 @@
 			//crear carpeta para grupo "grupos/grupo__id"
 			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
 				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo());
+				if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo()."/publicaciones")){
+					mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo()."/publicaciones");
+				}
 			}			
 			
 			//si hay foto

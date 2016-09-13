@@ -43,11 +43,11 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					console.log(data);
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
+						$location.path("/publicaciones");
 					}
 					else{
 						//modal, error al crear grupo
 					}
-					//rutear a publicaciones de ese grupo
 				});
 			}
 			else{

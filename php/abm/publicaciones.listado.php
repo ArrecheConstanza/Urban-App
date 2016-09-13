@@ -8,6 +8,7 @@
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Usuario.php');
 	require_once('../clases/Publicacion.php');
+	
 	$publicacion=new Publicacion();
 	$publicacion=$publicacion->all_grupo($_POST["id"]);
 	$arrayFinal=array();

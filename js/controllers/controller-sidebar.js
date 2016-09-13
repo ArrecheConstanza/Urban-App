@@ -9,6 +9,11 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 		
 		datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
 		
+		//funcion cambiar de grupos
+		$scope.cambiar_grupo=function(){
+			
+		}
+		
 		//listar grupos
 		$http({
 			method: 'POST',
@@ -48,7 +53,19 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 				$window.location.href = '/urban-app/vistas/mapa.html';
 			}
 		}
-				
+		
+		
+		//preferencias
+		
+		
+		
+		
+		
+		//ayuda
+		
+		
+		
+		
 		//cerrar sesion
 		id("cerrar").parentNode.onclick=function(){
 			$http({

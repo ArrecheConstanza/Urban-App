@@ -10,7 +10,7 @@
 				
 				<!---- GRUPOS --->
 				<div class="list-group-item" id="grupos_usuario">
-					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="">
+					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="" ng-click="cambiar_grupo()">
 						<img ng-src="{{ item.FOTO }}" alt="{{item.NOMBRE}}" class="group-menu"/> {{ item.NOMBRE }}
 					 </a>
 				</div>
