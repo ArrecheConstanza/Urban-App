@@ -18,6 +18,14 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/publicaciones-listado.html',
 			controller : 'publicacionesListadoCtrl'
 		})
+		.when('/chats', {
+			templateUrl : 'vistas/chats-listado.html',
+			//controller : 'chatsListadoCtrl'
+		})
+		.when('/encuestas', {
+			templateUrl : 'vistas/encuestas-listado.html',
+			//controller : 'encuestasListadoCtrl'
+		})
 		.when('/detallePublicacion', {
 			templateUrl : 'vistas/publicacion-detalle.html',
 			controller : 'publicacionDetalleCtrl'

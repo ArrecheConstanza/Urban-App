@@ -5,6 +5,10 @@
 
 /***HEADER***/
 /* navBar principal */
+#menu-hamburger{
+	margin-left:.2em;
+}
+
 @media (min-width: 768px){
     .navbar-nav > li > a {
         padding-bottom: 10px;
@@ -33,6 +37,13 @@
     font-size: 1em;
 }
 
+/**** footer ****/
 #masMenu a{
     max-width: none!important;
 }
+#nombreGrupo p{
+	margin:0;
+}
+
+
+

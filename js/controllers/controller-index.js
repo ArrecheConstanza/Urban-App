@@ -19,8 +19,31 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			case "/newGrupo":
 				return 0;
 			break;
+			case "/publicaciones":
+				$scope.estado.activo = 'publicaciones';
+			break;
 		}
 		return 1;
+	}
+	
+	//**************** HEADER CONTROL *******************//
+	//activar li de navbar
+	$scope.estado = {};
+	
+	$scope.items_navbar = [{
+        titulo: 'Publicaciones',
+		id: 'publicaciones'
+    }, {
+        titulo: 'Chats',
+        id: 'chats'
+    }, {
+        titulo: 'Encuestas',
+        id: 'encuestas'
+    }];
+	
+	$scope.cambiar_seccion=function(id){
+		$scope.estado = {};
+		$scope.estado.activo = id;
 	}
 	
 	//nombre de grupo en footer
@@ -39,6 +62,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			//mensaje Sin conexion 
 		});
 	}
+	
 	
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){

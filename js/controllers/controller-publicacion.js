@@ -2,11 +2,6 @@
 
 Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	var input_titulo;
-	//funcion volver atras
-	$scope.$back = function() { 
-		window.localStorage.removeItem("publi_edit");
-		window.history.back();
-	};
 	
 	//listar grupos de usuario
 	var datos="usuario=true";

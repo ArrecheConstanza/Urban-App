@@ -11,6 +11,11 @@
 .nav{
 	background:#0a3a49;
 }
+#nav-bar a.active{
+	padding-bottom: 5px;
+    text-decoration: none;
+    border-bottom: 5px solid #fff;
+}
 
 /**body**/
 body{
