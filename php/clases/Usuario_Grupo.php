@@ -56,3 +56,5 @@ class Usuario_Grupo{
 		return $salida;
 	}
 }
+
+?>

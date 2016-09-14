@@ -172,7 +172,21 @@ class Publicacion{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"]]);
 	}
-
+	
+	public function ultima_publicacion_creada(){
+		$query = "SELECT ID FROM " . static::$tabla . " ORDER BY ID DESC LIMIT 1";
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$publicacion = new Publicacion;
+				$publicacion->codigo_publicacion = $fila['ID'];
+				$publicacion->cargarDatos($fila);
+			}
+			return $publicacion;
+		}
+		return 0;
+	}
+	
 	public function editar_publicacion($array){
 		$query = "UPDATE " . static::$tabla . "  SET TITULO=?,DESCRIPCION=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);

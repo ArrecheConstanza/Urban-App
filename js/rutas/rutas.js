@@ -20,7 +20,7 @@ Urban.config(function($routeProvider) {
 		})
 		.when('/chats', {
 			templateUrl : 'vistas/chats-listado.html',
-			//controller : 'chatsListadoCtrl'
+			controller : 'chatsListadoCtrl'
 		})
 		.when('/encuestas', {
 			templateUrl : 'vistas/encuestas-listado.html',

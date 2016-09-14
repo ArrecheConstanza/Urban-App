@@ -19,7 +19,7 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			//mensaje Sin conexion 
 		});
 	
-	/////EDITAR
+	/////EDITAR (REVER)
 	if(localStorage.getItem("publi_edit")!=null){
 		var datos_anteriores=angular.fromJson(localStorage.getItem("publi_edit"));
 		window.localStorage.removeItem("publi_edit");
@@ -49,7 +49,8 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			});
 		}
 	}
-		////CREAR
+	
+	//************* CREAR *************//
 	else{
 		$scope.crear_publicacion=function(publicacion){
 			datos_publicacion={
@@ -60,6 +61,7 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			}
 			
 			//FALTA validacion de datos en submit
+			
 			var titulo=datos_publicacion["TITULO"];
 			titulo.upload = Upload.upload({
 				method: 'POST',
