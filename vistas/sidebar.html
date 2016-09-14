@@ -10,7 +10,7 @@
 				
 				<!---- GRUPOS --->
 				<div class="list-group-item" id="grupos_usuario">
-					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="" ng-click="cambiar_grupo()">
+					 <a ng-repeat="item in datosSQLgrupos track by $index " class="list-group-item" href="" ng-click="cambiar_grupo(item.ID)" ng-class="{'active': item.ID == estado.activo}" ng-click="estado.activo=item.ID">
 						<img ng-src="{{ item.FOTO }}" alt="{{item.NOMBRE}}" class="group-menu"/> {{ item.NOMBRE }}
 					 </a>
 				</div>

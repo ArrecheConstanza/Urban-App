@@ -23,6 +23,23 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 		return 1;
 	}
 	
+	//nombre de grupo en footer
+	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+		var datos="id="+localStorage.getItem("grupo_seleccionado_urban");
+		$http({ 
+			method:"POST",
+			url:"php/abm/un.grupo.php",
+			data: datos,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			$scope.nombre_footer=data[0].NOMBRE;
+		})
+		.error(function(){
+			//mensaje Sin conexion 
+		});
+	}
+	
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		

@@ -7,11 +7,31 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 		//nombre de usuario
 		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE;
 		
-		datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
+		var datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
 		
 		//funcion cambiar de grupos
-		$scope.cambiar_grupo=function(){
+		$scope.estado = {};
+		
+		$scope.cambiar_grupo=function(id){
+			localStorage.setItem("grupo_seleccionado_urban",id);
+			$scope.estado.activo = localStorage.getItem("grupo_seleccionado_urban");
 			
+			//nombre de grupo en footer
+			if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+				var datos="id="+localStorage.getItem("grupo_seleccionado_urban");
+				$http({ 
+					method:"POST",
+					url:"php/abm/un.grupo.php",
+					data: datos,	
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					document.getElementById("nombreGrupo").getElementsByTagName("p")[0].innerHTML=data[0].NOMBRE;
+				})
+				.error(function(){
+					//mensaje Sin conexion 
+				});
+			}
 		}
 		
 		//listar grupos
@@ -45,6 +65,16 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 				});
 				var rta=angular.fromJson(data);
 				$scope.datosSQLgrupos=rta.reverse();
+				
+				//grupo activo
+				if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+					$scope.estado = {};
+					$scope.estado.activo = localStorage.getItem("grupo_seleccionado_urban");
+				}
+				else{
+					//error ningun grupo activo
+				}
+				
 		});
 	
 		//redireccion a mapa
