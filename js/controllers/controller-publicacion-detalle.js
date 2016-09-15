@@ -1,14 +1,6 @@
 /********************************************CONTROLLER PUBLICACIONES DETALLE**************************************/
 
 Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
-	header.style.display="none";
-	footer.style.display="none";
-	//funcion volver atras
-	$scope.$back = function() { 
-		header.style.display="inline";
-		footer.style.display="inline";
-		window.history.back();
-	};
 	
 	//pido datos de bdd
 	if(localStorage.getItem("id_publi")!=null){
@@ -40,8 +32,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					})
 					.success(function(data){
 						if(data){
-							header.style.display="inline";
-							footer.style.display="inline";
 							$location.path("/publicaciones");
 						}
 						else{

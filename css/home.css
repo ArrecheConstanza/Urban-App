@@ -4,6 +4,14 @@
 ***********************************************************************************************************/
 
 /***HEADER***/
+
+#header{
+	z-index:2;
+	position:fixed;
+	width:100vw;
+	display:inline-block;
+	overflow:hidden;
+}
 /* navBar principal */
 #menu-hamburger{
 	margin-left:.2em;

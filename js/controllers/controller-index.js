@@ -19,6 +19,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			case "/newGrupo":
 				return 0;
 			break;
+			case "/detallePublicacion":
+				return 0;
+			break;
 			case "/publicaciones":
 				$scope.estado.activo = 'publicaciones';
 			break;

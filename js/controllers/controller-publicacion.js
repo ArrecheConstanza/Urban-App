@@ -70,11 +70,16 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			})
 			.then(function(response){
 				console.log(response);
-				alert("ok");
+				if(response.data){
+					//modal exito?
+					//$location.path("/publicaciones");
+				}
+				else{
+					//modal error
+				}
 			}
 			,function(response){
-				console.log(response);
-				alert("mal");
+				//modal error
 				
 			});
 		}

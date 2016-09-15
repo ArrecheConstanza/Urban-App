@@ -34,7 +34,7 @@ class Publicacion_Multimedia{
 		}
 	}
 	
-	public function crear_publicacion_multiemdia($array){
+	public function crear_publicacion_multimedia($array){
 		$query = "INSERT INTO " . static::$tabla . " (FKPUBLICACION, FKMULTIMEDIA)
 				VALUES (?, ?)";
 		$stmt = DBcnx::getStatement($query);
