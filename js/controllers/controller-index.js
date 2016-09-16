@@ -22,9 +22,11 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			case "/detallePublicacion":
 				return 0;
 			break;
-			case "/publicaciones":
-				$scope.estado.activo = 'publicaciones';
-			break;
+		/*	default:
+				if($location.path().substr(0,14)=="/publicaciones"){
+					$scope.estado.activo = 'publicaciones';
+				}
+			break;*/
 		}
 		return 1;
 	}
@@ -51,6 +53,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 	
 	//nombre de grupo en footer
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 		var datos="id="+localStorage.getItem("grupo_seleccionado_urban");
 		$http({ 
 			method:"POST",
@@ -70,7 +73,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
 	if(localStorage.getItem("user_urban")!=null){
 		
-		//UNIRSE A GRUPO
+		//********************** UNIRSE A GRUPO **********************//
 		if(localStorage.getItem("unir_a_grupo_id")!=null){
 			var id=angular.fromJson(localStorage.getItem("unir_a_grupo_id"));
 			var datos="id_grupo="+id;
@@ -84,7 +87,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 				if(data=="1"){
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
-					$location.path("/publicaciones");
+					$location.path("/publicaciones/"+id);
 				}
 				else{
 					//modal("error");
@@ -94,8 +97,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 				//modal("error");
 			});
 		}
-		
-		
 		if($location.path()==""){ //usuario recien logueado enviado a listado de publicaciones (REVER, si no tiene grupo enviarlo a mapa para union o creacion de grupo)
 			$location.path( "/publicaciones" );
 		}

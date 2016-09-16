@@ -40,7 +40,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
+					//console.log(data);
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
 						$location.path("/publicaciones");

@@ -14,7 +14,7 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/nuevo-grupo.html',
 			controller : 'newGrupoCtrl'
 		})
-		.when('/publicaciones', {
+		.when('/publicaciones/:id', {
 			templateUrl : 'vistas/publicaciones-listado.html',
 			controller : 'publicacionesListadoCtrl'
 		})

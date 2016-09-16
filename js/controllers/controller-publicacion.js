@@ -69,10 +69,11 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 				data: datos_publicacion,
 			})
 			.then(function(response){
-				console.log(response);
 				if(response.data){
 					//modal exito?
-					//$location.path("/publicaciones");
+					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+					}
 				}
 				else{
 					//modal error

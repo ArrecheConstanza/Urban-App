@@ -29,10 +29,20 @@ class Multimedia{
 	public function getByPk($id){
 		$this->codigo_multimedia = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					 WHERE ID=?";
+					 WHERE ID=? AND BORRADO='No'";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$id]);
-		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		if($stmt->execute([$id])) {
+			$salida=[];
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$multimedia = new Multimedia;
+				$multimedia->codigo_multimedia = $fila['ID'];
+				$multimedia->path = $fila['DIR'];
+				$multimedia->borrado = $fila['BORRADO'];
+				$multimedia->cargarDatos($fila);
+				$salida[] = $multimedia;
+			}
+		}
+		return $salida;
 	}
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {

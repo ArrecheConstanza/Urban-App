@@ -27,7 +27,7 @@ class Publicacion_Multimedia{
 						$this->setCodigoPublicacion($valor);
 					break;
 					case "codigo_multimedia":
-						$this->setCodigoMultiemdia($valor);
+						$this->setCodigoMultimedia($valor);
 					break;
 				}
 			}
@@ -49,6 +49,7 @@ class Publicacion_Multimedia{
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$publicacion_multimedia = new Publicacion_Multimedia;
 				$publicacion_multimedia->codigo_multimedia = $fila['FKMULTIMEDIA'];
+				$publicacion_multimedia->codigo_publicacion = $fila['FKPUBLICACION'];
 				$publicacion_multimedia->cargarDatos($fila);
 				$salida[] = $publicacion_multimedia;
 			}
