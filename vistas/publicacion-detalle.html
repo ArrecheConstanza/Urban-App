@@ -9,7 +9,7 @@
 					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
 				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 edit-delete-container">
 					<a ng-click="eliminar()" id="link-borrar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img id="borrar" src="img/icons/png/borrar.png" alt="Eliminar" /></a>
-					<a ng-click="editar()" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a>
+					<a ng-click="editar(ID)" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a>
 				</div>
 			</div>
 
@@ -20,7 +20,7 @@
 		
 			<h2 class="text-center">{{TITULO}}</h2>
 
-			<img ng-src="{{ 'img/fotos/animal.png' }}" class="img-responsive" id="img-detalle"/>
+			<img ng-src="{{ FOTO }}" class="img-responsive" id="img-detalle"/>
 			<p>{{ DESCRIPCION }}</p>  
 		
 			<small class="pull-right  margin-bottom-sm">{{ FECHA_CREACION }}</small>  

@@ -1,6 +1,6 @@
 /********************************************CONTROLLER INDEX ***************************************/
 
-Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
+Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routeParams) {
 
 	//funcion volver atras
 	$scope.$back = function() { 
@@ -22,11 +22,15 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 			case "/detallePublicacion":
 				return 0;
 			break;
-		/*	default:
+			case "/editarPublicacion":
+				console.log("entre editar");
+				return 0;
+			break;
+			default:
 				if($location.path().substr(0,14)=="/publicaciones"){
 					$scope.estado.activo = 'publicaciones';
 				}
-			break;*/
+			break;
 		}
 		return 1;
 	}
@@ -37,24 +41,27 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 	
 	$scope.items_navbar = [{
         titulo: 'Publicaciones',
-		id: 'publicaciones'
+		id: 'publicaciones',
     }, {
         titulo: 'Chats',
-        id: 'chats'
+        id: 'chats',
     }, {
         titulo: 'Encuestas',
-        id: 'encuestas'
+        id: 'encuestas',
     }];
+	
+	$scope.id_grupo=$routeParams.id;
 	
 	$scope.cambiar_seccion=function(id){
 		$scope.estado = {};
 		$scope.estado.activo = id;
+		$scope.id_grupo=$routeParams.id;
 	}
 	
 	//nombre de grupo en footer
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
-		var datos="id="+localStorage.getItem("grupo_seleccionado_urban");
+		$routeParams.id=localStorage.getItem("grupo_seleccionado_urban");
 		$http({ 
 			method:"POST",
 			url:"php/abm/un.grupo.php",
@@ -70,7 +77,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 	}
 	
 	
-	//Si ya esta logeado el usuario lo mando a home cargo el header y el footer
+	//Si ya esta logeado el usuario
 	if(localStorage.getItem("user_urban")!=null){
 		
 		//********************** UNIRSE A GRUPO **********************//
@@ -87,6 +94,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window) {
 				if(data=="1"){
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
+					$routeParams.id=id;
 					$location.path("/publicaciones/"+id);
 				}
 				else{

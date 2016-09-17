@@ -17,10 +17,18 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				$scope.TITULO=data[0].TITULO;
 				$scope.DESCRIPCION=data[0].DESCRIPCION;
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
+				//FOTO principal
+				if(!data[0].FOTO.length){
+					var foto="/urban-app/img/fotos/muestra.jpg";
+				}
+				else{
+					var foto=data[0].FOTO[0]["DIR"].substring(26,data[0].FOTO[0]["DIR"].length);
+				}
+				$scope.FOTO=foto;
 				
-				$scope.editar=function(){
-					localStorage.setItem("publi_edit",angular.toJson(data[0]));
-					$location.path("/newPublicacion");
+				$scope.editar=function(id){
+					//localStorage.setItem("publi_edit",angular.toJson(data[0]));
+					$location.path("/editarPublicacion/"+id);
 				}
 				$scope.eliminar=function(){
 					var union="ID="+data[0].ID;

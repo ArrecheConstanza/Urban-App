@@ -7,10 +7,29 @@
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Usuario.php');
 	require_once('../clases/Publicacion.php');
+	require_once('../clases/Multimedia.php');
+	require_once('../clases/Publicacion_Multimedia.php');
 
 	$publicacion=Publicacion::all();
 	$arrayFinal=array();
 	foreach($publicacion as $unaPublicacion){
+		//Pido todo el contenido multimedia de la publicacion
+			$publicacion_multimedia = new Publicacion_Multimedia();
+			$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
+			$arraySemiFinal=[];
+			$array=[];
+			foreach($rta as $multi_publi){
+				if($multi_publi->getCodigoPublicacion()==$unaPublicacion->getCodigoPublicacion()){
+					$multimedia = new Multimedia();
+					$rta2=$multimedia->getByPk($multi_publi->getCodigoMultimedia());
+					foreach($rta2 as $multi){
+						$array=[
+							"DIR"=>$multi->getPath()
+						];
+						$arraySemiFinal[]=$array;
+					}
+				}
+			}
 		if($unaPublicacion->getCodigoPublicacion()==$_POST['ID']){
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),
@@ -19,11 +38,11 @@
 				"FECHA_CREACION"=>$unaPublicacion->getFechaCreacion(),
 				"BORRADO"=>$unaPublicacion->getBorrado(),
 				"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
-				"FK_USUARIO"=>$unaPublicacion->getFkUsuario()
+				"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
+				"FOTO"=>$arraySemiFinal,
 			];
 			$arrayFinal[]=$array;
 		}
 	}
 	echo json_encode($arrayFinal);
-	//var_dump($publicacion);
 ?> 
