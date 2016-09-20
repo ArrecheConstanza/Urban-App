@@ -188,9 +188,9 @@ class Publicacion{
 	}
 	
 	public function editar_publicacion($array){
-		$query = "UPDATE " . static::$tabla . "  SET TITULO=?,DESCRIPCION=? WHERE ID=? ";
+		$query = "UPDATE " . static::$tabla . "  SET TITULO=?, DESCRIPCION=?, FKGRUPO=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["ID"]]);
+		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FKGRUPO"],$array["ID"]]);
 	}
 	
 	public function eliminar_publicacion($array){

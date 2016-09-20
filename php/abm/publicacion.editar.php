@@ -4,28 +4,26 @@
 	/****** Clases *****/
 	
 	require_once('../config.php');
-	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Publicacion.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
 	
-	
-	/****** Creo publicacion ******/
+// guardado de datos en bdd
+
+	/****** Edito publicacion ******/
 	
 	if(isset($_SESSION["s_id"])){
 		$publicacion = new Publicacion();
-		$_POST["FECHA_CREACION"]=getDatetimeNow();
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
-		$rta=$publicacion->crear_publicacion($_POST);
+		$rta=$publicacion->editar_publicacion($_POST);
 		if(!$rta){ //error al crear publicacion
 			echo $rta;
 		}
 		else{
 			if(!empty($_FILES)&&$_FILES['FOTO']['name']){ //hay foto
-				//creo carpeta para foto
-				$carpeta=$publicacion->ultima_publicacion_creada();
-				$carpeta=$carpeta->getCodigoPublicacion();
+				//busco carpeta para foto
+				$carpeta=$_POST["ID"];
 				$foto = $_FILES['FOTO']['name'];
 				if(!is_dir("../../img/publicaciones/".$carpeta)){
 					mkdir("../../img/publicaciones/".$carpeta);
@@ -47,6 +45,7 @@
 					$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
 					$publicacion_multimedia = new Publicacion_Multimedia();
 					$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
+					//eliminar foto anteriror
 					echo $rta3;
 					return 0;
 				}
@@ -57,5 +56,4 @@
 	else{
 		echo 0;
 	}	
-	
 ?>

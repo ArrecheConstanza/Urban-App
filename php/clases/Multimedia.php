@@ -59,7 +59,7 @@ class Multimedia{
 		}
 	}
 	public function eliminar_multimedia($array){
-		$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
+		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["id"]]);
 	}

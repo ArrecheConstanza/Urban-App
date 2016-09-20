@@ -14,21 +14,16 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		}
 		switch($location.path()){
 			case "/newPublicacion":
-				return 0;
-			break;
 			case "/newGrupo":
-				return 0;
-			break;
 			case "/detallePublicacion":
-				return 0;
-			break;
-			case "/editarPublicacion":
-				console.log("entre editar");
 				return 0;
 			break;
 			default:
 				if($location.path().substr(0,14)=="/publicaciones"){
 					$scope.estado.activo = 'publicaciones';
+				}
+				else if($location.path().substr(0,18)=="/editarPublicacion"){
+					return 0;
 				}
 			break;
 		}

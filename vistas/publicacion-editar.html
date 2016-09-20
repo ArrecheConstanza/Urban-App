@@ -16,7 +16,7 @@
 		
 		<!-- Formulario -->
 		<form  role='form' name='publi' ng-submit='editar_publicacion(publicacion)'>
-			<select class='select' name='grupo' ng-model='publicacion.FKGRUPO' ng-init="publicacion.FKGRUPO='0'">
+			<select class='select' name='grupo' ng-model='publicacion.FKGRUPO' ng-init="publicacion.FKGRUPO='{{publicacion.FKGRUPO}}'">
 				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
 			</select>
 			<div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
