@@ -199,3 +199,5 @@ class Publicacion{
 		return $stmt->execute([$array["ID"]]);
 	}
 }
+
+?>

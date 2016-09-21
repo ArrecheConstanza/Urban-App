@@ -26,10 +26,18 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				}
 				$scope.FOTO=foto;
 				
+				/****Comentar****/
+				$scope.comentar=function(comentario){
+					var dato="COMENTARIO="+comentario.DESCRIPCION;
+					
+				}
+				
+				/****Editar****/
 				$scope.editar=function(id){
-					//localStorage.setItem("publi_edit",angular.toJson(data[0]));
 					$location.path("/editarPublicacion/"+id);
 				}
+				
+				/****Eliminar****/
 				$scope.eliminar=function(){
 					var union="ID="+data[0].ID;
 					$http({
@@ -40,7 +48,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					})
 					.success(function(data){
 						if(data){
-							$location.path("/publicaciones");
+							$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
 						}
 						else{
 							//No se pudo borrar
