@@ -26,10 +26,51 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				}
 				$scope.FOTO=foto;
 				
+				/**** Listar comentarios ****/
+				var union="ID="+data[0].ID;
+					$http({
+						method: 'POST',
+						url:"php/abm/publicacion.comentario.listar.php",
+						data: union,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						console.log(data);
+						
+						/*if(data){
+							$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+						}
+						else{
+							//No se pudo borrar
+						}*/
+					})
+					.error(function(){
+						//Sin conexion
+					});
+				
+				
+				
 				/****Comentar****/
 				$scope.comentar=function(comentario){
-					var dato="COMENTARIO="+comentario.DESCRIPCION;
-					
+					var union="FKPUBLICACION="+$scope.ID+"&COMENTARIO="+comentario.DESCRIPCION;
+					$http({
+						method: 'POST',
+						url:"php/abm/publicacion.comentario.crear.php",
+						data: union,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							//modal ok?
+							
+						}
+						else{
+							//No se pudo comentar
+						}
+					})
+					.error(function(){
+						//Sin conexion
+					});
 				}
 				
 				/****Editar****/

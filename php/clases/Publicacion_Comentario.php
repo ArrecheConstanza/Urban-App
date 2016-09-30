@@ -80,31 +80,29 @@ class Publicacion_Comentario{
 			}
 		}
 	}
-	public static function all_por_publicacion(){
+	public static function listar_comentario_publicacion($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' " ;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKPUBLICACION='$id' ";
 		$stmt = DBcnx::getStatement($query);
-		if($stmt->execute()) {
-			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion_comentario = new Publicacion_Comentario;
-				$publicacion_comentario->codigo_comentario_publicacion = $fila['ID'];
-				$publicacion_comentario->comentario = $fila['COMENTARIO'];
-				$publicacion_comentario->borrado = $fila['BORRADO'];
-				$publicacion_comentario->fecha_creacion = $fila['FECHA_CREACION'];
-				$publicacion_comentario->fk_usuario = $fila['FKUSUARIO'];
-				$publicacion_comentario->fk_publicacion = $fila['FKPUBLICACION'];
-				$publicacion_comentario->cargarDatos($fila);
-				$salida[] = $publicacion_comentario;
+			if($stmt->execute()) {
+				while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$publicacion_comentario = new Publicacion_Comentario;
+					$publicacion_comentario->comentario = $fila['COMENTARIO'];
+					$publicacion_comentario->borrado = $fila['BORRADO'];
+					$publicacion_comentario->fecha_creacion = $fila['FECHA_CREACION'];
+					$publicacion_comentario->fk_usuario = $fila['FKUSUARIO'];
+					$publicacion_comentario->cargarDatos($fila);
+					$salida[] = $publicacion_comentario;
+				}
 			}
-		}
-		return $salida;
+			return $salida;
 	}
 
 	public function crear_comentario_publicacion($array){
-		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO, BORRADO, FECHA_CREACION, FKUSUARIO, FKPUBLICACION)
-				VALUES (?,?,?,?,?)";
+		$query = "INSERT INTO " . static::$tabla . " (FKPUBLICACION, COMENTARIO, FECHA_CREACION, FKUSUARIO)
+				VALUES (?,?,?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["COMENTARIO"],$array["BORRADO"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKPUBLICACION"]]);
+		return $stmt->execute([$array["FKPUBLICACION"],$array["COMENTARIO"],$array["FECHA_CREACION"],$array["FKUSUARIO"]]);
 	}
 
 	public function editar_comentario_publicacion($array){
