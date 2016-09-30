@@ -31,11 +31,11 @@
 		$usuario_grupo=new Usuario_Grupo();
 		$usuario_grupo=$usuario_grupo->traer_grupos_usuario($_SESSION["s_id"]);
 		$arrayFinal=array();
-		$todos=[
+		/*$todos=[
 			"ID"=>"0",
 			"NOMBRE"=>"Todos",
 		];
-		$arrayFinal[]=$todos;
+		$arrayFinal[]=$todos;*/
 		$ans=array();
 		$arraySemiFinal=array();
 		foreach($usuario_grupo as $elgrupo){

@@ -6,7 +6,7 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				url:"../php/abm/grupos.listado.php",
 			})
 			.success(function(data, status){
-				
+				console.log(data);
 				//cambio fk_multimedia por la direccion de la foto
 				$http({ 
 					url:"../php/abm/traer.multimedia.php"
