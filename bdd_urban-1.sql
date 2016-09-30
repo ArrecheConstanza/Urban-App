@@ -6,6 +6,9 @@
 -- Tiempo de generación: 30-09-2016 a las 20:50:48
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
+DROP DATABASE IF EXISTS urban;
+CREATE DATABASE urban;
+USE urban;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
