@@ -11,11 +11,12 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 		
 		//funcion cambiar de grupos
 		$scope.estado = {};
+		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 		
 		$scope.cambiar_grupo=function(id){
+			$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 			localStorage.setItem("grupo_seleccionado_urban",id);
 			$scope.estado.activo = localStorage.getItem("grupo_seleccionado_urban");
-			//$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 			
 			//nombre de grupo en footer
 			if(localStorage.getItem("grupo_seleccionado_urban")!=null){

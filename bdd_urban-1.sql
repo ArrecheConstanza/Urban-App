@@ -135,6 +135,7 @@ CREATE TABLE `comentario_destacado` (
 --
 
 CREATE TABLE `comentario_publicacion` (
+  `ID` int(9) UNSIGNED NOT NULL,
   `COMENTARIO` text NOT NULL,
   `BORRADO` enum('Si','No') NOT NULL DEFAULT 'No',
   `FKUSUARIO` int(9) UNSIGNED NOT NULL,
@@ -146,8 +147,8 @@ CREATE TABLE `comentario_publicacion` (
 -- Volcado de datos para la tabla `comentario_publicacion`
 --
 
-INSERT INTO `comentario_publicacion` (`COMENTARIO`, `BORRADO`, `FKUSUARIO`, `FKPUBLICACION`, `FECHA_CREACION`) VALUES
-('lalalalal', 'No', 1, 13, '2016-09-22 16:21:45');
+INSERT INTO `comentario_publicacion` (`ID`, `COMENTARIO`, `BORRADO`, `FKUSUARIO`, `FKPUBLICACION`, `FECHA_CREACION`) VALUES
+(1, 'lalalalal', 'No', 1, 13, '2016-09-22 16:21:45');
 
 -- --------------------------------------------------------
 

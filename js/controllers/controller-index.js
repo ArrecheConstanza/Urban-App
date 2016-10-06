@@ -31,7 +31,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	}
 	
 	//************** HEADER CONTROL *************//
-	
+		
 	//activar li de navbar
 	$scope.estado = {};
 	
