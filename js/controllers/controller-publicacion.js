@@ -12,15 +12,23 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			var rta=angular.fromJson(data);
-			$scope.listado_grupos=rta;
+			if(data!="0"){
+				todos={
+					ID : "0",
+					NOMBRE : "Todos"
+				};
+				var rta=angular.fromJson(data);
+				rta.push(todos);
+				$scope.listado_grupos=rta.reverse();
+			}
+			//else logout
 		})
 		.error(function(){
 			//mensaje Sin conexion 
 		});
 	
 	//************* CREAR *************//
-	//else{
+
 		$scope.crear_publicacion=function(publicacion){
 			datos_publicacion={
 				FKGRUPO: publicacion.FKGRUPO,
@@ -53,7 +61,6 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 				
 			});
 		}
-	//}
 }]);
 	
 	

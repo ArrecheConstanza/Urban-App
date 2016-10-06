@@ -1,4 +1,4 @@
-/********************************************CONTROLLER INDEX ***************************************/
+/**************************************** CONTROLLER INDEX ***************************************/
 
 Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routeParams) {
 
@@ -30,7 +30,8 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		return 1;
 	}
 	
-	//**************** HEADER CONTROL *******************//
+	//************** HEADER CONTROL *************//
+	
 	//activar li de navbar
 	$scope.estado = {};
 	
@@ -56,6 +57,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	//nombre de grupo en footer
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
+		var datos="id="+$scope.id_grupo;
 		$routeParams.id=localStorage.getItem("grupo_seleccionado_urban");
 		$http({ 
 			method:"POST",
@@ -101,7 +103,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			});
 		}
 		if($location.path()==""){ //usuario recien logueado enviado a listado de publicaciones (REVER, si no tiene grupo enviarlo a mapa para union o creacion de grupo)
-			$location.path( "/publicaciones" );
+			$location.path( "/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban") );
 		}
 		else{ //hay path, usuario enviado a esa locacion
 			var path=$location.path();

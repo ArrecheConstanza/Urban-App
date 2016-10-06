@@ -11,8 +11,13 @@ Urban.controller("editarPublicacionCtrl",  ['$scope', '$http', '$location', 'Upl
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+			todos={
+				ID : "0",
+				NOMBRE : "Todos"
+			};
 			var rta=angular.fromJson(data);
-			$scope.listado_grupos=rta;
+			rta.push(todos);
+			$scope.listado_grupos=rta.reverse();
 		})
 		.error(function(){
 			//mensaje Sin conexion 

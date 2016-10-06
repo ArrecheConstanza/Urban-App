@@ -1,4 +1,4 @@
-/********************************************CONTROLLER MAPA***************************************/
+/**************************************CONTROLLER MAPA***************************************/
 
 Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 	//pido datos de bdd
