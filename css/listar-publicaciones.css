@@ -143,3 +143,21 @@
 	max-width:50px;
 	max-height:50px;
 }
+
+#listado-comentario-publicaciones{
+	margin-top:4em;
+}
+#listado-comentario-publicaciones p{
+	display:inline-block;
+	margin:0;
+	padding:0;	
+}
+#listado-comentario-publicaciones span{
+	color:grey;
+	font-size:.9em;
+	display:inline-block;
+	text-align:right;
+	width:100%;
+	margin:0;
+	padding:0;
+}

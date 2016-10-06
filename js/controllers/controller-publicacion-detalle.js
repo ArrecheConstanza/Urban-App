@@ -35,14 +35,10 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data){
-						console.log(data);
-						
-						/*if(data){
-							$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+						if(data){
+							var rta=angular.fromJson(data);
+							$scope.datosSQLcomentario_publicacion=rta.reverse();
 						}
-						else{
-							//No se pudo borrar
-						}*/
 					})
 					.error(function(){
 						//Sin conexion

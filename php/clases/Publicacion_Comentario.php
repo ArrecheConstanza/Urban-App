@@ -1,7 +1,7 @@
 <?php
 
 class Publicacion_Comentario{
-	private $codigo_publicacion_comentario;
+	private $codigo_comentario_publicacion;
 	private $comentario;
 	private $borrado;
 	private $fecha_creacion;
@@ -61,6 +61,9 @@ class Publicacion_Comentario{
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
+					case "codigo_comentario_publicacion":
+						$this->setCodigoComentarioPublicacion($valor);
+					break;
 					case "comentario":
 						$this->setComentario($valor);
 					break;
@@ -87,10 +90,12 @@ class Publicacion_Comentario{
 			if($stmt->execute()) {
 				while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 					$publicacion_comentario = new Publicacion_Comentario;
+					$publicacion_comentario->codigo_comentario_publicacion = $fila['ID'];
 					$publicacion_comentario->comentario = $fila['COMENTARIO'];
 					$publicacion_comentario->borrado = $fila['BORRADO'];
 					$publicacion_comentario->fecha_creacion = $fila['FECHA_CREACION'];
 					$publicacion_comentario->fk_usuario = $fila['FKUSUARIO'];
+					$publicacion_comentario->fk_publicacion = $fila['FKPUBLICACION'];
 					$publicacion_comentario->cargarDatos($fila);
 					$salida[] = $publicacion_comentario;
 				}
