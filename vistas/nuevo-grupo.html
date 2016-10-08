@@ -13,7 +13,7 @@
 		<!--Campos container -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="container_form">
 		
-			<!-- Formulario -->
+		<!-- Formulario -->
 		<form  role='form' name='form_grupo' ng-submit='crear_grupo(grupo)'>
 			<select class='select' name='estado' ng-model='grupo.ESTADO' ng-init="grupo.ESTADO='Publico'">
 				<option  value='Publico' selected>Publico</option>
@@ -24,7 +24,7 @@
 				<input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
 			</div>
 			<input type='text' id='titulo_submit' name='nombre' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'>
-			<input id='button_submit' type='button' ng-click='crear_grupo(grupo)' class='form-control btn btn-default' value='Crear'>
+			<input id='button_submit' type='button' ng-click='crear_grupo(grupo)' ui-turn-on="modal1" class='form-control btn btn-default' value='Crear'>
 		</form>
 		
 		</div>

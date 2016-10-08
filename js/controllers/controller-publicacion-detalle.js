@@ -44,8 +44,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 						//Sin conexion
 					});
 				
-				
-				
 				/****Comentar****/
 				$scope.comentar=function(comentario){
 					var union="FKPUBLICACION="+$scope.ID+"&COMENTARIO="+comentario.DESCRIPCION;
@@ -58,7 +56,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.success(function(data){
 						if(data){
 							//modal ok?
-							
 						}
 						else{
 							//No se pudo comentar

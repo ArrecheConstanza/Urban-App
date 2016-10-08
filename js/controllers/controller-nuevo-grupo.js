@@ -9,7 +9,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		localStorage.removeItem("nuevo_grupo_position");
 	}
 	else{
-		modal("error");
+		//modal("error");
+		console.log("error no hay lat y long de nuevo grupo");
 	}
 	
 	//creacion de grupo
@@ -23,11 +24,13 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		}
 		
 		//FALTA validacion de datos en submit
+		
 		var nombre=datos_grupo["NOMBRE"];
 		nombre.upload = Upload.upload({
 			method: 'POST',
 			url:"php/abm/new.grupo.php",
 			data: datos_grupo,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.then(function(response){
 			if(response.data){
@@ -40,22 +43,22 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					//console.log(data);
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
 						$location.path("/publicaciones");
 					}
 					else{
 						//modal, error al crear grupo
+						console.log("error no hay data en usuario_grupo");
 					}
 				});
 			}
 			else{
-				modal("error");
+				console.log("error no hay response data");
 			}
 		}
 		,function(response){
-			modal("error");
+			console.log("error");
 		});
 	}
 	

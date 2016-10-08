@@ -27,6 +27,7 @@
 				$arrayFinal[]=$array;
 			}
 			echo json_encode($arrayFinal);
+			return 0;
 		}
 		else{
 			$usuario_grupo=new Usuario_Grupo();
@@ -51,10 +52,12 @@
 				$arrayFinal[]=$array;
 			}
 			echo json_encode($arrayFinal);
+			return 0;
 		}
 	}
 	else{
 		echo 0;
+		return 0;
 	}
 ?> 
 

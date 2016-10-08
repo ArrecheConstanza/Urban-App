@@ -9,7 +9,7 @@
 			<ul class="list-group" id="listado-publicaciones">
 			  <li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
 				<input type="hidden" name="country" value="{{item.ID}}">
-				<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
+				<!--<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>-->
 				<img class='img-publi' ng-src="{{ item.FOTO }}" />
 				<h2>{{ item.TITULO }}</h2>  
 				<p>{{ item.DESCRIPCION }}</p>  

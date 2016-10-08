@@ -64,13 +64,18 @@
 	
 	<!---HEADER--->
 	
-	<!-- Sidebars -->
+		<!-- Sidebars -->
 		<div ng-include="'vistas/sidebar.html'" 
 			class="sidebar sidebar-left"></div>
 				
 	    <div ng-include="'vistas/alarmas.html'" 
             class="sidebar sidebar-right"></div>
-			
+		
+		<!--- Modal --->
+		<div ui-yield-to="modals">
+			<div ng-include="'vistas/modal.html'"></div>
+		</div>
+		
 		<!-- body app -->
 		<div class="app" 
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'

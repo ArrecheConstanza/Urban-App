@@ -22,7 +22,6 @@
 		$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
 		
 		if($fin==1){ //grupo creado ok
-		
 
 			//crear carpeta para grupo "grupos/grupo__id"
 			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
@@ -51,11 +50,10 @@
 
 				//mover foto a carpeta
 				move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
-				//echo $rta;
-				return $ultimo_grupo[0]->getCodigoGrupo();
 			}
 			
 			echo $ultimo_grupo[0]->getCodigoGrupo();
+			return 0;
 		}
 		else{ //error al crear grupo
 			echo 0;
