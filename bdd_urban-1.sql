@@ -422,7 +422,7 @@ CREATE TABLE `usuario` (
   `EMAIL` varchar(50) NOT NULL,
   `NOMBRE` varchar(45) NOT NULL,
   `APELLIDO` varchar(45) NOT NULL,
-  `CLAVE` varchar(40) NOT NULL,
+  `CLAVE` varchar(224) NOT NULL,
   `EDAD` date NOT NULL,
   `LONGITUD` double(13,10) NOT NULL,
   `LATITUD` double(13,10) NOT NULL,

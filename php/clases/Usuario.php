@@ -136,27 +136,14 @@ class Usuario{
 			}
 		}
 	}
-	public function eliminar_usuario($array){
-		$query = "DELETE FROM confesion WHERE FKUSUARIO=?";
-		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$array["id"]]);
-		if($stmt){
-			$query = "DELETE FROM " . static::$tabla . " WHERE ID=?";
-			$stmt = DBcnx::getStatement($query);
-			return $stmt->execute([$array["id"]]);
-		}
-		else{
-			return 0;
-		}
-	}
 	public function crear_usuario($array){
 		$query = "INSERT INTO " . static::$tabla . " (EMAIL, CLAVE, NOMBRE, APELLIDO, EDAD, DIRECCION, LATITUD, LONGITUD, FECHA_ALTA)
-				VALUES (?, md5(?), ?, ?, ?, ?, ?, ?, ?)";
+				VALUES (?, sha2(?, 224), ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["EMAIL"],$array["CLAVE"],$array["NOMBRE"],$array["APELLIDO"],$array["EDAD"],$array["DIRECCION"],$array["LATITUD"],$array["LONGITUD"],$array["FECHA_ALTA"]]);
 	}
 	public function verificar_usuario($mail, $contrasenia){
-		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=md5(?)";
+		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=sha2(?, 224)";
 		$stmt = DBcnx::getStatement($query);
 		$array=[];
 		if($stmt->execute([$mail,$contrasenia])){

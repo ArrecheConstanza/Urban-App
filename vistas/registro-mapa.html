@@ -161,11 +161,11 @@
 			var bounds = new google.maps.LatLngBounds();
 			places.forEach(function(place) {
 			  var icon = {
-				url: "../img/icons/png/urban.png",
-				size: new google.maps.Size(71, 71),
+				url: "../img/icons/png/marker-user.png",
+				size: new google.maps.Size(100, 100),
 				origin: new google.maps.Point(0, 0),
 				anchor: new google.maps.Point(17, 34),
-				scaledSize: new google.maps.Size(50, 50)
+				scaledSize: new google.maps.Size(50, 60)
 			  };
 
 			  <!-- Crear un marker para ese lugar -->
@@ -183,6 +183,8 @@
 			  }
 			});
 			map.fitBounds(bounds);
+			map.setZoom(15); 
+			
 		  });
 	  }
 		
