@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2016 a las 20:50:48
+-- Tiempo de generación: 19-10-2016 a las 04:25:21
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
 DROP DATABASE IF EXISTS urban;
@@ -148,7 +148,10 @@ CREATE TABLE `comentario_publicacion` (
 --
 
 INSERT INTO `comentario_publicacion` (`ID`, `COMENTARIO`, `BORRADO`, `FKUSUARIO`, `FKPUBLICACION`, `FECHA_CREACION`) VALUES
-(1, 'lalalalal', 'No', 1, 13, '2016-09-22 16:21:45');
+(1, 'lalalalal', 'No', 1, 13, '2016-09-22 16:21:45'),
+(0, 'dswdwd', 'No', 1, 11, '2016-10-06 00:46:25'),
+(0, 'lllllll', 'No', 1, 11, '2016-10-06 01:05:45'),
+(0, 'fiew fewjf ewuifh ewiuf ew fuiewu fhew feiw', 'No', 1, 11, '2016-10-06 01:19:34');
 
 -- --------------------------------------------------------
 
@@ -242,9 +245,7 @@ CREATE TABLE `grupo` (
 INSERT INTO `grupo` (`ID`, `NOMBRE`, `LONGITUD`, `LATITUD`, `ESTADO`, `BORRADO`, `FKMULTIMEDIA`) VALUES
 (1, 'Vecinos de washington', -58.4704620000, -34.5684254000, 'Publico', 'No', 1),
 (2, 'echeverria y donado torre', -58.4741507349, -34.5725230614, 'Privado', 'No', 2),
-(7, 'home', -58.4635077296, -34.5708622123, 'Privado', 'No', NULL),
-(8, 'aaaaa', -58.4692583857, -34.5748552617, 'Publico', 'No', 8),
-(9, 'aaaaaaaa', -58.4692583857, -34.5748552617, 'Publico', 'No', 9);
+(15, 'papa', -58.4670673725, -34.5735933757, 'Publico', 'No', 24);
 
 -- --------------------------------------------------------
 
@@ -310,7 +311,14 @@ INSERT INTO `multimedia` (`ID`, `DIR`, `BORRADO`) VALUES
 (15, 'C:/xampp/htdocs/Urban-App/img/publicaciones/12/QR.png', 'No'),
 (16, 'C:/xampp/htdocs/Urban-App/img/publicaciones/13/QR.png', 'No'),
 (17, 'C:/xampp/htdocs/Urban-App/img/publicaciones/14/icon.png', 'No'),
-(18, 'C:/xampp/htdocs/Urban-App/img/publicaciones/15/icon.png', 'No');
+(18, 'C:/xampp/htdocs/Urban-App/img/publicaciones/15/icon.png', 'No'),
+(19, 'C:/xampp/htdocs/Urban-App/img/grupos/masmas__10/animal.png', 'No'),
+(20, 'C:/xampp/htdocs/Urban-App/img/grupos/kkkkkk__11/animal.png', 'No'),
+(21, 'C:/xampp/htdocs/Urban-App/img/grupos/lalala__12/animal.png', 'No'),
+(22, 'C:/xampp/htdocs/Urban-App/img/grupos/otro grupo mas__13/animal.png', 'No'),
+(23, 'C:/xampp/htdocs/Urban-App/img/grupos/mas mas mas__14/animal.png', 'No'),
+(24, 'C:/xampp/htdocs/Urban-App/img/grupos/papa__15/animal.png', 'No'),
+(25, 'C:/xampp/htdocs/Urban-App/img/publicaciones/16/muestra.jpg', 'No');
 
 -- --------------------------------------------------------
 
@@ -374,7 +382,8 @@ INSERT INTO `publicacion` (`ID`, `TITULO`, `DESCRIPCION`, `AVALADO`, `FECHA_CREA
 (12, 'sarasa', 'blaafjewn ejwg g rigbrheg erhj g', NULL, '2016-09-15 19:54:26', 'No', 1, 1),
 (13, 'sasasasa', 'feng whg regh e guier', NULL, '2016-09-15 19:55:00', 'No', 1, 1),
 (14, 'ssssssss', 'aaadfew fef e f  f ee f e f ef fe f', NULL, '2016-09-15 19:56:00', 'Si', 1, 1),
-(15, 'ngirek rguir iugre', 'vtb  f tft t yt', NULL, '2016-09-15 20:01:51', 'Si', 1, 1);
+(15, 'ngirek rguir iugre', 'vtb  f tft t yt', NULL, '2016-09-15 20:01:51', 'Si', 1, 1),
+(16, 'una publicacion', 'aca la publi', NULL, '2016-10-08 01:24:11', 'No', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -398,7 +407,8 @@ INSERT INTO `publicacion_multimedia` (`FKPUBLICACION`, `FKMULTIMEDIA`) VALUES
 (12, 15),
 (13, 16),
 (14, 17),
-(15, 18);
+(15, 18),
+(16, 25);
 
 -- --------------------------------------------------------
 
@@ -422,7 +432,7 @@ CREATE TABLE `usuario` (
   `EMAIL` varchar(50) NOT NULL,
   `NOMBRE` varchar(45) NOT NULL,
   `APELLIDO` varchar(45) NOT NULL,
-  `CLAVE` varchar(224) NOT NULL,
+  `CLAVE` varchar(255) NOT NULL,
   `EDAD` date NOT NULL,
   `LONGITUD` double(13,10) NOT NULL,
   `LATITUD` double(13,10) NOT NULL,
@@ -441,7 +451,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID`, `EMAIL`, `NOMBRE`, `APELLIDO`, `CLAVE`, `EDAD`, `LONGITUD`, `LATITUD`, `DIRECCION`, `DIRECCION_ESTADO`, `FECHA_ALTA`, `BANNEADO`, `NIVEL`, `BORRADO`, `FK_NEGOCIO_SERVICIO`, `FKMULTIMEDIA`) VALUES
-(1, 'iara@hotmail.com', 'iara', 'nizza', '81dc9bdb52d04dc20036dbd8313ed055', '1992-09-12', -58.4703785000, -34.5681010000, 'washington 1111', 'Oculta', '2016-09-06 00:00:00', 'No', 'Admin', 'No', NULL, NULL);
+(1, 'iara@hotmail.com', 'iara', 'nizza', '81dc9bdb52d04dc20036dbd8313ed055', '1992-09-12', -58.4703785000, -34.5681010000, 'washington 1111', 'Oculta', '2016-09-06 00:00:00', 'No', 'Admin', 'No', NULL, NULL),
+(2, 'mati@hotmail.com', 'mati', 'morlivo', '99fb2f48c6af4761f904fc85f95eb56190e5d40b', '1990-12-12', -58.4703712000, -34.5681010000, 'washington 2212', 'Oculta', '2016-09-06 00:00:00', 'No', 'Usuario', 'No', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -474,7 +485,8 @@ CREATE TABLE `usuario_grupo` (
 
 INSERT INTO `usuario_grupo` (`FKUSUARIO`, `FKGRUPO`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(1, 15);
 
 --
 -- Índices para tablas volcadas
@@ -732,7 +744,7 @@ ALTER TABLE `evento`
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `list_item`
 --
@@ -742,7 +754,7 @@ ALTER TABLE `list_item`
 -- AUTO_INCREMENT de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `negocio_servicio`
 --
@@ -757,12 +769,12 @@ ALTER TABLE `opciones`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
