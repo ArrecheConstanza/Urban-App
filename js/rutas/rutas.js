@@ -22,6 +22,9 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/chats-listado.html',
 			controller : 'chatsListadoCtrl'
 		})
+		.when('/unchat', {
+			templateUrl : 'vistas/chat.html',
+		})
 		.when('/encuestas', {
 			templateUrl : 'vistas/encuestas-listado.html',
 			//controller : 'encuestasListadoCtrl'
