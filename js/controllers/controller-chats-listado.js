@@ -1,6 +1,7 @@
+
 /********************************************CONTROLLER CHATS LISTADO**************************************/
 
-Urban.controller("chatsListadoCtrl", function ($scope,$http){
+Urban.controller("chatsListadoCtrl", function ($scope,$http,$location,$window){
 	
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		var id=localStorage.getItem("grupo_seleccionado_urban");
@@ -15,6 +16,9 @@ Urban.controller("chatsListadoCtrl", function ($scope,$http){
 			IMG:"chat_general.png"}
 		];
 		
+		$scope.abrir_chat=function(){
+			$window.location.href= "../urban-app/vistas/chat.html" ;
+		}
 		/*//pido datos de bdd
 			$http({ 
 				method:"POST",
