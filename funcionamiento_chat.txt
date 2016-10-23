@@ -1,0 +1,20 @@
+******* FUNCIONAMIENTO DE CHAT *******
+
+Es necesario instalar el paquete Bower 
+
+1) descargar https://git-for-windows.github.io/ (si usan windows)
+   instalar: mandan next a todo e instalan
+
+   
+   
+   
+2) descargar https://nodejs.org/en/ 
+	elegir opcion "npm package manager" 
+
+pags de referencia:
+
+http://blog.teamtreehouse.com/install-node-js-npm-windows
+
+
+https://www.npmjs.com/package/bower
+http://angularjs.chat/tutorials/angularjs-basic-chat-module/ <-- tutorial
