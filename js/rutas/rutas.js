@@ -42,6 +42,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/alarmas.html',
 			controller : ''
 		})
+		.when('/modal', {
+			templateUrl : 'vistas/overlay.html',
+			controller : ''
+		})
 		.otherwise({
 			redirectTo: '/publicaciones'
 		});

@@ -1,0 +1,23 @@
+<div ui-content-for="title">
+  <span>Overlays</span>
+</div>
+
+<div class="scrollable" id="modal_pruba">
+  <div class="scrollable-content">
+    <div class="section section-break">
+      <a href="" 
+          ui-turn-on="modal1"
+          class="btn btn-default">Show Modal</a>
+    </div>
+
+    <div class="section section-break">
+      <p>
+        {{lorem}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'vistas/modal.html'"></div>
+</div>

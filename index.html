@@ -71,17 +71,13 @@
 	    <div ng-include="'vistas/alarmas.html'" 
             class="sidebar sidebar-right"></div>
 		
-		<!--- Modal --->
-		<div ui-yield-to="modals">
-			<div ng-include="'vistas/modal.html'"></div>
-		</div>
-		
 		<!-- body app -->
 		<div class="app" 
          ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
          ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
 		 
 		<div id="header" ng-show="header_footer()">
+		  
 			<!-- BOTON MENÚ SIDEBAR-LEFT -->
 			<div class="pull-left sidebar-toggle" ui-toggle="uiSidebarLeft" >
 	          <div class="menuIcon" id="menu-hamburger"
@@ -96,7 +92,7 @@
 				 <img src="img/icons/png/alarm-1.png" alt="" />
 			</div>
 			</a>
-
+			
 			<!-- BUSCADOR -->
 			<a href="#/buscador" class="pull-right menuIcon">
 			<div class="pull-right" id="buscador">
@@ -126,8 +122,16 @@
 	<!--------  FOOTER  --------->
 	
 	<div ng-show="header_footer()" ng-include="'vistas/footer.html'"></div>
+	
+	<!--fin de body-->
+	
 	</div>
 	
+	<!---- MODAL ---->
+	
+	<div ui-yield-to="modals"></div>
+	
+
 	<!-- BOOTSTRAP JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
