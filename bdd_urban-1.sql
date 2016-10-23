@@ -83,7 +83,6 @@ CREATE TABLE `asistencia` (
 CREATE TABLE `chat` (
   `ID` int(9) UNSIGNED NOT NULL,
   `TITULO` varchar(45) NOT NULL,
-  `PRIVADO` tinyint(1) NOT NULL,
   `ESTADO` enum('Publico','Privado') NOT NULL DEFAULT 'Publico',
   `BORRADO` enum('Si','No') NOT NULL,
   `FKGRUPO` int(9) UNSIGNED NOT NULL,

@@ -1,0 +1,16 @@
+/**************************STYLE LISTAR CHATS***************************/
+
+#chats{
+   padding-top:100px!important;
+}
+
+.temaChat{
+	width:3em;
+	height:2em;
+	padding-right:1em;
+}
+
+#chats li{
+	font-size:1.2em;
+	letter-spacing:.1em;
+}

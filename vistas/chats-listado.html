@@ -7,15 +7,11 @@
 		<div  id="chats" ng-controller='chatsListadoCtrl'>
 		<a href="#newPublicacion" id="publicaciones_listado_crear_publicacion">Crear tema chat</a>	
 			
-			<ul class="list-group" id="listado-chata">
-			  <!--<li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
-				<input type="hidden" name="country" value="{{item.ID}}">
-				<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>
-				<img ng-src="{{ 'img/fotos/animal.png' }}" />
-				<h2>{{ item.TITULO }}</h2>  
-				<p>{{ item.DESCRIPCION }}</p>  
-				<small>{{ item.FECHA_CREACION }}</small>  
-			  </li>-->
+			<ul class="list-group" id="listado-chat">
+			  <li ng-repeat="item in listado_chats track by $index " class="list-group-item">
+				<img src="img/icons/png/{{ item.IMG }}" alt="todo" class="temaChat"/>
+				{{ item.TITULO }}
+			  </li>
 			</ul>
 		</div>
 			
