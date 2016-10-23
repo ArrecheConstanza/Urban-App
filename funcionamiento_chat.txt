@@ -2,19 +2,13 @@
 
 Es necesario instalar el paquete Bower 
 
-1) descargar https://git-for-windows.github.io/ (si usan windows)
-   instalar: mandan next a todo e instalan
-
-   
-   
-   
-2) descargar https://nodejs.org/en/ 
+1) instalar https://nodejs.org/en/ 
 	elegir opcion "npm package manager" 
+	reiniciar pc
 
 pags de referencia:
 
-http://blog.teamtreehouse.com/install-node-js-npm-windows
-
+http://blog.teamtreehouse.com/install-node-js-npm-windows <- instalar node.js
 
 https://www.npmjs.com/package/bower
-http://angularjs.chat/tutorials/angularjs-basic-chat-module/ <-- tutorial
+http://angularjs.chat/tutorials/angularjs-basic-chat-module/ <-- tutorial chat
