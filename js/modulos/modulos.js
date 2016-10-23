@@ -6,7 +6,7 @@ var Urban = angular.module('Urban', [
   'mobile-angular-ui.gestures',
   'ngFileUpload',
   'uiGmapgoogle-maps'
-]);
+])
 
 /////ADAPTACION DE PANTALLA
 

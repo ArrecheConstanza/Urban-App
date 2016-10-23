@@ -39,6 +39,20 @@
     <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
 	<script src="js/modulos/mapa/angular-google-maps_dev_mapped.js"></script>	
 
+	<!-- bower: scripts para chats -->
+	<script src="js/modulos/bower_components/angular-chat/angular-chat.js"></script>
+	
+	<script>
+	// script de configuracion para funcionamineto de chat
+	angular.module('chat').constant('config',{
+		"pubnub": {
+			"publish-key"   : "pub-c-361e95cd-55ac-4bc7-bbb6-901bb6246bef",
+			"subscribe-key" : "sub-c-3a3f59f0-98f2-11e6-a681-02ee2ddab7fe"
+		}
+	});
+	</script>
+	
+	<!-- script para upload de imagenes -->
 	<script>
 	FileAPI = {
         //only one of jsPath or jsUrl.
@@ -53,6 +67,7 @@
         //noContentTimeout: 10000 (see #528)
     }
 	</script>
+	
 	<!-- angular-upload   -->
 	<script src="js/modulos/ng-file-upload-shim.js"></script> <!--no html5 support -->
 	<script src="js/modulos/ng-file-upload.js"></script>
