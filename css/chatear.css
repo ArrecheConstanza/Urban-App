@@ -43,6 +43,7 @@ form.chat-input {
     position: relative;
     order: 2;
     height: 62px;
+	border-top:1px solid #bfbebe;
     background: rgba(233,234,243,1.0);
 }
 div.chat-messages {
@@ -53,6 +54,7 @@ div.chat-messages {
     );
     background-size: 100% 10px;
     background-repeat: no-repeat;
+	background:#eee;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -60,26 +62,48 @@ Chat Messages
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 div.angularjs-chat-logo {
     display: inline-block;
-    background: transparent url(/media/angularjs-chat.png);
+    background: transparent url(../img/icons/png/ofertas.png);  
     background-size: 100%;
     background-repeat: no-repeat;
+	margin:.2em;
 }
 div.chat-header div.angularjs-chat-logo {
-    width: 4.0em;
-    height: 4.1em;
+   /* width: 4.0em;
+    height: 4.1em;*/
     position: relative;
     top: 1.3em;
     left: -1em;
-    animation: chat-header-intro 2.0s ease-out 0s;
+}
+div.chat-header img:nth-child(1){
+	margin-left:.2em;
+}
+div.chat-header img:nth-child(2){
+	margin:.2em;
+	vertical-align:middle;
+}
+div.chat-header h1{
+    color: white;
+	/*animation: chat-header-intro 2.0s ease-out 0s;*/
+	text-align:left;
+	display:inline-block;
+	vertical-align:middle;
 }
 div.chat-header {
-    text-align: center;
+    text-align: left;
     font-size: 1.5em;
     font-weight: 200;
-    color: rgba(32,40,70,0.8);
-    padding-top: 10px;
+	font-family:HelveticaNeueLTStd,Helvetica,Arial,sans-serif;
+    /*padding-top: 10px;
     padding-bottom: 36px;
-    animation: chat-header-intro 2.2s ease-out 0s;
+    animation: chat-header-intro 2.2s ease-out 0s;*/
+	background:#0a3a49;
+	position:fixed;
+	z-index:1;
+	width:100vw;
+}
+.chat-body:nth-child(1){
+	z-index:2;
+	margin-top:3.3em;
 }
 div.sent-message-false {
     float: left;
@@ -94,6 +118,7 @@ div.sent-message-false {
     font-weight: 400;
     background: rgba(255,255,255,0.9);
     animation: received-message 0.9s ease-out 0s;
+	word-wrap: break-word;
 }
 div.sent-message-true {
     float: right;
@@ -148,10 +173,12 @@ span.username {
 User Input
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 form.chat-input input[type="text"] {
-    width: 80%;
-    color: rgba(32,40,70,0.9);
+    width: 100vw;
+    /*color: rgba(32,40,70,0.9);*/
     padding: 20px;
-    background: transparent;
+    background: white;
+	word-wrap: break-word;
+	overflow:hidden;
 }
 
 form.chat-input input[type="submit"] {
@@ -167,16 +194,16 @@ form.chat-input input[type="submit"] {
 }
 
 form.chat-input input[type="submit"].send-icon {
-    background: rgba(144,134,251,1.0) url(send-icon.png);
-    background-size: 60%;
+    background: #0a3a49 url(../img/icons/png/send_chat.png) center;
+    background-size: 50%;
     background-repeat: no-repeat;
-    background-position: 7px 8px;
+    /*background-position: 7px 10px;*/
 }
 form.chat-input input[type="submit"].sent-indicator {
     opacity: 0;
-    background: rgba(144,134,251,0.97);
-    width: 42px;
-    height: 42px;
+    background:#0a3a49;
+    width: 40px;
+    height: 40px;
 }
 form.chat-input input[type="submit"].sending {
     animation: send-indicator 0.9s ease-out 0s;

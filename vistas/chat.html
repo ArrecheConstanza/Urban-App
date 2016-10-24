@@ -10,7 +10,7 @@
    <!-- <link rel="apple-touch-icon-precomposed" href="/media/angularjs-chat.png">
     <link rel="shortcut icon" href="/media/angularjs-chat.png">-->
 
-    <title>Chat</title>
+    <title>Urban</title>
 
     <script src="../js/modulos/bower_components/angular/angular.js"></script>
     <script src="../js/modulos/bower_components/angular-chat/angular-chat.js"></script>
@@ -26,15 +26,18 @@
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
         <div class="chat-messages">
             <div class="chat-header">
-                <div class="angularjs-chat-logo"></div>
-                AngularJS Chat
+				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
+				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
+                <h1>Titulo chat<h1>
             </div>
-            <div ng-repeat="message in chat.messages">
-                <div class="sent-message-{{ message.self }}">
-                    <span class="username">{{ message.user.name }}:</span>
-                    {{ message.data }}
-                </div>
-                <div class="clear"></div>
+			<div>
+				<div ng-repeat="message in chat.messages" class="chat-body">
+					<div class="sent-message-{{ message.self }}">
+						<span class="username">{{ message.user.name }}:</span>
+						{{ message.data }}
+					</div>
+					<div class="clear"></div>
+				</div>
             </div>
         </div>
 
