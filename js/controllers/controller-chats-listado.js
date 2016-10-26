@@ -16,7 +16,8 @@ Urban.controller("chatsListadoCtrl", function ($scope,$http,$location,$window){
 			IMG:"chat_general.png"}
 		];
 		
-		$scope.abrir_chat=function(){
+		$scope.abrir_chat=function(nombre){
+			localStorage.setItem("nombre_chat",nombre);
 			$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
 		/*//pido datos de bdd

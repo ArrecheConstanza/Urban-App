@@ -7,14 +7,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link rel="stylesheet" href="../css/chatear.css">
-   <!-- <link rel="apple-touch-icon-precomposed" href="/media/angularjs-chat.png">
-    <link rel="shortcut icon" href="/media/angularjs-chat.png">-->
 
-    <title>Urban</title>
+    <title>URBAN</title>
 
     <script src="../js/modulos/bower_components/angular/angular.js"></script>
     <script src="../js/modulos/bower_components/angular-chat/angular-chat.js"></script>
-    <script src="../js/names.js"></script>
     <script src="../js/controllers/controller-chat.js"></script>
 </head>
 <body>
@@ -28,12 +25,12 @@
             <div class="chat-header">
 				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
-                <h1>Titulo chat<h1>
+                <h1>{{ titulo_chat }}<h1>
             </div>
 			<div>
 				<div ng-repeat="message in chat.messages" class="chat-body">
 					<div class="sent-message-{{ message.self }}">
-						<span class="username">{{ message.user.name }}:</span>
+						<span class="username">{{ nombre_usuario }}:</span>
 						{{ message.data }}
 					</div>
 					<div class="clear"></div>

@@ -13,32 +13,47 @@ angular.module('chat').constant( 'config', {
 var basicChat = angular.module( 'BasicChat', ['chat'] );
 
 /** controller **/
-basicChat.controller( 'BasicController', [ 'Messages', '$scope', '$window', '$location', function( Messages, $scope, $window, $location ) {
-    var chat = this;
-    chat.status = "";
-    chat.messages = [];
-    Messages.user({ name : sillyname() });
+basicChat.controller( 'BasicController', [ 'Messages', '$scope', '$window', '$location', '$http', function( Messages, $scope, $window, $location, $http ) {
+	
+	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
+		
+		/** nombre de grupo **/
+		$scope.titulo_chat=localStorage.getItem("nombre_chat");
+		
+		var chat = this;
+		chat.status = "";
+		chat.messages = [];
+		
+		/** nombre de usuario **/
+		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
+		//Messages.user({ name : nombre_usuario });
 
-	/** cargar mensaje **/
-    var chatmessages = document.querySelector(".chat-messages");
-    Messages.receive(function(msg){
-        chat.messages.push(msg);
-        setTimeout( function() {
-            chatmessages.scrollTop = chatmessages.scrollHeight;
-        }, 10 );
-    });
-	
-	/** enviar mensaje **/
-    chat.send = function() {
-        Messages.send({ data : chat.textbox });
-        chat.status = "sending";
-        chat.textbox = "";
-        setTimeout( function() { chat.status = "" }, 1200 );
-    };
-	
-	/** volver a listado de chats **/
-	$scope.volver_chats=function(){
+		/** listar mensajes **/
+		var chatmessages = document.querySelector(".chat-messages");
+		Messages.receive(function(msg){
+			chat.messages.push(msg);
+			setTimeout( function() {
+				chatmessages.scrollTop = chatmessages.scrollHeight;
+			}, 10 );
+		});
+		
+		/** enviar mensaje **/
+		chat.send = function() {
+			console.log(chat.textbox);
+			Messages.send({ data : chat.textbox });
+			chat.status = "sending";
+			chat.textbox = "";
+			setTimeout( function() { chat.status = "" }, 1200 );
+		};
+		
+		/** volver a listado de chats **/
+		$scope.volver_chats=function(){
+			window.localStorage.removeItem("nombre_chat");
+			$window.location.href= "/urban-app/index.html#/chats" ;
+		}
+	}
+	else{
+		//modal error
 		$window.location.href= "/urban-app/index.html#/chats" ;
 	}
-
 }]);

@@ -43,7 +43,7 @@ form.chat-input {
     position: relative;
     order: 2;
     height: 62px;
-	border-top:1px solid #bfbebe;
+	border-top:3px solid #bfbebe;
     background: rgba(233,234,243,1.0);
 }
 div.chat-messages {
