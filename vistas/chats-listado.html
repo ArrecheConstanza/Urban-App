@@ -8,7 +8,7 @@
 			
 			<ul class="list-group" id="listado-chat">
 			  <li ng-repeat="item in listado_chats track by $index " class="list-group-item" ng-click="abrir_chat(item.TITULO)">
-					<img src="img/icons/png/{{ item.IMG }}" alt="todo" class="temaChat"/>
+					<img src="{{ item.FOTO }}" alt="todo" class="temaChat"/>
 					{{ item.TITULO }}
 			  </li>
 			</ul>
