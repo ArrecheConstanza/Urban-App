@@ -8,9 +8,10 @@ class Chat{
 	private $fecha_creacion;
 	private $fk_grupo;
 	private $fk_usuario;
+	private $fk_multimedia;
 	
 	public static $tabla = "chat";
-	private static $fila = ['TITULO', 'ESTADO','BORRADO','FECHA_CREACION','FKGRUPO','FKUSUARIO'];
+	private static $fila = ['TITULO', 'ESTADO','BORRADO','FECHA_CREACION','FKGRUPO','FKUSUARIO','FKMULTIMEDIA'];
 
 	public function setCodigoChat($a){
 		$this->codigo_chat = $a;
@@ -36,18 +37,6 @@ class Chat{
 	public function getBorrado(){
 		return $this->borrado;
 	}
-	public function setFkGrupo($a){
-		$this->fk_grupo = $a;
-	}
-	public function getFkGrupo(){
-		return $this->fk_grupo;
-	}
-	public function setBorrado($a){
-		$this->borrado = $a;
-	}
-	public function getBorrado(){
-		return $this->borrado;
-	}
 	public function setFechaCreacion($a){
 		$this->fecha_creacion = $a;
 	}
@@ -65,6 +54,12 @@ class Chat{
 	}
 	public function getFkUsuario(){
 		return $this->fk_usuario;
+	}
+	public function setFkMultimedia($a){
+		$this->fk_multimedia = $a;
+	}
+	public function getFkMultimedia(){
+		return $this->fk_multimedia;
 	}
 	
 	public function getByPk($id){
@@ -98,6 +93,9 @@ class Chat{
 					case "fk_usuario":
 						$this->setFkUsuario($valor);
 					break;
+					case "fk_multimedia":
+						$this->setFkMultimedia($valor);
+					break;
 				}
 			}
 		}
@@ -117,6 +115,7 @@ class Chat{
 				$chat->fecha_creacion = $fila['FECHA_CREACION'];
 				$chat->fk_grupo = $fila['FKGRUPO'];
 				$chat->fk_usuario = $fila['FKUSUARIO'];
+				$chat->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$chat->cargarDatos($fila);
 				$salida[] = $chat;
 			}

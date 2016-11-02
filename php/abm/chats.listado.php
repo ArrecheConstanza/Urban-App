@@ -9,42 +9,37 @@
 	require_once('../clases/Usuario.php');
 	require_once('../clases/Chat.php');
 	require_once('../clases/Multimedia.php');
-	require_once('../clases/Chat_Multimedia.php');
 	
-	$publicacion=new Publicacion();
-	$publicacion=$publicacion->all_grupo($_POST["id"]);
+	$chat=new Chat();
+	$chat=$chat->all($_POST["id"]);
 	$arrayFinal=array();
-	foreach($publicacion as $unaPublicacion){
-		$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
+	foreach($chat as $unChat){
+		//$fecha= publicaciones_parsear_fecha($unChat->getFechaCreacion());
 		
-		//Pido todo el contenido multimedia de la publicacion
-			$publicacion_multimedia = new Publicacion_Multimedia();
-			$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
+		//Pido todo el contenido multimedia del chat
+			$multimedia = new Multimedia();
+			$multimedias = $multimedia->getByPk($unChat->getFkMultimedia());
 			$arraySemiFinal=[];
 			$array=[];
-			foreach($rta as $multi_publi){
-				if($multi_publi->getCodigoPublicacion()==$unaPublicacion->getCodigoPublicacion()){
+			foreach($multimedias as $multi){
+				if($multi->getCodigoMultimedia()==$unChat->getFkMultimedia()){
 					$multimedia = new Multimedia();
-					$rta2=$multimedia->getByPk($multi_publi->getCodigoMultimedia());
+					$rta2=$multimedia->getByPk($multi->getCodigoMultimedia());
 					foreach($rta2 as $multi){
 						$array=[
-							"DIR"=>$multi->getPath()
+							"ID"=>$unChat->getCodigoChat(),
+							"TITULO"=>$unChat->getTitulo(),
+							"ESTADO"=>$unChat->getEstado(),
+							"BORRADO"=>$unChat->getBorrado(),
+							"FECHA_CREACION"=>$unChat->getFechaCreacion(),
+							"FKGRUPO"=>$unChat->getFkGrupo(),
+							"FKUSUARIO"=>$unChat->getFkUsuario(),
+							"FOTO"=>$multi->getPath()
 						];
-						$arraySemiFinal[]=$array;
+						$arrayFinal[]=$array;
 					}
 				}
-			}
-			$array=[
-				"ID"=>$unaPublicacion->getCodigoPublicacion(),
-				"TITULO"=>$unaPublicacion->getTitulo(),
-				"DESCRIPCION"=>$unaPublicacion->getDescripcion(),
-				"FECHA_CREACION"=>$fecha,
-				"BORRADO"=>$unaPublicacion->getBorrado(),
-				"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
-				"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
-				"FOTO"=>$arraySemiFinal,
-			];
-			$arrayFinal[]=$array;
+			}	
 	}
 	echo json_encode($arrayFinal);
 ?> 
