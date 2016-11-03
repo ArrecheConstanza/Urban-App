@@ -1,11 +1,11 @@
 /******************************************MODULOS*********************************************/
 
 var Urban = angular.module('Urban', [
-  'ngRoute',
-  'mobile-angular-ui',
-  'mobile-angular-ui.gestures',
-  'ngFileUpload',
-  'uiGmapgoogle-maps'
+  'ngRoute', //rutas
+  'mobile-angular-ui', //angular
+  'mobile-angular-ui.gestures', //gestos (ej: arrastrar el dedo)
+  'ngFileUpload', //upload imagenes
+  'uiGmapgoogle-maps' //mapa
 ])
 
 /////ADAPTACION DE PANTALLA

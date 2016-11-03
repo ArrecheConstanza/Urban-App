@@ -37,7 +37,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.success(function(data){
 						if(data){
 							var rta=angular.fromJson(data);
-							$scope.datosSQLcomentario_publicacion=rta.reverse();
+							$scope.datosSQLcomentario_publicacion=rta
 						}
 					})
 					.error(function(){

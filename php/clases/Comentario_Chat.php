@@ -119,20 +119,6 @@ class Comentario_Chat{
 		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["BORRADO"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}
 	
-	/*public function ultima_publicacion_creada(){
-		$query = "SELECT ID FROM " . static::$tabla . " ORDER BY ID DESC LIMIT 1";
-		$stmt = DBcnx::getStatement($query);
-		if($stmt->execute()) {
-			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion = new Publicacion;
-				$publicacion->codigo_publicacion = $fila['ID'];
-				$publicacion->cargarDatos($fila);
-			}
-			return $publicacion;
-		}
-		return 0;
-	}*/
-	
 	public function eliminar_comentario_publicacion($array){
 		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);

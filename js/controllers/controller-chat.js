@@ -9,11 +9,14 @@ angular.module('chat').constant( 'config', {
     }
 } );
 
-/** modulo **/
-var basicChat = angular.module( 'BasicChat', ['chat'] );
+/** modulos **/
+var basicChat = angular.module( 'BasicChat', [
+	'chat', //chat
+	'ngFileUpload' //upload imagenes
+] );
 
 /** controller **/
-basicChat.controller( 'BasicController', [ 'Messages', '$scope', '$window', '$location', '$http', function( Messages, $scope, $window, $location, $http ) {
+basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$window', '$location', '$http', function( Messages, Upload, $scope, $window, $location, $http ) {
 	
 	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
 		
@@ -26,7 +29,6 @@ basicChat.controller( 'BasicController', [ 'Messages', '$scope', '$window', '$lo
 		
 		/** nombre de usuario **/
 		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
-		//Messages.user({ name : nombre_usuario });
 
 		/** listar mensajes **/
 		var chatmessages = document.querySelector(".chat-messages");
@@ -43,8 +45,45 @@ basicChat.controller( 'BasicController', [ 'Messages', '$scope', '$window', '$lo
 			Messages.send({ data : chat.textbox });
 			chat.status = "sending";
 			chat.textbox = "";
-			setTimeout( function() { chat.status = "" }, 1200 );
+			setTimeout( function() { chat.status = "" }, 100 ); 
+			
 		};
+		
+		
+		
+		////////
+		/*var titulo=datos_publicacion["TITULO"];
+			titulo.upload = Upload.upload({
+				method: 'POST',
+				url:"php/abm/new.publicacion.php",
+				data: datos_publicacion,
+			})
+			.then(function(response){
+				if(response.data){
+					//modal exito?
+					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+					}
+				}
+				else{
+					//modal error
+				}
+			}
+			,function(response){
+				//modal error
+				
+			});*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		/** volver a listado de chats **/
 		$scope.volver_chats=function(){
