@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/chatear.css">
 
     <title>URBAN</title>
-
+	
     <script src="../js/modulos/bower_components/angular/angular.js"></script>
     <script src="../js/modulos/bower_components/angular-chat/angular-chat.js"></script>
     <script src="../js/controllers/controller-chat.js"></script>
@@ -39,16 +41,17 @@
 
     <div class="chat-container" ng-controller="BasicController as chat">
 
-        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-        <!-- Chat Messages -->
-        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+		<!--header-->
         <div class="chat-messages">
             <div class="chat-header">
 				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
-                <h1>{{ titulo_chat }}<h1>
+                <h1>{{ titulo_chat }}</h1>
+					<img ng-show='FILE.$valid' ngf-src='FILE' class='thumb'>
+					<input class='upload-file'  type='file' ngf-select ng-model='FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
             </div>
 			<div>
+		<!--comentarios chats-->
 				<div ng-repeat="message in chat.messages" class="chat-body">
 					<div class="sent-message-{{ message.self }}">
 						<span class="username">{{ nombre_usuario }}:</span>
@@ -59,9 +62,7 @@
             </div>
         </div>
 
-        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
-        <!-- User Input -->
-        <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+		<!--comentar-->
         <form ng-submit="chat.send()" class="chat-input">
             <input type="text" ng-model="chat.textbox" autofocus>
             <input type="submit" class="send-icon" value=" ">

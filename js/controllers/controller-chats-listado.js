@@ -7,15 +7,6 @@ Urban.controller("chatsListadoCtrl", function ($scope,$http,$location,$window){
 		var id=localStorage.getItem("grupo_seleccionado_urban");
 		var datos="id="+id;
 		
-		/*$scope.listado_chats=[
-			{TITULO:"Seguridad",
-			IMG:"chat_seguridad.png"},
-			{TITULO:"Animales",
-			IMG:"chat_animales.png"},
-			{TITULO:"General",
-			IMG:"chat_general.png"}
-		];*/
-		
 		//pido datos de bdd
 		$http({ 
 			method:"POST",
@@ -36,8 +27,12 @@ Urban.controller("chatsListadoCtrl", function ($scope,$http,$location,$window){
 			// sin internet
 		});
 				
-		$scope.abrir_chat=function(nombre){
-			localStorage.setItem("nombre_chat",nombre);
+		$scope.abrir_chat=function(nombre,id){
+			var grupo={
+				ID:id,
+				NOMBRE:nombre
+			}
+			localStorage.setItem("nombre_chat",angular.toJson(grupo));
 			$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
 	}

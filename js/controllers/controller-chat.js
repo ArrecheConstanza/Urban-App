@@ -21,7 +21,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
 		
 		/** nombre de grupo **/
-		$scope.titulo_chat=localStorage.getItem("nombre_chat");
+		$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE;
+		$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID;
 		
 		var chat = this;
 		chat.status = "";
@@ -41,11 +42,38 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		
 		/** enviar mensaje **/
 		chat.send = function() {
-			console.log(chat.textbox);
+			$scope.comentario=chat.textbox;
 			Messages.send({ data : chat.textbox });
 			chat.status = "sending";
 			chat.textbox = "";
-			setTimeout( function() { chat.status = "" }, 100 ); 
+			setTimeout( function() { chat.status = "" }, 100 );
+			console.log($scope.comentario);
+			datos_chat={
+				CHAT: $scope.id_chat,
+				COMENTARIO: $scope.comentario,
+				FOTO: $scope.FILE
+			}
+			
+			chat.textbox.upload = Upload.upload({
+				method: 'POST',
+				url:"../php/abm/comentar.chat.php",
+				data: datos_chat,
+			})
+			.then(function(response){
+				console.log(response);
+				/*if(response.data){
+					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+					}
+				}
+				else{
+					//modal error
+				}*/
+			}
+			,function(response){
+				//modal error
+				
+			});
 			
 		};
 		

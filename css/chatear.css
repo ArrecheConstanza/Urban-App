@@ -57,6 +57,10 @@ div.chat-messages {
 	background:#eee;
 }
 
+.upload-file {
+    margin-top: .5em!important;
+    margin-right: .5em!important;
+}
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Chat Messages
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */

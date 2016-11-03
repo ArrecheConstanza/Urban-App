@@ -11,7 +11,7 @@
 	require_once('../clases/Comentario_Chat.php');
 	require_once('../clases/Multimedia.php');
 	
-	$chat=new Chat();
+	/*$chat=new Chat();
 	$chat=$chat->all($_POST["id"]);
 	$arrayFinal=array();
 	foreach($chat as $unChat){
@@ -41,5 +41,7 @@
 				}
 			}	
 	}
-	echo json_encode($arrayFinal);
+	echo json_encode($arrayFinal);*/
+	var_dump($_POST);
+	var_dump($_FILE);
 ?> 
