@@ -18,16 +18,16 @@
 		$grupo = new Grupo();
 		$fin=json_decode($grupo->crear_grupo($_POST),true);
 		
-		//eligo el ultimo grupo creado para tener el ID y crear la carpeta, ya que los nombres pueden repetirse pero los ids no
+		//eligo el ultimo grupo creado para tener el ID y crear la carpeta
 		$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
 		
 		if($fin==1){ //grupo creado ok
 
-			//crear carpeta para grupo "grupos/grupo__id"
-			if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo())){
-				mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo());
-				if(!is_dir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo()."/publicaciones")){
-					mkdir("../../img/grupos/".$_POST['NOMBRE']."__".$ultimo_grupo[0]->getCodigoGrupo()."/publicaciones");
+			//crear carpeta para grupo "grupos/id"
+			if(!is_dir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo())){
+				mkdir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo());
+				if(!is_dir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo()."/chats")){
+					mkdir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo()."/chats");
 				}
 			}			
 			
@@ -36,7 +36,7 @@
 				
 				//Guardado de foto en carpeta local
 				$foto = $_FILES['FOTO']['name']; 
-				$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$_POST["NOMBRE"]."__".$ultimo_grupo[0]->getCodigoGrupo().'/'.$foto; //<- este despues se cambia por el de abajo
+				$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$ultimo_grupo[0]->getCodigoGrupo().'/'.$foto; //<- este despues se cambia por el de abajo
 				// $destino='http://urban-app.com.ar/'.$destino; <- para guardarlo en hosting
 				
 				//Guardado de foto en tabla multimedia

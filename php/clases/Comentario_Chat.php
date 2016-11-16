@@ -113,10 +113,10 @@ class Comentario_Chat{
 	}
 
 	public function crear_comentario_chat($array){
-		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,FECHA_CREACION,BORRADO,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
-				VALUES (?,?,?,?,?,?)";
+		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
+				VALUES (?,?,?,?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["BORRADO"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
+		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}
 	
 	public function eliminar_comentario_publicacion($array){

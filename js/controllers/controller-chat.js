@@ -21,8 +21,9 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
 		
 		/** nombre de grupo **/
-		$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE;
-		$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID;
+		$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE; //preguntar si existe sino tirar error
+		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban"); //preguntar si existe sino tirar error
+		$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID; //preguntar si existe sino tirar error
 		
 		var chat = this;
 		chat.status = "";
@@ -47,13 +48,16 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			chat.status = "sending";
 			chat.textbox = "";
 			setTimeout( function() { chat.status = "" }, 100 );
-			console.log($scope.comentario);
+			
+			/**recopilacion de datos**/
 			datos_chat={
-				CHAT: $scope.id_chat,
+				FKCHAT: $scope.id_chat,
+				FKGRUPO: $scope.id_grupo,
 				COMENTARIO: $scope.comentario,
 				FOTO: $scope.FILE
 			}
 			
+			/**Si tiene foto**/
 			chat.textbox.upload = Upload.upload({
 				method: 'POST',
 				url:"../php/abm/comentar.chat.php",
