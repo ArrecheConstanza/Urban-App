@@ -47,8 +47,8 @@
 				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
                 <h1>{{ titulo_chat }}</h1>
-					<img ng-show='FILE.$valid' ngf-src='FILE' class='thumb'>
-					<input class='upload-file'  type='file' ngf-select ng-model='FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
+					<img ng-show='chat.FILE.$valid' ngf-src='FILE' class='thumb'>
+					<input class='upload-file'  type='file' ngf-select ng-model='chat.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
             </div>
 			<div>
 		<!--comentarios chats-->

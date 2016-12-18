@@ -18,8 +18,9 @@
 		$comentario_chat = new Comentario_Chat();
 		$_POST["FECHA_CREACION"]=getDatetimeNow();
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
+	}
 		
-			if(!empty($_FILES)&&$_FILES['FOTO']['name']&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]){ // HAY FOTO
+/*if(!empty($_FILES)&&$_FILES['FOTO']['name']&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]){ // HAY FOTO
 				//busco carpeta de grupo
 				$foto = $_FILES['FOTO']['name'];
 				if(!is_dir("../../img/grupos/".$_POST["FKGRUPO"]."/chats/".$_POST["FKCHAT"])){
@@ -55,5 +56,7 @@
 	else{ //faltan datos
 		echo 0;
 	}	
-
+	*/
+	var_dump($_POST);
+	var_dump($_FILES);
 ?> 

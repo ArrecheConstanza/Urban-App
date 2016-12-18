@@ -3,12 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2016 a las 03:41:05
+-- Tiempo de generación: 18-12-2016 a las 03:52:51
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 7.0.5
-DROP DATABASE IF EXISTS urban;
-CREATE DATABASE urban;
-USE urban;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -88,17 +85,17 @@ CREATE TABLE `chat` (
   `FECHA_CREACION` datetime NOT NULL,
   `FKGRUPO` int(9) UNSIGNED NOT NULL,
   `FKUSUARIO` int(9) UNSIGNED NOT NULL,
-  `FKMULTIMEDIA` INT(9) UNSIGNED 
+  `FKMULTIMEDIA` int(9) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `chat`
 --
 
-INSERT INTO `chat` (`ID`, `TITULO`, `ESTADO`, `BORRADO`, `FECHA_CREACION`, `FKGRUPO`, `FKUSUARIO`) VALUES
-(1, 'Seguridad', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1),
-(2, 'Animales', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1),
-(5, 'General', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1);
+INSERT INTO `chat` (`ID`, `TITULO`, `ESTADO`, `BORRADO`, `FECHA_CREACION`, `FKGRUPO`, `FKUSUARIO`, `FKMULTIMEDIA`) VALUES
+(1, 'Seguridad', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1, 26),
+(2, 'Animales', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1, 27),
+(5, 'General', 'Publico', 'No', '2016-10-26 00:00:00', 1, 1, 28);
 
 -- --------------------------------------------------------
 
@@ -122,11 +119,18 @@ CREATE TABLE `comentario_chat` (
   `ID` int(9) UNSIGNED NOT NULL,
   `COMENTARIO` text NOT NULL,
   `FECHA_CREACION` datetime NOT NULL,
+  `BORRADO` enum('Si','No') NOT NULL DEFAULT 'No',
   `FKUSUARIO` int(9) UNSIGNED NOT NULL,
-  `BORRADO` ENUM('Si','No') NOT NULL DEFAULT 'No',
   `FKCHAT` int(9) UNSIGNED NOT NULL,
   `FKMULTIMEDIA` int(9) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario_chat`
+--
+
+INSERT INTO `comentario_chat` (`ID`, `COMENTARIO`, `FECHA_CREACION`, `BORRADO`, `FKUSUARIO`, `FKCHAT`, `FKMULTIMEDIA`) VALUES
+(1, 'gnrklegr', '2016-11-14 15:47:27', 'No', 1, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -162,7 +166,8 @@ INSERT INTO `comentario_publicacion` (`ID`, `COMENTARIO`, `BORRADO`, `FKUSUARIO`
 (1, 'lalalalal', 'No', 1, 13, '2016-09-22 16:21:45'),
 (0, 'dswdwd', 'No', 1, 11, '2016-10-06 00:46:25'),
 (0, 'lllllll', 'No', 1, 11, '2016-10-06 01:05:45'),
-(0, 'fiew fewjf ewuifh ewiuf ew fuiewu fhew feiw', 'No', 1, 11, '2016-10-06 01:19:34');
+(0, 'fiew fewjf ewuifh ewiuf ew fuiewu fhew feiw', 'No', 1, 11, '2016-10-06 01:19:34'),
+(0, 'kgregmreg', 'No', 1, 11, '2016-11-14 15:19:28');
 
 -- --------------------------------------------------------
 
@@ -305,8 +310,8 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`ID`, `DIR`, `BORRADO`) VALUES
-(1, 'C:/xampp/htdocs/Urban-App/img/grupos/Vecinos de washington__1/delete_hover.png', 'No'),
-(2, 'C:/xampp/htdocs/Urban-App/img/grupos/echeverria y donado torre__2/splash.jpg', 'No'),
+(1, 'C:/xampp/htdocs/Urban-App/img/grupos/1/delete_hover.png', 'No'),
+(2, 'C:/xampp/htdocs/Urban-App/img/grupos/2/splash.jpg', 'No'),
 (3, 'C:/xampp/htdocs/Urban-App/img/grupos/echeverria y donado torre__3/splash.jpg', 'No'),
 (4, 'C:/xampp/htdocs/Urban-App/img/grupos/mas__4/logo.png', 'No'),
 (5, 'C:/xampp/htdocs/Urban-App/img/grupos/LLLL__5/minilogo.png', 'No'),
@@ -328,8 +333,11 @@ INSERT INTO `multimedia` (`ID`, `DIR`, `BORRADO`) VALUES
 (21, 'C:/xampp/htdocs/Urban-App/img/grupos/lalala__12/animal.png', 'No'),
 (22, 'C:/xampp/htdocs/Urban-App/img/grupos/otro grupo mas__13/animal.png', 'No'),
 (23, 'C:/xampp/htdocs/Urban-App/img/grupos/mas mas mas__14/animal.png', 'No'),
-(24, 'C:/xampp/htdocs/Urban-App/img/grupos/papa__15/animal.png', 'No'),
-(25, 'C:/xampp/htdocs/Urban-App/img/publicaciones/16/muestra.jpg', 'No');
+(24, 'C:/xampp/htdocs/Urban-App/img/grupos/15/animal.png', 'No'),
+(25, 'C:/xampp/htdocs/Urban-App/img/publicaciones/16/muestra.jpg', 'No'),
+(26, 'C:/xampp/htdocs/Urban-App/img/icons/png/chat_seguridad.png', 'No'),
+(27, 'C:/xampp/htdocs/Urban-App/img/icons/png/chat_animales.png', 'No'),
+(28, 'C:/xampp/htdocs/Urban-App/img/icons/png/chat_general.png', 'No');
 
 -- --------------------------------------------------------
 
@@ -540,7 +548,8 @@ ALTER TABLE `chat`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FKGRUPO` (`FKGRUPO`),
   ADD KEY `FKUSUARIO` (`FKUSUARIO`),
-  ADD KEY `index_titulo_chat` (`TITULO`);
+  ADD KEY `index_titulo_chat` (`TITULO`),
+  ADD KEY `chat_ibfk_3` (`FKMULTIMEDIA`);
 
 --
 -- Indices de la tabla `chat_list_item`
@@ -726,12 +735,12 @@ ALTER TABLE `anuncio`
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `comentario_chat`
 --
 ALTER TABLE `comentario_chat`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `denuncia_evento`
 --
@@ -766,7 +775,7 @@ ALTER TABLE `list_item`
 -- AUTO_INCREMENT de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `negocio_servicio`
 --
@@ -812,6 +821,7 @@ ALTER TABLE `anuncio`
 ALTER TABLE `asistencia`
   ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`FKUSUARIO`) REFERENCES `usuario` (`ID`),
   ADD CONSTRAINT `asistencia_ibfk_2` FOREIGN KEY (`FKEVENTO`) REFERENCES `evento` (`ID`);
+
 --
 -- Filtros para la tabla `chat`
 --
@@ -819,7 +829,6 @@ ALTER TABLE `chat`
   ADD CONSTRAINT `chat_ibfk_1` FOREIGN KEY (`FKGRUPO`) REFERENCES `grupo` (`ID`),
   ADD CONSTRAINT `chat_ibfk_2` FOREIGN KEY (`FKUSUARIO`) REFERENCES `usuario` (`ID`),
   ADD CONSTRAINT `chat_ibfk_3` FOREIGN KEY (`FKMULTIMEDIA`) REFERENCES `multimedia` (`ID`);
-
 
 --
 -- Filtros para la tabla `chat_list_item`
