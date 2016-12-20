@@ -18,6 +18,7 @@
 	
 	<!-- script para upload de imagenes -->
 	<script>
+	
 	FileAPI = {
         //only one of jsPath or jsUrl.
         jsPath: '../js/FileAPI.min.js/',
@@ -47,8 +48,33 @@
 				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
                 <h1>{{ titulo_chat }}</h1>
-					<img ng-show='chat.FILE.$valid' ngf-src='FILE' class='thumb'>
-					<input class='upload-file'  type='file' ngf-select ng-model='chat.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
+					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' >
+					<div class="form-group" >
+						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i>
+						<div class="overlay" ng-hide="myForm.file.$valid">
+							<div>
+								<img ng-hide="myForm.file.$valid" ngf-src="picFile" id="upload_chat"> 
+								<button ng-click="picFile = null" ng-show="picFile">Quitar</button>
+								<button ng-show="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button>
+			 
+								<span ng-show="picFile.result">Upload Exitoso</span>
+								<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+							</div>
+						</div>
+					</div>
+				<!--<form name="chat_img">
+				
+				CLASE:
+				http://localhost:8080/mas/0mas/backup%20de%20wamp/mas/Tecnologia_de_las_Comunicaciones_III/Clase%2014/Clase%2014/angular_base/
+				
+				
+				
+					<!--<input  type='file' ngf-select ng-model='FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'><!-- class='upload-file' 
+					<img ng-show='chat_img.FILE.$valid' ngf-src='FILE' class='thumb'>
+					</form>
+					<!--<input type="file" ngf-select ng-model="imagen" name="imagen" accept="image/*" ngf-max-size="2MB">
+						<img ng-show="myForm.imagen.$valid" ngf-src="imagen" class="thumb"> 
+						<button ng-click="imagen = null" ng-show="imagen">Quitar</button>-->
             </div>
 			<div>
 		<!--comentarios chats-->

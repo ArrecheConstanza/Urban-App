@@ -119,7 +119,7 @@ class Comentario_Chat{
 		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}
 	
-	public function eliminar_comentario_publicacion($array){
+	public function eliminar_comentario_chat($array){
 		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["ID"]]);
