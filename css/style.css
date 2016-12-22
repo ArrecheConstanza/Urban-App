@@ -125,4 +125,21 @@ footer{
 	max-height:40px;
 }
 
-
+/****overlay****
+.overlay{
+	top:0!important;
+	left:0!important;
+	right:0!important;
+	bottom:0!important;
+	width:100vw!important;
+	height:100vh!important;
+	background:black!important;
+	float:left!important;
+}
+.overlay>div{
+	background:rgba(0,0,0,0.8)!important;
+}
+#upload_chat{
+	width:90vw!important;
+}
+*/

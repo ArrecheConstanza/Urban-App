@@ -49,19 +49,6 @@
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
                 <h1>{{ titulo_chat }}</h1>
 					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' >
-					<div class="form-group" >
-						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i>
-						<div class="overlay" ng-hide="myForm.file.$valid">
-							<div>
-								<img ng-hide="myForm.file.$valid" ngf-src="picFile" id="upload_chat"> 
-								<button ng-click="picFile = null" ng-show="picFile">Quitar</button>
-								<button ng-show="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button>
-			 
-								<span ng-show="picFile.result">Upload Exitoso</span>
-								<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-							</div>
-						</div>
-					</div>
 				<!--<form name="chat_img">
 				
 				CLASE:
@@ -95,7 +82,21 @@
             <input type="submit" value=" "
                 class="sent-indicator {{ chat.status }}">
         </form>
-
+		
+		<!--overlay-->
+		<!--<div class="form-group" >
+						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i>
+						<div class="overlay" ng-hide="myForm.file.$valid">
+							<div>-->
+									<img ng-hide="myForm.file.$valid" ngf-src="picFile" class="img-upload"> 
+									<button ng-click="picFile = null" ng-show="picFile">Quitar</button>
+									<button ng-show="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button>
+			 <!--
+								<span ng-show="picFile.result">Upload Exitoso</span>
+								<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+							</div>
+						</div>
+					</div>-->
     </div>
 
 </body>
