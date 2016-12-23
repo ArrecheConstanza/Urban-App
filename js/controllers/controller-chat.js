@@ -28,7 +28,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		var chat = this;
 		chat.status = "";
 		chat.messages = [];
-				
+
+		
 		/** nombre de usuario **/
 		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 

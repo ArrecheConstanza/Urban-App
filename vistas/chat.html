@@ -42,39 +42,38 @@
 
     <div class="chat-container" ng-controller="BasicController as chat">
 
+		<!--overlay-->
+		
+		<div ng-hide="myForm.file.$valid" class="overlay chat-input ng-pristine ng-valid chat-header">
+			<div>
+				<img ng-hide="myForm.file.$valid" ngf-src="picFile" class="img-upload"> 
+				<!-- <button ng-click="picFile = null" ng-show="picFile">Quitar</button>
+				<button ng-hide="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button> -->
+			</div>
+		</div>
+		
 		<!--header-->
         <div class="chat-messages">
             <div class="chat-header">
 				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
 				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
                 <h1>{{ titulo_chat }}</h1>
-					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' >
-				<!--<form name="chat_img">
+					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' ng-show="!picFile">
+					<button ngf-select class='delete-file' ng-show="picFile" ng-click="picFile = null"></button><!--rever como no cliquear las dos cosas a la vez!-->
+				<!--CLASE:http://localhost:8080/mas/0mas/backup%20de%20wamp/mas/Tecnologia_de_las_Comunicaciones_III/Clase%2014/Clase%2014/angular_base/
+				-->
 				
-				CLASE:
-				http://localhost:8080/mas/0mas/backup%20de%20wamp/mas/Tecnologia_de_las_Comunicaciones_III/Clase%2014/Clase%2014/angular_base/
-				
-				
-				
-					<!--<input  type='file' ngf-select ng-model='FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'><!-- class='upload-file' 
-					<img ng-show='chat_img.FILE.$valid' ngf-src='FILE' class='thumb'>
-					</form>
-					<!--<input type="file" ngf-select ng-model="imagen" name="imagen" accept="image/*" ngf-max-size="2MB">
-						<img ng-show="myForm.imagen.$valid" ngf-src="imagen" class="thumb"> 
-						<button ng-click="imagen = null" ng-show="imagen">Quitar</button>-->
             </div>
-			<div>
-		<!--comentarios chats-->
-				<div ng-repeat="message in chat.messages" class="chat-body">
-					<div class="sent-message-{{ message.self }}">
-						<span class="username">{{ nombre_usuario }}:</span>
-						{{ message.data }}
+			<!--comentarios chats-->
+					<div ng-repeat="message in chat.messages" class="chat-body">
+						<div class="sent-message-{{ message.self }}">
+							<span class="username">{{ nombre_usuario }}:</span>
+							{{ message.data }}
+						</div>
+						<div class="clear"></div>
 					</div>
-					<div class="clear"></div>
-				</div>
-            </div>
         </div>
-
+		
 		<!--comentar-->
         <form ng-submit="chat.send()" class="chat-input">
             <input type="text" ng-model="chat.textbox" autofocus>
@@ -83,21 +82,7 @@
                 class="sent-indicator {{ chat.status }}">
         </form>
 		
-		<!--overlay-->
-		<!--<div class="form-group" >
-						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i>
-						<div class="overlay" ng-hide="myForm.file.$valid">
-							<div>-->
-									<img ng-hide="myForm.file.$valid" ngf-src="picFile" class="img-upload"> 
-									<button ng-click="picFile = null" ng-show="picFile">Quitar</button>
-									<button ng-show="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button>
-			 <!--
-								<span ng-show="picFile.result">Upload Exitoso</span>
-								<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-							</div>
-						</div>
-					</div>-->
+		
     </div>
-
 </body>
 </html>

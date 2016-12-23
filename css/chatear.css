@@ -21,9 +21,16 @@ button, input[type="submit"] {
 .clear { clear: both }
 
 .img-upload{
-	max-width:90vw;
+	max-width:95vw;
 }
-
+.overlay{
+	text-align:center!important;
+	z-index:0!important;
+}
+.overlay div img{
+	padding-top:20vh;
+	padding-bottom:28vh;
+}
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 Layout
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -116,6 +123,7 @@ div.chat-header {
 .chat-body:nth-child(1){
 	z-index:2;
 	margin-top:3.3em;
+	background:#eeeeee!important;
 }
 div.sent-message-false {
     float: left;
