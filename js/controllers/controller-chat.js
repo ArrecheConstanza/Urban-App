@@ -43,7 +43,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		});
 		
 		/** enviar mensaje **/
-		chat.send = function() {
+		chat.send = function(file) {
+			console.log(file);
 			$scope.comentario=chat.textbox;
 			Messages.send({ data : chat.textbox });
 			chat.status = "sending";
@@ -55,11 +56,12 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				FKCHAT: $scope.id_chat,
 				FKGRUPO: $scope.id_grupo,
 				COMENTARIO: $scope.comentario,
-				FOTO: $scope.FILE
+				FOTO: file
 			}
 			
+			console.log(datos_chat);
 			/**Si tiene foto**/
-			chat.textbox.upload = Upload.upload({
+			/*chat.textbox.upload = Upload.upload({
 				method: 'POST',
 				url:"../php/abm/comentar.chat.php",
 				data: datos_chat,
@@ -73,12 +75,12 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				}
 				else{
 					//modal error
-				}*/
+				}*
 			}
 			,function(response){
 				//modal error
 				
-			});
+			});*/
 			
 		};
 		
