@@ -107,6 +107,21 @@ div.chat-header h1{
 	display:inline-block;
 	vertical-align:middle;
 }
+.file-inputs:nth-child(1){
+	margin-bottom:0;
+}
+.file-inputs:nth-child(2){
+	float: right;
+    top: 0;
+    right: 0;
+}
+.file-inputs{
+	display:inline-block;
+}
+.form-grupo{
+	margin-bottom: 0!important;
+	margin-top:.1em;
+}
 div.chat-header {
     text-align: left;
     font-size: 1.5em;

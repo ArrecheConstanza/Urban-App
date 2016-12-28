@@ -46,20 +46,26 @@
 		
 		<div ng-hide="myForm.file.$valid" class="overlay chat-input ng-pristine ng-valid chat-header">
 			<div>
-				<img ng-hide="myForm.file.$valid" ngf-src="picFile" class="img-upload"> 
-				<!-- <button ng-click="picFile = null" ng-show="picFile">Quitar</button>
-				<button ng-hide="myForm.file.$valid" type="button" class="btn-primary" ng-click="uploadPic(picFile)">Enviar</button> -->
+				<img ng-hide="myForm.file.$valid||!picFile||myForm.file.$valid&&!picFile" ngf-src="picFile" class="img-upload"> 
 			</div>
 		</div>
 		
 		<!--header-->
         <div class="chat-messages">
             <div class="chat-header">
-				<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
-				<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
-                <h1>{{ titulo_chat }}</h1>
-					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' ng-show="!picFile">
-					<button ngf-select class='delete-file' ng-show="picFile" ng-click="picFile = null"></button><!--rever como no cliquear las dos cosas a la vez!-->
+				<div class="form-group file-inputs">
+					<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="volver_chats()"/>
+					<img src="../img/icons/png/ofertas.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
+					<h1>{{ titulo_chat }}</h1>
+				</div>
+				<div class="form-group file-inputs">
+					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' ng-hide="picFile">
+ 						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i><!--convertir mensaje a modal-->
+						<img ng-show="myForm.file.$valid" ngf-src="picFile" class="thumb"> 
+						<button ng-click="picFile = null" ng-show="picFile" class='delete-file'></button>
+						<!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
+				</div>
+					
 				<!--CLASE:http://localhost:8080/mas/0mas/backup%20de%20wamp/mas/Tecnologia_de_las_Comunicaciones_III/Clase%2014/Clase%2014/angular_base/
 				-->
 				
