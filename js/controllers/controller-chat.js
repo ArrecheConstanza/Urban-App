@@ -29,7 +29,6 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		chat.status = "";
 		chat.messages = [];
 
-		
 		/** nombre de usuario **/
 		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 
@@ -39,16 +38,17 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			chat.messages.push(msg);
 			setTimeout( function() {
 				chatmessages.scrollTop = chatmessages.scrollHeight;
-			}, 10 );
+			}, 1 );
 		});
 		
 		/** enviar mensaje **/
 		chat.send = function(file) {
-			console.log(file);
+			console.log(chat);
 			$scope.comentario=chat.textbox;
 			Messages.send({ data : chat.textbox });
 			chat.status = "sending";
 			chat.textbox = "";
+			$scope.picFile = null;
 			setTimeout( function() { chat.status = "" }, 100 );
 			
 			/**recopilacion de datos**/
@@ -59,28 +59,28 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				FOTO: file
 			}
 			
-			console.log(datos_chat);
+			//console.log(datos_chat);
 			/**Si tiene foto**/
-			/*chat.textbox.upload = Upload.upload({
+			chat.textbox.upload = Upload.upload({
 				method: 'POST',
 				url:"../php/abm/comentar.chat.php",
 				data: datos_chat,
 			})
 			.then(function(response){
 				console.log(response);
-				/*if(response.data){
+				if(response.data){
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
 					}
 				}
 				else{
 					//modal error
-				}*
+				}
 			}
 			,function(response){
 				//modal error
 				
-			});*/
+			});
 			
 		};
 		

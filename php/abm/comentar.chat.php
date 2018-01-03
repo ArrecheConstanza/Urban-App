@@ -13,14 +13,11 @@
 	
 	/****** Creo comentario de chat ******/
 	
-	if(isset($_SESSION["s_id"])&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]&&$_POST["COMENTARIO"]){ //si tengo todos los datos
-	
+	if(isset($_SESSION["s_id"])&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]){ 
 		$comentario_chat = new Comentario_Chat();
 		$_POST["FECHA_CREACION"]=getDatetimeNow();
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
-	}
-		
-/*if(!empty($_FILES)&&$_FILES['FOTO']['name']&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]){ // HAY FOTO
+		if(!empty($_FILES)&&$_FILES['FOTO']['name']&&$_POST["FKCHAT"]&&$_POST["FKGRUPO"]){ // HAY FOTO
 				//busco carpeta de grupo
 				$foto = $_FILES['FOTO']['name'];
 				if(!is_dir("../../img/grupos/".$_POST["FKGRUPO"]."/chats/".$_POST["FKCHAT"])){
@@ -47,16 +44,14 @@
 					echo $rta;
 					return 0;
 				}
-			}
-			else{ //NO HAY FOTO
-				$rta=$comentario_chat->crear_comentario_chat($_POST);
-				echo $rta;
-			}
+		}
+		else if(isset($_POST["COMENTARIO"])){ //NO HAY FOTO
+			$rta=$comentario_chat->crear_comentario_chat($_POST);
+			echo $rta;
+		}
 	}
 	else{ //faltan datos
 		echo 0;
 	}	
-	*/
-	var_dump($_POST);
-	var_dump($_FILES);
+	
 ?> 
