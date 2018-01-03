@@ -37,7 +37,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.success(function(data){
 						if(data){
 							var rta=angular.fromJson(data);
-							$scope.datosSQLcomentario_publicacion=rta
+							$scope.datosSQLcomentario_publicacion=rta;
 						}
 					})
 					.error(function(){
@@ -56,13 +56,14 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.success(function(data){
 						if(data){
 							//modal ok?
+							location.reload();
 						}
 						else{
-							//No se pudo comentar
+							//mensaje No se pudo comentar
 						}
 					})
 					.error(function(){
-						//Sin conexion
+						//mensaje Sin conexion
 					});
 				}
 				
