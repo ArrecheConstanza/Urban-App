@@ -14,11 +14,15 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/nuevo-grupo.html',
 			controller : 'newGrupoCtrl'
 		})
+		.when('/newChat', {
+			templateUrl : 'vistas/nuevo-chat.html',
+			controller : 'chatsListadoCtrl'
+		})
 		.when('/publicaciones/:id', {
 			templateUrl : 'vistas/publicaciones-listado.html',
 			controller : 'publicacionesListadoCtrl'
 		})
-		.when('/chats', {
+		.when('/chats/:id', {
 			templateUrl : 'vistas/chats-listado.html',
 			controller : 'chatsListadoCtrl'
 		})
@@ -26,7 +30,7 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/chat.html',
 			controller : 'chat'
 		})*/
-		.when('/encuestas', {
+		.when('/encuestas/:id', {
 			templateUrl : 'vistas/encuestas-listado.html',
 			//controller : 'encuestasListadoCtrl'
 		})

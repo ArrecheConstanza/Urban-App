@@ -1,10 +1,11 @@
 /********************************************CONTROLLER SIDEBAR ***************************************/
 
-Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
+Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeParams) {
 	
 	if(localStorage.getItem("user_urban")!=null){
 		
 		//nombre de usuario
+		
 		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE;
 		
 		var datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
@@ -29,11 +30,13 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 				})
 				.success(function(data, status){
 					document.getElementById("nombreGrupo").getElementsByTagName("p")[0].innerHTML=data[0].NOMBRE;
+					$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 				})
 				.error(function(){
 					//mensaje Sin conexion 
 				});
 			}
+			//$scope.$apply();
 		}
 		
 		//listar grupos
@@ -72,6 +75,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window) {
 				if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 					$scope.estado = {};
 					$scope.estado.activo = localStorage.getItem("grupo_seleccionado_urban");
+					//$scope.$apply();
 				}
 				else{
 					//error ningun grupo activo

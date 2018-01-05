@@ -67,6 +67,8 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		})
 		.success(function(data, status){
 			$scope.nombre_footer=data[0].NOMBRE;
+			$scope.id_grupo=$routeParams.id;
+
 		})
 		.error(function(){
 			//mensaje Sin conexion 
