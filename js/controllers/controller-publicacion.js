@@ -12,6 +12,7 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+			console.log(data);
 			if(data!="0"){
 				todos={
 					ID : "0",
