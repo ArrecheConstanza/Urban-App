@@ -12,13 +12,19 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			console.log(data);
 			if(data!="0"){
 				todos={
 					ID : "0",
 					NOMBRE : "Todos"
 				};
 				var rta=angular.fromJson(data);
+				//genero array para guardar todos los grupos en caso de que se quiera publicar en todos los grupos
+					var id_grupo=[];
+					for (var i=0;i<data.length;i++){
+						id_grupo.push(data[i].ID);
+					}
+					$scope.grupos=id_grupo;
+				//
 				rta.push(todos);
 				$scope.listado_grupos=rta.reverse();
 			}
@@ -33,12 +39,14 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 		$scope.crear_publicacion=function(publicacion){
 			datos_publicacion={
 				FKGRUPO: publicacion.FKGRUPO,
+				GRUPOS: $scope.grupos, //en el caso de seleccionar todos los grupos
 				FOTO: publicacion.FILE,
 				TITULO: publicacion.TITULO,
 				DESCRIPCION: publicacion.DESCRIPCION
 			}
 			
 			//FALTA validacion de datos 
+			
 			
 			var titulo=datos_publicacion["TITULO"];
 			titulo.upload = Upload.upload({
