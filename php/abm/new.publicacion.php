@@ -22,6 +22,7 @@
 		if(!$_POST["FKGRUPO"]){ 
 			$rta;
 			$ban=0;
+			$carpeta;
 			for($i=0;$i<count($_POST["GRUPOS"]);$i++){
 				$_POST["FKGRUPO"]=$_POST["GRUPOS"][$i];
 				$rta=$publicacion->crear_publicacion($_POST);
@@ -31,6 +32,7 @@
 				}
 				else{
 					if(!empty($_FILES)&&$_FILES['FOTO']['name']){ //hay foto
+						
 						//creo carpeta para foto
 						if(!$ban){
 							$carpeta=$publicacion->ultima_publicacion_creada();
@@ -48,34 +50,37 @@
 								echo $rta2; //error al almacenar foto en bdd
 								return 0;
 							}
-							else{
-								//tabla de relacion publicacion_multimedia
-								$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
-								$array=[];
-								$array["id_publicacion"]=$carpeta;
-								$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
-								$publicacion_multimedia = new Publicacion_Multimedia();
-								$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
-								if(!$rta3){
-									echo $rta3; //error al crear foto en publicacion
-									return 0;
-								}
-							}
 							$ban=1;
 						}
-						//carpeta ya creada con foto almacenada, asigno esa carpeta a la nueva publicacion
+						//primera publicacion relacionada con la tabla publicacion_multimedia
+						if(!$i){ 
+							$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
+							$array=[];
+							$array["id_publicacion"]=$carpeta;
+							$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
+							$publicacion_multimedia = new Publicacion_Multimedia();
+							$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
+							if(!$rta3){
+								echo $rta3; //error al crear foto en publicacion
+								return 0;
+							}
+						}
+						//el resto de las publicaciones relacionadas con la tabla publicacion_multimedia
 						else{
-								//tabla de relacion publicacion_multimedia
-								$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
-								$array=[];
-								$array["id_publicacion"]=$_POST["FKGRUPO"];
-								$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
-								$publicacion_multimedia = new Publicacion_Multimedia();
-								$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
-								if(!$rta3){
-									echo $rta3; //error al crear foto en publicacion
-									return 0;
-								}
+							$carpeta=intval($carpeta);
+							$carpeta++;
+							var_dump($carpeta."aca la carpetaaaa");
+							$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
+							$array=[];
+							$array["id_publicacion"]=$carpeta;
+							$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
+							$publicacion_multimedia = new Publicacion_Multimedia();
+							$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
+							if(!$rta3){ 
+								echo $rta3; //error al crear foto en publicacion
+								return 0;
+							} 
+							
 						}
 					}
 				}
