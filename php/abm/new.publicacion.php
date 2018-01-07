@@ -69,7 +69,6 @@
 						else{
 							$carpeta=intval($carpeta);
 							$carpeta++;
-							var_dump($carpeta."aca la carpetaaaa");
 							$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
 							$array=[];
 							$array["id_publicacion"]=$carpeta;
