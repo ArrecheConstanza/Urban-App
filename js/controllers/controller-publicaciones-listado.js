@@ -13,7 +13,6 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
 					for(var i in data){
 						if(!data[i].FOTO.length){
 							data[i].FOTO="/urban-app/img/fotos/muestra.jpg";
@@ -23,7 +22,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 							var foto=data[i].FOTO[0]["DIR"].substring(26,data[i].FOTO[0]["DIR"].length);
 							data[i].FOTO=foto;
 						}
-					}
+					} 
 					var rta=angular.fromJson(data);
 					$scope.datosSQLpublicaciones=rta.reverse();
 				})

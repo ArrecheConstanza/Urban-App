@@ -68,7 +68,7 @@
 								//tabla de relacion publicacion_multimedia
 								$ultima_multimedia=Multimedia::ultima_multimedia_creada(); 
 								$array=[];
-								$array["id_publicacion"]=$carpeta;
+								$array["id_publicacion"]=$_POST["FKGRUPO"];
 								$array["id_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
 								$publicacion_multimedia = new Publicacion_Multimedia();
 								$rta3=$publicacion_multimedia->crear_publicacion_multimedia($array);
