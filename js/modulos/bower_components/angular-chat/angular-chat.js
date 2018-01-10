@@ -68,13 +68,14 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
              response.data.m.forEach(function(msg){
                 // Ignore messages without User Data
                 // TODO
+				console.log("__________"+msg.d);
                 if (!(msg.d && msg.u && msg.u.id)) return;
                 fn({
                     data : msg.d
                 ,   id   : msg.p.t
                 ,   user : msg.u
                 ,   self : msg.u.id == ChatCore.user().id
-                });
+                }); 
              });
          }
 
@@ -113,7 +114,7 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     var pubkey = config.pubnub['publish-key']
     ,   subkey = config.pubnub['subscribe-key']
-    ,   user   = { id : uuid(), name : 'Nameless' };
+    ,   user   = { id : uuid(), name : nombre() };
 
     var ChatCore = this;
 
@@ -219,10 +220,15 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
 // UUID
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 function uuid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+    /* return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
     function(c) {
         var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
         return v.toString(16);
-    });
+    }); */
+	return angular.fromJson(localStorage.getItem("user_urban")).ID;
+}
+function nombre() {
+
+	return angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 }
 

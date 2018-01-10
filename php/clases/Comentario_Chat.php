@@ -114,7 +114,7 @@ class Comentario_Chat{
 
 	public function crear_comentario_chat($array){
 		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
-				VALUES (?,?,?,?,?)";
+				VALUES (?,?,?,?,?)";	
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}
@@ -124,6 +124,28 @@ class Comentario_Chat{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["ID"]]);
 	}
+		
+	public static function listado_comentarios($id){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKCHAT='$id' " ;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$comentario_chat = new Comentario_Chat;
+				$comentario_chat->codigo_comentario_chat = $fila['ID'];
+				$comentario_chat->comentario = $fila['COMENTARIO'];
+				$comentario_chat->fecha_creacion = $fila['FECHA_CREACION'];
+				$comentario_chat->borrado = $fila['BORRADO'];
+				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];
+				$comentario_chat->fk_chat = $fila['FKCHAT'];
+				//$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$comentario_chat->cargarDatos($fila);
+				$salida[] = $comentario_chat;
+			}
+		}
+		return $salida;
+	}
+
 }
 
 ?>
