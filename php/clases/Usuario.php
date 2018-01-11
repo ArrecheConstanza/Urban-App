@@ -99,12 +99,21 @@ class Usuario{
 	}
 	
 	public function getByPk($id){
-		$this->codigo_usuario = $id;
+	//$this->codigo_usuario = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					WHERE ID = ?";
+					WHERE ID = $id";
 		$stmt = DBcnx::getStatement($query);
 		$stmt->execute([$id]);
-		$this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		return /* $this->cargarDatos( */$stmt->fetch(PDO::FETCH_ASSOC)/* ) */;
+	}
+	
+	public function getNombreUsuario($id){
+	//$this->codigo_usuario = $id;
+		$query = "SELECT NOMBRE FROM " . static::$tabla . "
+					WHERE ID = $id";
+		$stmt = DBcnx::getStatement($query);
+		$stmt->execute([$id]);
+		return /* $this->cargarDatos( */$stmt->fetch(PDO::FETCH_ASSOC)/* ) */;
 	}
 	
 	public function cargarDatos($fila){
@@ -154,7 +163,7 @@ class Usuario{
 		$json=json_encode($array);
 		return $json;
 	}
-	/*public static function all(){
+	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla;
 		$stmt = DBcnx::getStatement($query);
@@ -172,5 +181,5 @@ class Usuario{
 			}
 		}
 		return $salida;
-	}*/
+	}
 }

@@ -49,16 +49,23 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+			console.log(data);
 				var comentarios_chat=[];
-				//console.log(data);
+				var self; 
 				for (var i=0;i<data.length;i++){
+					if(data[i].FKUSUARIO==angular.fromJson(localStorage.getItem("user_urban")).ID){
+						self=true;
+					}
+					else{
+						self=false;
+					}
 					var comentario={
 						'data': data[i].COMENTARIO,
 						'user': {
 							'id': data[i].FKUSUARIO,
-							'name':'random'
+							'name':data[i].NOMBRE_USUARIO
 						},
-						'self':true,
+						'self':self,
 						'$$hashKey':'object:'+data[i].ID,
 					}
 					comentarios_chat.push(comentario);
@@ -73,12 +80,9 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		var chatmessages = document.querySelector(".chat-messages");
 				Messages.receive(function(msg){
 					chat.messages.push(msg);
-					//console.log(msg)
-					//console.log(chat.messages);
-					/* setTimeout( function() {
+					setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
-					}, 1 );  */
-					//console.log(chat);
+					}, 1 );  
 				});
 				 
 			/** enviar mensaje **/

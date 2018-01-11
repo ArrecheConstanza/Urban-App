@@ -73,7 +73,7 @@
 			<!--comentarios chats-->
 					<div ng-repeat="message in chat.messages track by $index" class="chat-body">
 						<div class="sent-message-{{ message.self }}">
-							<span class="username">{{ nombre_usuario }}:</span>
+							<span class="username">{{ message.user.name }}:</span>
 							{{ message.data }}
 						</div>
 						<div class="clear"></div>

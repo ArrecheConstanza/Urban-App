@@ -15,8 +15,11 @@
 	$comentario_chat=new Comentario_Chat();
 	$comentario_chat=$comentario_chat->listado_comentarios($_POST["id_chat"]);
 	$arrayFinal=array();
+	
 	foreach($comentario_chat as $un_comentario_chat){
-			
+		$usuario=new Usuario();
+		$user=$usuario->getByPk(intval($un_comentario_chat->getFkUsuario()));
+		
 			/*LOGICA DE	MULTIMEDIA PARA COMENTARIO CHAT 
 			$publicacion_multimedia = new Publicacion_Multimedia();
 			$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
@@ -35,6 +38,7 @@
 				}
 			}*/
 			//['COMENTARIO','FECHA_CREACION','BORRADO','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
+			
 			$array=[
 				"ID"=>$un_comentario_chat->getCodigoComentarioChat(),
 				"COMENTARIO"=>$un_comentario_chat->getComentario(),
@@ -42,10 +46,11 @@
 				"BORRADO"=>$un_comentario_chat->getBorrado(),
 				"FKUSUARIO"=>$un_comentario_chat->getFkUsuario(),
 				"FKCHAT"=>$un_comentario_chat->getFkChat(),
+				"NOMBRE_USUARIO"=>$user["NOMBRE"]." ".$user['APELLIDO'],
 				
 				//"FOTO"=>$arraySemiFinal,
 			];
-			$arrayFinal[]=$array;
+			$arrayFinal[]=$array;  
 	} 
 	echo json_encode($arrayFinal);
 ?> 
