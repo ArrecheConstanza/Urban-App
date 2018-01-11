@@ -52,12 +52,12 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.send = function(message) {
         if (!message.data) return;
-
         ChatCore.publish({
             channel : message.to || 'global'
         ,   message : message.data
         ,   meta    : ChatCore.user()
         });
+		console.log(ChatCore);
     };
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -68,12 +68,12 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
              response.data.m.forEach(function(msg){
                 // Ignore messages without User Data
                 // TODO
-				console.log("__________"+msg.d);
+				//console.log(msg);
                 if (!(msg.d && msg.u && msg.u.id)) return;
                 fn({
-                    data : msg.d
-                ,   id   : msg.p.t
-                ,   user : msg.u
+                    data : msg.d //mensaje
+                ,   id   : msg.p.t //id mensaje
+                ,   user : msg.u //usuario (id/nombre)
                 ,   self : msg.u.id == ChatCore.user().id
                 }); 
              });
@@ -228,7 +228,6 @@ function uuid() {
 	return angular.fromJson(localStorage.getItem("user_urban")).ID;
 }
 function nombre() {
-
 	return angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 }
 

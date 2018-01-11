@@ -49,16 +49,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-				/* var rta=angular.fromJson(data);
-					var id_grupo=[];
-					for (var i=0;i<data.length;i++){
-						id_grupo.push(data[i].ID);
-					}
-					$scope.grupos=id_grupo;
-				rta.push(todos);
-				$scope.listado_grupos=rta.reverse(); */
 				var comentarios=[];
-				console.log(data);
+				//console.log(data);
 				for (var i=0;i<data.length;i++){
 					comentarios.push(data[i].COMENTARIO);
 					//Messages.receive(comentarios);
@@ -71,17 +63,19 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					}); */
 				
 				}
+			//	console.log(chat);
 				var chatmessages = document.querySelector(".chat-messages");
 				Messages.receive(function(msg){
 					chat.messages.push(msg);
 					//console.log(msg)
-					console.log(chat.messages);
+					//console.log(chat.messages);
 					/* setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
 					}, 1 );  */
+					console.log(chat);
 				});
 				 
-				/** enviar mensaje **/
+			/** enviar mensaje **/
 			chat.send = function(file) {
 			$scope.comentario=chat.textbox;
 			Messages.send({ data : chat.textbox });
@@ -105,7 +99,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				data: datos_chat,
 			})
 			.then(function(response){
-				console.log(response);
+				/* console.log(response); */
 				if(response.data){
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
@@ -136,7 +130,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		}); */
 		
 		/** enviar mensaje **/
-		chat.send = function(file) {
+		/*chat.send = function(file) {
 			$scope.comentario=chat.textbox;
 			Messages.send({ data : chat.textbox });
 			chat.status = "sending";
@@ -144,7 +138,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			$scope.picFile = null;
 			setTimeout( function() { chat.status = "" }, 100 );
 			
-			/**recopilacion de datos**/
+			/**recopilacion de datos**
 			datos_chat={
 				FKCHAT: $scope.id_chat,
 				FKGRUPO: $scope.id_grupo,
@@ -152,7 +146,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				FOTO: file
 			}
 			
-			/**Si tiene foto**/
+			/**Si tiene foto**
 			chat.textbox.upload = Upload.upload({
 				method: 'POST',
 				url:"../php/abm/comentar.chat.php",
@@ -174,7 +168,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				
 			});
 			
-		};
+		};*/
 		
 		
 		
