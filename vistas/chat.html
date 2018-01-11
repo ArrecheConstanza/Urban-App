@@ -71,7 +71,7 @@
 				
             </div>
 			<!--comentarios chats-->
-					<div ng-repeat="message in chat.messages" class="chat-body">
+					<div ng-repeat="message in chat.messages track by $index" class="chat-body">
 						<div class="sent-message-{{ message.self }}">
 							<span class="username">{{ nombre_usuario }}:</span>
 							{{ message.data }}

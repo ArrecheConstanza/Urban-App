@@ -49,22 +49,28 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-				var comentarios=[];
+				var comentarios_chat=[];
 				//console.log(data);
 				for (var i=0;i<data.length;i++){
-					comentarios.push(data[i].COMENTARIO);
-					//Messages.receive(comentarios);
-					/* var chatmessages = document.querySelector(".chat-messages");
-					Messages.receive(function(msg){
-						chat.messages.push(msg);
-						setTimeout( function() {
-							chatmessages.scrollTop = chatmessages.scrollHeight;
-						}, 1 );
-					}); */
-				
+					var comentario={
+						'data': data[i].COMENTARIO,
+						'user': {
+							'id': data[i].FKUSUARIO,
+							'name':'random'
+						},
+						'self':true,
+						'$$hashKey':'object:'+data[i].ID,
+					}
+					comentarios_chat.push(comentario);
 				}
-			//	console.log(chat);
-				var chatmessages = document.querySelector(".chat-messages");
+				chat.messages=comentarios_chat;
+				
+		})
+		.error(function(){
+			//mensaje Sin conexion 
+		});
+	
+		var chatmessages = document.querySelector(".chat-messages");
 				Messages.receive(function(msg){
 					chat.messages.push(msg);
 					//console.log(msg)
@@ -72,7 +78,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					/* setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
 					}, 1 );  */
-					console.log(chat);
+					//console.log(chat);
 				});
 				 
 			/** enviar mensaje **/
@@ -114,12 +120,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				
 			});
 			
-		};
-		})
-		.error(function(){
-			//mensaje Sin conexion 
-		});
-	
+			};
 	
 		/* var chatmessages = document.querySelector(".chat-messages");
 		Messages.receive(function(msg){

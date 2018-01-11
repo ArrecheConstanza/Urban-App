@@ -57,7 +57,7 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
         ,   message : message.data
         ,   meta    : ChatCore.user()
         });
-		console.log(ChatCore);
+		//console.log(ChatCore);
     };
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,7 +72,7 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
                 if (!(msg.d && msg.u && msg.u.id)) return;
                 fn({
                     data : msg.d //mensaje
-                ,   id   : msg.p.t //id mensaje
+               // ,   id   : msg.p.t //id mensaje
                 ,   user : msg.u //usuario (id/nombre)
                 ,   self : msg.u.id == ChatCore.user().id
                 }); 
