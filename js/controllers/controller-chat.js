@@ -1,6 +1,10 @@
 
 /******************************************** MODULO Y CONTROLLER CHAT **************************************/
 
+/** variable global **/
+var un_mensaje;
+
+
 /** configuracion **/
 
 angular.module('chat').constant( 'config', {
@@ -26,7 +30,6 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 	
 	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
 		
-		/** nombre de grupo **/
 		$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE; //preguntar si existe sino tirar error
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban"); //preguntar si existe sino tirar error
 		$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID; //preguntar si existe sino tirar error
@@ -35,12 +38,9 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		chat.status = "";
 		chat.messages = [];
 
-		/** nombre de usuario **/
-		$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
-
 		/** listar mensajes **/
 		
-		//////CREANDO LISTADO DE CHAT 
+		//////TRAIGO LISTADO DE COMENTARIOS EN CHAT 
 		var datos="id_chat="+$scope.id_chat;
 		$http({ 
 			method:"POST",
@@ -49,21 +49,25 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			console.log(data);
 				var comentarios_chat=[];
 				var self; 
 				for (var i=0;i<data.length;i++){
+					
+					//para saber si el mensaje es del propio usuario o de otros					
 					if(data[i].FKUSUARIO==angular.fromJson(localStorage.getItem("user_urban")).ID){
 						self=true;
 					}
 					else{
 						self=false;
 					}
+					
+					//creo objeto comentario para listar chat
 					var comentario={
 						'data': data[i].COMENTARIO,
 						'user': {
 							'id': data[i].FKUSUARIO,
-							'name':data[i].NOMBRE_USUARIO
+							'name':data[i].NOMBRE_USUARIO,
+							'id_grupo':data[i].FKGRUPO
 						},
 						'self':self,
 						'$$hashKey':'object:'+data[i].ID,
@@ -71,61 +75,78 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					comentarios_chat.push(comentario);
 				}
 				chat.messages=comentarios_chat;
+
+				var chatmessages = document.querySelector(".chat-messages");
 				
-		})
-		.error(function(){
-			//mensaje Sin conexion 
-		});
-	
-		var chatmessages = document.querySelector(".chat-messages");
+				//scroll en chat
+				setTimeout( function() {
+					chatmessages.scrollTop = chatmessages.scrollHeight;
+				}, 1 );
+				
+				/** recibir mensaje **/
 				Messages.receive(function(msg){
 					chat.messages.push(msg);
+					for(var i=0;i<chat.messages.length;i++){
+						console.log(chat.messages[i]);
+					} 
+					//scroll en chat
 					setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
-					}, 1 );  
-				});
+					}, 1 );
+				}); 
 				 
-			/** enviar mensaje **/
-			chat.send = function(file) {
-			$scope.comentario=chat.textbox;
-			Messages.send({ data : chat.textbox });
-			chat.status = "sending";
-			chat.textbox = "";
-			$scope.picFile = null;
-			setTimeout( function() { chat.status = "" }, 100 );
-			
-			/**recopilacion de datos**/
-			datos_chat={
-				FKCHAT: $scope.id_chat,
-				FKGRUPO: $scope.id_grupo,
-				COMENTARIO: $scope.comentario,
-				FOTO: file
-			}
-			
-			/**Si tiene foto**/
-			chat.textbox.upload = Upload.upload({
-				method: 'POST',
-				url:"../php/abm/comentar.chat.php",
-				data: datos_chat,
-			})
-			.then(function(response){
-				/* console.log(response); */
-				if(response.data){
-					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
-						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+				/** enviar mensaje **/
+				chat.send = function(file) {
+					$scope.comentario=chat.textbox;
+					Messages.send({ data : chat.textbox });
+					chat.status = "sending";
+					chat.textbox = "";
+					$scope.picFile = null;
+					setTimeout( function() { chat.status = "" }, 100 );
+					
+					/**recopilacion de datos**/
+					datos_chat={
+						FKCHAT: $scope.id_chat,
+						FKGRUPO: $scope.id_grupo,
+						COMENTARIO: $scope.comentario,
+						FOTO: file
 					}
-				}
-				else{
-					//modal error
-				}
-			}
-			,function(response){
-				//modal error
 				
-			});
-			
+					/**Si tiene foto**/
+					chat.textbox.upload = Upload.upload({
+						method: 'POST',
+						url:"../php/abm/comentar.chat.php",
+						data: datos_chat,
+					})
+					.then(function(response){
+						console.log("cargo en bdd");
+						if(response.data){
+							localStorage.setItem("mensaje_cargado",1);
+							//console.log(un_mensaje.data.m[0].u.estado);
+							/* for(var i=0;i<un_mensaje.data.m.length;i++){
+								//un_mensaje[i].z="cargado";
+								//un_mensaje[i].config.params.state.estado=true; //mensaje cargado en bdd
+								un_mensaje.data.m[i].u.estado=true;
+							console.log("guardado");
+								console.log(un_mensaje.data.m[i]);
+							}  */
+						}
+						else{
+							//modal error?
+						}
+					}
+					,function(response){
+						//modal error
+						
+					});
 			};
-	
+		})
+		.error(function(){
+			//mensaje Sin conexion mostrar datos de localstorage
+		});
+		
+
+		
 		/* var chatmessages = document.querySelector(".chat-messages");
 		Messages.receive(function(msg){
 			chat.messages.push(msg);

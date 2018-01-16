@@ -13,6 +13,7 @@
 // -- TODO --
 
 'use strict';
+var estado_de_mensaje="0"; //sin cargar en bdd
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // AngularJS Chat Module
@@ -46,37 +47,40 @@ if (typeof(exports) !== 'undefined') exports.chat = angular.module('chat');
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
     var Messages = this;
-
+	
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Send Messages
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.send = function(message) {
-        if (!message.data) return;
+		console.log("envio");
+        if (!message.data||message.data=="") return;
         ChatCore.publish({
             channel : message.to || 'global'
         ,   message : message.data
         ,   meta    : ChatCore.user()
         });
-		//console.log(ChatCore);
     };
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // Receive Messages
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.receive = function(fn) {
+		console.log("recibio");
          function receiver(response) {
-             response.data.m.forEach(function(msg){
-                // Ignore messages without User Data
-                // TODO
-				//console.log(msg);
-                if (!(msg.d && msg.u && msg.u.id)) return;
-                fn({
-                    data : msg.d //mensaje
-               // ,   id   : msg.p.t //id mensaje
-                ,   user : msg.u //usuario (id/nombre)
-                ,   self : msg.u.id == ChatCore.user().id
-                }); 
-             });
+					 response.data.m.forEach(function(msg){
+						if (!(msg.d && msg.u && msg.u.id)) return;
+						fn({
+							data : msg.d //mensaje
+						,   user : msg.u //usuario (id/nombre)
+						,   id : msg.i //usuario (id/nombre)
+						,   self : msg.u.id == ChatCore.user().id
+						}); 
+					 });
+/* 				 }
+				 else{
+					localStorage.setItem("mensaje_cargado",0);
+				 } */
+			// }
          }
 
          Messages.subscription = ChatCore.subscribe({
@@ -112,9 +116,10 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // API Keys
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     var pubkey = config.pubnub['publish-key']
     ,   subkey = config.pubnub['subscribe-key']
-    ,   user   = { id : uuid(), name : nombre() };
+    ,   user   = { id : uuid(), name : nombre(), id_grupo : id_grupo(), estado : false }; //estado => si esta cargado el msje en la bdd
 
     var ChatCore = this;
 
@@ -140,7 +145,6 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
         ,   success : function(){}
         ,   fail    : function(){}
         };
-
 // 
         request.url = [
             'https://pubsub.pubnub.com'
@@ -151,6 +155,7 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
         ].join('');
 
         $http(request).then( request.success, request.fail );
+		//un_mensaje=request; //variable global (cuando hay envio de msje)
     };
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -182,12 +187,19 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
         if (groups) request.params['channel-group'] = groups;
 
         // Subscribe Loop
-        function next(response) { 
+        function next(response) {
+			un_mensaje="nada todavia";
             if (stop) return;
             if (response) {
-                timetoken = timetoken == '0' ? 1000 : response.data.t.t;
-                message(response);
-            }
+				//	console.log(timetoken);
+				if(!response.config.params.state.estado){
+					timetoken = timetoken == '0' ? 1000 : response.data.t.t;
+					message(response);
+				}
+					/* if(response.config.params.state.estado){
+						unsubscribe();
+					} */
+            } 
 
             request.url = [
                 'https://',       origin
@@ -220,14 +232,13 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
 // UUID
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 function uuid() {
-    /* return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
-    function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    }); */
 	return angular.fromJson(localStorage.getItem("user_urban")).ID;
 }
 function nombre() {
 	return angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
+}
+
+function id_grupo() {
+	return angular.fromJson(localStorage.getItem("nombre_chat")).ID;
 }
 
