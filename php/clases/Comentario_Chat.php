@@ -11,7 +11,7 @@ class Comentario_Chat{
 	private $fk_multimedia;
 	
 	public static $tabla = "comentario_chat";
-	private static $fila = ['COMENTARIO','FECHA_CREACION','BORRADO','COMENTARIO_ID','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
+	private static $fila = ['COMENTARIO','COMENTARIO_ID','FECHA_CREACION','BORRADO','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
 
 	public function setCodigoComentarioChat($a){
 		$this->codigo_comentario_chat = $a;

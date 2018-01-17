@@ -51,7 +51,6 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
     // Send Messages
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.send = function(message) {
-		console.log("envio");
         if (!message.data||message.data=="") return;
         ChatCore.publish({
             channel : message.to || 'global'
@@ -64,18 +63,32 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
     // Receive Messages
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.receive = function(fn) {
-		console.log("recibio");
-         function receiver(response) {
-					 response.data.m.forEach(function(msg){
-						if (!(msg.d && msg.u && msg.u.id)) return;
-						fn({
-							data : msg.d //mensaje
-						,   user : msg.u //usuario (id/nombre)
-						//,   id : msg.i //usuario (id/nombre)
-						,   self : msg.u.id == ChatCore.user().id
-						}); 
-					 });
-         }
+        function receiver(response) {
+			response.data.m.forEach(function(msg){
+				var ban=0;
+				console.log(ban);
+				console.log(response.data.m);
+				if (!(msg.d && msg.u && msg.u.id)) return;
+				for(var i=0;i<array_mensajes.length;i++){
+					for(var j=0;j<response.data.m.length;j++){
+						if(response.data.m[j].u.comentario_id==array_mensajes[i].user.comentario_id){
+							ban=1;
+							console.log(array_mensajes[i].user);
+						}
+					}
+				}
+				console.log(ban);
+				if(!ban){
+					fn({
+						data : msg.d //mensaje
+					,   user : msg.u //usuario (id/nombre)
+					,   self : msg.u.id == ChatCore.user().id
+					});
+				}						
+				//ban=0;
+			});
+			//ban=0;
+        }
 
          Messages.subscription = ChatCore.subscribe({
             channels : [ 'global', ChatCore.user().id ].join(','),
@@ -153,7 +166,6 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
         ].join('');
 
         $http(request).then( request.success, request.fail );
-		//un_mensaje=request; //variable global (cuando hay envio de msje)
     };
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -186,17 +198,10 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
 
         // Subscribe Loop
         function next(response) {
-			un_mensaje="nada todavia";
             if (stop) return;
             if (response) {
-				//	console.log(timetoken);
-				if(!response.config.params.state.estado){
-					timetoken = timetoken == '0' ? 1000 : response.data.t.t;
-					message(response);
-				}
-					/* if(response.config.params.state.estado){
-						unsubscribe();
-					} */
+				timetoken = timetoken == '0' ? 1000 : response.data.t.t;
+				message(response);
             } 
 
             request.url = [

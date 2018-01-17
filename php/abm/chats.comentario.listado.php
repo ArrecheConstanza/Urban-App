@@ -42,6 +42,7 @@
 			$array=[
 				"ID"=>$un_comentario_chat->getCodigoComentarioChat(),
 				"COMENTARIO"=>$un_comentario_chat->getComentario(),
+				"COMENTARIO_ID"=>$un_comentario_chat->getComentario_id(),
 				"FECHA_CREACION"=>$un_comentario_chat->getFechaCreacion(),
 				"BORRADO"=>$un_comentario_chat->getBorrado(),
 				"FKUSUARIO"=>$un_comentario_chat->getFkUsuario(),

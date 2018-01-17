@@ -2,7 +2,7 @@
 /******************************************** MODULO Y CONTROLLER CHAT **************************************/
 
 /** variable global **/
-var un_mensaje;
+var array_mensajes=[];
 
 
 /** configuracion **/
@@ -63,21 +63,22 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					
 					//creo objeto comentario para listar chat
 					var comentario={
-						
 						'data': data[i].COMENTARIO,
 						'user': {
 							'id': data[i].FKUSUARIO,
 							'name':data[i].NOMBRE_USUARIO,
-							'id_grupo':data[i].FKGRUPO
+							'comentario_id':data[i].COMENTARIO_ID,
+							
 						},
 						'self':self,
 						'$$hashKey':'object:'+data[i].ID,
 					}
 					comentarios_chat.push(comentario);
 				}
-				chat.messages=comentarios_chat;
-
+				array_mensajes=comentarios_chat;
+				
 				var chatmessages = document.querySelector(".chat-messages");
+				chat.messages=array_mensajes;
 				
 				//scroll en chat
 				setTimeout( function() {
@@ -86,11 +87,12 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				
 				/** recibir mensaje **/
 				Messages.receive(function(msg){
+					console.log("recibio 2");
 					chat.messages.push(msg);
-					console.log(chat.messages);
-					/* for(var i=0;i<chat.messages.length;i++){
+					/* console.log(chat.messages);
+					for(var i=0;i<chat.messages.length;i++){
 						console.log(chat.messages[i]);
-					}  */
+					}   */
 					//scroll en chat
 					setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
