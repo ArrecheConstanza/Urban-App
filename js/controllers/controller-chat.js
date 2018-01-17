@@ -63,6 +63,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					
 					//creo objeto comentario para listar chat
 					var comentario={
+						
 						'data': data[i].COMENTARIO,
 						'user': {
 							'id': data[i].FKUSUARIO,

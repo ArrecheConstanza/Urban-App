@@ -3,6 +3,7 @@
 class Comentario_Chat{
 	private $codigo_comentario_chat;
 	private $comentario;
+	private $comentario_id;
 	private $fecha_creacion;
 	private $borrado;
 	private $fk_usuario;
@@ -10,7 +11,7 @@ class Comentario_Chat{
 	private $fk_multimedia;
 	
 	public static $tabla = "comentario_chat";
-	private static $fila = ['COMENTARIO','FECHA_CREACION','BORRADO','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
+	private static $fila = ['COMENTARIO','FECHA_CREACION','BORRADO','COMENTARIO_ID','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
 
 	public function setCodigoComentarioChat($a){
 		$this->codigo_comentario_chat = $a;
@@ -23,6 +24,12 @@ class Comentario_Chat{
 	}
 	public function getComentario(){
 		return $this->comentario;
+	}
+	public function setComentario_id($a){
+		$this->comentario_id = $a;
+	}
+	public function getComentario_id(){
+		return $this->comentario_id;
 	}
 	public function setFechaCracion($a){
 		$this->fecha_creacion = $a;
@@ -71,6 +78,9 @@ class Comentario_Chat{
 					case "comentario":
 						$this->setComentario($valor);
 					break;
+					case "comentario_id":
+						$this->setComentario_id($valor);
+					break;
 					case "fecha_creacion":
 						$this->setFechaCracion($valor);
 					break;
@@ -100,6 +110,7 @@ class Comentario_Chat{
 				$comentario_chat = new Comentario_Chat;
 				$comentario_chat->codigo_comentario_chat = $fila['ID'];
 				$comentario_chat->comentario = $fila['COMENTARIO'];
+				$comentario_chat->comentario_id = $fila['COMENTARIO_ID'];
 				$comentario_chat->fecha_creacion = $fila['FECHA_CREACION'];
 				$comentario_chat->borrado = $fila['BORRADO'];
 				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];
@@ -116,7 +127,7 @@ class Comentario_Chat{
 		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
 				VALUES (?,?,?,?,?)";	
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["COMENTARIO"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
+		return $stmt->execute([$array["COMENTARIO"],$array["COMENTARIO_ID"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}
 	
 	public function eliminar_comentario_chat($array){
@@ -134,6 +145,7 @@ class Comentario_Chat{
 				$comentario_chat = new Comentario_Chat;
 				$comentario_chat->codigo_comentario_chat = $fila['ID'];
 				$comentario_chat->comentario = $fila['COMENTARIO'];
+				$comentario_chat->comentario_id = $fila['COMENTARIO_ID'];
 				$comentario_chat->fecha_creacion = $fila['FECHA_CREACION'];
 				$comentario_chat->borrado = $fila['BORRADO'];
 				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];

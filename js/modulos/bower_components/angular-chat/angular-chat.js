@@ -13,7 +13,6 @@
 // -- TODO --
 
 'use strict';
-var estado_de_mensaje="0"; //sin cargar en bdd
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 // AngularJS Chat Module
