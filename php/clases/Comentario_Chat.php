@@ -124,8 +124,8 @@ class Comentario_Chat{
 	}
 
 	public function crear_comentario_chat($array){
-		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
-				VALUES (?,?,?,?,?)";	
+		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,COMENTARIO_ID,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
+				VALUES (?,?,?,?,?,?)";	
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["COMENTARIO"],$array["COMENTARIO_ID"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
 	}

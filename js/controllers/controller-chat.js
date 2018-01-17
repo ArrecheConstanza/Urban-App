@@ -87,9 +87,10 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				/** recibir mensaje **/
 				Messages.receive(function(msg){
 					chat.messages.push(msg);
-					for(var i=0;i<chat.messages.length;i++){
+					console.log(chat.messages);
+					/* for(var i=0;i<chat.messages.length;i++){
 						console.log(chat.messages[i]);
-					} 
+					}  */
 					//scroll en chat
 					setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
@@ -105,11 +106,14 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					$scope.picFile = null;
 					setTimeout( function() { chat.status = "" }, 100 );
 					
+					$scope.comentario_id=localStorage.getItem("coment_temp_id"); //preguntar si no existe tirar error
+					
 					/**recopilacion de datos**/
 					datos_chat={
 						FKCHAT: $scope.id_chat,
 						FKGRUPO: $scope.id_grupo,
 						COMENTARIO: $scope.comentario,
+						COMENTARIO_ID: $scope.comentario_id,
 						FOTO: file
 					}
 				
@@ -122,15 +126,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					.then(function(response){
 						console.log("cargo en bdd");
 						if(response.data){
-							localStorage.setItem("mensaje_cargado",1);
-							//console.log(un_mensaje.data.m[0].u.estado);
-							/* for(var i=0;i<un_mensaje.data.m.length;i++){
-								//un_mensaje[i].z="cargado";
-								//un_mensaje[i].config.params.state.estado=true; //mensaje cargado en bdd
-								un_mensaje.data.m[i].u.estado=true;
-							console.log("guardado");
-								console.log(un_mensaje.data.m[i]);
-							}  */
+							
 						}
 						else{
 							//modal error?

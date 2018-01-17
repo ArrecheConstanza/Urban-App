@@ -71,15 +71,10 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
 						fn({
 							data : msg.d //mensaje
 						,   user : msg.u //usuario (id/nombre)
-						,   id : msg.i //usuario (id/nombre)
+						//,   id : msg.i //usuario (id/nombre)
 						,   self : msg.u.id == ChatCore.user().id
 						}); 
 					 });
-/* 				 }
-				 else{
-					localStorage.setItem("mensaje_cargado",0);
-				 } */
-			// }
          }
 
          Messages.subscription = ChatCore.subscribe({
@@ -118,7 +113,11 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
 
     var pubkey = config.pubnub['publish-key']
     ,   subkey = config.pubnub['subscribe-key']
-    ,   user   = { id : uuid(), name : nombre(), id_grupo : id_grupo(), estado : false }; //estado => si esta cargado el msje en la bdd
+    ,   user   = { 	id : uuid(), 
+					name : nombre(), 
+					id_grupo : id_grupo(),
+					comentario_id : comentario_id() 
+				}; 
 
     var ChatCore = this;
 
@@ -227,8 +226,7 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
     };
 } ] );
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// UUID
+
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 function uuid() {
 	return angular.fromJson(localStorage.getItem("user_urban")).ID;
@@ -239,5 +237,14 @@ function nombre() {
 
 function id_grupo() {
 	return angular.fromJson(localStorage.getItem("nombre_chat")).ID;
+}
+function comentario_id(){
+	var id='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+    function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+	localStorage.setItem("coment_temp_id",id);
+	return id;
 }
 
