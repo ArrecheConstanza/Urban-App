@@ -52,6 +52,7 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     Messages.send = function(message) {
         if (!message.data||message.data=="") return;
+		var rta=comentario_id();
         ChatCore.publish({
             channel : message.to || 'global'
         ,   message : message.data
@@ -66,18 +67,15 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
         function receiver(response) {
 			response.data.m.forEach(function(msg){
 				var ban=0;
-				console.log(ban);
 				console.log(response.data.m);
 				if (!(msg.d && msg.u && msg.u.id)) return;
 				for(var i=0;i<array_mensajes.length;i++){
 					for(var j=0;j<response.data.m.length;j++){
 						if(response.data.m[j].u.comentario_id==array_mensajes[i].user.comentario_id){
 							ban=1;
-							console.log(array_mensajes[i].user);
 						}
 					}
 				}
-				console.log(ban);
 				if(!ban){
 					fn({
 						data : msg.d //mensaje
@@ -85,9 +83,7 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
 					,   self : msg.u.id == ChatCore.user().id
 					});
 				}						
-				//ban=0;
 			});
-			//ban=0;
         }
 
          Messages.subscription = ChatCore.subscribe({
@@ -147,7 +143,9 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     ChatCore.publish = function(setup) {
         var meta   = setup.meta         || ChatCore.user()
-        ,   userid = ChatCore.user().id || 'nil';
+		meta.comentario_id=comentario_id();
+		
+        var   userid = ChatCore.user().id || 'nil';
 
         var request = {
             method  : 'GET'
@@ -236,6 +234,7 @@ angular.module('chat').service( 'ChatCore', [ '$http', 'config', function(
 function uuid() {
 	return angular.fromJson(localStorage.getItem("user_urban")).ID;
 }
+
 function nombre() {
 	return angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 }
@@ -243,6 +242,7 @@ function nombre() {
 function id_grupo() {
 	return angular.fromJson(localStorage.getItem("nombre_chat")).ID;
 }
+
 function comentario_id(){
 	var id='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
     function(c) {

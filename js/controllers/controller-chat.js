@@ -87,7 +87,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				
 				/** recibir mensaje **/
 				Messages.receive(function(msg){
-					console.log("recibio 2");
+					//console.log("recibio 2");
 					chat.messages.push(msg);
 					/* console.log(chat.messages);
 					for(var i=0;i<chat.messages.length;i++){
