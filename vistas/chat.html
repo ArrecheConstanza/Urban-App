@@ -66,15 +66,13 @@
 						<!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
 				</div>
 					
-				<!--CLASE:http://localhost:8080/mas/0mas/backup%20de%20wamp/mas/Tecnologia_de_las_Comunicaciones_III/Clase%2014/Clase%2014/angular_base/
-				-->
-				
             </div>
 			<!--comentarios chats-->
 					<div ng-repeat="message in chat.messages track by $index" class="chat-body">
 						<div class="sent-message-{{ message.self }}">
 							<span class="username">{{ message.user.name }}:</span>
 							{{ message.data }}
+							<img ng-src="{{ message.foto }}" class="img-responsive" id="img-detalle"/>
 						</div>
 						<div class="clear"></div>
 					</div>

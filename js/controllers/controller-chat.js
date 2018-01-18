@@ -49,6 +49,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+			console.log(data);
 				var comentarios_chat=[];
 				var self; 
 				for (var i=0;i<data.length;i++){
@@ -72,14 +73,15 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 						},
 						'self':self,
 						'$$hashKey':'object:'+data[i].ID,
+						'foto': data[i].FOTO
 					}
 					comentarios_chat.push(comentario);
 				}
 				array_mensajes=comentarios_chat;
-				
+				console.log(array_mensajes);
 				var chatmessages = document.querySelector(".chat-messages");
 				chat.messages=array_mensajes;
-				
+
 				//scroll en chat
 				setTimeout( function() {
 					chatmessages.scrollTop = chatmessages.scrollHeight;
@@ -87,12 +89,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 				
 				/** recibir mensaje **/
 				Messages.receive(function(msg){
-					//console.log("recibio 2");
 					chat.messages.push(msg);
-					/* console.log(chat.messages);
-					for(var i=0;i<chat.messages.length;i++){
-						console.log(chat.messages[i]);
-					}   */
+	
 					//scroll en chat
 					setTimeout( function() {
 						chatmessages.scrollTop = chatmessages.scrollHeight;
@@ -118,7 +116,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 						COMENTARIO_ID: $scope.comentario_id,
 						FOTO: file
 					}
-				
+					
+					console.log(datos_chat);
 					/**Si tiene foto**/
 					chat.textbox.upload = Upload.upload({
 						method: 'POST',
@@ -126,8 +125,8 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 						data: datos_chat,
 					})
 					.then(function(response){
-						console.log("cargo en bdd");
 						if(response.data){
+								console.log(response.data);
 							
 						}
 						else{

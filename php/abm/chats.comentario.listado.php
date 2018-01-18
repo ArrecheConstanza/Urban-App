@@ -17,41 +17,32 @@
 	$arrayFinal=array();
 	
 	foreach($comentario_chat as $un_comentario_chat){
+		$foto="";
+		
+		//creo clase usuario
 		$usuario=new Usuario();
 		$user=$usuario->getByPk(intval($un_comentario_chat->getFkUsuario()));
 		
-			/*LOGICA DE	MULTIMEDIA PARA COMENTARIO CHAT 
-			$publicacion_multimedia = new Publicacion_Multimedia();
-			$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
-			$arraySemiFinal=[];
-			$array=[];
-			foreach($rta as $multi_publi){
-				if($multi_publi->getCodigoPublicacion()==$unaPublicacion->getCodigoPublicacion()){
-					$multimedia = new Multimedia();
-					$rta2=$multimedia->getByPk($multi_publi->getCodigoMultimedia());
-					foreach($rta2 as $multi){
-						$array=[
-							"DIR"=>$multi->getPath()
-						];
-						$arraySemiFinal[]=$array;
-					}
-				}
-			}*/
-			//['COMENTARIO','FECHA_CREACION','BORRADO','FKUSUARIO','FKCHAT','FKMULTIMEDIA'];
-			
-			$array=[
-				"ID"=>$un_comentario_chat->getCodigoComentarioChat(),
-				"COMENTARIO"=>$un_comentario_chat->getComentario(),
-				"COMENTARIO_ID"=>$un_comentario_chat->getComentario_id(),
-				"FECHA_CREACION"=>$un_comentario_chat->getFechaCreacion(),
-				"BORRADO"=>$un_comentario_chat->getBorrado(),
-				"FKUSUARIO"=>$un_comentario_chat->getFkUsuario(),
-				"FKCHAT"=>$un_comentario_chat->getFkChat(),
-				"NOMBRE_USUARIO"=>$user["NOMBRE"]." ".$user['APELLIDO'],
-				
-				//"FOTO"=>$arraySemiFinal,
-			];
-			$arrayFinal[]=$array;  
+		//si hay foto
+		if(is_numeric($un_comentario_chat->getFkMultimedia())){
+			$multimedia = new Multimedia();
+			$rta = $multimedia->getByPk($un_comentario_chat->getFkMultimedia());
+			$foto=$rta[0]->getPath();
+		}
+		
+		//cargo datos
+		$array=[
+			"ID"=>$un_comentario_chat->getCodigoComentarioChat(),
+			"COMENTARIO"=>$un_comentario_chat->getComentario(),
+			"COMENTARIO_ID"=>$un_comentario_chat->getComentario_id(),
+			"FECHA_CREACION"=>$un_comentario_chat->getFechaCreacion(),
+			"BORRADO"=>$un_comentario_chat->getBorrado(),
+			"FKUSUARIO"=>$un_comentario_chat->getFkUsuario(),
+			"FKCHAT"=>$un_comentario_chat->getFkChat(),
+			"NOMBRE_USUARIO"=>$user["NOMBRE"]." ".$user['APELLIDO'],
+			"FOTO"=>$foto,
+		];
+		$arrayFinal[]=$array;  
 	} 
 	echo json_encode($arrayFinal);
 ?> 

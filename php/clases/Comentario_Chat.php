@@ -150,7 +150,7 @@ class Comentario_Chat{
 				$comentario_chat->borrado = $fila['BORRADO'];
 				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];
 				$comentario_chat->fk_chat = $fila['FKCHAT'];
-				//$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$comentario_chat->cargarDatos($fila);
 				$salida[] = $comentario_chat;
 			}

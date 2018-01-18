@@ -67,7 +67,6 @@ angular.module('chat').service( 'Messages', [ 'ChatCore', function(ChatCore) {
         function receiver(response) {
 			response.data.m.forEach(function(msg){
 				var ban=0;
-				console.log(response.data.m);
 				if (!(msg.d && msg.u && msg.u.id)) return;
 				for(var i=0;i<array_mensajes.length;i++){
 					for(var j=0;j<response.data.m.length;j++){
