@@ -55,7 +55,7 @@
 			return 0;
 		}
 	}
-	else{
+	else{ //no logueado
 		echo 0;
 		return 0;
 	}

@@ -1,0 +1,63 @@
+
+	<!-- Contenedor perfil -->
+	
+	<div class="scrollable">
+	
+	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="detalle-publicacion">
+	
+		<!-- Titulo Perfil, Volver-->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="title-container">
+			<!-- Icono -->
+			<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
+				<!-- <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 edit-delete-container">
+					<a ng-click="eliminar()" id="link-borrar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img id="borrar" src="img/icons/png/borrar.png" alt="Eliminar" /></a>
+					<a ng-click="editar(ID)" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a>
+				</div> -->
+			</div>
+			
+			<!-- Texto -->
+			<h1 class="text-center">Mi Perfil</h1>
+
+		</div>
+		
+		<!--Detalle perfil -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h2 class="text-center">Datos</h2>
+			
+			<img ng-src="{{ datos_usuario.FOTO }}" class="img-responsive" id="img-detalle"/>
+			
+			<ul  class="list-group">
+				<li class="list-group-item"><span>Usuario:</span>
+					{{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}
+				<!-- <a ng-click="editar(ID)" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 editar_usuario"><img src="img/icons/png/editar.png" alt="Editar" /></a> -->
+				</li>
+				<li class="list-group-item"><span>Direccion:</span>
+					{{ datos_usuario.DIRECCION	}} <span> {{ datos_usuario.DIRECCION_ESTADO	}} </span>
+				<!-- <a ng-click="editar(ID)" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 editar_usuario"><img src="img/icons/png/editar.png" alt="Editar" /></a> -->
+				</li>
+				
+					<!-- cambiar clave-->
+					<input type="submit" class="form-control btn btn-default" value="cambiar clave">
+			
+			</ul>
+		
+		</div>
+	
+			<!--Detalle grupos -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h2 class="text-center">Grupos</h2>
+			
+			<ul  class="list-group">
+				<li class="list-group-item"><span>Usuario:</span>
+					{{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}
+				</li>
+				<li class="list-group-item"><span>Direccion:</span>
+					{{ datos_usuario.DIRECCION	}} <span> {{ datos_usuario.DIRECCION_ESTADO	}} </span>
+				</li>
+
+			</ul>
+		
+		</div>
+	</div>
+	</div>
