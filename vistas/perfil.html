@@ -24,8 +24,15 @@
 	<div class="contenedor-perfil"> 
 		<!--Detalle perfil -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<img ng-src="{{ datos_usuario.FOTO }}" class="img-responsive" />
-			<a href="javascript:void(0)" ng-click="cambiar_foto_perfil()">+</a>
+		
+		<!--img usuario-->
+		<div style="position:relative" class="img-responsive">
+			<img ng-src="{{ datos_usuario.FOTO }}" width="80" hspace="16" height="81" vspace="16" />
+			<div style="position:absolute; top:9vh; left:50vw;"><a href="#">
+			<img ng-src="img/icons/png/mas-mini.png" class="img-responsive" border="0" width="35" height="35"  /></a></div>
+		</div>
+		
+		<!--datos usuario-->
 			<hr>
 			<h2 class="text-center">Datos</h2>
 		
@@ -45,7 +52,7 @@
 			</ul>
 		
 		</div>
-			<!--Detalle grupos -->
+		<!--Detalle grupos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<hr>
 			<h2 class="text-center">Grupos</h2>
