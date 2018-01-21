@@ -136,3 +136,32 @@ footer{
 	max-width:40px;
 	max-height:40px;
 }
+
+/************************** Perfil ***********************/
+
+.contenedor-perfil>div>ul{
+	padding-top:1.5em;
+}
+
+.contenedor-perfil h2{
+    font-size: 1.3em;
+    text-transform: none;
+    padding-left: .5em;
+    font-family: 'HelveticaNeueLTStd';
+    color: #0a384a;
+    letter-spacing: 2px;
+	text-align:right;
+	padding-right:.5em;
+}
+
+hr{
+	border-top: 1px solid #8c8b8b;
+}
+
+.contenedor-perfil .img-responsive{
+	 margin: 0 auto;
+}
+
+.contenedor-perfil div:nth-last-child(1){
+	padding-bottom:3em;
+}

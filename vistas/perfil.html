@@ -3,7 +3,7 @@
 	
 	<div class="scrollable">
 	
-	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="detalle-publicacion">
+	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 	
 		<!-- Titulo Perfil, Volver-->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="title-container">
@@ -21,12 +21,14 @@
 
 		</div>
 		
+	<div class="contenedor-perfil"> 
 		<!--Detalle perfil -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<img ng-src="{{ datos_usuario.FOTO }}" class="img-responsive" />
+			<a href="javascript:void(0)" ng-click="cambiar_foto_perfil()">+</a>
+			<hr>
 			<h2 class="text-center">Datos</h2>
-			
-			<img ng-src="{{ datos_usuario.FOTO }}" class="img-responsive" id="img-detalle"/>
-			
+		
 			<ul  class="list-group">
 				<li class="list-group-item"><span>Usuario:</span>
 					{{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}
@@ -43,21 +45,23 @@
 			</ul>
 		
 		</div>
-	
 			<!--Detalle grupos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<hr>
 			<h2 class="text-center">Grupos</h2>
 			
 			<ul  class="list-group">
-				<li class="list-group-item"><span>Usuario:</span>
-					{{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}
+				<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
+				{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.ID)' class="pull-right">X</a>
 				</li>
-				<li class="list-group-item"><span>Direccion:</span>
-					{{ datos_usuario.DIRECCION	}} <span> {{ datos_usuario.DIRECCION_ESTADO	}} </span>
-				</li>
-
 			</ul>
 		
 		</div>
+		
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<hr>
+			<p class="cerrar-cuenta list-group-item">Cuenta <a href="javascript:void(0)" ng-click='eliminar_cuenta()' class="pull-right">Eliminar</a></p>
+		</div>
+	</div>
 	</div>
 	</div>

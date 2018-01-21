@@ -11,19 +11,30 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		
 	}
 	
-	
 	$http({
-		method: 'POST',
+		method: 'GET',
 		url:"php/abm/grupos.listado.php",
-		data: union,	
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 	})
 	.success(function(data){
+		localStorage.setItem("grupos_usuario_urban",angular.toJson(data));
+		$scope.listado_grupos=data;
 		
 	})
-	.error(function(){
-		//Sin conexion
+	.error(function(){ //sin acceso a intenret, cargo datos locales
+		if(localStorage.getItem("grupos_usuario_urban")!=undefined){
+			$scope.listado_grupos=angular.fromJson(localStorage.getItem("grupos_usuario_urban"));
+		}
+		else{
+			//modal Sin conexion
+			
+		}
 	});
+	
+	$scope.abandonar_grupo=function(id){
+		console.log(id);
+		
+	}
 	
 }]);
 	
