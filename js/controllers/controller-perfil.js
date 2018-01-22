@@ -75,12 +75,23 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
-				/* if(data){
-					location.reload();
+				if(data){
+					modal("Cuenta eliminada con éxito");
+					$http({
+						method: 'GET',
+						url:"php/abm/logout.usuario.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							window.localStorage.removeItem("user_urban");
+							$location.path("/");
+						}
+					});
 				}
 				else{
 					modal("Ups! Hubo un error, intentelo nuevamente más tarde");
-				} */
+				} 
 			})
 			.error(function(){ //sin acceso a intenret
 				modal("Sin acceso a internet");

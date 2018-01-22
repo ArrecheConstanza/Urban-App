@@ -155,7 +155,7 @@ class Usuario{
 	public function eliminar_usuario($array){
 		$query = "UPDATE " . static::$tabla . "  SET BORRADO=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute(["NO",$array["ID"]]);
+		return $stmt->execute([$array["BORRADO"],$array["ID"]]);
 	}
 	
 	public function verificar_usuario($mail, $contrasenia){
