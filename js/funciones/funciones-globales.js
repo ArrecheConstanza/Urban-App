@@ -28,8 +28,8 @@ var header, footer, grupos=[], marker;
 
 //////////VENTANA MODAL PARA MENSAJES
 
-/*
-function modal(v){
+
+function modal(mensaje,boton1){
 	var div=document.createElement("div");
 	div.className="modal";
 	var di=document.createElement("div");
@@ -40,14 +40,12 @@ function modal(v){
 	div.appendChild(di);
 	var d=document.createElement("div");
 	d.className="modal-content";
-	di.appendChild(d);
-	var x=document.createElement("a");
-	x.href="javascript:void(0);";
-	x.id="cerrar_modal";
-	var txt=document.createTextNode("x");
-	x.appendChild(txt);
-	x.className="close";
-	x.style.color="black";
+
+	/**cargo mensaje**/
+		var p=ce("p");
+		p.innerHTML=mensaje;
+	//
+	d.id="ventana_modal";
 	var div2=document.createElement("div");
 	div2.className="form-group botones";
 	var h4=document.createElement("h4");
@@ -55,15 +53,44 @@ function modal(v){
 	h4.style.textAlign='center';
 	var caja_modal=document.createElement("div");
 	caja_modal.className="modal-body";
-	caja_modal.appendChild(x);
+	d.appendChild(caja_modal);
+	di.appendChild(d);
+	ac(caja_modal,p);
+	/**cargo botones**/
+	if(boton1!=undefined){
+		var btn1=document.createElement("button");
+		btn1.type="button";
+		btn1.className="btn btn-lg btn-success";
+		btn1.innerHTML=boton1;
+		ac(caja_modal,btn1);
+	}
+	var btn2=document.createElement("button");
+	btn2.type="button";
+	btn2.id="cerrar_modal";
+	btn2.className="btn btn-lg btn-danger";
+	btn2.innerHTML="X";
+	btn2.id="cerrar_modal";
+	ac(caja_modal,btn2);
+	//
+
+	document.getElementsByTagName("body")[0].appendChild(div);
+	
+	//cerrado de modal
+	id("cerrar_modal").onclick=function(){
+		document.getElementsByTagName("body")[0].removeChild(div);
+	} 
+}
+	
+	
+	/*
 	switch(v){
-		/*case 'nuevo_grupo':
+		case 'nuevo_grupo':
 			var txt=document.createTextNode("Crear grupo");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
 				caja_modal.innerHTML+="<div id='container_form'><form role='form' name='crear_grupo' ng-submit='crear_grupo(grupo)'><select class='select' name='estado' ng-model='grupo.ESTADO'><option  value='Publico'>Publico</option><option  value='Privado'>Privado</option></select><div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> <img ng-show='grupo.FILE.$valid' ngf-src='FILE' class='thumb'><input class='upload-file'  type='file' ngf-select ng-model='grupo.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'></div><input type='text' placeholder='Nombre' class='form-control' required ng-model='grupo.NOMBRE'><input id='button_submit' type='submit' class='form-control btn btn-default' value='Crear'></form></div>";
-		break;*/
-		/*case 'error':
+		break;
+		case 'error':
 			var txt=document.createTextNode("Ups!! Se ha producido un error! Vuelva a intentarlo más tarde.");
 				h4.appendChild(txt);
 				caja_modal.appendChild(h4);
@@ -83,7 +110,7 @@ function modal(v){
 				caja_modal.innerHTML="<input id='boton_modal' type='button' class='form-control btn btn-default' value='Continuar'>";
 		break;
 		default:
-			//
+			
 		break;
 	}
 	d.appendChild(caja_modal);
@@ -93,8 +120,9 @@ function modal(v){
 	id("cerrar_modal").onclick=function(){
 		document.getElementsByTagName("body")[0].removeChild(div);
 	}
-}*/
-
+}
+*/
+/*
 /////////VALIDACION DEL FORM REGISTRO UNO
 function validar_form(e,estado){
 	switch(e.name){
@@ -182,15 +210,8 @@ function validar_publicacion(e,estado){
 				}
 			}
 		}
-}
+}*/
 
-/////////////detallePublicacion
-
-function detallePublicacion(publi){
-	var num_publi=tn(publi,"input",0).value;
-	localStorage.setItem("id_publi",num_publi);
-	window.location.href="/urban-app/index.html#/detallePublicacion";
-}
 
 
 

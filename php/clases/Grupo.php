@@ -108,6 +108,7 @@ class Grupo{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"]]);
 	}
+
 	public function ultimo_grupo_creado(){
 		$salida = [];
 		$query = "SELECT * FROM ".static::$tabla." ORDER BY ID DESC LIMIT 1";

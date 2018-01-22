@@ -59,7 +59,7 @@
 			
 			<ul  class="list-group">
 				<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
-				{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.ID)' class="pull-right">X</a>
+				{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
 				</li>
 			</ul>
 		

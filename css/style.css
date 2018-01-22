@@ -137,6 +137,23 @@ footer{
 	max-height:40px;
 }
 
+/************************modal****************************/
+
+#ventana_modal p{
+	font-size: 1.3em;
+}
+.modal-body button{
+	margin:1em;
+	padding:0 2em;
+}
+.modal-body{
+	text-align:center;
+}
+#cerrar_modal{
+	display:inline-block;
+	float:right;
+	overflow:hidden;
+}
 /************************** Perfil ***********************/
 
 .contenedor-perfil>div>ul{
@@ -161,8 +178,6 @@ hr{
 .contenedor-perfil .img-responsive{
 	margin: 0 auto;
 	text-align:center;
-	/* width:80px;
-	height:81px; */
 }
 
 .contenedor-perfil div:nth-last-child(1){

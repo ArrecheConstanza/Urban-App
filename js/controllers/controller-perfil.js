@@ -11,6 +11,7 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		
 	}
 	
+	/****listado de grupos ****/
 	$http({
 		method: 'GET',
 		url:"php/abm/grupos.listado.php",
@@ -27,13 +28,66 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		}
 		else{
 			//modal Sin conexion
-			
+			modal("Sin acceso a internet");
 		}
 	});
 	
-	$scope.abandonar_grupo=function(id){
-		console.log(id);
-		
+	
+	
+	
+	/**** funcion abandonar grupo ****/
+	$scope.abandonar_grupo=function(nombre,num_id){
+		modal("¿Desea abandonar el grupo <b>"+nombre+"</b>?","&#10004;");
+		var ventana_modal=id("ventana_modal");
+		var boton_si=tn(ventana_modal,"button",0);
+		boton_si.onclick=function(){
+			var union="id_grupo="+num_id;
+			$http({
+				method: 'POST',
+				url:"php/abm/usuario.grupos.abandonar.php",
+				data : union,
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data){
+				if(data){
+					location.reload();
+				}
+				else{
+					modal("Ups! Hubo un error, intentelo nuevamente más tarde");
+					
+				}
+			})
+			.error(function(){ //sin acceso a intenret
+				modal("Sin acceso a internet");
+			}); 
+		}
+	}
+	
+	/**** eliminar cuenta ***/
+	$scope.eliminar=function(){
+		modal("¿Desea eliminar su cuenta?<br>Perderá toda su información.","&#10004;");
+		var ventana_modal=id("ventana_modal");
+		var boton_si=tn(ventana_modal,"button",0);
+		boton_si.onclick=function(){
+/* 
+			$http({
+				method: 'POST',
+				url:"php/abm/usuario.grupos.abandonar.php",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data){
+				if(data){
+					location.reload();
+				}
+				else{
+					modal("Ups! Hubo un error, intentelo nuevamente más tarde");
+					
+				}
+			})
+			.error(function(){ //sin acceso a intenret
+				modal("Sin acceso a internet");
+			}); 
+		} */
 	}
 	
 }]);

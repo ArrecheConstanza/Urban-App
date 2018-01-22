@@ -41,6 +41,12 @@ class Usuario_Grupo{
 		return $stmt->execute([$array["id_grupo"],$array["id_usuario"]]);
 	}
 	
+	public function abandonar_usuario_grupo($array){
+		$query = "DELETE FROM " . static::$tabla . " WHERE FKGRUPO=? AND FKUSUARIO=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["id_grupo"],$array["id_usuario"]]);
+	}
+	
 	public static function traer_grupos_usuario($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id'";
