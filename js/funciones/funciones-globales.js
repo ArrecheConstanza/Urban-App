@@ -82,6 +82,122 @@ function modal(mensaje,boton1){
 }
 	
 	
+/////////VALIDACION DEL FORM REGISTRO UNO
+function validar_form(e,estado){
+	switch(e.name){
+		case 'nombre': case 'apellido':
+			if(!validar_nombre_apellido(e.value)){
+				if(!e.value==''){
+					var tx=txt('Solo puede poseer letras y espacios');		
+				}
+			}
+			break;
+			case 'email':
+				if(!validar_email(e.value)){
+					var tx=txt('El email es invalido.');
+				}
+			break;
+			case 'clave':
+				if(!validar_clave(e.value)){
+					var tx=txt('Minimo 3 caracteres, máximo 15. Sin espacios.');
+				}
+			break;
+			case 'edad':
+				var edad = new Date(e.value);
+				edad=edad.getDate()+"-"+(edad.getMonth()+1)+"-"+edad.getFullYear();
+				if(!validar_fecha(edad)){
+					var tx=txt('Debes ser mayor de 16 años.');
+				}
+			break;
+		}
+		if(tx){
+			e.style.borderBottom='solid red 1px';
+			var p=tn(e.parentNode,'p',0);
+			if(p==undefined){
+				p=ce('p');
+				p.className='mensaje-validacion';
+				ac(p,tx);
+				e.parentNode.insertBefore(p,e);
+			}
+		}
+		else{
+			if(!estado){
+				e.style.borderBottom='1px solid #aaa';
+				var p=tn(e.parentNode,'p',0);
+				if(p!=undefined){
+					rc(p.parentNode,p);
+				}
+			}
+		}
+}
+
+
+/////////VALIDACION DE PUBLICACION
+function validar_publicacion(e,estado){
+		switch(e.name){
+			case 'file':
+				if (e.value) {
+					if(!validar_foto(e.value)){
+						var tx=txt('Solo puede subir imagenes jpg, jpeg y png');
+					}
+				}
+			break;
+			case 'titulo':case 'descripcion':
+				if (e.value) {
+					if(!validar_titulo(e.value)){
+						var tx=txt('Minimo 3 caracteres');
+					}
+				}
+			break;
+		}
+		if(tx){
+			e.style.borderBottom='solid red 1px';
+			var p=tn(e.parentNode,'p',0);
+			if(p==undefined){
+				p=ce('p');
+				p.className='mensaje-validacion';
+				ac(p,tx);
+				e.parentNode.insertBefore(p,e);
+			}
+		}
+		else{
+			if(!estado){
+				e.style.borderBottom='1px solid #aaa';
+				var p=tn(e.parentNode,'p',0);
+				if(p!=undefined){
+					rc(p.parentNode,p);
+				}
+			}
+		}
+}
+
+/////////////detallePublicacion
+
+function detallePublicacion(publi){
+	var num_publi=tn(publi,"input",0).value;
+	localStorage.setItem("id_publi",num_publi);
+	window.location.href="/urban-app/index.html#/detallePublicacion";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/*
 	switch(v){
 		case 'nuevo_grupo':

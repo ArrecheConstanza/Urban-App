@@ -151,6 +151,13 @@ class Usuario{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["EMAIL"],$array["CLAVE"],$array["NOMBRE"],$array["APELLIDO"],$array["EDAD"],$array["DIRECCION"],$array["LATITUD"],$array["LONGITUD"],$array["FECHA_ALTA"]]);
 	}
+	
+	public function eliminar_usuario($array){
+		$query = "UPDATE " . static::$tabla . "  SET BORRADO=? WHERE ID=? ";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute(["NO",$array["ID"]]);
+	}
+	
 	public function verificar_usuario($mail, $contrasenia){
 		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=sha2(?, 224)";
 		$stmt = DBcnx::getStatement($query);

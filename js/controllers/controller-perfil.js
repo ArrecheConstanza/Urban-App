@@ -64,31 +64,30 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 	}
 	
 	/**** eliminar cuenta ***/
-	$scope.eliminar=function(){
+	$scope.eliminar_cuenta=function(){
 		modal("¿Desea eliminar su cuenta?<br>Perderá toda su información.","&#10004;");
 		var ventana_modal=id("ventana_modal");
 		var boton_si=tn(ventana_modal,"button",0);
 		boton_si.onclick=function(){
-/* 
 			$http({
 				method: 'POST',
-				url:"php/abm/usuario.grupos.abandonar.php",
+				url:"php/abm/eliminar.usuario.php",
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
-				if(data){
+				/* if(data){
 					location.reload();
 				}
 				else{
 					modal("Ups! Hubo un error, intentelo nuevamente más tarde");
-					
-				}
+				} */
 			})
 			.error(function(){ //sin acceso a intenret
 				modal("Sin acceso a internet");
 			}); 
-		} */
+		} 
 	}
+
 	
 }]);
 	
