@@ -151,8 +151,7 @@ footer{
 }
 #cerrar_modal{
 	display:inline-block;
-	float:right;
-	overflow:hidden;
+
 }
 /************************** Perfil ***********************/
 
@@ -182,4 +181,14 @@ hr{
 
 .contenedor-perfil div:nth-last-child(1){
 	padding-bottom:3em;
+}
+
+.usuario-file{
+	text-indent: 300px;
+	overflow: hidden;
+	background:url("../img/icons/png/mas-mini.png") no-repeat;
+}
+
+.pre_vista{
+
 }

@@ -64,6 +64,9 @@ function modal(mensaje,boton1){
 		btn1.innerHTML=boton1;
 		ac(caja_modal,btn1);
 	}
+	else{
+		caja_modal.style.paddingBottom="1em";
+	}
 	var btn2=document.createElement("button");
 	btn2.type="button";
 	btn2.id="cerrar_modal";

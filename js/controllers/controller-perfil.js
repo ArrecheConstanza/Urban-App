@@ -32,7 +32,45 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		}
 	});
 	
-	
+	/* $scope.cambiar_foto_perfil=function(usuario){
+		console.log("entre");
+		console.log(usuario.FILE);
+	}  */
+		
+	/**** cambiar foto de perfil ****/
+		
+	var foto=id("foto");
+	id("envio_foto").click();
+	$scope.change=function(){
+		console.log(foto);
+		//id("envio_foto").click();
+		return 0;
+	}
+		$scope.editar_foto_usuario=function(usuario){
+			foto_usuario={
+				FOTO: usuario.FILE
+			}
+			console.log($scope);
+			var hay_foto=true; 
+			/* hay_foto.upload = Upload.upload({
+				method: 'POST',
+				data: foto_usuario,
+				url:"php/abm/foto.usuario.php",
+			})
+			.then(function(response){
+				console.log(response);
+				if(response.data){
+					
+				}
+				else{
+					//modal error
+				}
+			}
+			,function(response){
+				//modal error
+				
+			}); */
+		}
 	
 	
 	/**** funcion abandonar grupo ****/
@@ -75,7 +113,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
-				console.log(data)
 				if(data){
 					document.getElementById('cerrar_modal').click();
 					modal("Cuenta eliminada con éxito");

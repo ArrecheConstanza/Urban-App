@@ -23,18 +23,47 @@
 		
 	<div class="contenedor-perfil"> 
 		<!--Detalle perfil -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div  class="col-lg-12 col-md-12 col-sm-12 col
+		-xs-12">
 		
 		<!--img usuario-->
-		<div style="position:relative" class="img-responsive">
-			<img ng-src="{{ datos_usuario.FOTO }}" width="80" hspace="16" height="81" vspace="16" />
-			<div style="position:absolute; top:9vh; left:50vw;"><a href="#">
-			<img ng-src="img/icons/png/mas-mini.png" class="img-responsive" border="0" width="35" height="35"  /></a></div>
-		</div>
+		<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
+
+			<div style="position:relative" class="img-responsive">
+				<img ngf-src="picFile" class="thumb pre_vista">
+				<img ng-src="{{ datos_usuario.FOTO }}" width="80" hspace="16" height="81" vspace="16" />
+				<div style="position:absolute; top:19vh; left:49vw;">
+					<a href="javascript:void(0)">
+						<!-- <input class='upload-file usuario-file'  type='file' ngf-select ng-model='usuario.FILE' name='file' ngf-select ng-model="picFile" accept='image/*' ngf-max-size='2MB' id='foto' ng-change="change()"> -->
+						<input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'">
+					</a>
+				</div>
+			</div>
+			 <button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
+              <span ng-show="picFile.result">Carga exitosa</span>
+		</form>
 		
+		
+		
+		<!--  <form name="myForm">
+            <fieldset> -->
+          <!--     Username: <input type="text" name="userName" ng-model="username" size="39" required> -->
+             <!--  <i ng-show="myForm.userName.$error.required">*required</i><br> -->
+             <!--  <input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" required> -->
+             <!--  <i ng-show="myForm.file.$error.required">*required</i>
+              <br/> -->
+             <!--  <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button> -->
+            <!--   <span class="progress" ng-show="picFile.progress >= 0">
+                  <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
+              </span> -->
+            <!-- </fieldset>
+            <br/>
+          </form> -->
+		  
 		<!--datos usuario-->
 			<hr>
 			<h2 class="text-center">Datos</h2>
+		<form  role='form' name='usuario' ng-submit='editar_datos_usuario(usuario)'>
 		
 			<ul  class="list-group">
 				<li class="list-group-item"><span>Usuario:</span>
@@ -52,6 +81,8 @@
 			</ul>
 		
 		</div>
+		
+		</form>
 		<!--Detalle grupos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<hr>

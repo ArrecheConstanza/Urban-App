@@ -158,6 +158,12 @@ class Usuario{
 		return $stmt->execute([$array["BORRADO"],$array["ID"]]);
 	}
 	
+	public function foto_usuario($array){
+		$query = "UPDATE " . static::$tabla . "  SET FKMULTIMEDIA=? WHERE ID=? ";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["FKMULTIMEDIA"],$array["ID"]]);
+	}
+	
 	public function verificar_usuario($mail, $contrasenia){
 		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? AND CLAVE=sha2(?, 224)";
 		$stmt = DBcnx::getStatement($query);
