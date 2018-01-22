@@ -13,7 +13,7 @@
 		$array=[];
 		$array["BORRADO"]="Si";
 		$array["ID"]=$_SESSION['s_id'];
-		$usuario->eliminar_usuario($array);
+		echo $usuario->eliminar_usuario($array);
 		
 	}
 	
@@ -23,6 +23,6 @@
 		session_destroy();
 		echo "1";
 	}
-}
+
 	
 ?>

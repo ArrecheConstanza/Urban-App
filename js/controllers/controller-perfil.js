@@ -75,7 +75,9 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
+				console.log(data)
 				if(data){
+					document.getElementById('cerrar_modal').click();
 					modal("Cuenta eliminada con éxito");
 					$http({
 						method: 'GET',
@@ -87,7 +89,7 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 							window.localStorage.removeItem("user_urban");
 							$location.path("/");
 						}
-					});
+					}); 
 				}
 				else{
 					modal("Ups! Hubo un error, intentelo nuevamente más tarde");
