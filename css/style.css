@@ -190,5 +190,8 @@ hr{
 }
 
 .pre_vista{
-
+	border-radius:50%;
+	display:inline-block;
+	width:160px;
+	height:161px;
 }

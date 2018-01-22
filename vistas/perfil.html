@@ -17,7 +17,7 @@
 			</div>
 			
 			<!-- Texto -->
-			<h1 class="text-center">Mi Perfil</h1>
+			<h1 class="text-center">Perfil</h1>
 
 		</div>
 		
@@ -30,16 +30,15 @@
 		<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
 
 			<div style="position:relative" class="img-responsive">
-				<img ngf-src="picFile" class="thumb pre_vista">
-				<img ng-src="{{ datos_usuario.FOTO }}" width="80" hspace="16" height="81" vspace="16" />
-				<div style="position:absolute; top:19vh; left:49vw;">
+				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" width="160" hspace="16" height="161" vspace="16"/>
+				<img ng-src="{{ datos_usuario.FOTO }}"  width="160" hspace="16" height="161" vspace="16" id="foto_actual"/>
+				<div style="position:absolute; top:30vh; left:58vw;">
 					<a href="javascript:void(0)">
-						<!-- <input class='upload-file usuario-file'  type='file' ngf-select ng-model='usuario.FILE' name='file' ngf-select ng-model="picFile" accept='image/*' ngf-max-size='2MB' id='foto' ng-change="change()"> -->
-						<input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'">
+						<input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
+						<button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
 					</a>
 				</div>
 			</div>
-			 <button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
               <span ng-show="picFile.result">Carga exitosa</span>
 		</form>
 		

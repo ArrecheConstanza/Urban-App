@@ -4,12 +4,14 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 	
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
 	//foto generica
+	//console.log($scope.picFile);
 	if($scope.datos_usuario.FKMULTIMEDIA==null){
 		$scope.datos_usuario.FOTO="img/icons/png/usuario.png";
 	}
 	else{
 		
 	}
+	
 	
 	/****listado de grupos ****/
 	$http({
@@ -32,20 +34,26 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		}
 	});
 	
-	/* $scope.cambiar_foto_perfil=function(usuario){
-		console.log("entre");
-		console.log(usuario.FILE);
-	}  */
-		
 	/**** cambiar foto de perfil ****/
 		
 	var foto=id("foto");
-	id("envio_foto").click();
-	$scope.change=function(){
-		console.log(foto);
-		//id("envio_foto").click();
-		return 0;
+	var foto_actual=id("foto_actual");
+	var contenedor_foto;
+	var contenedor_foto_actual;
+	foto.onchange=function(){
+		var clase=this.className;
+		if(clase.search("ng-touched")){
+			contenedor_foto_acutal=foto_actual.parentNode;
+			rc(foto_actual.parentNode,foto_actual);
+			contenedor_foto=foto.parentNode;
+			rc(foto.parentNode,foto);
+		}
+		else{
+			console.log("no lo tiene");
+		}
+		
 	}
+	
 		$scope.editar_foto_usuario=function(usuario){
 			foto_usuario={
 				FOTO: usuario.FILE
