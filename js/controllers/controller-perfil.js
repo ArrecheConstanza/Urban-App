@@ -52,9 +52,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		}
 	}
 	
-	$scope.uploadPic=function(foto){
-		
-	}
 	$scope.deletePic=function(){
 		id("pre_vista").style.display="none";
 		id("envio_foto").style.display="none";
@@ -63,6 +60,32 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		
 	}
 	
+	$scope.uploadPic=function(foto){
+	
+		foto_usuario={
+			FOTO: foto
+		}
+		console.log(foto_usuario);
+		//var hay_foto=true; 
+		foto_usuario.upload = Upload.upload({
+			method: 'POST',
+			data: foto_usuario,
+			url:"php/abm/foto.usuario.php",
+		})
+		.then(function(response){
+			if(response.data){
+				console.log(response.data);
+				
+			}
+			else{
+				//modal error
+			}
+		}
+		,function(response){
+			//modal error
+			
+		});  
+	}
 	
 	
 	

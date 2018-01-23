@@ -27,6 +27,7 @@
 			$multimedia = new Multimedia();
 			$rta2=$multimedia->crear_multimedia($destino);
 			if(!$rta2){
+				echo "error al almacenar foto";
 				echo $rta2; //error al almacenar foto en bdd
 				return 0;
 			}
@@ -36,18 +37,23 @@
 			$array["ID"]=$_SESSION["s_id"];
 			$rta3=$usuario->foto_usuario($array);
 			if(!$rta3){
+				echo "error al crear foto";
 				echo $rta3; //error al crear foto en usuario
+				return 0;
+			}
+			else{
+				echo "ok";
 				return 0;
 			}
 		}		
 		else{ //no hay foto
-			echo 0;
-		}
+			echo "no hay foto";
+		} 
 		
 	}
 	//no logueado
 	else{
-		echo 0;
+		echo "no logueado";
 	}	
 	
 ?>
