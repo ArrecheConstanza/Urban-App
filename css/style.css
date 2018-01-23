@@ -183,7 +183,7 @@ hr{
 	display:inline-block;
 	width:100vw;
 	height:40vh;
-	background:url("../img/backgrounds/background-user-mini.jpg");
+	background:url("../img/backgrounds/background-user-mini.jpg") center -30%;
 	padding-top:0;
 }
 #title-container-perfil h1{
@@ -203,8 +203,31 @@ hr{
 }
 
 .pre_vista{
-	border-radius:50%;
-	display:inline-block;
-	width:160px;
-	height:161px;
+	width:100vw;
+	z-index:0;
 }
+
+#title-container-perfil form button{
+	color:white;
+	font-weight:bold;
+	font-size:1.2em;
+	padding:.5em;
+	border-radius:50%;
+	box-shadow:none;
+	width:2.4em;
+	height:2.4em;
+	margin:0 2.4em;
+}
+#envio_foto{
+	background:#86ae2f;
+}
+
+#title-container-perfil form>div{
+	display:inline-block;
+	width:100vw;
+	text-align:center;
+	z-index:1;
+	margin-top:-10em;
+}
+
+/*#peliarriba{ position:absolute; z-index:1; } #peliabajo{ position:absolute; z-index:0; } */

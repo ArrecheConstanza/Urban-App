@@ -18,7 +18,11 @@
 			</div>
 			<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
 				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" /> 
-				<button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
+				<!--ng-disabled="!form.$valid"-->
+				<div>
+					<button type="submit" ng-click="deletePic()" class="btn btn-danger" id="no_envio_foto">x</button>
+					<button type="submit" ng-click="uploadPic(picFile)" class="btn"id="envio_foto">&#10004;</button>
+				</div>
 			</form>
 		</div>
 		
@@ -28,7 +32,6 @@
 		-xs-12">
 
 		<!--datos usuario-->
-			<hr>
 			<h2 class="text-center">Datos</h2>
 		<form  role='form' name='usuario' ng-submit='editar_datos_usuario(usuario)'>
 		

@@ -35,8 +35,42 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 	});
 	
 	/**** cambiar foto de perfil ****/
+	
+	id("envio_foto").style.display="none";
+	id("no_envio_foto").style.display="none";
+	var ultimo_fondo=id("title-container-perfil").style.background; 
+	
+	id("foto").onchange=function(){
+		if(this.value!=""){
+			id("pre_vista").style.display="inline-block";
+			id('envio_foto').style.display="inline-block";
+			id('no_envio_foto').style.display="inline-block";
+			id("title-container-perfil").style.background="none";
+		}
+		else{
+			
+		}
+	}
+	
+	$scope.uploadPic=function(foto){
 		
-	var foto=id("foto");
+	}
+	$scope.deletePic=function(){
+		id("pre_vista").style.display="none";
+		id("envio_foto").style.display="none";
+		id("no_envio_foto").style.display="none";
+		id("title-container-perfil").style.background=ultimo_fondo;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+		
+	/* var foto=id("foto");
 	var foto_actual=id("foto_actual");
 	var contenedor_foto;
 	var contenedor_foto_actual;
@@ -46,7 +80,7 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			contenedor_foto_acutal=foto_actual.parentNode;
 			rc(foto_actual.parentNode,foto_actual);
 			/* contenedor_foto=foto.parentNode;
-			rc(foto.parentNode,foto); */
+			rc(foto.parentNode,foto); *
 			
 		}
 		else{
@@ -79,7 +113,17 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 				//modal error
 				
 			}); */
-		}
+	//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**** funcion abandonar grupo ****/
