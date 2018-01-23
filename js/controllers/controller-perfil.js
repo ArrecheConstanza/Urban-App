@@ -45,8 +45,9 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		if(clase.search("ng-touched")){
 			contenedor_foto_acutal=foto_actual.parentNode;
 			rc(foto_actual.parentNode,foto_actual);
-			contenedor_foto=foto.parentNode;
-			rc(foto.parentNode,foto);
+			/* contenedor_foto=foto.parentNode;
+			rc(foto.parentNode,foto); */
+			
 		}
 		else{
 			console.log("no lo tiene");

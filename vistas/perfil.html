@@ -5,60 +5,28 @@
 	
 	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
 	
-		<!-- Titulo Perfil, Volver-->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="title-container">
+		<!-- Titulo Perfil, Volver, foto-->
+		<div  id="title-container-perfil">
 			<!-- Icono -->
-			<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
-				<!-- <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 edit-delete-container">
-					<a ng-click="eliminar()" id="link-borrar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img id="borrar" src="img/icons/png/borrar.png" alt="Eliminar" /></a>
-					<a ng-click="editar(ID)" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a>
-				</div> -->
+			<div style="background:#eee; display:inline-block; width:100vw; ">
+				<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+				</div>
+				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
+				<!-- Texto -->
+				<h1 class="text-center">Perfil</h1>
 			</div>
-			
-			<!-- Texto -->
-			<h1 class="text-center">Perfil</h1>
-
+			<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
+				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" /> 
+				<button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
+			</form>
 		</div>
 		
 	<div class="contenedor-perfil"> 
 		<!--Detalle perfil -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col
 		-xs-12">
-		
-		<!--img usuario-->
-		<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
 
-			<div style="position:relative" class="img-responsive">
-				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" width="160" hspace="16" height="161" vspace="16"/>
-				<img ng-src="{{ datos_usuario.FOTO }}"  width="160" hspace="16" height="161" vspace="16" id="foto_actual"/>
-				<div style="position:absolute; top:30vh; left:58vw;">
-					<a href="javascript:void(0)">
-						<input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
-						<button ng-disabled="!myForm.$valid" type="submit" style="visibility: hidden;" ng-click="uploadPic(picFile)" id="envio_foto">&#10004;</button>
-					</a>
-				</div>
-			</div>
-              <span ng-show="picFile.result">Carga exitosa</span>
-		</form>
-		
-		
-		
-		<!--  <form name="myForm">
-            <fieldset> -->
-          <!--     Username: <input type="text" name="userName" ng-model="username" size="39" required> -->
-             <!--  <i ng-show="myForm.userName.$error.required">*required</i><br> -->
-             <!--  <input type="file" class='upload-file usuario-file'  ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" required> -->
-             <!--  <i ng-show="myForm.file.$error.required">*required</i>
-              <br/> -->
-             <!--  <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button> -->
-            <!--   <span class="progress" ng-show="picFile.progress >= 0">
-                  <div style="width:{{picFile.progress}}%" ng-bind="picFile.progress + '%'"></div>
-              </span> -->
-            <!-- </fieldset>
-            <br/>
-          </form> -->
-		  
 		<!--datos usuario-->
 			<hr>
 			<h2 class="text-center">Datos</h2>
@@ -82,23 +50,23 @@
 		</div>
 		
 		</form>
-		<!--Detalle grupos -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<hr>
-			<h2 class="text-center">Grupos</h2>
+			<!--Detalle grupos -->
+			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<hr>
+				<h2 class="text-center">Grupos</h2>
+				
+				<ul  class="list-group">
+					<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
+					{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
+					</li>
+				</ul>
 			
-			<ul  class="list-group">
-				<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
-				{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
-				</li>
-			</ul>
+			</div>
 		
+			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<hr>
+				<p class="cerrar-cuenta list-group-item">Cuenta <a href="javascript:void(0)" ng-click='eliminar_cuenta()' class="pull-right">Eliminar</a></p>
+			</div>
 		</div>
-		
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<hr>
-			<p class="cerrar-cuenta list-group-item">Cuenta <a href="javascript:void(0)" ng-click='eliminar_cuenta()' class="pull-right">Eliminar</a></p>
-		</div>
-	</div>
 	</div>
 	</div>

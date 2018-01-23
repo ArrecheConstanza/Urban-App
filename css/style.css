@@ -179,6 +179,19 @@ hr{
 	text-align:center;
 }
 
+#title-container-perfil{
+	display:inline-block;
+	width:100vw;
+	height:40vh;
+	background:url("../img/backgrounds/background-user-mini.jpg");
+	padding-top:0;
+}
+#title-container-perfil h1{
+    font-size: 1.8em;
+	margin-top:.5em;
+	padding-left:2em;
+}
+
 .contenedor-perfil div:nth-last-child(1){
 	padding-bottom:3em;
 }
@@ -186,7 +199,7 @@ hr{
 .usuario-file{
 	text-indent: 300px;
 	overflow: hidden;
-	background:url("../img/icons/png/mas-mini.png") no-repeat;
+	background:url("../img/icons/png/foto.png") no-repeat;
 }
 
 .pre_vista{
