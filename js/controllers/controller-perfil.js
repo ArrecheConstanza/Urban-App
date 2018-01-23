@@ -3,14 +3,14 @@
 Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
-	//foto generica
-	//console.log($scope.picFile);
-	if($scope.datos_usuario.FKMULTIMEDIA==null){
-		$scope.datos_usuario.FOTO="img/icons/png/usuario.png";
-	}
-	else{
-		
-	}
+	
+	/**** cargo foto perfil de usuario ****/
+	if(localStorage.getItem("foto_final_usuario")!=undefined){
+		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";
+		id("title-container-perfil").style.backgroundSize="100vw";
+
+		// <- despues se reemplaza para hosting
+	} 
 	
 	
 	/****listado de grupos ****/
@@ -33,7 +33,7 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			modal("Sin acceso a internet");
 		}
 	});
-	
+					
 	/**** cambiar foto de perfil ****/
 	
 	id("envio_foto").style.display="none";
@@ -47,25 +47,21 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			id('no_envio_foto').style.display="inline-block";
 			id("title-container-perfil").style.background="none";
 		}
-		else{
-			
-		}
 	}
 	
 	$scope.deletePic=function(){
 		id("pre_vista").style.display="none";
 		id("envio_foto").style.display="none";
 		id("no_envio_foto").style.display="none";
+		console.log(ultimo_fondo);
 		id("title-container-perfil").style.background=ultimo_fondo;
 		
 	}
 	
 	$scope.uploadPic=function(foto){
-	
 		foto_usuario={
 			FOTO: foto
 		}
-		console.log(foto_usuario);
 		//var hay_foto=true; 
 		foto_usuario.upload = Upload.upload({
 			method: 'POST',
@@ -73,9 +69,13 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			url:"php/abm/foto.usuario.php",
 		})
 		.then(function(response){
-			if(response.data){
-				console.log(response.data);
-				
+			if(response.data!=0){
+					localStorage.setItem("foto_final_usuario",response.data);
+					id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; 
+					id("title-container-perfil").style.backgroundSize="100vw";
+							// <- despues se reemplaza para hosting
+
+					location.reload();
 			}
 			else{
 				//modal error
@@ -86,68 +86,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			
 		});  
 	}
-	
-	
-	
-	
-	
-	
-		
-	/* var foto=id("foto");
-	var foto_actual=id("foto_actual");
-	var contenedor_foto;
-	var contenedor_foto_actual;
-	foto.onchange=function(){
-		var clase=this.className;
-		if(clase.search("ng-touched")){
-			contenedor_foto_acutal=foto_actual.parentNode;
-			rc(foto_actual.parentNode,foto_actual);
-			/* contenedor_foto=foto.parentNode;
-			rc(foto.parentNode,foto); *
-			
-		}
-		else{
-			console.log("no lo tiene");
-		}
-		
-	}
-	
-		$scope.editar_foto_usuario=function(usuario){
-			foto_usuario={
-				FOTO: usuario.FILE
-			}
-			console.log($scope);
-			var hay_foto=true; 
-			/* hay_foto.upload = Upload.upload({
-				method: 'POST',
-				data: foto_usuario,
-				url:"php/abm/foto.usuario.php",
-			})
-			.then(function(response){
-				console.log(response);
-				if(response.data){
-					
-				}
-				else{
-					//modal error
-				}
-			}
-			,function(response){
-				//modal error
-				
-			}); */
-	//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	/**** funcion abandonar grupo ****/
 	$scope.abandonar_grupo=function(nombre,num_id){
