@@ -31,17 +31,43 @@
 		-xs-12">
 
 		<!--datos usuario-->
-			<h2 class="text-center">Datos</h2>
-		<form  role='form' name='usuario' ng-submit='editar_datos_usuario(usuario)'>
+		<h2 class="text-center">Datos</h2>
 		
-			<ul  class="list-group">
-				<li class="list-group-item"><span>Usuario:</span>
-					{{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}
-				<!-- <a ng-click="editar(ID)" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 editar_usuario"><img src="img/icons/png/editar.png" alt="Editar" /></a> -->
+		<form  role='form' name='usuario_datos' ng-submit='editar_datos_usuario(usuario_datos)' id="form_editar_datos">
+		
+			<ul  class="list-group" ui-state='myAccordion' >
+				<li class="list-group-item" ui-set="{'myAccordion': 1}">
+					<span class="pull-left">Usuario</span>
+					<a class="editar_usuario pull-right"><img src="img/icons/png/editar.png" alt="Editar" /></a> 
+					<!-- <div>
+						<button type="submit" ng-click="uploadPic(picFile)" class="btn"id="envio_foto">&#10004;</button>
+						<button type="submit" ng-click="deletePic()" class="btn btn-danger" id="no_envio_foto">x</button>
+					</div> -->
+					<span class="pull-right"> {{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}</span>
+					 <div ui-if="myAccordion == {{1}}">
+						<div class="panel-body">
+							<input type="text" name="input" ng-model="usuario_datos.NOMBRE" placeholder="{{ datos_usuario.NOMBRE }}" class='form-control' required />
+							<input type="text" name="input" ng-model="usuario_datos.APELLIDO" placeholder="{{ datos_usuario.APELLIDO }}" class='form-control' required />
+							<div>
+								<button type="submit" ng-click="uploadPic(picFile)" class="btn"id="envio_foto">&#10004;</button>
+								<button type="submit" ng-click="deletePic()" class="btn btn-danger" id="no_envio_foto">x</button>
+							</div>
+						</div>
+					  </div>
 				</li>
-				<li class="list-group-item"><span>Direccion:</span>
-					{{ datos_usuario.DIRECCION	}} <span> {{ datos_usuario.DIRECCION_ESTADO	}} </span>
-				<!-- <a ng-click="editar(ID)" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 editar_usuario"><img src="img/icons/png/editar.png" alt="Editar" /></a> -->
+				<li class="list-group-item" ui-set="{'myAccordion': 2}">
+					<span class="pull-left">Direccion</span>
+					<a class="editar_usuario pull-right"><img src="img/icons/png/editar.png" alt="Editar" /></a>
+					<span class="pull-right"> <img src="{{ datos_usuario.DIRECCION_ESTADO }}" alt="Editar" /> </span>
+					<span class="pull-right">{{ datos_usuario.DIRECCION	}} </span>
+					<div ui-if="myAccordion == {{2}}">
+						<div class="panel-body">
+							<div>
+								<button type="submit" ng-click="uploadPic(picFile)" class="btn"id="envio_foto">&#10004;</button>
+								<button type="submit" ng-click="deletePic()" class="btn btn-danger" id="no_envio_foto">x</button>
+							</div>
+						</div>
+					  </div>
 				</li>
 				
 					<!-- cambiar clave-->

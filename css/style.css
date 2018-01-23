@@ -230,4 +230,15 @@ hr{
 	margin-top:-10em;
 }
 
-/*#peliarriba{ position:absolute; z-index:1; } #peliabajo{ position:absolute; z-index:0; } */
+#form_editar_datos img{
+	height:20px;
+	padding-left:1em;
+}
+
+#form_editar_datos li{
+	min-height:3em;
+}
+#form_editar_datos div{
+	padding:0;
+	margin:0;
+}

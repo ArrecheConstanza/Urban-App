@@ -3,15 +3,20 @@
 Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
-	
+	console.log($scope.datos_usuario);
 	/**** cargo foto perfil de usuario ****/
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
-		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";
-		id("title-container-perfil").style.backgroundSize="100vw";
-
-		// <- despues se reemplaza para hosting
+		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting
+		id("title-container-perfil").style.backgroundSize="100vw"; 
 	} 
 	
+	/**** Direccion estado img ****/
+	if($scope.datos_usuario.DIRECCION_ESTADO=="Oculto"){
+		$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/privado-mini.png";
+	}
+	else{
+		$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/publico-mini.png";
+	}
 	
 	/****listado de grupos ****/
 	$http({
@@ -62,7 +67,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		foto_usuario={
 			FOTO: foto
 		}
-		//var hay_foto=true; 
 		foto_usuario.upload = Upload.upload({
 			method: 'POST',
 			data: foto_usuario,
@@ -71,10 +75,8 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		.then(function(response){
 			if(response.data!=0){
 					localStorage.setItem("foto_final_usuario",response.data);
-					id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; 
+					id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
 					id("title-container-perfil").style.backgroundSize="100vw";
-							// <- despues se reemplaza para hosting
-
 					location.reload();
 			}
 			else{
@@ -86,6 +88,32 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			
 		});  
 	}
+	
+	
+	/**** Editar info de usuario ****/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**** funcion abandonar grupo ****/
 	$scope.abandonar_grupo=function(nombre,num_id){
