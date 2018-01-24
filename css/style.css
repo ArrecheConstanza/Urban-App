@@ -207,7 +207,7 @@ hr{
 	z-index:0;
 }
 
-#title-container-perfil form button{
+#title-container-perfil form button, .ok_acordeon{
 	color:white;
 	font-weight:bold;
 	font-size:1.2em;
@@ -237,8 +237,39 @@ hr{
 
 #form_editar_datos li{
 	min-height:3em;
+	padding:0;
+	background:#e8e8e4;
+	margin-top:-.4em;
 }
 #form_editar_datos div{
 	padding:0;
 	margin:0;
 }
+
+#form_editar_datos .panel-title{
+	display:inline-block;
+	width:100%;
+	background:white;
+	padding:10px 15px;
+	min-height:2.4em;
+	font-size:14px;
+}
+
+.cerrar_acordeon{
+	color:#86ae2f!important;
+	padding-right:.5em!;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -92,7 +92,10 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 	
 	/**** Editar info de usuario ****/
 	
-	
+	//abrir y cerrar acordeon
+	$scope.active = true;
+    $scope.active1 = true;
+    $scope.active2 = true;
 	
 	
 	
