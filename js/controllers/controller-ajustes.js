@@ -1,9 +1,10 @@
 /********************************************CONTROLLER PERFIL***************************************/
 
-Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
+Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
-	console.log($scope.datos_usuario);
+	
+	//console.log($scope.datos_usuario);
 	/**** cargo foto perfil de usuario ****/
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
 		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting

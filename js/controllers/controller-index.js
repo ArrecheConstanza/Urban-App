@@ -17,6 +17,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/newGrupo":
 			case "/detallePublicacion":
 			case "/perfil":
+			case "/ajustes":
 				return 0;
 			break;
 			default:
@@ -40,8 +41,8 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
         titulo: 'Publicaciones',
 		id: 'publicaciones',
     }, {
-        titulo: 'Chats',
-        id: 'chats',
+        titulo: 'Chat',
+        id: 'chat',
     }, {
         titulo: 'Encuestas',
         id: 'encuestas',
@@ -53,8 +54,21 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		$scope.estado = {};
 		$scope.estado.activo = id;
 		$scope.id_grupo=$routeParams.id;
+		
+		tn(document.getElementById("nav-bar"),"a",1).href="javascript:void(0);";
+		tn(document.getElementById("nav-bar"),"a",1).onclick=function(){
+			if(localStorage.getItem("nombre_chat")!=undefined){
+				/* var grupo={
+					ID:id,
+					NOMBRE:nombre
+				}
+				localStorage.setItem("nombre_chat",angular.toJson(grupo)); */
+				$window.location.href= "../urban-app/vistas/chat.html" ;
+			}
+			this.click();
+		}
 	}
-	
+
 	//nombre de grupo en footer
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
@@ -74,6 +88,14 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		.error(function(){
 			//mensaje Sin conexion 
 		});
+		
+		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+		var id=localStorage.getItem("grupo_seleccionado_urban");
+		var datos="id="+id;
+	}
+	else{
+		//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
+	}
 	}
 	
 	

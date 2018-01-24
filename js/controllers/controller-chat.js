@@ -230,11 +230,11 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		/** volver a listado de chats **/
 		$scope.volver_chats=function(){
 			window.localStorage.removeItem("nombre_chat");
-			$window.location.href= "/urban-app/index.html#/chats" ;
+			$window.location.href= "/urban-app/index.html#/chat" ;
 		}
 	}
 	else{
 		//modal error
-		$window.location.href= "/urban-app/index.html#/chats" ;
+		$window.location.href= "/urban-app/index.html#/chat" ;
 	}
 }]);

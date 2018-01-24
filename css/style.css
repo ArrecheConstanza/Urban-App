@@ -218,6 +218,16 @@ hr{
 	height:2.4em;
 	margin:0 2.4em;
 }
+
+.ok_acordeon{
+	width:2em;
+	height:2em;
+	margin:0;
+	padding:0;
+	margin:.8em .5em;
+	margin-top: -1em;
+}
+
 #envio_foto{
 	background:#86ae2f;
 }
@@ -260,9 +270,28 @@ hr{
 	padding-right:.5em!;
 }
 
+#form_editar_datos .switch{
+	text-align:center;
+	background:#86ae2f;
+}
 
+#form_editar_datos .switch-handle{
+	background:url(../img/icons/png/publico-mini.png) white center no-repeat;
+}
 
+#form_editar_datos .switch.active{
+	background:red;
 
+}
+#form_editar_datos .switch.active .switch-handle{
+	background:url(../img/icons/png/privado-mini.png) white center no-repeat;
+}
+
+.submit_datos_usurio{
+	color:#86ae2f;
+	border:none;
+	background:none;
+}
 
 
 

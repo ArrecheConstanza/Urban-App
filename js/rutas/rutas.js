@@ -10,26 +10,30 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/registro-datos.html',
 			controller : 'registroUnoCtrl'
 		})
-		.when('/perfil', {
+		/* .when('/perfil', {
 			templateUrl : 'vistas/perfil.html',
 			controller : 'perfilCtrl'
+		}) */
+		.when('/ajustes', {
+			templateUrl : 'vistas/ajustes.html',
+			controller : 'ajustesCtrl'
 		})
 		.when('/newGrupo', {
 			templateUrl : 'vistas/nuevo-grupo.html',
 			controller : 'newGrupoCtrl'
 		})
-		.when('/newChat', {
+		/* .when('/newChat', {
 			templateUrl : 'vistas/nuevo-chat.html',
 			controller : 'chatsListadoCtrl'
-		})
+		}) */
 		.when('/publicaciones/:id', {
 			templateUrl : 'vistas/publicaciones-listado.html',
 			controller : 'publicacionesListadoCtrl'
 		})
-		.when('/chats/:id', {
-			templateUrl : 'vistas/chats-listado.html',
-			controller : 'chatsListadoCtrl'
-		})
+		/* when('/chat', {
+			templateUrl : 'vistas/chat.html',
+			controller : 'chat'
+		})  */
 		/*.when('/unchat', {
 			templateUrl : 'vistas/chat.html',
 			controller : 'chat'

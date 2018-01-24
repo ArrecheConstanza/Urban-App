@@ -44,7 +44,7 @@
 							<span class="pull-left">Usuario</span>
 							<a class="editar_usuario pull-right" ng-show="active"><img src="img/icons/png/editar.png" alt="Editar" /></a> 
 							<a href="javascript:void(0)"  ng-hide="active" class="pull-right cerrar_acordeon">X</a>
-							<span class="pull-right"> {{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}</span>
+							<span class="pull-right " ng-show="active"> {{ datos_usuario.NOMBRE	}} {{ datos_usuario.APELLIDO}}</span>
 						</div>
 					</div>
 					 <div class="slideDown" ng-hide="active"> 
@@ -52,7 +52,7 @@
 							<input type="text" name="input" ng-model="usuario_datos.NOMBRE" placeholder="{{ datos_usuario.NOMBRE }}" class='form-control' />
 							<input type="text" name="input" ng-model="usuario_datos.APELLIDO" placeholder="{{ datos_usuario.APELLIDO }}" class='form-control' />
 							<div>
-								<button type="submit" class="btn ok_acordeon" id="envio_foto">&#10004;</button>
+								<button type="submit" class="btn ok_acordeon pull-right" id="envio_foto">&#10004;</button>
 							</div>
 						</div>
 					  </div>
@@ -65,17 +65,17 @@
 							<span class="pull-left">Direccion</span>
 							<a class="editar_usuario pull-right" ng-show="active1"><img src="img/icons/png/editar.png" alt="Editar" /></a>
 							<a href="javascript:void(0)"  ng-hide="active1" class="pull-right cerrar_acordeon">X</a>
-							<span class="pull-right"> <img src="{{ datos_usuario.DIRECCION_ESTADO }}" alt="Editar" /> </span>
-							<span class="pull-right">{{ datos_usuario.DIRECCION	}} </span>
+							<span class="pull-right" ng-show="active1"> <img src="{{ datos_usuario.DIRECCION_ESTADO }}" alt="Editar" /> </span>
+							<span class="pull-right" ng-show="active1">{{ datos_usuario.DIRECCION	}} </span>
 						</div>
 					</div>
 					 <div class="slideDown" ng-hide="active1"> 
 						<div class="panel-body expand-collapse-content">
 							<div class="form-group">
-								  <label>Remember Me</label>
+								  <span>Estado</span>
 								  <ui-switch 
 									ng-model='rememberMe'></ui-switch>
-								<button type="submit" class="btn ok_acordeon" id="envio_foto">&#10004;</button>
+								<button type="submit" class="pull-right submit_datos_usurio">Editar</button>
 							</div>
 						</div>
 					  </div>
@@ -88,7 +88,8 @@
 							<span class="pull-left">Clave</span>
 							<a class="editar_usuario pull-right" ng-show="active2"><img src="img/icons/png/editar.png" alt="Editar" /></a>
 							<a href="javascript:void(0)"  ng-hide="active2" class="pull-right cerrar_acordeon">X</a>
-							<span class="pull-right">{{ datos_usuario.CLAVE	}} </span>
+							<!-- <span class="pull-right">{{ datos_usuario.CLAVE	}} </span> -->
+							<span class="pull-right" ng-show="active2"> ********** </span>
 						</div>
 					</div>
 					 <div class="slideDown" ng-hide="active2"> 
@@ -96,7 +97,7 @@
 							<div>
 								<input type="text" name="input" ng-model="usuario_datos.CLAVE" placeholder="Clave" class='form-control' />
 								<input type="text" name="input" ng-model="usuario_datos.NUEVA_CLAVE" placeholder="Nueva Clave" class='form-control' />
-								<button type="submit" class="btn ok_acordeon" id="envio_foto">&#10004;</button>
+								<button type="submit" class="btn ok_acordeon pull-right" id="envio_foto">&#10004;</button>
 							</div>
 						</div>
 					  </div>
