@@ -93,7 +93,9 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		//preferencias
 		
-		
+		id("nombre-menu").onclick=function(){
+			localStorage.setItem("urban_url",$window.location.href);
+		}
 		
 		
 		

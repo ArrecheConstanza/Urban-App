@@ -10,7 +10,6 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 			
 		}
 	}
-	console.log($scope.titulo);
 	if($scope.titulo.toLowerCase()=='edad'){
 		var label=ce("label");
 		label.innerHTML="Edad";
@@ -20,9 +19,7 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 	else if($scope.titulo=='Direccion estado'){
 		var label=ce("label");
 		label.innerHTML="Dirección estado";
-		ac(id("form-ingreso"),label);
-		console.log(id("form-ingreso").childNodes[0]);
-		//id("form-ingreso").insertBefore(label, id("form-ingreso").childNodes[0]); 
+		ac(id("titulo_estado"),label);
 	}
 	else if($scope.titulo!='Direccion estado'){
 		tn(id("form-ingreso"),'ui-switch',0).style.display="none";

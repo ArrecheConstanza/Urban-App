@@ -2,6 +2,9 @@
 
 Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
+	$scope.back=function(){
+		window.location.href=localStorage.getItem("urban_url");
+	}
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
 	
 	/**** cargo foto perfil de usuario ****/
