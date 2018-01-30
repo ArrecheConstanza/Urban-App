@@ -17,19 +17,20 @@ angular.module('chat').constant( 'config', {
 /** modulos **/
 var basicChat = angular.module( 'BasicChat', [
 	'chat', //chat
-	'ngFileUpload' //upload imagenes
+	'ngFileUpload', //upload imagenes
 ] );
 
 /** controller **/
-basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$window', '$location', '$http', function( Messages, Upload, $scope, $window, $location, $http ) {
+basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$window', '$location', '$http' , function( Messages, Upload, $scope, $window, $location, $http) {
 	
 	//funcion volver atras
 	$scope.$back = function() { 
-		window.history.back();
+		window.location.href=localStorage.getItem("urban_url");
 	};
 	
 	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
-		
+		//$routeParams["id"]=angular.fromJson(localStorage.getItem("nombre_chat")).ID;
+
 		$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE; //preguntar si existe sino tirar error
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban"); //preguntar si existe sino tirar error
 		$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID; //preguntar si existe sino tirar error

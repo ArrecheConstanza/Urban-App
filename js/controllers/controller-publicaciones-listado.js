@@ -1,7 +1,8 @@
 /********************************************CONTROLLER PUBLICACIONES LISTADO**************************************/
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
-
+	console.log(window.location.href);
+		localStorage.setItem("urban_url",window.location.href);
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 			var datos="id="+$routeParams["id"];
 			var array=[];
@@ -13,7 +14,6 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
 					for(var i in data){
 						if(!data[i].FOTO.length){
 							data[i].FOTO="/urban-app/img/fotos/muestra.jpg";

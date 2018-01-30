@@ -49,24 +49,27 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
     }];
 	
 	$scope.id_grupo=$routeParams.id;
-	
+
 	$scope.cambiar_seccion=function(id){
 		$scope.estado = {};
 		$scope.estado.activo = id;
 		$scope.id_grupo=$routeParams.id;
 		
-		tn(document.getElementById("nav-bar"),"a",1).href="javascript:void(0);";
-		tn(document.getElementById("nav-bar"),"a",1).onclick=function(){
+		if(this.item.id=="chat"){
+			console.log($window.location);
+			$window.location.href= "../urban-app/vistas/chat.html" ;
+		}
+		/* tn(document.getElementById("nav-bar"),"a",1).onclick=function(){
 			if(localStorage.getItem("nombre_chat")!=undefined){
 				/* var grupo={
 					ID:id,
 					NOMBRE:nombre
 				}
-				localStorage.setItem("nombre_chat",angular.toJson(grupo)); */
+				localStorage.setItem("nombre_chat",angular.toJson(grupo)); *
 				$window.location.href= "../urban-app/vistas/chat.html" ;
 			}
 			this.click();
-		}
+		} */
 	}
 
 	//nombre de grupo en footer
@@ -92,10 +95,10 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		var id=localStorage.getItem("grupo_seleccionado_urban");
 		var datos="id="+id;
-	}
-	else{
-		//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
-	}
+		}
+		else{
+			//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
+		}
 	}
 	
 	

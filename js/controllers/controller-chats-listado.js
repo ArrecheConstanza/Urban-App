@@ -33,7 +33,8 @@ Urban.controller("chatsListadoCtrl", function ($scope,$http,$location,$window){
 				NOMBRE:nombre
 			}
 			localStorage.setItem("nombre_chat",angular.toJson(grupo));
-			$window.location.href= "../urban-app/vistas/chat.html" ;
+		
+			//$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
 	}
 	else{

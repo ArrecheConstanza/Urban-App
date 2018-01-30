@@ -4,7 +4,6 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	
 	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
 	
-	//console.log($scope.datos_usuario);
 	/**** cargo foto perfil de usuario ****/
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
 		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting
@@ -98,6 +97,42 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
     $scope.active1 = true;
     $scope.active2 = true;
 	
+	
+	$scope.editar_datos_usuario=function(usuario){
+		
+		//cargo objeto con datos a editar de form
+		datos_usuario={};
+		if(usuario.NOMBRE!=undefined){
+			datos_usuario.NOMBRE=usuario.NOMBRE;
+		}
+		if(usuario.APELLIDO!=undefined){
+			datos_usuario.APELLIDO=usuario.APELLIDO;
+		}
+		if(usuario.DIRECCION_ESTADO!=undefined){
+			datos_usuario.DIRECCION_ESTADO=usuario.DIRECCION_ESTADO;
+		}
+		if(usuario.CLAVE!=undefined){
+			datos_usuario.CLAVE=usuario.CLAVE;
+		}
+		if(usuario.NUEVA_CLAVE!=undefined){
+			datos_usuario.NUEVA_CLAVE=usuario.NUEVA_CLAVE;
+		}
+		
+		//envio a bdd
+		$http({
+			method: 'POST',
+			url:"php/abm/usuario.editar.php",
+			data: datos_usuario,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data){
+			console.log(data);
+			
+		})
+		.error(function(){
+			//mensaje Sin conexion 
+		});
+	}
 	
 	
 	
