@@ -18,6 +18,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/detallePublicacion":
 			case "/perfil":
 			case "/ajustes":
+			case "/editarDatosUsuario":
 				return 0;
 			break;
 			default:

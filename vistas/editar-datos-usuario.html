@@ -1,4 +1,4 @@
-	<!-- Estilos propios de la vista -->
+﻿	<!-- Estilos propios de la vista -->
 	<!-- Ejemplo: <style> @import url("css/registro-datos.css"); </style> -->
 
 	<!-- Contenedor registro -->
@@ -7,10 +7,10 @@
 		<!-- Titulo Registro Y Volver -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
 			<!-- Icono -->
-			<a href="#/" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a href="#/ajustes" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			
 			<!-- Texto -->
-			<h1 class="text-center">Registro</h1>
+			<h1 class="text-center">Editar</h1>
 		</div>
 		
 		
@@ -18,19 +18,22 @@
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
 			<!-- Formulario -->
-			<form ng-submit="submit(usuario)" role="form" class='form' id="form-ingreso">
+			<form ng-submit="editar_datos_usuario(usuario)" role="form" class='form' id="form-ingreso">
 				<!-- Email -->
 				<input type="text" name="email" placeholder="Email" class="form-control" required ng-model="usuario.EMAIL">
 				<!-- Contraseña -->
-				<input type="password" name="clave" placeholder="Contraseña" class="form-control" required ng-model="usuario.CLAVE">
+				<input type="password" name="clave" class="form-control" required ng-model="usuario.CLAVE">
 				<!-- Nombre -->
 				<input type="text" name="nombre" placeholder="Nombre" class="form-control" required ng-model="usuario.NOMBRE">
 				<!-- Apellido -->
 				<input type="text" name="apellido" placeholder="Apellido" class="form-control  margin-bottom-sm" required ng-model="usuario.APELLIDO">
 				<!-- Edad -->
-				<input type="date" name="edad" placeholder="Edad" class="form-control  margin-bottom-sm" required ng-model="usuario.EDAD">
-				<!-- Continuar-->
-				<input type="submit" class="form-control btn btn-default" value="Editar" id="continue-registro">
+				<input type="date" name="edad" class="form-control  margin-bottom-sm" required ng-model="usuario.EDAD">
+				<!-- Direccion estado -->
+				<ui-switch ng-model='rememberMe' name="direcion_estado"></ui-switch>
+				
+				<!-- Editar-->
+				<input type="submit" class="form-control btn btn-default" value="Guardar" id="continue-registro">
 			</form>
 		
 		</div>

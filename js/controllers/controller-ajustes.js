@@ -91,14 +91,18 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	
 	
 	/**** Editar info de usuario ****/
+
+	var editarUsuario=tn(id("editarUsuario"),'a');
+
+	for(var i=0;i<editarUsuario.length;i++){
+		editarUsuario[i].onclick=function(){
+			var titulo=tn(this,'li',0);
+			titulo=tn(titulo,'span',0).innerHTML;
+			localStorage.setItem("editar_usuario",titulo);
+		} 
+	}
 	
-	//abrir y cerrar acordeon
-	$scope.active = true;
-    $scope.active1 = true;
-    $scope.active2 = true;
-	
-	
-	$scope.editar_datos_usuario=function(usuario){
+	/* $scope.editar_datos_usuario=function(usuario){
 		
 		//cargo objeto con datos a editar de form
 		datos_usuario={};
@@ -132,7 +136,7 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		.error(function(){
 			//mensaje Sin conexion 
 		});
-	}
+	} */
 	
 	
 	

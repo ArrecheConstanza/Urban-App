@@ -239,12 +239,7 @@ hr{
 	z-index:1;
 	margin-top:-10em;
 }
-
-#form_editar_datos img{
-	height:20px;
-	padding-left:1em;
-}
-
+/*
 #form_editar_datos li{
 	min-height:3em;
 	padding:0;
@@ -268,33 +263,50 @@ hr{
 .cerrar_acordeon{
 	color:#86ae2f!important;
 	padding-right:.5em!;
-}
+}*/
 
-#form_editar_datos .switch{
+#form-ingreso .switch{
 	text-align:center;
 	background:#86ae2f;
 }
 
-#form_editar_datos .switch-handle{
+#form-ingreso .switch-handle{
 	background:url(../img/icons/png/publico-mini.png) white center no-repeat;
 }
 
-#form_editar_datos .switch.active{
+#form-ingreso .switch.active{
 	background:red;
 
 }
-#form_editar_datos .switch.active .switch-handle{
+#form-ingreso .switch.active .switch-handle{
 	background:url(../img/icons/png/privado-mini.png) white center no-repeat;
 }
 
+/*
 .submit_datos_usurio{
 	color:#86ae2f;
 	border:none;
 	background:none;
+}*/
+
+.usuario_datos li{
+	min-height:3em;
+}
+.usuario_datos .glyphicon {
+	color:grey;
+	padding-left:.5em;
+}
+.usuario_datos a>li>span:nth-child(1) {
+	color:grey;
+}
+.usuario_datos a>li>span:nth-child(3) {
+	color:#333;
 }
 
-
-
+.usuario_datos a li img{
+	height:20px;
+	padding-left:1em;
+}
 
 
 

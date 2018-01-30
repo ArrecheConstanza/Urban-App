@@ -18,6 +18,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/ajustes.html',
 			controller : 'ajustesCtrl'
 		})
+		.when('/editarDatosUsuario', {
+			templateUrl : 'vistas/editar-datos-usuario.html',
+			controller : 'editarDatosUsuarioCtrl'
+		})
 		.when('/newGrupo', {
 			templateUrl : 'vistas/nuevo-grupo.html',
 			controller : 'newGrupoCtrl'
