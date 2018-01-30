@@ -102,65 +102,12 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 			var titulo=tn(this,'li',0);
 			titulo=tn(titulo,'span',0).innerHTML;
 			localStorage.setItem("editar_usuario",titulo);
+			if(titulo=="Direccion"){
+				window.location.href = '/urban-app/vistas/mapa.html';
+			}
 		} 
 	}
-	
-	/* $scope.editar_datos_usuario=function(usuario){
-		
-		//cargo objeto con datos a editar de form
-		datos_usuario={};
-		if(usuario.NOMBRE!=undefined){
-			datos_usuario.NOMBRE=usuario.NOMBRE;
-		}
-		if(usuario.APELLIDO!=undefined){
-			datos_usuario.APELLIDO=usuario.APELLIDO;
-		}
-		if(usuario.DIRECCION_ESTADO!=undefined){
-			datos_usuario.DIRECCION_ESTADO=usuario.DIRECCION_ESTADO;
-		}
-		if(usuario.CLAVE!=undefined){
-			datos_usuario.CLAVE=usuario.CLAVE;
-		}
-		if(usuario.NUEVA_CLAVE!=undefined){
-			datos_usuario.NUEVA_CLAVE=usuario.NUEVA_CLAVE;
-		}
-		
-		//envio a bdd
-		$http({
-			method: 'POST',
-			url:"php/abm/usuario.editar.php",
-			data: datos_usuario,	
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
-		})
-		.success(function(data){
-			console.log(data);
-			
-		})
-		.error(function(){
-			//mensaje Sin conexion 
-		});
-	} */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/**** funcion abandonar grupo ****/
 	$scope.abandonar_grupo=function(nombre,num_id){
 		modal("¿Desea abandonar el grupo <b>"+nombre+"</b>?","&#10004;");

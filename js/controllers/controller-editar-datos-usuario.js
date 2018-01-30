@@ -7,7 +7,11 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 	for(var i=0;i<inputs.length;i++){
 		if(inputs[i].name!=$scope.titulo.toLowerCase()&&inputs[i].value!="Guardar"){
 			inputs[i].style.display="none";
-			
+		}
+		if($scope.titulo=="Clave"){
+			if(inputs[i].name=="clave_nueva"){
+				inputs[i].style.display="inline-block";
+			}
 		}
 	}
 	if($scope.titulo.toLowerCase()=='edad'){
@@ -24,7 +28,6 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 	else if($scope.titulo!='Direccion estado'){
 		tn(id("form-ingreso"),'ui-switch',0).style.display="none";
 	} 
-
 	
 	/**** Envio de form ****/
 	$scope.editar_datos_usuario=function(usuario){

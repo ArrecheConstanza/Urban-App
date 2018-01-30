@@ -153,6 +153,7 @@ footer{
 	display:inline-block;
 
 }
+
 /************************** Perfil ***********************/
 
 .contenedor-perfil>div>ul{
@@ -239,35 +240,12 @@ hr{
 	z-index:1;
 	margin-top:-10em;
 }
-/*
-#form_editar_datos li{
-	min-height:3em;
-	padding:0;
-	background:#e8e8e4;
-	margin-top:-.4em;
-}
-#form_editar_datos div{
-	padding:0;
-	margin:0;
-}
-
-#form_editar_datos .panel-title{
-	display:inline-block;
-	width:100%;
-	background:white;
-	padding:10px 15px;
-	min-height:2.4em;
-	font-size:14px;
-}
-
-.cerrar_acordeon{
-	color:#86ae2f!important;
-	padding-right:.5em!;
-}*/
 
 #form-ingreso .switch{
 	text-align:center;
 	background:#86ae2f;
+	margin-bottom:2em;
+	margin-left:35vw;
 }
 
 #form-ingreso .switch-handle{
@@ -281,13 +259,6 @@ hr{
 #form-ingreso .switch.active .switch-handle{
 	background:url(../img/icons/png/privado-mini.png) white center no-repeat;
 }
-
-/*
-.submit_datos_usurio{
-	color:#86ae2f;
-	border:none;
-	background:none;
-}*/
 
 .usuario_datos li{
 	min-height:3em;

@@ -1,6 +1,19 @@
 /**************************************CONTROLLER MAPA***************************************/
 
 Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
+	
+	
+	//**** para editar direccion usuario ****//
+	if(localStorage.getItem("editar_usuario")=="Direccion"){
+		//localStorage.removeItem("editar_usuario");
+		tn(id("title-container"),"p",0).innerHTML="Cambiar Dirección";
+		
+	}
+	
+	else{	
+	
+	//**** listar grupos en mapa ****//
+	
 	//pido datos de bdd
 		$http({ 
 				url:"../php/abm/grupos.listado.php",
@@ -36,4 +49,5 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				//variable global para listar grupos en google-maps
 				grupos=data;
 			});
+	}
 });

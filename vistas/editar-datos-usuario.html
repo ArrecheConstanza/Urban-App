@@ -22,7 +22,12 @@
 				<!-- Email -->
 				<input type="text" name="email" placeholder="Email" class="form-control" required ng-model="usuario.EMAIL">
 				<!-- Contraseña -->
-				<input type="password" name="clave" class="form-control" required ng-model="usuario.CLAVE">
+				<div>
+					<p id="titulo_clave"></p>
+					<input type="password" name="clave" class="form-control" required ng-model="usuario.CLAVE" placeholder="Clave actual" >
+					<p id="titulo_clave_nueva"></p>
+					<input type="password" name="clave_nueva" class="form-control" required ng-model="usuario.CLAVE_NUEVA" placeholder="Clave nueva" >
+				</div>
 				<!-- Nombre -->
 				<input type="text" name="nombre" placeholder="Nombre" class="form-control" required ng-model="usuario.NOMBRE">
 				<!-- Apellido -->

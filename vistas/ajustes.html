@@ -10,7 +10,7 @@
 			<!-- Icono -->
 			<div style="background:#eee; display:inline-block; width:100vw; ">
 				<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+					<span ng-click="back()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
 				</div>
 				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
 				<!-- Texto -->
@@ -74,7 +74,7 @@
 						<span class="pull-right"><img src="{{ datos_usuario.DIRECCION_ESTADO }}" alt="Editar" /></span>
 					</li>
 				</a>
-				<a href="#/editarDatosUsuario">
+				<a href="javascript:void(0);">
 					<li class="list-group-item">
 						<span class="pull-left">Direccion</span>
 						<img class="pull-right" src="img/icons/png/editar.png" alt="Editar" />
