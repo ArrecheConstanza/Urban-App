@@ -19,11 +19,42 @@
 		'EDAD' => 'required|date'
 	];
 	
+	
+	// falta validar datos
+	
 	if(isset($_SESSION["s_id"])){
 		$usuario = new Usuario();
-		$user=$usuario->getByPk($_SESSION["s_id"]);
-		//if($user["EMAIL"])
+
+		$datos = json_decode(key($_POST), true);
+		if($datos['EDAD']==null){
+			unset($datos['EDAD']);
+		}
 		
+		//es la clave
+		if(count($datos)==2){
+			$rta=$usuario->es_clave($datos["CLAVE"],$_SESSION["s_id"]);
+			
+			//la clave es correcta, la puede editar
+			if($rta['ID']==$_SESSION["s_id"]){ 
+				$rta=$usuario->editar_clave($datos["CLAVE_NUEVA"],$_SESSION["s_id"]);
+				echo $rta;
+			}
+			
+			//antigua clave no coincide
+			else{
+				echo "La clave no coincide";
+			}
+		}
+		
+		//es otro dato
+		else{
+			$array_final=[
+				"VALOR" => $datos[key($datos)],
+				"ID" => $_SESSION['s_id']
+			];
+			$rta=$usuario->editar_usuario(key($datos),$array_final);
+			echo $rta;
+		} 
 	}
 	else{ //no logueado
 		return 0;

@@ -20,23 +20,24 @@
 			<!-- Formulario -->
 			<form ng-submit="editar_datos_usuario(usuario)" role="form" class='form' id="form-ingreso">
 				<!-- Email -->
-				<input type="text" name="email" placeholder="Email" class="form-control" required ng-model="usuario.EMAIL">
+				<input type="text" name="email" placeholder="Email" class="form-control"  ng-model="usuario.EMAIL">
 				<!-- Contraseña -->
 				<div>
 					<p id="titulo_clave"></p>
-					<input type="password" name="clave" class="form-control" required ng-model="usuario.CLAVE" placeholder="Clave actual" >
+					<input type="password" name="clave" class="form-control" ng-model="usuario.CLAVE" placeholder="Clave actual" >
 					<p id="titulo_clave_nueva"></p>
-					<input type="password" name="clave_nueva" class="form-control" required ng-model="usuario.CLAVE_NUEVA" placeholder="Clave nueva" >
+					<input type="password" name="clave_nueva" class="form-control"  ng-model="usuario.CLAVE_NUEVA" placeholder="Clave nueva" >
 				</div>
 				<!-- Nombre -->
-				<input type="text" name="nombre" placeholder="Nombre" class="form-control" required ng-model="usuario.NOMBRE">
+				<input type="text" name="nombre" placeholder="Nombre" class="form-control" ng-model="usuario.NOMBRE">
 				<!-- Apellido -->
-				<input type="text" name="apellido" placeholder="Apellido" class="form-control  margin-bottom-sm" required ng-model="usuario.APELLIDO">
+				<input type="text" name="apellido" placeholder="Apellido" class="form-control  margin-bottom-sm"  ng-model="usuario.APELLIDO">
 				<!-- Edad -->
-				<input type="date" name="edad" class="form-control  margin-bottom-sm" required ng-model="usuario.EDAD">
+				<div><p id="titulo_edad"></p>
+				<input type="date" name="edad" class="form-control  margin-bottom-sm"  ng-model="usuario.EDAD">
 				<!-- Direccion estado -->
 				<div><p id="titulo_estado"></p>
-				<ui-switch ng-model='rememberMe'></ui-switch>
+				<ui-switch ng-model='usuario.DIRECCION_ESTADO'></ui-switch>
 				</div>
 				
 				<!-- Editar-->

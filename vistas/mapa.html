@@ -107,6 +107,9 @@
 		var map; 
 		var markers = [];
 		var marker_usuario;
+		
+		//**** MAPA ****//
+		
 		function initMap() { 
 		
 			<!--Creacion del mapa-->
@@ -126,7 +129,7 @@
 			
 			
 			<!-- Detalles del lugar -->
-			searchBox.addListener('places_changed', function() {
+		searchBox.addListener('places_changed', function() {
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 
 			if (places.length == 0) {
@@ -143,7 +146,7 @@
 			<!-- Por cada lugar pedir el icono, nombre y location -->
 			var bounds = new google.maps.LatLngBounds();
 			
-			places.forEach(function(place) {
+		places.forEach(function(place) {
 			  
 			 //TRAER LOS GRUPOS
 			  for(var i=0;i<grupos.length;i++){
@@ -200,8 +203,8 @@
 				title: place.name,
 				position: place.geometry.location
 			  }));
-			  marker_usuario=markers[markers.length];
-			 
+			  marker_usuario=markers[markers.length];			 
+			
 			 //boton crear grupo en mapa
 			  infowindow.push(new google.maps.InfoWindow({ 
 					content: '<div class="informacion"><input type="button" id="0" value="CREAR GRUPO" class="form-control btn btn-default nuevo_grupo"></input></div>'
@@ -213,7 +216,8 @@
 			  else {
 				bounds.extend(place.geometry.location);
 			  }
-			});
+		});
+			
 			map.fitBounds(bounds);
 			map.setZoom(15); 
 			
@@ -234,6 +238,7 @@
 						var ventana_info=document.getElementsByClassName("informacion");
 						for(var i=0;i<ventana_info.length;i++){
 							tn(ventana_info[i],"input",0).onclick=function(){
+							
 								/****************** CREAR GRUPO **********************/
 								if(this.id=="0"){					
 									<!-- Saco la lat y la long del marker-->
@@ -274,7 +279,15 @@
 
 		  });
 	  }
-		
+	 /*//**** Cambiar direccion*/
+			//if(posicion_usuario.length){
+				<!-- @Override
+					/*public void onMapReady(GoogleMap map) {
+						map.addMarker(new MarkerOptions()
+							.position(new LatLng(posicion_usuario["LATITUD"], posicion_usuario["LONGITUD"]))
+							.title("Hello world"));
+					}*/-->
+			//}	
 	  function toggleBounce(marker) {
 		  if (marker.getAnimation() !== null) {
 			marker.setAnimation(null);

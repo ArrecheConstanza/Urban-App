@@ -5,16 +5,18 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 	
 	//**** para editar direccion usuario ****//
 	if(localStorage.getItem("editar_usuario")=="Direccion"){
-		//localStorage.removeItem("editar_usuario");
-		tn(id("title-container"),"p",0).innerHTML="Cambiar Dirección";
-		
+		if(localStorage.getItem("user_urban")!=undefined){ //else error
+			var datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
+			tn(id("title-container"),"p",0).innerHTML="Cambiar Dirección";
+			tn(id("title-container"),"input",0).placeholder=datos_usuario.DIRECCION;
+			posicion_usuario["LATITUD"]=datos_usuario.LATITUD;
+			posicion_usuario["LONGITUD"]=datos_usuario.LONGITUD;
+		}
 	}
 	
-	else{	
-	
 	//**** listar grupos en mapa ****//
-	
-	//pido datos de bdd
+	else{	
+		//pido datos de bdd
 		$http({ 
 				url:"../php/abm/grupos.listado.php",
 			})

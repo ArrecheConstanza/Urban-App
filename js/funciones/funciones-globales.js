@@ -24,7 +24,7 @@ function txt(s){
 
 /****************************************VARIABLES GLOBALES****************************************/
 
-var header, footer, grupos=[], marker;
+var header, footer, grupos=[], marker, posicion_usuario=[];
 
 //////////VENTANA MODAL PARA MENSAJES
 

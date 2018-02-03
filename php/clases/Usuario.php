@@ -158,11 +158,25 @@ class Usuario{
 		return $stmt->execute([$array["BORRADO"],$array["ID"]]);
 	}
 	
-	public function editar_usuario($array){
-		$query = "UPDATE " . static::$tabla . " SET EMAIL=?, CLAVE=sha2(?, 224), NOMBRE=?,  APELLIDO=?, EDAD=?, DIRECCION=?, LATITUD=?, LONGITUD=? WHERE ID=?";
+	public function editar_usuario($variable,$array){
+		$query = "UPDATE " . static::$tabla . " SET $variable=? WHERE ID=?";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["EMAIL"],$array["CLAVE"],$array["NOMBRE"],$array["APELLIDO"],$array["EDAD"],$array["DIRECCION"],$array["LATITUD"],$array["LONGITUD"],$array["ID"]]);
+		return $stmt->execute([$array["VALOR"],$array["ID"]]);
 	}
+	
+	public function es_clave($contrasenia,$id){
+		$query = "SELECT ID FROM " . static::$tabla . " WHERE ID=? AND CLAVE=sha2(?, 224)";
+		$stmt = DBcnx::getStatement($query);
+		$stmt->execute([$id,$contrasenia]);
+		return /* $this->cargarDatos( */$stmt->fetch(PDO::FETCH_ASSOC)/* ) */;
+	}
+	
+	public function editar_clave($contrasenia,$id){
+		$query = "UPDATE " . static::$tabla . " SET CLAVE=sha2(?, 224) WHERE ID=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$contrasenia,$id]);
+	}
+	
 	
 	public function foto_usuario($array){
 		$query = "UPDATE " . static::$tabla . "  SET FKMULTIMEDIA=? WHERE ID=? ";
