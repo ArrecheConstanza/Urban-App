@@ -5,21 +5,43 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	$scope.back=function(){
 		window.location.href=localStorage.getItem("urban_url");
 	}
-	$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
+	//$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
+	
+	 //traigo contenido usuario de bdd
+	 $http({
+		method: 'GET',
+		url:"php/abm/usuario.datos.php",
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+	})
+	.success(function(data){
+		localStorage.setItem("user_urban",angular.toJson(data));
+		$scope.datos_usuario=angular.fromJson(data);
+
+		/**** Direccion estado img ****/
+		if($scope.datos_usuario.DIRECCION_ESTADO=="Oculto"){
+			$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/privado-mini.png";
+		}
+		else{
+			$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/publico-mini.png";
+		}
+	})
+	.error(function(){ //sin acceso a intenret, cargo datos locales
+		$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
+			/**** Direccion estado img ****/
+			if($scope.datos_usuario.DIRECCION_ESTADO=="Oculto"){
+				$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/privado-mini.png";
+			}
+			else{
+				$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/publico-mini.png";
+			} 
+	});
+	
 	
 	/**** cargo foto perfil de usuario ****/
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
 		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting
 		id("title-container-perfil").style.backgroundSize="100vw"; 
 	} 
-	
-	/**** Direccion estado img ****/
-	if($scope.datos_usuario.DIRECCION_ESTADO=="Oculto"){
-		$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/privado-mini.png";
-	}
-	else{
-		$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/publico-mini.png";
-	}
 	
 	/****listado de grupos ****/
 	$http({

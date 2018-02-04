@@ -29,7 +29,7 @@ function publicaciones_parsear_fecha($fecha){
 	return join(' ', $ret);
 }
 
-/*function edad($fecha){
+function edad($fecha){
 	$array=explode("-",$fecha);
 	$year=$array[0];
 	$month=$array[1];
@@ -44,7 +44,7 @@ function publicaciones_parsear_fecha($fecha){
 		$year_diff--;
 	}
 	return $year_diff;
-}*/
+}
 
 function getDatetimeNow() {
 	$tz_object = new DateTimeZone('America/Argentina/Buenos_Aires');
