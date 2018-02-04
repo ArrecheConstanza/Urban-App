@@ -82,7 +82,6 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		id("pre_vista").style.display="none";
 		id("envio_foto").style.display="none";
 		id("no_envio_foto").style.display="none";
-		console.log(ultimo_fondo);
 		id("title-container-perfil").style.background=ultimo_fondo;
 		
 	}

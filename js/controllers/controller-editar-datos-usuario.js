@@ -52,7 +52,12 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			console.log(data);
+			if(data){ //exito. reruteo a ajustes
+				$location.path("/ajustes");
+			}
+			else{
+				//error, vuelva a intentarlo mas tarde
+			}
 		})
 		.error(function(){
 			//mensaje Sin conexion 
