@@ -22,68 +22,28 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 		ac(id("titulo_edad"),label);
 	}
 	if($scope.titulo=='Direccion estado'){
+
+		datos=angular.fromJson(localStorage.getItem("user_urban"));
 		var label=ce("label");
 		label.innerHTML="Dirección estado";
 		ac(id("titulo_estado"),label);
+		
+		//**** Visible/Oculta ****//
+		if(datos.DIRECCION_ESTADO=="Oculta"){
+			setTimeout(function() {
+				tn(id("form-ingreso"),'ui-switch',0).click()        
+			 }, 0);
+		}
 	}
 	else if($scope.titulo!='Direccion estado'){
 		tn(id("form-ingreso"),'ui-switch',0).style.display="none";
 	} 
-	
-	
-	
-	
-	
+
 	
 	/**** Envio de form ****/
 	$scope.editar_datos_usuario=function(usuario){
 
-	
-		//creo objeto para enviar a bdd 
-	/* 	datos_usuario={};
-		if(usuario.CLAVE!=undefined){
-			var numero='', ban=0;
-			for(var name in usuario) {
-				if(ban<2){
-					if(numero==''||numero=="1"){
-						if(numero==""){
-							datos_usuario={
-								VARIABLE : name,
-								VALOR : usuario[name],
-							};
-						}
-						else{
-							datos_usuario={
-								VARIABLE1 : name,
-								VALOR1 : usuario[name],
-							};
-						}
-					}
-					if(!ban){
-						numero="1";
-					}
-					ban++;
-				}
-			}
-		}
-		else{
-			var ban=0;
-			for(var name in usuario) {
-				if(!ban){
-					datos_usuario={
-						VARIABLE : name,
-						VALOR : usuario[name],
-					};
-					ban=1;
-				}
-			}
-		}
-
-		console.log(datos_usuario); */
-		
-		
-		//validar datos en onblur
-		
+		//validar datos 
 		
 		$http({
 			method: 'POST',

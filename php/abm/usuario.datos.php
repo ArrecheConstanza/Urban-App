@@ -26,8 +26,12 @@
 		$usuario = new Usuario();
 		$datos = $usuario->getByPk($_SESSION["s_id"]);
 		
+		//borrar clave
 		$datos["CLAVE"]="";
+		
+		//parsear edad
 		$datos["EDAD"]=edad($datos["EDAD"]);
+		
 		echo json_encode($datos);
 	}
 	else{ //no logueado

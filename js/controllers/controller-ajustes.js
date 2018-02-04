@@ -5,7 +5,6 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	$scope.back=function(){
 		window.location.href=localStorage.getItem("urban_url");
 	}
-	//$scope.datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
 	
 	 //traigo contenido usuario de bdd
 	 $http({
@@ -16,9 +15,9 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	.success(function(data){
 		localStorage.setItem("user_urban",angular.toJson(data));
 		$scope.datos_usuario=angular.fromJson(data);
-
+		
 		/**** Direccion estado img ****/
-		if($scope.datos_usuario.DIRECCION_ESTADO=="Oculto"){
+		if($scope.datos_usuario.DIRECCION_ESTADO=="Oculta"){
 			$scope.datos_usuario.DIRECCION_ESTADO="img/icons/png/privado-mini.png";
 		}
 		else{

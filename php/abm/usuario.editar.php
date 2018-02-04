@@ -24,7 +24,7 @@
 	
 	if(isset($_SESSION["s_id"])){
 		$usuario = new Usuario();
-
+		
 		$datos = json_decode(key($_POST), true);
 		if($datos['EDAD']==null){
 			unset($datos['EDAD']);
@@ -48,10 +48,22 @@
 		
 		//es otro dato
 		else{
+			if(isset($datos["DIRECCION_ESTADO"])){
+				if($datos["DIRECCION_ESTADO"]){
+					$valor="Oculta";
+				}
+				else{
+					$valor="Visible";
+				}
+			}
+			else{
+				$valor=$datos[key($datos)];
+			}
 			$array_final=[
-				"VALOR" => $datos[key($datos)],
+				"VALOR" => $valor,
 				"ID" => $_SESSION['s_id']
 			];
+			var_dump($valor);
 			$rta=$usuario->editar_usuario(key($datos),$array_final);
 			echo $rta;
 		} 
