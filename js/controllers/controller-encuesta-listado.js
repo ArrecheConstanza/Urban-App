@@ -1,15 +1,16 @@
 /********************************************CONTROLLER ENCUESTA LISTADO**************************************/
 
 Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
-	console.log(window.location.href);
 		localStorage.setItem("urban_url",window.location.href);
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 			var datos="id="+$routeParams["id"];
 			var array=[];
+			
+			
 			//pido datos de bdd
-				$http({ 
+				/*$http({ 
 					method:"POST",
-					url:"php/abm/publicaciones.listado.php",
+					url:"php/abm/encuestas.listado.php",
 					data: datos,	
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
@@ -29,7 +30,7 @@ Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
 				})
 				.error(function(){
 					// sin internet
-				});
+				});*/
 		}
 		else{
 			//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
