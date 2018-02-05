@@ -57,7 +57,6 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			console.log(data);
 			if(!isNaN(data.ID)){
 				//redireccion a home de usuario
 				window.localStorage.removeItem("dts_user");

@@ -20,6 +20,9 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 		var label=ce("label");
 		label.innerHTML="Edad";
 		ac(id("titulo_edad"),label);
+		
+		$scope.fecha = new Date();
+
 	}
 	if($scope.titulo=='Direccion estado'){
 
@@ -45,15 +48,36 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 
 		//validar datos 
 		
+		
+		//Si es edad, parseo fecha
+		if(usuario.EDAD!=null){
+			var date=usuario.EDAD;
+			date = new Date (date);
+			var month=parseInt(date.getMonth());
+			month+=1;
+			var edad=date.getFullYear()+"-"+month+"-"+date.getDate();
+			usuario.edad=edad;
+		}
+		
+		
+		//creo objeto con datos
+		var item = [];
+		for(var i in usuario){
+			item.push( i+'='+usuario[i] ); 
+		}
+		var union = item.join('&');	
+		
+		//guardado de datos en bdd
 		$http({
 			method: 'POST',
 			url:"php/abm/usuario.editar.php",
-			data: usuario,	
+			data: union,	
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
+			console.log(data);
 			if(data){ //exito. reruteo a ajustes
-				$location.path("/ajustes");
+			//	$location.path("/ajustes");
 			}
 			else{
 				//error, vuelva a intentarlo mas tarde
@@ -62,7 +86,6 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 		.error(function(){
 			//mensaje Sin conexion 
 		});
-		
 	}
 
 	

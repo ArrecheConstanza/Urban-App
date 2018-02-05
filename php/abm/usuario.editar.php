@@ -25,13 +25,13 @@
 	if(isset($_SESSION["s_id"])){
 		$usuario = new Usuario();
 		
-		$datos = json_decode(key($_POST), true);
-		if($datos['EDAD']==null){
+		$datos=$_POST;
+		if($datos['EDAD']=="null"){
 			unset($datos['EDAD']);
 		}
 		
 		//es la clave
-		if(count($datos)==2){
+		if(count($datos)==2&&isset($datos["CLAVE"])){
 			$rta=$usuario->es_clave($datos["CLAVE"],$_SESSION["s_id"]);
 			
 			//la clave es correcta, la puede editar
@@ -48,6 +48,12 @@
 		
 		//es otro dato
 		else{
+			
+			//edad
+			if(isset($datos["edad"])){
+				$datos["EDAD"]=$datos["edad"];
+			}
+			//direccion_estado
 			if(isset($datos["DIRECCION_ESTADO"])){
 				if($datos["DIRECCION_ESTADO"]){
 					$valor="Oculta";
@@ -63,7 +69,6 @@
 				"VALOR" => $valor,
 				"ID" => $_SESSION['s_id']
 			];
-			var_dump($valor);
 			$rta=$usuario->editar_usuario(key($datos),$array_final);
 			echo $rta;
 		} 
