@@ -1,32 +1,42 @@
-	<!-- Contenedor publicar -->
+
+	<!-- Contenedor Encuesta -->
+	<div class="scrollable">
+		<div class="scrollable-content">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicacion-datos">
-	
-		<!-- Titulo Publicar, Volver-->
+		<!-- Titulo Encuesta, Volver-->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
 			<!-- Icono -->
 			<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2"><span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span></div>
 		
 			<!-- Texto -->
-			<h1 class="text-center">Publicar</h1>
+			<h1 class="text-center">Encuestar</h1>
 		</div>
 		
 		<!--Campos container -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="container_form">
 		
-			<!-- Formulario -->
-		<form  role='form' name='publi' ng-submit='crear_publicacion(publicacion)'>
-			<select class='select' name='grupo' ng-model='publicacion.FKGRUPO' ng-init="publicacion.FKGRUPO='0'">
+		<!-- Formulario -->
+		<form  role='form' name='publi' ng-submit='crear_encuesta(encuesta)'>
+			<select class='select' name='grupo' ng-model='encuesta.FKGRUPO' ng-init="encuesta.FKGRUPO='0'">
 				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
 			</select>
+			
 			<div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
 				<img ng-show='publi.FILE.$valid' ngf-src='FILE' class='thumb'>
-				<input class='upload-file'  type='file' ngf-select ng-model='publicacion.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
+				<input class='upload-file'  type='file' ngf-select ng-model='encuesta.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
 			</div>
-			<input type='text' id='titulo_submit' name='titulo' placeholder='titulo' class='form-control' required ng-model='publicacion.TITULO'>
-			<textarea cols='10' rows='6' name='descripcion' placeholder='descripcion' class='form-control' required ng-model='publicacion.DESCRIPCION' id='descripcion_submit'></textarea>
+ 
+			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' required ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
+		
+			<input type='text' id='titulo_submit' name='opcion1' placeholder='Opcion 1' class='form-control' required ng-model='encuesta.OPCION'>
+			<input type='text' id='titulo_submit' name='opcion2' placeholder='Opcion 2' class='form-control' required ng-model='encuesta.OPCION2'>
+			<input type='text' id='titulo_submit' name='opcion3' placeholder='Opcion 3' class='form-control' required ng-model='encuesta.OPCION3'>
+			
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
 		</form>
 		
 		</div>
 	
+	</div>
+	</div>
 	</div>

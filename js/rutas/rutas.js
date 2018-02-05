@@ -44,7 +44,11 @@ Urban.config(function($routeProvider) {
 		})*/
 		.when('/encuestas/:id', {
 			templateUrl : 'vistas/encuestas-listado.html',
-			//controller : 'encuestasListadoCtrl'
+			controller : 'encuestasListadoCtrl'
+		})
+		.when('/newEncuesta', {
+			templateUrl : 'vistas/encuestas.html',
+			controller : 'newEncuestaCtrl'
 		})
 		.when('/detallePublicacion', {
 			templateUrl : 'vistas/publicacion-detalle.html',

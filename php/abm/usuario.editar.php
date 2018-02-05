@@ -29,7 +29,9 @@
 		if($datos['EDAD']=="null"){
 			unset($datos['EDAD']);
 		}
-		
+		if(isset($datos['EMAIL'])){
+			unset($datos['CLAVE']);
+		}
 		//es la clave
 		if(count($datos)==2&&isset($datos["CLAVE"])){
 			$rta=$usuario->es_clave($datos["CLAVE"],$_SESSION["s_id"]);

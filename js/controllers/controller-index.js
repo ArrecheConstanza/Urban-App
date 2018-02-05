@@ -15,6 +15,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		switch($location.path()){
 			case "/newPublicacion":
 			case "/newGrupo":
+			case "/newEncuesta":
 			case "/detallePublicacion":
 			case "/perfil":
 			case "/ajustes":
