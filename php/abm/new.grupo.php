@@ -17,8 +17,9 @@
 	if(isset($_SESSION["s_id"])){
 		$grupo = new Grupo();
 		$fin=json_decode($grupo->crear_grupo($_POST),true);
+
 		
-		//eligo el ultimo grupo creado para tener el ID y crear la carpeta
+		//elijo el ultimo grupo creado para tener el ID y crear la carpeta
 		$ultimo_grupo=Grupo::ultimo_grupo_creado(); 
 		
 		if($fin==1){ //grupo creado ok

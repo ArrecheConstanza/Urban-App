@@ -6,13 +6,12 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases/Usuario_Grupo.php');
 	require_once('../clases/Chat_Usuario.php');
 	
-	if(isset($_POST["id_grupo"])){
+	if(isset($_POST["id_chat"])){
 		$_POST["id_usuario"]=$_SESSION["s_id"];
-		$usuario_grupo= new Usuario_Grupo();
-		echo $usuario_grupo->crear_usuario_grupo($_POST);
+		$chat_usuario= new Chat_Usuario();
+		echo $chat_usuario->crear_chat_usuario($_POST);
 	}
 	else{
 		echo 0;

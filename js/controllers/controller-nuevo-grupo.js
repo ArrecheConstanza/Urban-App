@@ -34,6 +34,42 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		})
 		.then(function(response){
 			if(response.data){
+				console.log("NUEVO GRUPO\n");
+				console.log(response);
+				//**** crear chat para grupo *****//
+				var datos="id_grupo="+response.data;
+				$http({
+					method: 'POST',
+					url:"php/abm/new.chat.php",
+					data: datos,	
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					console.log("NUEVO CHAT\n");
+					console.log(data);
+					if(data){
+						var datos="id_chat"+data;
+						//**** unir usuario a chat ****//
+						$http({
+							method: 'POST',
+							url:"php/abm/usuario.chat.unir.php",
+							data: datos,	
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data, status){
+							console.log("usuario_chat\n\n");
+							console.log(data);
+							if(!data){
+								//error no se pudo unir el usuario con el chat
+							}
+						});
+					}
+					else{
+						//error, no se pudo crear chat. 
+					}
+				});
+
+				//**** unir usuario a grupo ****//
 				datos="id_grupo="+response.data;
 				//unir el usuario a ese grupo
 				$http({
@@ -43,9 +79,11 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
+					console.log("usuario_grupo \n\n");
+					console.log(data);
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
-						$location.path("/publicaciones");
+						//$location.path("/publicaciones");
 					}
 					else{
 						//modal, error al crear grupo

@@ -97,11 +97,13 @@ class Grupo{
 			}
 		}
 	}
+	
 	public function eliminar_grupo($array){
-		$query = "DELETE FROM grupo WHERE ID=?";
+		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["id"]]);
+		return $stmt->execute([$array["ID"]]);
 	}
+	
 	public function crear_grupo($array){
 		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO)
 				VALUES (?, ?, ?, ?)";
@@ -129,6 +131,7 @@ class Grupo{
 		}
 		return $salida;
 	}
+	
 	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No'";

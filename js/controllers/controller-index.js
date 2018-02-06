@@ -108,6 +108,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	if(localStorage.getItem("user_urban")!=null){
 		
 		//********************** UNIRSE A GRUPO **********************//
+		//********************** UNIRSE A CHAT **********************//
 		if(localStorage.getItem("unir_a_grupo_id")!=null){
 			var id=angular.fromJson(localStorage.getItem("unir_a_grupo_id"));
 			var datos="id_grupo="+id;
