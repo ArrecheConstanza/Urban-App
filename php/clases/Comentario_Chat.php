@@ -115,7 +115,7 @@ class Comentario_Chat{
 				$comentario_chat->borrado = $fila['BORRADO'];
 				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];
 				$comentario_chat->fk_chat = $fila['FKCHAT'];
-				$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
+				//$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$comentario_chat->cargarDatos($fila);
 				$salida[] = $comentario_chat;
 			}
@@ -124,10 +124,10 @@ class Comentario_Chat{
 	}
 
 	public function crear_comentario_chat($array){
-		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,COMENTARIO_ID,FECHA_CREACION,FKUSUARIO,FKCHAT,FKMULTIMEDIA)
-				VALUES (?,?,?,?,?,?)";	
+		$query = "INSERT INTO " . static::$tabla . " (COMENTARIO,COMENTARIO_ID,FECHA_CREACION,FKUSUARIO,FKCHAT)
+				VALUES (?,?,?,?,?)";	
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["COMENTARIO"],$array["COMENTARIO_ID"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"],$array["FKMULTIMEDIA"]]);
+		return $stmt->execute([$array["COMENTARIO"],$array["COMENTARIO_ID"],$array["FECHA_CREACION"],$array["FKUSUARIO"],$array["FKCHAT"]/* ,$array["FKMULTIMEDIA"] */]);
 	}
 	
 	public function eliminar_comentario_chat($array){
@@ -150,7 +150,7 @@ class Comentario_Chat{
 				$comentario_chat->borrado = $fila['BORRADO'];
 				$comentario_chat->fk_usuario = $fila['FKUSUARIO'];
 				$comentario_chat->fk_chat = $fila['FKCHAT'];
-				$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
+				//$comentario_chat->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$comentario_chat->cargarDatos($fila);
 				$salida[] = $comentario_chat;
 			}
