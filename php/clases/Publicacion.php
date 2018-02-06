@@ -180,8 +180,8 @@ class Publicacion{
 	}
 	
 	public function crear_publicacion($array){
-		$query = "INSERT INTO " . static::$tabla . " (TITULO, DESCRIPCION, FECHA_CREACION, FKGRUPO, FKUSUARIO)
-				VALUES (?,?,?,?,?)";
+		$query = "INSERT INTO " . static::$tabla . " (TITULO, DESCRIPCION, FECHA_CREACION, FKGRUPO, FKUSUARIO, FKCATEGORIA)
+				VALUES (?,?,?,?,?,?)";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"],$array["FKCATEGORIA"]]);
 	}

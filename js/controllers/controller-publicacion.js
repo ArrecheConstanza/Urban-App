@@ -3,6 +3,26 @@
 Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	var input_titulo;
 	
+	//**** CATEGORIAS ****//
+	
+	$http({ 
+		method:"POST",
+		url:"php/abm/traer.categorias.php",
+		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+	})
+	.success(function(data, status){
+		$scope.categorias=data;
+		localStorage.setItem("categorias_urban",angular.toJson(data));
+	})
+	.error(function(data){
+		//sin internet, cargo datos locales
+		if(localStorage.getItem("categorias_urban")!="undefined"){
+			$scope.categorias=localStorage.getItem("categorias_urban");
+		}
+	});
+	
+	//**** GRUPOS ****//
+	
 	//listar grupos de usuario
 	var datos="usuario=true";
 		$http({ 
@@ -42,7 +62,8 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 				GRUPOS: $scope.grupos, //en el caso de seleccionar todos los grupos
 				FOTO: publicacion.FILE,
 				TITULO: publicacion.TITULO,
-				DESCRIPCION: publicacion.DESCRIPCION
+				DESCRIPCION: publicacion.DESCRIPCION,
+				FKCATEGORIA : publicacion.FKCATEGORIA
 			}
 			
 			//FALTA validacion de datos 

@@ -24,9 +24,15 @@
 				<img ng-show='publi.FILE.$valid' ngf-src='FILE' class='thumb'>
 				<input class='upload-file'  type='file' ngf-select ng-model='publicacion.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
 			</div>
+			
 			<input type='text' id='titulo_submit' name='titulo' placeholder='titulo' class='form-control' required ng-model='publicacion.TITULO'>
 
 			<textarea cols='10' rows='6' name='descripcion' placeholder='descripcion' class='form-control' required ng-model='publicacion.DESCRIPCION' id='descripcion_submit'></textarea>
+			
+			<select class='select' name='grupo' ng-model='publicacion.FKCATEGORIA' ng-init="publicacion.FKCATEGORIA='1'">
+				<option ng-repeat="item in categorias track by $index "  value='{{ item.ID }}'>{{ item.TITULO }}</option>
+			</select>
+			
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
 		</form>
 		

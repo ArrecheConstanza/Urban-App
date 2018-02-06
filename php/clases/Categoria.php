@@ -43,7 +43,7 @@ class Categoria{
 	
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' " ;
+		$query = "SELECT * FROM " . static::$tabla ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
