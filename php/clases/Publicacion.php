@@ -9,9 +9,10 @@ class Publicacion{
 	private $borrado;
 	private $fk_grupo;
 	private $fk_usuario;
+	private $fk_categoria;
 	
 	public static $tabla = "publicacion";
-	private static $fila = ['TITULO', 'DESCRIPCION','AVALADO','FECHA_CREACION','BORRADO','FKGRUPO','FKUSUARIO'];
+	private static $fila = ['TITULO', 'DESCRIPCION','AVALADO','FECHA_CREACION','BORRADO','FKGRUPO','FKUSUARIO','FKCATEGORIA'];
 
 	public function setCodigoPublicacion($a){
 		$this->codigo_publicacion = $a;
@@ -61,6 +62,12 @@ class Publicacion{
 	public function getFkUsuario(){
 		return $this->fk_usuario;
 	}
+	public function setFkCategoria($a){
+		$this->fk_categoria = $a;
+	}
+	public function getFkCategoria(){
+		return $this->fk_categoria;
+	}
 	
 	public function getByPk($id){
 		$this->codigo_publicacion = $id;
@@ -96,6 +103,9 @@ class Publicacion{
 					case "fk_usuario":
 						$this->setFkUsuario($valor);
 					break;
+					case "fk_categoria":
+						$this->setFkCategoria($valor);
+					break;
 				}
 			}
 		}
@@ -115,6 +125,7 @@ class Publicacion{
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
 				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->fk_categoria = $fila['FKCATEGORIA'];
 				$publicacion->cargarDatos($fila);
 				$salida[] = $publicacion;
 			}
@@ -138,6 +149,7 @@ class Publicacion{
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
 				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->fk_categoria = $fila['FKCATEGORIA'];
 				$publicacion->cargarDatos($fila);
 				$salida[] = $publicacion;
 			}
@@ -160,6 +172,7 @@ class Publicacion{
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
 				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->fk_categoria = $fila['FKCATEGORIA'];
 				$publicacion->cargarDatos($fila);
 			}
 			return $publicacion;
@@ -170,7 +183,7 @@ class Publicacion{
 		$query = "INSERT INTO " . static::$tabla . " (TITULO, DESCRIPCION, FECHA_CREACION, FKGRUPO, FKUSUARIO)
 				VALUES (?,?,?,?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"]]);
+		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"],$array["FKCATEGORIA"]]);
 	}
 	
 	public function ultima_publicacion_creada(){
@@ -188,9 +201,9 @@ class Publicacion{
 	}
 	
 	public function editar_publicacion($array){
-		$query = "UPDATE " . static::$tabla . "  SET TITULO=?, DESCRIPCION=?, FKGRUPO=? WHERE ID=? ";
+		$query = "UPDATE " . static::$tabla . "  SET TITULO=?, DESCRIPCION=?, FKGRUPO=?, FKCATEGORIA=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FKGRUPO"],$array["ID"]]);
+		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FKGRUPO"],$array["FKCATEGORIA"],$array["ID"]]);
 	}
 	
 	public function eliminar_publicacion($array){

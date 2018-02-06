@@ -55,6 +55,7 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 				data: datos_publicacion,
 			})
 			.then(function(response){
+				console.log(response);
 				if(response.data){
 					//modal exito?
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){

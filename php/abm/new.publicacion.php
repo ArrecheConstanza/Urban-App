@@ -19,7 +19,7 @@
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
 		
 		//crear publicacion en todos los grupos
-		if(!$_POST["FKGRUPO"]){ 
+		if($_POST["FKGRUPO"]=="0"){ 
 			$rta;
 			$ban=0;
 			$carpeta;
@@ -89,6 +89,7 @@
 		//crear publicacion en un solo grupo
 		else{ 
 			$rta=$publicacion->crear_publicacion($_POST);
+			var_dump($_POST);
 			if(!$rta){ //error al crear publicacion
 				echo $rta;
 			}
