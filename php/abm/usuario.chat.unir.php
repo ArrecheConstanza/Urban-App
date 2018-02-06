@@ -10,7 +10,7 @@
 	
 	if(isset($_POST["id_chat"])&&isset($_POST["id_grupo"])){
 		$chat_usuario= new Chat_Grupo();
-		var_dump( $chat_usuario->crear_chat_grupo($_POST));
+		echo $chat_usuario->crear_chat_grupo($_POST);
 	}
 	else{
 		echo 0;

@@ -45,17 +45,15 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				})
 				.success(function(data, status){
 					if(data){
-						datos="id_chat="+data+"&"+datos;
+						dato="id_chat="+data+"&"+datos;
 						//**** unir usuario a chat ****//
 						$http({
 							method: 'POST',
 							url:"php/abm/usuario.chat.unir.php",
-							data: datos,	
+							data: dato,	
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
 						.success(function(data, status){
-							console.log("usuario_chat\n\n");
-							console.log(data);
 							if(!data){
 								//error no se pudo unir el usuario con el chat
 							}
@@ -80,7 +78,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					console.log(data);
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
-						//$location.path("/publicaciones");
+						$location.path("/publicaciones");
 					}
 					else{
 						//modal, error al crear grupo
