@@ -57,6 +57,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		$scope.estado.activo = id;
 		$scope.id_grupo=$routeParams.id;
 		
+		//*** ir a chat ****//
 		if(this.item.id=="chat"){
 			console.log($window.location);
 			$window.location.href= "../urban-app/vistas/chat.html" ;

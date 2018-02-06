@@ -70,7 +70,9 @@ class Grupo{
 			}
 		}
 		return $salida;
-	}
+	} 
+	
+	
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {

@@ -239,8 +239,7 @@ function nombre() {
 }
 
 function id_grupo() {
-	//return angular.fromJson(localStorage.getItem("nombre_chat")).ID;
-	return 1;
+	return angular.fromJson(localStorage.getItem("grupo_seleccionado_urban")).ID;
 }
 function comentario_id(){
 	var id='xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,

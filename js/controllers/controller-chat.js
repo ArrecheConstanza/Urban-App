@@ -28,14 +28,27 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		window.location.href=localStorage.getItem("urban_url");
 	};
 	
-	if(localStorage.getItem("nombre_chat")!=null&&localStorage.getItem("nombre_chat")!=""&&localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
+	if(localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
 		//$routeParams["id"]=angular.fromJson(localStorage.getItem("nombre_chat")).ID;
 
 		//$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE; //preguntar si existe sino tirar error
-		$scope.titulo_chat="vecinos wash";
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban"); //preguntar si existe sino tirar error
 		//$scope.id_chat=angular.fromJson(localStorage.getItem("nombre_chat")).ID; //preguntar si existe sino tirar error
-		$scope.id_chat=1; //preguntar si existe sino tirar error
+		//$scope.id_chat=1; //preguntar si existe sino tirar error
+		var data="id="+$scope.id_grupo;
+		$http({ 
+			method:"POST",
+			url:"../php/abm/un.grupo.php",
+			data: data,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			var datos=angular.fromJson(data);
+			$scope.titulo_chat=datos[0]['NOMBRE'];
+		})
+		.error(function(data){
+			//no hay internet, usar datos de localstorage
+		});
 		
 		var chat = this;
 		chat.status = "";
@@ -44,7 +57,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		/** listar mensajes **/
 		
 		//////TRAIGO LISTADO DE COMENTARIOS EN CHAT 
-		var datos="id_chat="+$scope.id_chat;
+		var datos="id_chat="+$scope.id_grupo;
 		$http({ 
 			method:"POST",
 			url:"../php/abm/chats.comentario.listado.php",
@@ -111,11 +124,11 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					
 					/**recopilacion de datos**/
 					datos_chat={
-						FKCHAT: $scope.id_chat,
+						FKCHAT: $scope.id_grupo,
 						FKGRUPO: $scope.id_grupo,
 						COMENTARIO: $scope.comentario,
 						COMENTARIO_ID: $scope.comentario_id,
-						FOTO: file
+						//FOTO: file
 					}
 					
 					/**Si tiene foto**/
@@ -231,13 +244,13 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		
 		
 		/** volver a listado de chats **/
-		$scope.volver_chats=function(){
+		/* $scope.volver_chats=function(){
 			window.localStorage.removeItem("nombre_chat");
 			$window.location.href= "/urban-app/index.html#/chat" ;
-		}
+		} */
 	}
 	else{
-		//modal error
-		$window.location.href= "/urban-app/index.html#/chat" ;
+		//modal error no logueado
+		$window.location.href= "/urban-app/index.html" ;
 	}
 }]);

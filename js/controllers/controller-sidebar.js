@@ -36,7 +36,6 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					//mensaje Sin conexion 
 				});
 			}
-			//$scope.$apply();
 		}
 		
 		//listar grupos
@@ -75,7 +74,6 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 					$scope.estado = {};
 					$scope.estado.activo = localStorage.getItem("grupo_seleccionado_urban");
-					//$scope.$apply();
 				}
 				else{
 					//error ningun grupo activo
