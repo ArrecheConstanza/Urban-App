@@ -25,6 +25,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		
 		//FALTA validacion de datos en submit
 		
+		var datos;
 		var nombre=datos_grupo["NOMBRE"];
 		nombre.upload = Upload.upload({
 			method: 'POST',
@@ -34,10 +35,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		})
 		.then(function(response){
 			if(response.data){
-				console.log("NUEVO GRUPO\n");
-				console.log(response);
 				//**** crear chat para grupo *****//
-				var datos="id_grupo="+response.data;
+				datos="id_grupo="+response.data;
 				$http({
 					method: 'POST',
 					url:"php/abm/new.chat.php",
@@ -45,10 +44,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log("NUEVO CHAT\n");
-					console.log(data);
 					if(data){
-						var datos="id_chat"+data;
+						datos="id_chat="+data+"&"+datos;
 						//**** unir usuario a chat ****//
 						$http({
 							method: 'POST',

@@ -1,10 +1,10 @@
 <?php
 
-class Chat_Usuario{
+class Chat_Grupo{
 	private $codigo_chat;
-	private $codigo_usuario;
-	public static $tabla = "chat_usuario";
-	private static $fila = ['FKUSUARIO', 'FKCHAT'];
+	private $codigo_grupo;
+	public static $tabla = "chat_grupo";
+	private static $fila = ['FKCHAT','FKGRUPO'];
 
 	public function setCodigoChat($a){
 		$this->codigo_chat = $a;
@@ -12,11 +12,11 @@ class Chat_Usuario{
 	public function getCodigoChat(){
 		return $this->codigo_chat;
 	}
-	public function setCodigoUsuario($a){
-		$this->codigo_usuario = $a;
+	public function setCodigoGrupo($a){
+		$this->codigo_grupo = $a;
 	}
-	public function getCodigoUsuario(){
-		return $this->codigo_usuario;
+	public function getCodigoGrupo(){
+		return $this->codigo_grupo;
 	}
 	
 	public function cargarDatos($fila){
@@ -24,30 +24,30 @@ class Chat_Usuario{
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
 					case "codigo_chat":
-						$this->setCodigoGrupo($valor);
+						$this->setCodigoChat($valor);
 					break;
-					case "codigo_usuario":
-						$this->setCodigoUsuario($valor);
+					case "codigo_grupo":
+						$this->setCodigoGrupo($valor);
 					break;
 				}
 			}
 		}
 	}
 	
-	public function crear_chat_usuario($array){
-		$query = "INSERT INTO " . static::$tabla . " (FKCHAT, FKUSUARIO)
+	public function crear_chat_grupo($array){
+		$query = "INSERT INTO " . static::$tabla . " (FKCHAT, FKGRUPO)
 				VALUES (?, ?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["id_chat"],$array["id_usuario"]]);
+		return $stmt->execute([$array["id_chat"],$array["id_grupo"]]);
 	}
 	
-	public function abandonar_chat_usuario($array){
+	/* public function abandonar_chat_usuario($array){
 		$query = "DELETE FROM " . static::$tabla . " WHERE FKCHAT=? AND FKUSUARIO=?";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["id_chat"],$array["id_usuario"]]);
-	}
+	} */
 	
-	public static function traer_chat_usuario($id){
+	/* public static function traer_chat_grupo($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id'";
 		$stmt = DBcnx::getStatement($query);
@@ -60,7 +60,7 @@ class Chat_Usuario{
 			}
 		}
 		return $salida;
-	}
+	} */
 }
 
 ?>

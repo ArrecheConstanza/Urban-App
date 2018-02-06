@@ -125,9 +125,9 @@ class Chat{
 	
 	public function crear_chat($array){
 		$query = "INSERT INTO " . static::$tabla . " (FKGRUPO, FKUSUARIO)
-				VALUES (?,?,?)";
+				VALUES (?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["FKGRUPO"],$array["FKUSUARIO"]]);
+		return $stmt->execute([$array["id_grupo"],$array["id_usuario"]]);
 	}
 	
 	/* public function editar_chat($array){
@@ -135,19 +135,20 @@ class Chat{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["TITULO"],$array["ESTADO"],$array["ID"]]);
 	} */
+	
 	public function ultimo_chat_creado(){
 		$salida = [];
 		$query = "SELECT * FROM ".static::$tabla." ORDER BY ID DESC LIMIT 1";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$grupo = new Grupo;
-				$grupo->codigo_grupo = $fila['ID'];
-				$grupo->borrado = $fila['BORRADO'];
-				$grupo->fk_grupo = $fila['FKGRUPO'];
-				$grupo->fk_chat = $fila['FKCHAT'];
-				$grupo->cargarDatos($fila);
-				$salida[] = $grupo;
+				$chat = new Chat;
+				$chat->codigo_chat = $fila['ID'];
+				$chat->borrado = $fila['BORRADO'];
+				$chat->fk_grupo = $fila['FKGRUPO'];
+				$chat->fk_usuario = $fila['FKUSUARIO'];
+				$chat->cargarDatos($fila);
+				$salida[] = $chat;
 			}
 		}
 		return $salida;

@@ -14,10 +14,11 @@
 	
 	if(isset($_SESSION["s_id"])){
 		$chat = new Chat();
+		$_POST['id_usuario']=$_SESSION["s_id"];
 		$fin=$chat->crear_chat($_POST);
 		if($fin){
 			$chat=Chat::ultimo_chat_creado(); 
-			return $chat[0]->getCodigoChat();
+			echo $chat[0]->getCodigoChat();
 		}
 		else{ //no se pudo crear chat
 			return 0;
