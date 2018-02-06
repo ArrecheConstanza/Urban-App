@@ -22,7 +22,7 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 			})
 			.success(function(data, status){
 				if(data=="0"){
-					console.log("error, no esta iniciada la session");
+					console.log("error, no esta iniciada la sesion");
 				}
 				else{
 					//cambio fk_multimedia por la direccion de la foto
