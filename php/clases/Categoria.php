@@ -25,14 +25,29 @@ class Categoria{
 		$query = "SELECT * FROM " . static::$tabla . "
 					WHERE ID = ?";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$id]);
-		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		
+		if($stmt->execute([$id])) {
+			$salida=[];
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$categoria = new Categoria;
+				$categoria->codigo_categoria = $fila['ID'];
+				$categoria->titulo = $fila['TITULO'];
+				$categoria->cargarDatos($fila);
+				$salida[] = $categoria;
+			}
+		}
+		return $salida;
+		/* $stmt->execute([$id]);
+		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC)); */
 	}
 	
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
+					case "codigo_categoria":
+						$this->setCodigoCategoria($valor);
+					break;
 					case "titulo":
 						$this->setTitulo($valor);
 					break;

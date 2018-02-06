@@ -4,7 +4,7 @@ class Publicacion{
 	private $codigo_publicacion;
 	private $titulo;
 	private $descripcion;
-	private $avalado;
+	//private $avalado;
 	private $fecha_creacion;
 	private $borrado;
 	private $fk_grupo;
@@ -12,7 +12,7 @@ class Publicacion{
 	private $fk_categoria;
 	
 	public static $tabla = "publicacion";
-	private static $fila = ['TITULO', 'DESCRIPCION','AVALADO','FECHA_CREACION','BORRADO','FKGRUPO','FKUSUARIO','FKCATEGORIA'];
+	private static $fila = ['TITULO', 'DESCRIPCION','FECHA_CREACION','BORRADO','FKGRUPO','FKUSUARIO','FKCATEGORIA'];
 
 	public function setCodigoPublicacion($a){
 		$this->codigo_publicacion = $a;
@@ -32,12 +32,12 @@ class Publicacion{
 	public function getDescripcion(){
 		return $this->descripcion;
 	}
-	public function setAvalado($a){
+	/* public function setAvalado($a){
 		$this->avalado = $a;
 	}
 	public function getAvalado(){
 		return $this->avalado;
-	}
+	} */
 	public function setFechaCracion($a){
 		$this->fecha_creacion = $a;
 	}
@@ -88,9 +88,9 @@ class Publicacion{
 					case "descripcion":
 						$this->setDescripcion($valor);
 					break;
-					case "avalado":
+					/* case "avalado":
 						$this->setAvalado($valor);
-					break;
+					break; */
 					case "fecha_creacion":
 						$this->setFechaCracion($valor);
 					break;
@@ -120,7 +120,7 @@ class Publicacion{
 				$publicacion->codigo_publicacion = $fila['ID'];
 				$publicacion->titulo = $fila['TITULO'];
 				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
+				//$publicacion->avalado = $fila['AVALADO'];
 				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
@@ -144,7 +144,7 @@ class Publicacion{
 				$publicacion->codigo_publicacion = $fila['ID'];
 				$publicacion->titulo = $fila['TITULO'];
 				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
+				//$publicacion->avalado = $fila['AVALADO'];
 				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
@@ -167,7 +167,7 @@ class Publicacion{
 				$publicacion->codigo_publicacion = $fila['ID'];
 				$publicacion->titulo = $fila['TITULO'];
 				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
+				//$publicacion->avalado = $fila['AVALADO'];
 				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
 				$publicacion->borrado = $fila['BORRADO'];
 				$publicacion->fk_grupo = $fila['FKGRUPO'];
