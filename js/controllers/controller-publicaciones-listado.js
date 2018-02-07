@@ -1,7 +1,26 @@
 /********************************************CONTROLLER PUBLICACIONES LISTADO**************************************/
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
-	console.log(window.location.href);
+	
+		//**** CATEGORIAS ****//
+	
+		$http({ 
+			method:"POST",
+			url:"php/abm/traer.categorias.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			$scope.categorias=data;
+			localStorage.setItem("categorias_urban",angular.toJson(data));
+		})
+		.error(function(data){
+			//sin internet, cargo datos locales
+			if(localStorage.getItem("categorias_urban")!="undefined"){
+				$scope.categorias=localStorage.getItem("categorias_urban");
+			}
+		});
+	
+		//
 		localStorage.setItem("urban_url",window.location.href);
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 			var datos="id="+$routeParams["id"];
@@ -14,7 +33,6 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
 					for(var i in data){
 						if(!data[i].FOTO.length){
 							data[i].FOTO="/urban-app/img/fotos/muestra.jpg";

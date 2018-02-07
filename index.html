@@ -95,16 +95,21 @@
 			<!-- ALARMA -->
 			<a class="pull-right sidebar-toggle" id="alarma" ui-toggle="uiSidebarRight">
 			<div class="pull-right alarm-icon">
-				 <img src="img/icons/png/alarm-1.png" alt="" />
+				 <img src="img/icons/png/alarm-1.png" alt="alarma" />
 			</div>
 			</a>
 			
-			<!-- BUSCADOR -->
-			<a href="#/buscador" class="pull-right menuIcon">
+			<!-- FILTRO -->
+			<a href="" class="pull-right menuIcon"  ui-turn-on="modal1">
 			<div class="pull-right" id="buscador">
-				<span class="glyphicon glyphicon-search glyphicon-sm"></span>
+				<!-- <span class="glyphicon glyphicon-search glyphicon-sm"></span> -->
+				 <img src="img/icons/png/filtro.png" alt="filtro" class="glyphicon" />
 			</div>
 			</a>
+			<div ui-content-for="modals"> 
+			  <div ng-include="modal.html"></div>
+			</div> 
+			
 		
 		<!-- navBar --> 
 		<div class="scrolleable-min" id="nav-bar">

@@ -39,16 +39,8 @@
 		//Pido todo el contenido categoria de la publicacion
 			$categoria = new Categoria();
 			$rta2 = $categoria->getByPk($unaPublicacion->getFkCategoria());
-			/* $arraySemiFinal2=[];
-			$array2=[];
-			var_dump($rta2[0]->getTitulo()); */
-			/* foreach($rta2 as $categ){
-				$array2=[
-					"CATEGORIA"=>$categ->getTitulo()
-				];
-				$arraySemiFinal2[]=$array2;
-			}
-	 */
+		
+		//
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),
 				"TITULO"=>$unaPublicacion->getTitulo(),

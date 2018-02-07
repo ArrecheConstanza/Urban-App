@@ -7,6 +7,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		window.history.back();
 	};
 	
+	//filtro
+	
+/*     $scope.filtrar_publicaciones=function(){
+		console.log("entre");
+	}; */
+	
+	
 	//funcion para cargar o no el header
 	$scope.header_footer=function(){
 		if(localStorage.getItem("user_urban")==null){
