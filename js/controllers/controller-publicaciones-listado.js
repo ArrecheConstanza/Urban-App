@@ -3,7 +3,9 @@
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
 	
 	//**** CATEGORIAS ****//
-	
+		
+		$scope.listado_categorias_seleccionadas=[];
+
 		$http({ 
 			method:"POST",
 			url:"php/abm/traer.categorias.php",
@@ -67,9 +69,19 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					var rta;
 					if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
 						rta=angular.fromJson(nuevo_array);
+						$scope.hay_filtrado=true;
+						var listado_categorias=localStorage.getItem("categoria_publicacion");
+						for (i in $scope.categorias){
+							for (j in listado_categorias){
+								if($scope.categorias[i].ID==listado_categorias[j]){
+									$scope.listado_categorias_seleccionadas.push($scope.categorias[i].TITULO);
+								}
+							}
+						}
 					}
 					else{
 						rta=angular.fromJson(data);
+						$scope.hay_filtrado=false;
 					}
 					
 					//cargo datos en vista
