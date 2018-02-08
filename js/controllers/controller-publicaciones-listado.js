@@ -38,7 +38,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					for(var i in data){
 						var es_categoria=false;
 						//si se filtra por categoria
-						if(localStorage.getItem("categoria_publicacion")!=null){
+						if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
 							var categorias=localStorage.getItem("categoria_publicacion");
 							for(var j=0;j<categorias.length;j++){
 								if(data[i].FK_CATEGORIA==categorias[j]){
@@ -65,7 +65,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					
 					//si esta filtrado por categorias
 					var rta;
-					if(nuevo_array.length!=0){
+					if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
 						rta=angular.fromJson(nuevo_array);
 					}
 					else{
