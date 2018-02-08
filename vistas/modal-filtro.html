@@ -1,17 +1,28 @@
-<div class="modal" ui-if='modal-filtro' ui-state='modal-filtro' ng-controller="modalCtrl">
-  <div class="modal-backdrop in"></div>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{{ titulo_modal }}</h4>
-      </div>
-      <div class="modal-body">
-        <p>{{ contenido_modal }}</p>
-      </div>
-      <div class="modal-footer">
-        <button ui-turn-off="modal-filtro" class="btn btn-default">Cerrar</button>
-        <button ui-turn-off="modal-filtro" class="btn btn-primary">Filtrar</button>
-      </div>
-    </div>
-  </div>
+<div class="modal" ng-show="estado_filtro" id="filtro">
+	<div class="modal-backdrop in "></div>
+	  <div class="modal-dialog scrollable">
+		<div class="modal-content scrollable-content">
+			<div>
+				<ul>
+					<li ng-repeat="categoria in categorias track by $index" class="list-group-item">
+						<label for="{{categoria.ID}}" >
+						  <input
+							type="checkbox"
+							class="form-check-input" 
+							name="categorias_seleccionadas[]"
+							id="{{categoria.ID}}"
+							value="{{categoria.ID}}"
+							ng-checked="selection.indexOf(categoria.ID) > -1"
+							ng-click="toggleSelection(categoria.ID)"
+						  > {{categoria.TITULO}}
+						</label>
+					</li>
+				</ul>
+				  <div id="filtro_botones">
+					<button ng-click="modal_filtrar()" class="btn btn-lg btn-danger">Cerrar</button>
+					<button class="btn btn-lg btn-success" ng-click="filtrar_publicaciones()">Filtrar</button>
+				  </div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -100,15 +100,12 @@
 			</a>
 			
 			<!-- FILTRO -->
-			<a href="" class="pull-right menuIcon"  ui-turn-on="modal1">
+			<a href="" class="pull-right menuIcon" ng-click="modal_filtrar()" > 
 			<div class="pull-right" id="buscador">
 				<!-- <span class="glyphicon glyphicon-search glyphicon-sm"></span> -->
 				 <img src="img/icons/png/filtro.png" alt="filtro" class="glyphicon" />
 			</div>
 			</a>
-			<div ui-content-for="modals"> 
-			  <div ng-include="modal.html"></div>
-			</div> 
 			
 		
 		<!-- navBar --> 
@@ -140,8 +137,8 @@
 	
 	<!---- MODAL ---->
 	
-	<div ui-yield-to="modals"></div>
-	
+ 	<div ng-include="mostrar_filtros()"></div>
+ 
 
 	<!-- BOOTSTRAP JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

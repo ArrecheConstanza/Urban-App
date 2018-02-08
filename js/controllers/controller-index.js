@@ -7,11 +7,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		window.history.back();
 	};
 	
-	//filtro
-	
-/*     $scope.filtrar_publicaciones=function(){
-		console.log("entre");
-	}; */
 	
 	
 	//funcion para cargar o no el header
@@ -59,6 +54,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	
 	$scope.id_grupo=$routeParams.id;
 
+	//cambiar seccion
 	$scope.cambiar_seccion=function(id){
 		$scope.estado = {};
 		$scope.estado.activo = id;
@@ -69,18 +65,68 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			console.log($window.location);
 			$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
-		/* tn(document.getElementById("nav-bar"),"a",1).onclick=function(){
-			if(localStorage.getItem("nombre_chat")!=undefined){
-				/* var grupo={
-					ID:id,
-					NOMBRE:nombre
-				}
-				localStorage.setItem("nombre_chat",angular.toJson(grupo)); *
-				$window.location.href= "../urban-app/vistas/chat.html" ;
-			}
-			this.click();
-		} */
 	}
+
+	//**** FILTRO ****//
+
+		//abrir modal con filtros
+		$scope.estado_filtro=false;
+		$scope.mostrar_filtros = function(){
+			if($scope.estado_filtro){
+				return "vistas/modal-filtro.html";
+			}
+			return "";
+		}
+		$scope.modal_filtrar=function(){
+			if($scope.estado_filtro){
+				$scope.estado_filtro=false;
+			}
+			else{
+				$scope.estado_filtro=true;
+			}
+			$scope.mostrar_filtros();
+		}; 
+		//controller modal-filtro
+		
+			//traer categorias
+			$http({ 
+				method:"POST",
+				url:"php/abm/traer.categorias.php",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data, status){
+				$scope.categorias=data;
+				localStorage.setItem("categorias_urban",angular.toJson(data));
+			})
+			.error(function(data){
+				//sin internet, cargo datos locales
+				if(localStorage.getItem("categorias_urban")!="undefined"){
+					$scope.categorias=localStorage.getItem("categorias_urban");
+				}
+			});
+			//funcion filtrar publicaciones
+			  $scope.selection = [];
+			  $scope.toggleSelection = function toggleSelection(categoria) {
+				var idx = $scope.selection.indexOf(categoria);
+				//si se saca
+				if (idx > -1) {
+				   $scope.selection.splice(idx, 1);
+				}
+				//si se agrega
+				else {
+				  $scope.selection.push(categoria);
+				} 
+			  };
+
+			//accion filtrar
+			$scope.filtrar_publicaciones=function(){
+				localStorage.setItem("categoria_publicacion",$scope.selection);
+				location.reload();
+				//modal_filtrar();
+			}
+			
+	
+	//*************************
 
 	//nombre de grupo en footer
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){

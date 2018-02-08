@@ -279,9 +279,32 @@ hr{
 	padding-left:1em;
 }
 
+/**************** filtro ************************/
 
+#filtro label{
+	font-size:1.2em;
+	display:inline-block;
+	width:100%;
+}
 
+#filtro_botones{
+	padding:0;
+	margin:0;
+	padding-top:.5em;
+	text-align:center;
+}
 
+#filtro_botones button{
+	margin:0 .5em;
+}
+
+#filtro .modal-dialog{
+	padding-top:0;
+}
+
+#filtro .scrollable-content{
+	max-height:95vh;
+}
 
 
 
