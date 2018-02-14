@@ -68,18 +68,27 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					//si esta filtrado por categorias
 					var rta;
 					if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
-						rta=angular.fromJson(nuevo_array);
-						$scope.hay_filtrado=true;
-						var listado_categorias=localStorage.getItem("categoria_publicacion");
-						for (i in $scope.categorias){
-							for (j in listado_categorias){
-								if($scope.categorias[i].ID==listado_categorias[j]){
-									$scope.listado_categorias_seleccionadas.push($scope.categorias[i].TITULO);
+						if(nuevo_array.length>=1){
+							rta=angular.fromJson(nuevo_array);
+							$scope.hay_filtrado=true;
+							var listado_categorias=localStorage.getItem("categoria_publicacion");
+							for (i in $scope.categorias){
+								for (j in listado_categorias){
+									if($scope.categorias[i].ID==listado_categorias[j]){
+										$scope.listado_categorias_seleccionadas.push($scope.categorias[i].TITULO);
+									}
 								}
 							}
+							id("filtrado_categorias").style.padding=".5em";
+						}
+						else{
+							id("filtrado_categorias").style.padding="0";
+							rta=angular.fromJson(data);
+							$scope.hay_filtrado=false;
 						}
 					}
 					else{
+						id("filtrado_categorias").style.padding="0";
 						rta=angular.fromJson(data);
 						$scope.hay_filtrado=false;
 					}

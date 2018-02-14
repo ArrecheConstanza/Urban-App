@@ -306,5 +306,17 @@ hr{
 	max-height:95vh;
 }
 
+.categoria_seleccionada{
+	display:inline-block;
+	border-radius:50%;
+	background:#d2d2d2;
+	padding:.3em 1em;
+	margin:.1em .5em ;
+}
 
+#filtrado_categorias{
+	background:white;
+	margin:0;
+	padding:.5em;
+}
 

@@ -86,6 +86,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			}
 			$scope.mostrar_filtros();
 		}; 
+		
 		//controller modal-filtro
 		
 			//traer categorias
@@ -106,6 +107,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			});
 			//funcion filtrar publicaciones
 			  $scope.selection = [];
+			  //si las categorias ya estan filtradas mostrarlas en modal
+			  $scope.cat_publi=localStorage.getItem("categoria_publicacion");
+			  if($scope.cat_publi!=undefined&&$scope.cat_publi!=""){
+				  for(var i=0;i<$scope.cat_publi.length;i++){
+					$scope.selection.push($scope.cat_publi[i]);
+				  }
+			  }
 			  $scope.toggleSelection = function toggleSelection(categoria) {
 				var idx = $scope.selection.indexOf(categoria);
 				//si se saca
@@ -117,7 +125,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				  $scope.selection.push(categoria);
 				} 
 			  };
-
 			//accion filtrar
 			$scope.filtrar_publicaciones=function(){
 				localStorage.setItem("categoria_publicacion",$scope.selection);

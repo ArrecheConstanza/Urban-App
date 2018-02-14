@@ -4,8 +4,9 @@
 	<!-- PUBLICACIONES -->
 	<div class="scrollable">
 		<div class="scrollable-content" id="publicaciones" ng-controller='publicacionesListadoCtrl'>
-		<ul id="filtrado_categorias" ng-show="hay_filtrado"  ng-repeat="item in listado_categorias_seleccionadas track by $index" >
-			<li  class="nav-link">
+		<ul id="filtrado_categorias" >
+			<li  ng-show="hay_filtrado"  ng-repeat="item in listado_categorias_seleccionadas track by $index"
+			class="nav-link categoria_seleccionada">
 				{{ item }}
 			</li>
 		</ul>
