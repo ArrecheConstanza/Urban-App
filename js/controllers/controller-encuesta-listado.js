@@ -1,11 +1,11 @@
 /********************************************CONTROLLER ENCUESTA LISTADO**************************************/
 
 Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
+	
 		localStorage.setItem("urban_url",window.location.href);
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 			var datos="id="+$routeParams["id"];
 			var array=[];
-			
 			
 			//pido datos de bdd
 				/*$http({ 

@@ -320,3 +320,48 @@ hr{
 	padding:.5em;
 }
 
+/************************ SECCION ENCUESTA **********************/
+
+#container_form label{
+	font-weight:bold;
+	font-size:1.3em;
+	color:#0a3a49;
+	display:inline-block;
+	text-align:right;
+}
+
+#nueva_opcion{
+	border:none;
+	background:none;
+	background:url('../img/icons/png/mas-mini.png');
+	display:inline-block;
+	width:35px;
+	height:35px;
+	overflow:hidden;
+	text-indent:-300px;
+	margin-bottom:1.5em;
+}
+
+#btn_opcion{
+	display:inline-block;
+ 	width:90vw; 
+	text-align:right;
+}
+
+#btn_opcion input{
+	margin-bottom:1em;
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

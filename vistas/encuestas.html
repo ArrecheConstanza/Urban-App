@@ -26,13 +26,19 @@
 				<input class='upload-file'  type='file' ngf-select ng-model='encuesta.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
 			</div>
  
-			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' required ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
+			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
 		
-			<input type='text' id='titulo_submit' name='opcion1' placeholder='Opcion 1' class='form-control' required ng-model='encuesta.OPCION'>
-			<input type='text' id='titulo_submit' name='opcion2' placeholder='Opcion 2' class='form-control' required ng-model='encuesta.OPCION2'>
-			<input type='text' id='titulo_submit' name='opcion3' placeholder='Opcion 3' class='form-control' required ng-model='encuesta.OPCION3'>
-			
+			<div id="btn_opcion">
+				<label>Opciones</label>
+				  <div ng-repeat="item in items">
+					<input ng-model="item.opcion" type="text" class='form-control' placeholder='Opcion {{numero_opcion}}'>
+				  </div>
+					<button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button>
+			 <!--  <pre>{{items | json}}</pre>
+			  <pre>{{json}}</pre> -->
+			</div>
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
+			
 		</form>
 		
 		</div>

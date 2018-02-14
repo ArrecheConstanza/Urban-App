@@ -2,7 +2,7 @@
 
 Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	var input_titulo;
-	
+
 	//listar grupos de usuario
 	var datos="usuario=true";
 		$http({ 
@@ -33,22 +33,37 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 		.error(function(){
 			//mensaje Sin conexion 
 		});
+		
+	//************* FORM ***************//
 	
+		//$scope.items = [{text: 'First Item'}, { text: 'Second Item'}];
+		
+		$scope.numero_opcion=0;
+		$scope.items=[];
+		$scope.addInputItem = function() {
+			$scope.numero_opcion++;
+			$scope.items.push({text:''});
+		};
+		
+		$scope.addInputItem();
+		
 	//************* CREAR *************//
 
-		$scope.crear_publicacion=function(publicacion){
-			datos_publicacion={
-				FKGRUPO: publicacion.FKGRUPO,
+		$scope.crear_encuesta=function(encuesta){
+			datos_encuesta={
+				FKGRUPO: encuesta.FKGRUPO,
 				GRUPOS: $scope.grupos, //en el caso de seleccionar todos los grupos
-				FOTO: publicacion.FILE,
-				TITULO: publicacion.TITULO,
-				DESCRIPCION: publicacion.DESCRIPCION
+				FOTO: encuesta.FILE,
+				PREGUNTA: encuesta.PREGUNTA,
+				//DESCRIPCION: encuesta.DESCRIPCION
 			}
+			
 			
 			//FALTA validacion de datos 
 			
-			
-			var titulo=datos_publicacion["TITULO"];
+			console.log(datos_encuesta);
+			console.log($scope.items);
+			/*var titulo=datos_encuesta["TITULO"];
 			titulo.upload = Upload.upload({
 				method: 'POST',
 				url:"php/abm/new.publicacion.php",
@@ -68,7 +83,7 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 			,function(response){
 				//modal error
 				
-			});
+			});*/
 		}
 }]);
 	
