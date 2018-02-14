@@ -50,27 +50,27 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 	//************* CREAR *************//
 
 		$scope.crear_encuesta=function(encuesta){
+		//datos del form
 			datos_encuesta={
 				FKGRUPO: encuesta.FKGRUPO,
 				GRUPOS: $scope.grupos, //en el caso de seleccionar todos los grupos
 				FOTO: encuesta.FILE,
 				PREGUNTA: encuesta.PREGUNTA,
-				//DESCRIPCION: encuesta.DESCRIPCION
+				OPCIONES: $scope.items //array opciones
 			}
 			
 			
 			//FALTA validacion de datos 
 			
-			console.log(datos_encuesta);
-			console.log($scope.items);
-			/*var titulo=datos_encuesta["TITULO"];
-			titulo.upload = Upload.upload({
+			var pregunta=datos_encuesta["PREGUNTA"];
+			pregunta.upload = Upload.upload({
 				method: 'POST',
-				url:"php/abm/new.publicacion.php",
-				data: datos_publicacion,
+				url:"php/abm/new.encuesta.php",
+				data: datos_encuesta,
 			})
 			.then(function(response){
-				if(response.data){
+				console.log(response)
+				/* if(response.data){
 					//modal exito?
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
@@ -78,12 +78,12 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				}
 				else{
 					//modal error
-				}
+				} */
 			}
 			,function(response){
 				//modal error
 				
-			});*/
+			});
 		}
 }]);
 	

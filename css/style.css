@@ -330,6 +330,10 @@ hr{
 	text-align:right;
 }
 
+#container_form select{
+	margin-bottom:2em;
+}
+
 #nueva_opcion{
 	border:none;
 	background:none;

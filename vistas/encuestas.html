@@ -21,10 +21,10 @@
 				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
 			</select>
 			
-			<div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
+			<!-- <div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
 				<img ng-show='publi.FILE.$valid' ngf-src='FILE' class='thumb'>
 				<input class='upload-file'  type='file' ngf-select ng-model='encuesta.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
-			</div>
+			</div> -->
  
 			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
 		
@@ -34,8 +34,8 @@
 					<input ng-model="item.opcion" type="text" class='form-control' placeholder='Opcion {{numero_opcion}}'>
 				  </div>
 					<button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button>
-			 <!--  <pre>{{items | json}}</pre>
-			  <pre>{{json}}</pre> -->
+					 <!--  <pre>{{items | json}}</pre>
+					  <pre>{{json}}</pre> -->
 			</div>
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
 			
