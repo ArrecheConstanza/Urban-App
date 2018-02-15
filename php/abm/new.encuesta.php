@@ -33,9 +33,9 @@
 					$rta2=$encuesta->ultima_encuesta_creada();
 					if($rta2){
 						$opcion = new Opciones();
-						$array["FKENCUESTA"]=$rta2;
+						$array["FKENCUESTA"]=$rta2->getCodigoEncuesta();
 						for($i=0;$i<count($_POST['OPCIONES']);$i++){
-							$array["RESPUESTA"]=$_POST["OPCIONES"][$i];
+							$array["RESPUESTA"]=$_POST["OPCIONES"][$i]["opcion"];
 							$rta3=$opcion->crear_opciones($array);
 							if(!$rta){
 								echo $rta; //no se pudo crear opcion
