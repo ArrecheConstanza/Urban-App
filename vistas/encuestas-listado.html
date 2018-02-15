@@ -7,12 +7,13 @@
 		<a href="#newEncuesta" id="publicaciones_listado_crear_publicacion">Crear encuesta</a>	
 			
 			<ul class="list-group" id="listado-publicaciones">
-			  <li ng-repeat="item in datosSQLencuestas track by $index " onclick="detalleEncuesta(this)" class="list-group-item">
-				<input type="hidden" name="country" value="{{item.ID}}">
+			  <li ng-repeat="item in datosSQLencuestas track by $index " class="list-group-item"><a href='#detalleEncuesta/{{item.ID}}'>
+				<!-- <input type="hidden" name="country" value="{{item.ID}}"> -->
 				<h2>{{ item.PREGUNTA }}</h2>  
-				<!-- <p>{{ item.DESCRIPCION }}</p>   -->
+			<!-- 	<p>{{ item.cantidad_opciones }}</p>  --> 
 				<small>{{ item.FECHA_CREACION }}</small>  
-			  </li>
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			  </a></li>
 			</ul>
 		</div>
 	</div>

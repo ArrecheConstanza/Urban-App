@@ -11,6 +11,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	
 	//funcion para cargar o no el header
 	$scope.header_footer=function(){
+		if(!$location.path().search("/detalleEncuesta/")){
+			return 0;
+		}
 		if(localStorage.getItem("user_urban")==null){
 			return 0;
 		}
@@ -19,6 +22,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/newGrupo":
 			case "/newEncuesta":
 			case "/detallePublicacion":
+			case "/detalleEncuesta":
 			case "/perfil":
 			case "/ajustes":
 			case "/editarDatosUsuario":

@@ -31,7 +31,6 @@
 				}
 				else{
 					 $rta2=$encuesta->ultima_encuesta_creada();
-					 var_dump($rta2->getCodigoEncuesta());
 					if($rta2){
 						$opcion = new Opciones();
 						$array["FKENCUESTA"]=$rta2->getCodigoEncuesta();
@@ -46,11 +45,11 @@
 					}
 					else{
 						echo $rta2;
-						//return 0; //error al buscar ultima encuesta creada
+						return 0; //error al buscar ultima encuesta creada
 					} 
 				}  
 			} 
-			//echo $rta;
+			echo "ok";
 		}
 		//crear encuesta en un solo grupo
 		else{ 
@@ -78,7 +77,7 @@
 					echo $rta2;
 					return 0; //error al buscar ultima encuesta creada
 				}
-				echo $rta;
+				echo "ok";
 			}
 		} 
 	}

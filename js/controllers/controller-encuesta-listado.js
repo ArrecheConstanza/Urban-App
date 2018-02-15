@@ -7,7 +7,7 @@ Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
 			var datos="id="+$routeParams["id"];
 			var array=[];
 			
-			//pido datos de bdd
+			//listado de encuestas
 				$http({ 
 					method:"POST",
 					url:"php/abm/encuestas.listado.php",
@@ -15,7 +15,9 @@ Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
+					for(var i=0;i<data.length;i++){
+						data[i]["cantidad_opciones"]=data[i]["OPCIONES"].length;
+					}
 					var rta=angular.fromJson(data);
 					$scope.datosSQLencuestas=rta.reverse(); 
 				})

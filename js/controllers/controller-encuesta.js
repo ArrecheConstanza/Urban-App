@@ -68,19 +68,18 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				data: datos_encuesta,
 			})
 			.then(function(response){
-				console.log(response)
-				/* if(response.data){
+				if(response.data=="ok"){
 					//modal exito?
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
-						$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+						$location.path("/encuestas/"+localStorage.getItem("grupo_seleccionado_urban"));
 					}
 				}
 				else{
 					//modal error
-				} */
+				} 
 			}
 			,function(response){
-				//modal error
+				//modal errorOO
 				
 			});
 		}

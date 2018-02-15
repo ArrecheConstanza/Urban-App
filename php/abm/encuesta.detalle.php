@@ -12,8 +12,9 @@
 	
 	$encuesta=new Encuesta();
 	$opciones=new Opciones();
-	$encuesta=$encuesta->all_grupo($_POST["id"]);
-	$arrayFinal=array();
+	$encuesta=$encuesta->detalle($_POST["id"]);
+	//$arrayFinal=array();
+	
 	foreach($encuesta as $unaEncuesta){
 		$fecha= publicaciones_parsear_fecha($unaEncuesta->getFechaCreacion());
 		
@@ -46,5 +47,5 @@
 			];
 			$arrayFinal[]=$array;
 	}
-	echo json_encode($arrayFinal);
-?> 
+	echo json_encode($arrayFinal); 
+?>

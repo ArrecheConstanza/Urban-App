@@ -50,6 +50,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/encuestas.html',
 			controller : 'newEncuestaCtrl'
 		})
+		.when('/detalleEncuesta/:id', {
+			templateUrl : 'vistas/encuesta-detalle.html',
+			controller : 'encuestaDetalleCtrl'
+		})
 		.when('/detallePublicacion', {
 			templateUrl : 'vistas/publicacion-detalle.html',
 			controller : 'publicacionDetalleCtrl'

@@ -58,7 +58,7 @@ class Opciones{
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$opcion = new Opciones;
-				$opcion->codigo_encuesta = $fila['ID'];
+				$opcion->codigo_opcion = $fila['ID'];
 				$opcion->respuesta = $fila['RESPUESTA'];
 				$opcion->fk_encuesta = $fila['FKENCUESTA'];
 				$opcion->cargarDatos($fila);
@@ -74,6 +74,22 @@ class Opciones{
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["RESPUESTA"],$array["FKENCUESTA"]]);
 	}
-
+	
+	public static function opciones_de_encuesta($id){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla . " WHERE FKENCUESTA='$id' " ;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$opcion = new Opciones;
+				$opcion->codigo_opcion = $fila['ID'];
+				$opcion->respuesta = $fila['RESPUESTA'];
+				$opcion->fk_encuesta = $fila['FKENCUESTA'];
+				$opcion->cargarDatos($fila);
+				$salida[] = $opcion;
+			}
+		}
+		return $salida;
+	}
 }
 ?>

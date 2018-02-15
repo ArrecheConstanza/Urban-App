@@ -121,9 +121,10 @@ class Encuesta{
 		return $salida;
 	}
 	
+	/**funciona**/
 	public static function detalle($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . "WHERE ID='" . $id ."'";
+		$query = "SELECT * FROM " . static::$tabla . " WHERE ID='" . $id ."'";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -135,9 +136,10 @@ class Encuesta{
 				$encuesta->fk_grupo = $fila['FKGRUPO'];
 				$encuesta->fk_usuario = $fila['FKUSUARIO'];
 				$encuesta->cargarDatos($fila);
+				$salida[] = $encuesta;
 			}
-			return $encuesta;
 		}
+		return $salida;
 	}
 	
 	public function crear_encuesta($array){
