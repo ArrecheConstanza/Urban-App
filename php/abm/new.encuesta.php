@@ -30,26 +30,27 @@
 					return 0;
 				}
 				else{
-					$rta2=$encuesta->ultima_encuesta_creada();
+					 $rta2=$encuesta->ultima_encuesta_creada();
+					 var_dump($rta2->getCodigoEncuesta());
 					if($rta2){
 						$opcion = new Opciones();
 						$array["FKENCUESTA"]=$rta2->getCodigoEncuesta();
-						for($i=0;$i<count($_POST['OPCIONES']);$i++){
-							$array["RESPUESTA"]=$_POST["OPCIONES"][$i]["opcion"];
+						for($j=0;$j<count($_POST['OPCIONES']);$j++){
+							$array["RESPUESTA"]=$_POST["OPCIONES"][$j]["opcion"];
 							$rta3=$opcion->crear_opciones($array);
 							if(!$rta){
 								echo $rta; //no se pudo crear opcion
 								return 0;
 							}
-						}
+						} 
 					}
 					else{
 						echo $rta2;
-						return 0; //error al buscar ultima encuesta creada
-					}
-				}
-			}
-			echo $rta;
+						//return 0; //error al buscar ultima encuesta creada
+					} 
+				}  
+			} 
+			//echo $rta;
 		}
 		//crear encuesta en un solo grupo
 		else{ 

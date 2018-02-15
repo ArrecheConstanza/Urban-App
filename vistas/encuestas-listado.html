@@ -6,16 +6,14 @@
 		<div class="scrollable-content" id="publicaciones">
 		<a href="#newEncuesta" id="publicaciones_listado_crear_publicacion">Crear encuesta</a>	
 			
-			<!-- <ul class="list-group" id="listado-publicaciones">
-			  <li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
+			<ul class="list-group" id="listado-publicaciones">
+			  <li ng-repeat="item in datosSQLencuestas track by $index " onclick="detalleEncuesta(this)" class="list-group-item">
 				<input type="hidden" name="country" value="{{item.ID}}">
-				<!--<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>--
-				<img class='img-publi' ng-src="{{ item.FOTO }}" />
-				<h2>{{ item.TITULO }}</h2>  
-				<p>{{ item.DESCRIPCION }}</p>  
+				<h2>{{ item.PREGUNTA }}</h2>  
+				<!-- <p>{{ item.DESCRIPCION }}</p>   -->
 				<small>{{ item.FECHA_CREACION }}</small>  
 			  </li>
-			</ul> -->
+			</ul>
 		</div>
 	</div>
 			

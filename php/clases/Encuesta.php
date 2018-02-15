@@ -101,7 +101,7 @@ class Encuesta{
 	}
 
 	
-	public static function all_encuestas($id){
+	public static function all_grupo($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKGRUPO='$id' " ;
 		$stmt = DBcnx::getStatement($query);
