@@ -54,7 +54,6 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 			datos_encuesta={
 				FKGRUPO: encuesta.FKGRUPO,
 				GRUPOS: $scope.grupos, //en el caso de seleccionar todos los grupos
-				FOTO: encuesta.FILE,
 				PREGUNTA: encuesta.PREGUNTA,
 				OPCIONES: $scope.items //array opciones
 			}

@@ -352,6 +352,12 @@ hr{
 	text-align:right;
 }
 
+#btn_opcion p{
+	display:inline-block;
+	color:#949494;
+	padding-right:1em;
+}
+
 #btn_opcion input{
 	margin-bottom:1em;
 }

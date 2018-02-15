@@ -49,7 +49,7 @@ class Encuesta{
 	}
 	
 	public function getByPk($id){
-		$this->codigo_publicacion = $id;
+		$this->codigo_encuesta = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
 					WHERE ID = ?";
 		$stmt = DBcnx::getStatement($query);
@@ -61,14 +61,8 @@ class Encuesta{
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
-					case "titulo":
-						$this->setTitulo($valor);
-					break;
-					case "descripcion":
-						$this->setDescripcion($valor);
-					break;
-					case "avalado":
-						$this->setAvalado($valor);
+					case "pregunta":
+						$this->setPregunta($valor);
 					break;
 					case "fecha_creacion":
 						$this->setFechaCracion($valor);
@@ -92,40 +86,36 @@ class Encuesta{
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion = new Publicacion;
-				$publicacion->codigo_publicacion = $fila['ID'];
-				$publicacion->titulo = $fila['TITULO'];
-				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
-				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
-				$publicacion->borrado = $fila['BORRADO'];
-				$publicacion->fk_grupo = $fila['FKGRUPO'];
-				$publicacion->fk_usuario = $fila['FKUSUARIO'];
-				$publicacion->cargarDatos($fila);
-				$salida[] = $publicacion;
+				$encuesta = new Encusta;
+				$encuesta->codigo_encuesta = $fila['ID'];
+				$encuesta->pregunta = $fila['PREGUNTA'];
+				$encuesta->fecha_creacion = $fila['FECHA_CREACION'];
+				$encuesta->borrado = $fila['BORRADO'];
+				$encuesta->fk_grupo = $fila['FKGRUPO'];
+				$encuesta->fk_usuario = $fila['FKUSUARIO'];
+				$encuesta->cargarDatos($fila);
+				$salida[] = $encuesta;
 			}
 		}
 		return $salida;
 	}
 
 	
-	public static function all_grupo($id){
+	public static function all_encuestas($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKGRUPO='$id' " ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion = new Publicacion;
-				$publicacion->codigo_publicacion = $fila['ID'];
-				$publicacion->titulo = $fila['TITULO'];
-				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
-				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
-				$publicacion->borrado = $fila['BORRADO'];
-				$publicacion->fk_grupo = $fila['FKGRUPO'];
-				$publicacion->fk_usuario = $fila['FKUSUARIO'];
-				$publicacion->cargarDatos($fila);
-				$salida[] = $publicacion;
+				$encuesta = new Encuesta;
+				$encuesta->codigo_encuesta = $fila['ID'];
+				$encuesta->pregunta = $fila['PREGUNTA'];
+				$encuesta->fecha_creacion = $fila['FECHA_CREACION'];
+				$encuesta->borrado = $fila['BORRADO'];
+				$encuesta->fk_grupo = $fila['FKGRUPO'];
+				$encuesta->fk_usuario = $fila['FKUSUARIO'];
+				$encuesta->cargarDatos($fila);
+				$salida[] = $encuesta;
 			}
 		}
 		return $salida;
@@ -137,49 +127,47 @@ class Encuesta{
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion = new Publicacion;
-				$publicacion->codigo_publicacion = $fila['ID'];
-				$publicacion->titulo = $fila['TITULO'];
-				$publicacion->descripcion = $fila['DESCRIPCION'];
-				$publicacion->avalado = $fila['AVALADO'];
-				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
-				$publicacion->borrado = $fila['BORRADO'];
-				$publicacion->fk_grupo = $fila['FKGRUPO'];
-				$publicacion->fk_usuario = $fila['FKUSUARIO'];
-				$publicacion->cargarDatos($fila);
+				$encuesta = new Encuesta;
+				$encuesta->codigo_encuesta = $fila['ID'];
+				$encuesta->pregunta = $fila['PREGUNTA'];
+				$encuesta->fecha_creacion = $fila['FECHA_CREACION'];
+				$encuesta->borrado = $fila['BORRADO'];
+				$encuesta->fk_grupo = $fila['FKGRUPO'];
+				$encuesta->fk_usuario = $fila['FKUSUARIO'];
+				$encuesta->cargarDatos($fila);
 			}
-			return $publicacion;
+			return $encuesta;
 		}
 	}
 	
-	public function crear_publicacion($array){
-		$query = "INSERT INTO " . static::$tabla . " (TITULO, DESCRIPCION, FECHA_CREACION, FKGRUPO, FKUSUARIO)
-				VALUES (?,?,?,?,?)";
+	public function crear_encuesta($array){
+		$query = "INSERT INTO " . static::$tabla . " (PREGUNTA, FECHA_CREACION, FKGRUPO, FKUSUARIO)
+				VALUES (?,?,?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"]]);
+		return $stmt->execute([$array["PREGUNTA"],$array["FECHA_CREACION"],$array["FKGRUPO"],$array["FKUSUARIO"]]);
 	}
 	
-	public function ultima_publicacion_creada(){
+	public function ultima_encuesta_creada(){
 		$query = "SELECT ID FROM " . static::$tabla . " ORDER BY ID DESC LIMIT 1";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$publicacion = new Publicacion;
-				$publicacion->codigo_publicacion = $fila['ID'];
-				$publicacion->cargarDatos($fila);
+				$encuesta= new Encuesta;
+				$encuesta->codigo_encuesta = $fila['ID'];
+				$encuesta->cargarDatos($fila);
 			}
-			return $publicacion;
+			return $encuesta;
 		}
 		return 0;
 	}
 	
-	public function editar_publicacion($array){
+	/* public function editar_encuesta($array){
 		$query = "UPDATE " . static::$tabla . "  SET TITULO=?, DESCRIPCION=?, FKGRUPO=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FKGRUPO"],$array["ID"]]);
-	}
+	} */
 	
-	public function eliminar_publicacion($array){
+	public function eliminar_encuesta($array){
 		$query = "UPDATE " . static::$tabla . " SET BORRADO='Si' WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["ID"]]);
