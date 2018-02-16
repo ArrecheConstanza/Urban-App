@@ -320,6 +320,21 @@ hr{
 	padding:.5em;
 }
 
+/************************ SECCION LISTADO ENCUESTA **********************/
+
+#glyphicon_listado_encuesta{
+	display:inline-block;
+	float:right;
+}
+
+#listado_encuestas a small{
+	padding-top:1em;
+}
+
+#listado_encuestas a h2{
+	margin:0;
+}
+
 /************************ SECCION ENCUESTA **********************/
 
 #container_form label{

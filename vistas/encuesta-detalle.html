@@ -22,24 +22,23 @@
 		
 			<h2 class="text-center">{{datosSQLencuestas.PREGUNTA}}</h2>
 			
-			<p>Creada por <span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
+			<p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
 
 			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
 			
 			<!-- Votar -->
-			<form  ng-submit="votar(opcion)" enctype="multipart/form-data" name="encuesta">
+			<form  ng-submit="votar(opcion)" role="form" class="form" >
 				<ul class="list-group">
 					<li ng-repeat="item in datosSQLencuestas.OPCIONES track by $index " 
 					class="list-group-item form-control">						
 					<label for="{{item.ID}}" >
-					<input type="radio" 
-					value="{{item.ID}}" 
-					id="{{item.ID}}" 
-					required
-					ng-model="opcion.ITEM"
-					class="form-radio-input" 
-					name="opcion_seleccionada">
-					{{item.RESPUESTA}}
+						<input type="radio" 
+						value="{{item.ID}}" 
+						id="{{item.ID}}" 
+						ng-model="opcion.ITEM"
+						class="form-radio-input" 
+						name="opcion_seleccionada"/>
+						{{item.RESPUESTA}}
 					</label>
 					</li>
 				</ul>

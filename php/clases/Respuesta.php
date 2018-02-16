@@ -6,7 +6,7 @@ class Respuesta{
 	private $fk_encuesta;
 	
 	public static $tabla = "respuesta";
-	private static $fila = ['FKUSUARIO', 'FKOPCION', 'FKENCUESTA'];
+	private static $fila = ['FKUSUARIO', 'FKOPCIONES', 'FKENCUESTA'];
 
 	public function setFkUsuario($a){
 		$this->fk_usuario = $a;
@@ -45,11 +45,11 @@ class Respuesta{
 		}
 	}
 	
-	public function crear_respueta($array){
-		$query = "INSERT INTO " . static::$tabla . " (FKUSUARIO, FKOPCION,FKENCUESTA)
+	public function crear_respuesta($array){
+		$query = "INSERT INTO " . static::$tabla . " (FKOPCIONES, FKENCUESTA, FKUSUARIO)
 				VALUES (?,?,?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["FKUSUARIO"],$array["FKOPCION"],$array["FKENCUESTA"]]);
+		return $stmt->execute([$array["FKOPCIONES"],$array["FKENCUESTA"],$array["FKUSUARIO"]]);
 	}
 	
 	public static function traer_respuesta_encuesta($id){
@@ -60,7 +60,7 @@ class Respuesta{
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$respuesta = new Respuesta;
 				$respuesta->fk_usuario = $fila['FKUSUARIO'];
-				$respuesta->fk_opcion = $fila['FKOPCION'];
+				$respuesta->fk_opcion = $fila['FKOPCIONES'];
 				$respuesta->fk_encuesta = $fila['FKENCUESTA'];
 				$respuesta->cargarDatos($fila);
 				$salida[] = $respuesta;
