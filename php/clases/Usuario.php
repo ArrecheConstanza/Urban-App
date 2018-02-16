@@ -116,6 +116,15 @@ class Usuario{
 		return /* $this->cargarDatos( */$stmt->fetch(PDO::FETCH_ASSOC)/* ) */;
 	}
 	
+	public function getApellidoUsuario($id){
+	//$this->codigo_usuario = $id;
+		$query = "SELECT APELLIDO FROM " . static::$tabla . "
+					WHERE ID = $id";
+		$stmt = DBcnx::getStatement($query);
+		$stmt->execute([$id]);
+		return /* $this->cargarDatos( */$stmt->fetch(PDO::FETCH_ASSOC)/* ) */;
+	}
+	
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {

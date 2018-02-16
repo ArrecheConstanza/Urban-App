@@ -375,6 +375,7 @@ hr{
 #detalle-encuesta li{
 	display:inline-block;
 	width:100%;
+	min-height:3em;
 }
 
 

@@ -11,12 +11,13 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+								console.log(data);
+
 			for(var i=0;i<data.length;i++){
 				data[i]["cantidad_opciones"]=data[i]["OPCIONES"].length;
 			}
 			var rta=angular.fromJson(data[0]);
-			$scope.datosSQLencuestas=rta;;  
-			console.log(rta);
+			$scope.datosSQLencuestas=rta;
 		})
 		.error(function(){
 			// sin internet
