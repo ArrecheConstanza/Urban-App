@@ -362,9 +362,20 @@ hr{
 	margin-bottom:1em;
 }
 
- 
+/********************** SECCION DETALLE ENCUESTA *************************/
 
 
+#detalle-encuesta label{
+	font-size:1.2em;
+	display:inline-block;
+	width:100%;
+}
+
+
+#detalle-encuesta li{
+	display:inline-block;
+	width:100%;
+}
 
 
 
