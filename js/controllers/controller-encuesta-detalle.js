@@ -25,13 +25,42 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
+					var para_votacion_opcion=[];
 					for(var i=0;i<data.length;i++){
-						console.log(data[i]["FKOPCION"]);
+						para_votacion_opcion.push(data[i]["FKOPCION"]);
 					}
+					para_votacion_opcion.sort();
+					var current = null;
+					var cnt = 0;
+					var array_votacion_final=[];
+					for (var i = 0; i < para_votacion_opcion.length; i++) {
+						if (para_votacion_opcion[i] != current) {
+							if (cnt > 0) {
+								var array_votos=[];
+								array_votos["VALOR"]=current;
+								array_votos["CANTIDAD"]=cnt;
+								array_votacion_final.push(array_votos);
+							}
+							current = para_votacion_opcion[i];
+							cnt = 1;
+						} 
+						else {
+							cnt++;
+						}
+					}
+					if (cnt > 0) {
+						var array_votos=[];
+						array_votos["VALOR"]=current;
+						array_votos["CANTIDAD"]=cnt;
+						array_votacion_final.push(array_votos);
+					}
+					console.log(array_votacion_final);
+					//array_votacion_final.length
 				})
 				.error(function(){
 					// sin internet
 				}); 
+			//////////////////
 			
 			
 			
