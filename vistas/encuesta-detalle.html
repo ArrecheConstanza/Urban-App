@@ -1,4 +1,8 @@
 
+<!-- Estilos propios de la vista -->
+	<style> @import url("css/circle.css"); </style> 
+
+	
 	<!-- Contenedor publicacion detalle -->
 	<div class="scrollable">
 	
@@ -26,6 +30,7 @@
 
 			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
 			
+			<h3>Votar</h3>
 			<!-- Votar -->
 			<form  ng-submit="votar(opcion)" role="form" class="form" >
 				<ul class="list-group">
@@ -46,6 +51,23 @@
 				<!-- Enviar-->
 				<input type="submit" class="form-control btn btn-default" value="Votar">
 			</form>
+			
+			
+			<h3>Estado de encuesta</h3>
+			<!--- estado de encuesta --->
+			<div class="clearfix">
+
+			<div ng-repeat="item in estado_encuesta track by $index ">
+					<h4>{{ item.RESPUESTA }}</h4>
+				<div class="c100 p{{ item.PORCENTAJE_CSS }}">
+					<span>{{ item.PORCENTAJE }}</span>
+						<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	
 	</div>
