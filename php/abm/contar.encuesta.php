@@ -13,14 +13,19 @@
 	
 	/****** Creo respuesta a encuesta ******/
 	if(isset($_SESSION["s_id"])){
-		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
 		$respuesta=new Respuesta();
-		
-		$respuesta=$respuesta->crear_respuesta($_POST);
-		
-		var_dump($respuesta);
-		var_dump($_POST);
-	
+		$respuesta=$respuesta->traer_respuesta_encuesta($_POST["id"]);
+		$arrayFinal=[];
+		$array=[];
+		foreach($respuesta as $unaRespuesta){
+			$array=[
+				"FKOPCION"=>$unaRespuesta->getFkOpcion(),
+				"FKENCUESTA"=>$unaRespuesta->getFkEncuesta(),
+				"FKUSUARIO"=>$unaRespuesta->getFkusuario()
+			];
+			$arrayFinal[]=$array; 
+		}
+		echo json_encode($arrayFinal); 
 	}
 	else{
 		echo 0; //usuario no logeado

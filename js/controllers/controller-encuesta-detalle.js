@@ -17,6 +17,25 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 			var rta=angular.fromJson(data[0]);
 			$scope.datosSQLencuestas=rta;
 			
+			//****** ESTADO DE ENCUESTA *****//
+				$http({ 
+					method:"POST",
+					url:"php/abm/contar.encuesta.php",
+					data: datos,	
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					for(var i=0;i<data.length;i++){
+						console.log(data[i]["FKOPCION"]);
+					}
+				})
+				.error(function(){
+					// sin internet
+				}); 
+			
+			
+			
+			
 			
 			//****** VOTAR ******//
 			$scope.votar=function(opcion){
@@ -35,6 +54,7 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						})
 						.success(function(data, status){
 							console.log(data);
+							//modal exito;
 						})
 						.error(function(){
 							// sin internet
@@ -42,6 +62,12 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 					}
 				}
 			};
+			//////////////////////
+			
+			
+			
+			
+			
 		})
 		.error(function(){
 			// sin internet

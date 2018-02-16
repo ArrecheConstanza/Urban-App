@@ -35,8 +35,6 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 		});
 		
 	//************* FORM ***************//
-	
-		//$scope.items = [{text: 'First Item'}, { text: 'Second Item'}];
 		
 		$scope.numero_opcion=0;
 		$scope.items=[];
