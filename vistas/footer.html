@@ -4,11 +4,13 @@
 			<div class="navbar-fixed-bottom" id="nombreGrupo"><p>{{ nombre_footer }}</p></div>
 
 			<!-- MAS -->
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas" ng-click="mostrar=true" ng-hide="mostrar">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas">
 			<div id="menuMas">
-				<img src="img/icons/png/mas.png" alt="mas"  role="button" class="img-responsive"/>
+				<img src="img/icons/png/mas.png" alt="mas"  role="button" class="img-responsive" ng-click="mostrar=true" ng-hide="mostrar"/>
 			</div>
-			</div>
+ </div>
+<!-- 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="mas" ng-click="mostrar=true" ng-hide="mostrar">
+ -->			
 
 			<!-- MENU MAS -->
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right" id="masMenu" ng-click="mostrar=false" ng-show="mostrar">
@@ -24,5 +26,6 @@
 				<a href="#/newPublicacion"><span class="label label-default">Publicacion</span>
 					<img src="img/icons/png/newPublicacion.png" alt="mas"  role="button" class="img-responsive"/>
 				</a>
+				<img src="img/icons/png/menos.png" alt="menos"  role="button" class="img-responsive" ng-click="mostrar=true" ng-show="mostrar"/> 
 			</div>
 		</div>

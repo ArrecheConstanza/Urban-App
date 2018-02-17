@@ -21,10 +21,20 @@
 
 		</div>
 		
-		
 			<h2 class="text-center">{{datosSQLencuestas.PREGUNTA}}</h2>
 			
+			<div>
+				<ul class="ul-encuesta">
+					<li>Creada por {{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</li>
+					<li>Hace {{ datosSQLencuestas.FECHA_CREACION }}</li>
+				</ul>
+			</div>
+			<!-- <p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
+
+			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
+			 -->
 			<h3 class="encuesta-detalle">Estado de encuesta</h3>
+		
 			<!--- estado de encuesta --->
 			<div class="clearfix">
 			<hr>
@@ -70,9 +80,6 @@
 				<input type="submit" class="form-control btn btn-default" value="Votar">
 			</form>
 			
-			<p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
-
-			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
 		</div>
 	
 	</div>
