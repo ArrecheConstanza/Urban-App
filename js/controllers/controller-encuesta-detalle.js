@@ -60,12 +60,12 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 					for(var i=0;i<array_votacion_final.length;i++){
 						var opcion;
 						console.log($scope.datosSQLencuestas);
-						// for(var j=0;j<$scope.datosSQLencuestas.length;j++){
-							// if($scope.datosSQLencuestas[j]["ID"]==array_votacion_final[i]["VALOR"]){
-								// array_votacion_final[i]["VALOR_OPCION"]=$scope.datosSQLencuestas[j]["RESPUESTA"];
-								// console.log($scope.datosSQLencuestas[j]["RESPUESTA"]);
-							// }
-						// }
+						for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){
+							if($scope.datosSQLencuestas["OPCIONES"][j]["ID"]==array_votacion_final[i]["VALOR"]){
+								array_votacion_final[i]["VALOR_OPCION"]=$scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"];
+								console.log($scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"]);
+							}
+						}
 						array_votacion_final[i]["PORCENTAJE"]=(array_votacion_final[i]["CANTIDAD"]*100/data.length).toFixed(2)+"%";
 						array_votacion_final[i]["PORCENTAJE_CSS"]=parseInt(array_votacion_final[i]["PORCENTAJE"]);
 					}

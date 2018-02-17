@@ -160,7 +160,7 @@ footer{
 	padding-top:1.5em;
 }
 
-.contenedor-perfil h2{
+.contenedor-perfil h2, .encuesta-detalle{
     font-size: 1.3em;
     text-transform: none;
     padding-left: .5em;
@@ -393,9 +393,42 @@ hr{
 	min-height:3em;
 }
 
+#estado_encuesta h4{
+	width:auto;
+	height:auto;
+	padding-left:1em;
+	font-family:'HelveticaNeueLTStd';
+	color:#5e5f5f;
+	display:inline-block;
+}
 
+#estado_encuesta .c100 > span{
+	color:black;
+}
 
+#estado_encuesta .c100{
+	float:right;
+	font-family:'HelveticaNeueLTStd';
+	font-size:70px;
+}
+.clearfix hr{
+	margin:0;
+}
+#estado_encuesta{
+	display:inline-block;
+	background:white;
+	padding-left:2em;
+	width:100vw;
+	padding:1em 0;
+}
 
+.encuesta-detalle{
+	padding-top:2em;
+
+}
+.encuesta-detalle:nth-child(1){
+	padding-top:3em;
+}
 
 
 

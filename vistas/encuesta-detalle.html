@@ -21,16 +21,34 @@
 
 		</div>
 		
-		<!--Detalle encuesta -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  id="detalle-encuesta">
 		
 			<h2 class="text-center">{{datosSQLencuestas.PREGUNTA}}</h2>
 			
-			<p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
+			<h3 class="encuesta-detalle">Estado de encuesta</h3>
+			<!--- estado de encuesta --->
+			<div class="clearfix">
+			<hr>
 
-			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
+			<div ng-repeat="item in estado_encuesta track by $index ">
+			<div id="estado_encuesta">
+					<h4>{{ item.VALOR_OPCION }}</h4>
+				<div class="c100 p{{ item.PORCENTAJE_CSS }}">
+					<span>{{ item.PORCENTAJE }}</span>
+						<div class="slice">
+							<div class="bar"></div>
+							<div class="fill"></div>
+						</div>
+					</div>
+				</div>
+			<hr>
+			</div>
+			</div>
 			
-			<h3>Votar</h3>
+		<!--Detalle encuesta -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  id="detalle-encuesta">
+			
+			
+			<h3 class="encuesta-detalle">Votar</h3>
 			<!-- Votar -->
 			<form  ng-submit="votar(opcion)" role="form" class="form" >
 				<ul class="list-group">
@@ -52,22 +70,9 @@
 				<input type="submit" class="form-control btn btn-default" value="Votar">
 			</form>
 			
-			
-			<h3>Estado de encuesta</h3>
-			<!--- estado de encuesta --->
-			<div class="clearfix">
+			<p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
 
-			<div ng-repeat="item in estado_encuesta track by $index ">
-					<h4>{{ item.RESPUESTA }}</h4>
-				<div class="c100 p{{ item.PORCENTAJE_CSS }}">
-					<span>{{ item.PORCENTAJE }}</span>
-						<div class="slice">
-							<div class="bar"></div>
-							<div class="fill"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
 		</div>
 	
 	</div>
