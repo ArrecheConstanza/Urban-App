@@ -18,3 +18,9 @@ h1{
 #panel_opciones li a{
 	color:grey;
 }
+
+/******* en cada vista ***********/
+
+.subtitulo{
+	padding-top:.5em;
+}

@@ -19,6 +19,11 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		}
 		switch($location.path()){
 			case "/panelDeControl":
+			case "/panelDeControl/Usuarios":
+			case "/panelDeControl/Grupos":
+			case "/panelDeControl/Chats":
+			case "/panelDeControl/Encuestas":
+			case "/panelDeControl/Estadisticas":
 			case "/newPublicacion":
 			case "/newGrupo":
 			case "/newEncuesta":
