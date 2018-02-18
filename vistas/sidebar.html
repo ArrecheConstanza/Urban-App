@@ -2,12 +2,13 @@
 		  <div class="scrollable-content">
 			<div class="list-group sidebar-left" ui-turn-off='uiSidebarLeft'>
 
-				 <span class="h4 app-name"><a href="javascript:void(0)">
-					<a class="list-group-item" href="#/perfil" id="nombre-menu" >
-						<img src="img/icons/png/menu-nombre.png" alt="nombre" /> {{ nombre_usuario }} <span class="glyphicon glyphicon-chevron-right pull-right"></span>
-						
-					</a>
-				 </span> 
+				 <span class="h4 app-name list-group-item" id="nombre-menu">
+					<!-- <a class="list-group-item" href="javascript:void(0)" id="nombre-menu" > -->
+						<img src="img/icons/png/menu-nombre.png" alt="nombre" /> {{ nombre_usuario }} 
+<!-- 						<span class="glyphicon glyphicon-chevron-right pull-right"></span>
+ -->						
+<!-- 					</a>
+ -->				 </span> 
 				
 				<!---- GRUPOS --->
 				<div class="list-group-item" id="grupos_usuario">
@@ -16,6 +17,10 @@
 					 </a>
 				</div>
 
+				<!-- <a class="list-group-item" href="#">
+					<img src="img/icons/png/cerrar-sesion-2.png" alt="cerrar" id="cerrar"/>Panel de administración
+				 </a> -->
+				 
 				<!--- MAPA -->
 				<a class="list-group-item" id="boton-mapa">
 					<img src="img/icons/png/mapa-menu.png" alt="ubicacion" id="mapa-menu"/>Mapa

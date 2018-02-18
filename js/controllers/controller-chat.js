@@ -45,6 +45,34 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 		.success(function(data, status){
 			var datos=angular.fromJson(data);
 			$scope.titulo_chat=datos[0]['NOMBRE'];
+			
+			//traer imagen de grupo
+			if(datos[0]['FKMULTIMEDIA']!=null){
+				var dato="fkmultimedia="+datos[0]['FKMULTIMEDIA'];
+				$http({ 
+					method:"POST",
+					url:"../php/abm/traer.una.multimedia.php",
+					data: dato,	
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					if(data){
+						var foto=data[0]["PATH"];
+						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
+						$scope.img=foto; //corregir para hosting
+
+					}
+					else{
+						//error multimedia
+					}
+				})
+				.error(function(data){
+					//no hay internet, usar datos de localstorage
+				});
+			}
+			else{ //sin imagen
+				$scope.img="icons/png/newChat.png";
+			}
 		})
 		.error(function(data){
 			//no hay internet, usar datos de localstorage

@@ -76,6 +76,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				.success(function(data, status){
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
+						//localStorage.removeItem("unir_a_grupo_id");
 						$location.path("/publicaciones");
 					}
 					else{

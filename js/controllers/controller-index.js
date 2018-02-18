@@ -185,6 +185,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			})
 			.success(function(data, status){
 				if(data=="1"){
+					console.log("entro");
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
 					$routeParams.id=id;

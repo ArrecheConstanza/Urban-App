@@ -55,16 +55,16 @@
             <div class="chat-header">
 				<div class="form-group file-inputs">
 					<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="$back();"/>
-					<img src="../img/icons/png/newChat.png" alt="imagen_grupo" class="angularjs-chat-logo"/>
+					<img src="../img/{{ img }}" alt="imagen_grupo" id="imagen_grupo" class="angularjs-chat-logo"/>
 					<h1>{{ titulo_chat }}</h1>
 				</div>
-				<div class="form-group file-inputs">
+				<!-- <div class="form-group file-inputs">
 					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' ng-hide="picFile">
- 						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i><!--convertir mensaje a modal-->
+ 						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i><!--convertir mensaje a modal--
 						<img ng-show="myForm.file.$valid" ngf-src="picFile" class="thumb"> 
 						<button ng-click="picFile = null" ng-show="picFile" class='delete-file'></button>
-						<!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
-				</div>
+						<!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>--
+				</div> -->
 					
             </div>
 			<!--comentarios chats-->

@@ -116,5 +116,17 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				}
 			});
 		}	
+		
+		
+		//panel admin
+		
+		/* if(angular.fromJson(localStorage.getItem("user_urban")).NIVEL=="Admin"){
+			
+		} */
+		
+		
+		
+		
+		
 	}
 });

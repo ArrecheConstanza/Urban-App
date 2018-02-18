@@ -11,9 +11,8 @@
 	if(isset($_SESSION["s_id"])){
 		//Pido todo el contenido multimedia
 		$multimedia = new Multimedia();
-		$foto=$multimedia->getByPk($_POST["fkmultimedia"]);
-		var_dump($foto);
-		/* $arrayFinal=[];
+		$multimedia=$multimedia->getByPk($_POST["fkmultimedia"]);
+		$arrayFinal=[];
 		$array=[];
 		foreach($multimedia as $unaMultimedia){
 				$array=[
@@ -22,9 +21,9 @@
 				];
 			$arrayFinal[]=$array;
 		}
-		echo json_encode($arrayFinal); */
+		echo json_encode($arrayFinal); 
 	}
 	else{
-		echo "no logueado";
+		echo 0;//no logueado
 	}
 ?> 
