@@ -2,6 +2,10 @@
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
 	
+	//icono filtro
+			id("buscador").style.display='inline-block';
+
+	
 	//**** CATEGORIAS ****//
 		
 		$scope.listado_categorias_seleccionadas=[];

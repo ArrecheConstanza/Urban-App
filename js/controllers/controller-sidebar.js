@@ -10,6 +10,39 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		var datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
 		
+		//foto perfil usuario
+		if(angular.fromJson(localStorage.getItem("user_urban")).FKMULTIMEDIA!=null){
+			var dato="fkmultimedia="+angular.fromJson(localStorage.getItem("user_urban")).FKMULTIMEDIA;
+			$http({ 
+				method:"POST",
+				url:"php/abm/traer.una.multimedia.php",
+				data: dato,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data, status){
+				if(data){
+					var foto=data[0]["PATH"];
+					foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
+					$scope.img=foto; //corregir para hosting
+
+				}
+				else{
+					//error multimedia
+				}
+			})
+			.error(function(data){
+				//no hay internet, usar datos de localstorage
+			});
+		}
+		else{ //sin imagen
+			$scope.img="icons/png/usuario.png";
+		}
+		
+		
+		
+		
+		
+		
 		//funcion cambiar de grupos
 		$scope.estado = {};
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
