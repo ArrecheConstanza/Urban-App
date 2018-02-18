@@ -120,6 +120,12 @@ body{
 	border-radius:50%;
 }
 
+#panel_de_control{
+	width:30px;
+	height:30px;
+	margin-right:5%;
+}
+
 /****Modal****/
 .modal{
 	display:block!important;

@@ -10,10 +10,6 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/registro-datos.html',
 			controller : 'registroUnoCtrl'
 		})
-		/* .when('/perfil', {
-			templateUrl : 'vistas/perfil.html',
-			controller : 'perfilCtrl'
-		}) */
 		.when('/ajustes', {
 			templateUrl : 'vistas/ajustes.html',
 			controller : 'ajustesCtrl'
@@ -74,6 +70,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/overlay.html',
 			controller : ''
 		})
+		.when('/panelDeControl', {
+			templateUrl : 'vistas/panel-de-control.html',
+			controller : 'panelDeControlCtrl'
+		}) 
 		.otherwise({
 			redirectTo: '/publicaciones'
 		});

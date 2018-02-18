@@ -1,0 +1,51 @@
+
+	<!--- ******CONTENIDO (VISTA PANEL DE CONTROL)****** -->
+	
+	
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/panel-de-control.css"); </style> 
+	
+	<!-- LISTADO -->
+	<div class="scrollable">
+		<div class="scrollable-content">
+		<!-- Titulo Perfil, Volver, foto-->
+		<div>
+			<!-- Icono -->
+			<div>
+				<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<span ng-click="back()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+				</div>
+				<!-- Texto -->
+				<h1 class="text-center">PANEL DE CONTROL</h1>
+			</div>
+			
+		</div>
+		<ul class="list-group" id="panel_opciones">
+			<li ng-repeat="item in listado track by $index"
+			class="list-group-item">
+				<a>{{ item }}</a>
+			</li>
+		</ul>
+		
+		<!--
+		<a href="#newPublicacion" id="publicaciones_listado_crear_publicacion">Crear publicacion</a>	
+			
+			<ul class="list-group" id="listado-publicaciones">
+			  <li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
+				<input type="hidden" name="country" value="{{item.ID}}">
+				
+				<img class='img-publi' ng-src="{{ item.FOTO }}" />
+				<h2>{{ item.TITULO }}</h2>  
+				<p>{{ item.DESCRIPCION }}</p>  
+				<small calss="pull-left">{{ item.CATEGORIA }}</small>  
+				<small>{{ item.FECHA_CREACION }}</small>  
+			  </li>
+			</ul> -->
+		</div>
+	</div>
+			
+			
+		
+	
+
+	

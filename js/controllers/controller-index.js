@@ -18,12 +18,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			return 0;
 		}
 		switch($location.path()){
+			case "/panelDeControl":
 			case "/newPublicacion":
 			case "/newGrupo":
 			case "/newEncuesta":
 			case "/detallePublicacion":
 			case "/detalleEncuesta":
-			case "/perfil":
+			//case "/perfil":
 			case "/ajustes":
 			case "/editarDatosUsuario":
 				return 0;
@@ -185,7 +186,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			})
 			.success(function(data, status){
 				if(data=="1"){
-					console.log("entro");
+					//console.log("entro");
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
 					$routeParams.id=id;

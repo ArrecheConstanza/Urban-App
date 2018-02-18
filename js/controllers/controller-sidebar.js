@@ -153,9 +153,12 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		//panel admin
 		
-		/* if(angular.fromJson(localStorage.getItem("user_urban")).NIVEL=="Admin"){
-			
-		} */
+		if(angular.fromJson(localStorage.getItem("user_urban")).NIVEL=="Admin"){
+			$scope.es_admin=true;
+		}
+		else{
+			$scope.es_admin=false;
+		}
 		
 		
 		

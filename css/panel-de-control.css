@@ -1,0 +1,20 @@
+h1{
+	font-size:1.8em;
+	margin-top: .5em;
+    padding-left: 1em;
+}
+
+#panel_opciones{
+	font-size:1em;
+	margin:.5em;
+	text-align:center;
+	margin-top:20vw;
+}
+
+#panel_opciones li{
+	margin:.5em;
+}
+	
+#panel_opciones li a{
+	color:grey;
+}
