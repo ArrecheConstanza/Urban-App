@@ -14,7 +14,7 @@ class Usuario{
 	private $fecha_alta;
 	private $banneado;
 	private $nivel;
-	private $fk_negocio_servicio;
+	//private $fk_negocio_servicio;
 	private $fk_multimedia;
 	public static $tabla = "usuario";
 	private static $fila = ['EMAIL', 'NOMBRE','APELLIDO','CLAVE','EDAD','LONGITUD','LATITUD','DIRECCION','DIRECCION_ESTADO','FECHA_ALTA','BANNEADO','NIVEL','BORRADO','FK_NEGOCIO_SERVICIO','FKMULTIMEDIA'];
@@ -73,11 +73,23 @@ class Usuario{
 	public function getDireccion(){
 		return $this->direccion;
 	}
+	public function setFechaAlta($a){
+		$this->fecha_alta = $a;
+	}
+	public function getFechaAlta(){
+		return $this->fecha_alta;
+	}
 	public function setDireccionEstado($a){
 		$this->direccion_estado = $a;
 	}
 	public function getDireccionEstado(){
 		return $this->direccion_estado;
+	}
+	public function setBanneado($a){
+		$this->banneado = $a;
+	}
+	public function getBanneado(){
+		return $this->banneado;
 	}
 	public function setNivel($a){
 		$this->nivel = $a;
@@ -141,6 +153,9 @@ class Usuario{
 					case "apellido":
 						$this->setApellido($valor);
 					break;
+					case "edad":
+						$this->setEdad($valor);
+					break;
 					case "latitud":
 						$this->setLatitud($valor);
 					break;
@@ -149,6 +164,24 @@ class Usuario{
 					break;
 					case "direccion":
 						$this->setDireccion($valor);
+					break;
+					case "direccion_estado":
+						$this->setDireccion($valor);
+					break;
+					case "fecha_alta":
+						$this->setFechaAlta($valor);
+					break;
+					case "banneado":
+						$this->setBanneado($valor);
+					break;
+					case "borrado":
+						$this->setBorrado($valor);
+					break;
+					case "nivel":
+						$this->setNivel($valor);
+					break;
+					case "fk_multimedia":
+						$this->setFkMultimedia($valor);
 					break;
 				}
 			}
@@ -213,11 +246,20 @@ class Usuario{
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$usuario = new Usuario;
 				$usuario->codigo_usuario = $fila['ID'];
-				$usuario->usuario = $fila['USUARIO'];
-				$usuario->mail = $fila['MAIL'];
+				$usuario->email = $fila['EMAIL'];
+				$usuario->clave = $fila['CLAVE'];
+				$usuario->nombre = $fila['NOMBRE'];
+				$usuario->apellido = $fila['APELLIDO'];
+				$usuario->latitud = $fila['LATITUD'];
+				$usuario->longitud = $fila['LONGITUD'];
+				$usuario->direccion = $fila['DIRECCION'];
+				$usuario->direccion_estado = $fila['DIRECCION_ESTADO'];
+				$usuario->banneado = $fila['BANNEADO'];
 				$usuario->nivel = $fila['NIVEL'];
-				$usuario->fecha_nacimiento = $fila['FECHA_NACIMIENTO'];
-				$usuario->sexo = $fila['SEXO'];
+				$usuario->fecha_alta = $fila['FECHA_ALTA'];
+				$usuario->edad = $fila['EDAD'];
+				$usuario->borrado = $fila['BORRADO'];
+				$usuario->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$usuario->cargarDatos($fila);
 				$salida[] = $usuario;
 			}

@@ -20,7 +20,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				if(data){
+				if(data!=0){
 					var foto=data[0]["PATH"];
 					foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
 					$scope.img=foto; //corregir para hosting
@@ -28,6 +28,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				}
 				else{
 					//error multimedia
+					$scope.img="icons/png/usuario.png";
 				}
 			})
 			.error(function(data){

@@ -6,16 +6,48 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases/Categoria.php');
-	
-	//Pido todo el contenido de categoria
-	$categoria = Categoria::all();
+	require_once('../clases/Multimedia.php');
+	require_once('../clases/Usuario.php');
+
+	//Pido todo el contenido de usuario
+	$usuario = Usuario::all();
 	$arrayFinal=[];
 	$array=[];
-	foreach($categoria as $unaCategoria){
+	foreach($usuario as $unUsuario){
+		
+		//traer imagen de usuario
+		if($unUsuario->getFkMultimedia()!=null){
+			$multimedia = new Multimedia();
+			$multimedia=$multimedia->getByPk($unUsuario->getFkMultimedia());
+			//foreach($multimedia as $unaMultimedia){
+					$array=[
+						"ID"=>$multimedia[0]->getCodigoMultimedia(),
+						"PATH"=>$multimedia[0]->getPath()
+					];
+		//	}
+			$foto=$array;
+		}
+		else{
+			$foto=null;
+		}
+		
+		
+		
+		
+		//
 			$array=[
-				"ID"=>$unaCategoria->getCodigoCategoria(),
-				"TITULO"=>$unaCategoria->getTitulo()
+				"ID"=>$unUsuario->getCodigoUsuario(),
+				"EMAIL"=>$unUsuario->getEmail(),
+				"NOMBRE"=>$unUsuario->getNombre(),
+				"APELLIDO"=>$unUsuario->getApellido(),
+				"CLAVE"=>$unUsuario->getClave(),
+				"EDAD"=>$unUsuario->getEdad(),
+				"LONGITUD"=>$unUsuario->getLongitud(),
+				"LATITUD"=>$unUsuario->getLatitud(),
+				"DIRECCION"=>$unUsuario->getDireccion(),
+				"NIVEL"=>$unUsuario->getNivel(),
+				"FK_MULTIMEDIA"=>$unUsuario->getFkMultimedia(),
+				"FOTO"=>$foto,
 			];
 		$arrayFinal[]=$array;
 	}

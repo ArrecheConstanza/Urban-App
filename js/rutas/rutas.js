@@ -78,6 +78,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/panel-de-control-usuarios.html',
 			controller : 'panelDeControlUsuariosCtrl'
 		}) 
+		.when('/panelDeControl/Usuarios/:id', {
+			templateUrl : 'vistas/panel-de-control-usuarios-detalle.html',
+			controller : 'panelDeControlUsuariosCtrl'
+		}) 
 		.otherwise({
 			redirectTo: '/publicaciones'
 		});
