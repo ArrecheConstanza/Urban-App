@@ -154,4 +154,10 @@ class Grupo{
 		}
 		return $salida;
 	}
+	
+	public function editar_grupo($variable,$array){
+		$query = "UPDATE " . static::$tabla . " SET $variable=? WHERE ID=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["VALOR"],$array["ID"]]);
+	}
 }
