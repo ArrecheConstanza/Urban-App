@@ -453,18 +453,12 @@ hr{
 #foto_perfil{
 	width:100vw;
 }
-/* 
-*/
+
 .cambio_usuario .switch-handle{
 	width:1.5em;
 	height:1.5em;
 	background:#86ae2f;
-}/*
-.cambio_usuario{
-	width:3em;
-	height:1.5em;
 }
-*/
 .cambio_usuario.switch{
 	height:1.5em;
 	width:4em;
@@ -478,15 +472,24 @@ hr{
 	border:none;
 	
 }
-
 .es_si{
-	/*padding-top:.3em;*/
 	padding-left:1.2em;
 }
 .es_no{
-	/*padding-top:.3em;*/
 	padding-left:.6em;
 }
 
  
-/*.switch-handle{*/
+ 
+/********************* panel control grupos ****************/
+
+.icono_estado{
+	border-radius:100%!important;
+	width:auto!important;
+	height:auto!important;
+	margin-top:1em;
+	margin-right:1em;
+	padding:0;
+}
+
+

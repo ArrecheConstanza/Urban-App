@@ -7,7 +7,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 		$location.path( "/panelDeControl");
 	}
 	
-	var estado_banneado, estado_borrado, estado_nivel;
+	var estado_banneado, estado_borrado;
 	
 	$scope.back_usuarios = function() { 
 		var data=[];
@@ -33,25 +33,13 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				data.push("BANNEADO="+$scope.banneado);
 			}
 		}
-		if(estado_nivel!="undefined"){
-			if(estado_nivel!=$scope.nivel){
-				if($scope.nivel){
-					$scope.nivel="Admin";
-				}
-				else{
-					$scope.nivel="Usuario";
-				}
-				data.push("NIVEL="+$scope.nivel);
-			}
-			
-		}
-		//console.log(data);
+		
 		if(data.length){
 			data.push("ID="+$routeParams["id"]);
 			var datos=data.join('&');
 			$http({ 
 				method:"POST",
-				url:"php/abm/usuario.editar.admin.php",
+				url:"php/abm/grupo.editar.admin.php",
 				data : datos,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
@@ -68,10 +56,10 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 		}
 		//console.log(data);
 			
-		$location.path( "/panelDeControl/Usuarios");
+		//$location.path( "/panelDeControl/Grupos");
 	}
 	
-		//**** un usuario ****//
+		//**** un grupo ****//
 		if($routeParams["id"]!=undefined){
 			var datos="id="+$routeParams["id"];
 			$http({ 
@@ -146,13 +134,12 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 		}
 		
 		
-		//**** Listado de usuarios ****//
+		//**** Listado de grupos ****//
 		else{
-			$scope.listado_usuarios=[];
 
 			$http({ 
 				method:"POST",
-				url:"php/abm/traer.usuarios.php",
+				url:"php/abm/traer.grupos.php",
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
@@ -162,10 +149,11 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 						data[i]["FOTO"]=data[i]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
 					}
 					else{
-						data[i]["FOTO"]="img/icons/png/usuario.png";
+						data[i]["FOTO"]="img/icons/png/grupo.png";
 					}
+					data[i]["ESTADO"].toLowerCase();
 				}
-				$scope.datosSQLusuarios=angular.fromJson(data);
+				$scope.datosSQLgrupos=angular.fromJson(data);
 				
 			})
 			.error(function(data){

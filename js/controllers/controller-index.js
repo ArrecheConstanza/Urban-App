@@ -17,6 +17,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		if(!$location.path().search("/panelDeControl/Usuarios/")){
 			return 0;
 		}
+		if(!$location.path().search("/panelDeControl/Grupos/")){
+			return 0;
+		}
 		if(localStorage.getItem("user_urban")==null){
 			return 0;
 		}
