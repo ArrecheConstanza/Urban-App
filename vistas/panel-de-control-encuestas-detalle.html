@@ -13,33 +13,33 @@
 				<!-- Icono -->
 				<div>
 					<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-						<span ng-click="back_grupos()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+						<span ng-click="back_encuestas()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
 					</div>
 					<!-- Texto -->
-					<h1 class="text-center subtitulo">Grupo </h1>
+					<h1 class="text-center subtitulo" style="padding-bottom:1em;">Encuesta </h1>
 				</div>
 				
 			</div>
 		
 			<!-- Listado de grupos -->
 			<div class="un_solo_usuario">
-				<img id="foto_perfil" alt="foto_grupo" ng-src="{{ imagen }}" />
 				<div>
 					<ul class="list-group" id="editar_usuario">
-					  <li ng-repeat="(key, value) in datosSQLgrupo track by $index " class="list-group-item">
-						{{ key }} : {{ value }} 
+					  <li ng-repeat="(key, value) in datosSQLencuesta track by $index " class="list-group-item">
+						<div ng-show="key!='OPCIONES'">{{ key }} : {{ value }} 
 						<div class="pull-right" ng-show="key=='BORRADO'">
 							<ui-switch class='cambio_usuario' ng-model='borrado' id="usuario_borrado" ng-click="buttonPositionBorrado();"><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch> 
-
 						</div>
-						<div class="pull-right" ng-show="key=='BANNEADO'">
-							<ui-switch class='cambio_usuario' ng-model='banneado' ng-click="buttonPositionBanneado();"
-							><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch>
 						</div>
-						<div class="pull-right" ng-show="key=='NIVEL'">
-							<ui-switch class='cambio_usuario' ng-model='nivel' ng-click="buttonPositionNivel();"><p><span class="pull-left es_no">A</span><span class=" es_si">U</span></p></ui-switch>
-						</div>
-						
+						<div ng-show="key=='OPCIONES'">
+							Opciones : 
+							<ul class="list-group sub-opciones">
+								<li ng-repeat="item in datosSQLencuesta.OPCIONES track by $index " class="list-group-item">
+									({{ item.ID }})  {{ item.RESPUESTA }} 
+									<small class="pull-right"> {{ item.PORCENTAJE }}</small>
+								</li>
+							</ul>
+						</div>						
 					  </li>
 					</ul> 
 				</div>

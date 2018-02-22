@@ -1,4 +1,4 @@
-/********************************************CONTROLLER PANEL DE CONTROL USUARIOS**************************************/
+/********************************************CONTROLLER PANEL DE CONTROL Grupos **************************************/
 
 Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$routeParams){
 

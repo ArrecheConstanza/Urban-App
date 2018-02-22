@@ -6,5 +6,5 @@ Urban.controller("panelDeControlCtrl", function ($scope,$http){
 		window.location.href=localStorage.getItem("urban_url");
 	}
 	
-	$scope.listado=["Usuarios", "Grupos", "Encuestas", "Chats", "Estadisticas"];
+	$scope.listado=["Usuarios", "Grupos", "Publicaciones", "Encuestas", "Estadisticas"];
 });

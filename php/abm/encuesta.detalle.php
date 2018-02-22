@@ -44,11 +44,11 @@
 				"ID"=>$unaEncuesta->getCodigoEncuesta(),
 				"PREGUNTA"=>$unaEncuesta->getPregunta(),
 				"FECHA_CREACION"=>$fecha,
-				"BORRADO"=>$unaEncuesta->getBorrado(),
-				"FK_GRUPO"=>$unaEncuesta->getFkGrupo(),
 				"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
 				"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
 				"FK_USUARIO"=>$unaEncuesta->getFkUsuario(),
+				"FK_GRUPO"=>$unaEncuesta->getFkGrupo(),
+				"BORRADO"=>$unaEncuesta->getBorrado(),
 				"OPCIONES"=>$array_opciones
 				//"FK_CATEGORIA"=>$unaEncuesta->getFkCategoria(),
 				//"CATEGORIA"=>$rta2[0]->getTitulo(),

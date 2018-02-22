@@ -17,6 +17,12 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		if(!$location.path().search("/panelDeControl/Usuarios/")){
 			return 0;
 		}
+		if(!$location.path().search("/panelDeControl/Encuestas/")){
+			return 0;
+		}
+		if(!$location.path().search("/panelDeControl/Publicaciones/")){
+			return 0;
+		}
 		if(!$location.path().search("/panelDeControl/Grupos/")){
 			return 0;
 		}
@@ -27,7 +33,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/panelDeControl":
 			case "/panelDeControl/Usuarios":
 			case "/panelDeControl/Grupos":
-			case "/panelDeControl/Chats":
+			case "/panelDeControl/Publicaciones":
 			case "/panelDeControl/Encuestas":
 			case "/panelDeControl/Estadisticas":
 			case "/newPublicacion":

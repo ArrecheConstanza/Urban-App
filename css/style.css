@@ -492,4 +492,33 @@ hr{
 	padding:0;
 }
 
+/**************** panel de control encuestas *********************/
 
+.encuestas_small {
+    text-align: right;
+    display: block;
+    padding-top:2.5em;
+    color: #b3b3b3;
+    font-family: 'HelveticaNeueLTStdLight';
+    letter-spacing: 1px;
+
+}
+
+.lista_encuestas{
+	min-height:6em;
+	padding:.5em;
+}
+
+.lista_encuestas a span{
+	padding-top:0!important;
+}
+
+.lista_encuestas a p{
+	padding:0!important;
+	width:100vw;
+	margin-bottom:0;
+}
+
+.sub-opciones li{
+	border:none;
+}
