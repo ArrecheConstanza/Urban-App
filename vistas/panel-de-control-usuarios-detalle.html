@@ -22,15 +22,28 @@
 			</div>
 		
 			<!-- Listado de usuarios -->
-			<div>
-				<ul class="list-group listado_usuarios">
-				  <li ng-repeat="item in datosSQLusuarios track by $index " class="list-group-item"><a href='#/panelDeControl/Usuarios/{{ item.ID }}'>
-					<img class="pull-left img-publi" ng-src="{{ item.FOTO }}" />
-					<p class="pull-left">{{ item.NOMBRE }} {{ item.APELLIDO }}</p>  
-					<span class="glyphicon glyphicon-chevron-right" id="glyphicon_listado_encuesta"></span> 
-					<p class="pull-right">{{ item.NIVEL }}</p> 
-				  </a></li>
-				</ul> 
+			<div class="un_solo_usuario">
+				<img id="foto_perfil" alt="foto_perfil" ng-src="{{ imagen }}" />
+				<div>
+					<ul class="list-group" id="editar_usuario">
+					  <li ng-repeat="(key, value) in datosSQLusuario track by $index " class="list-group-item">
+						{{ key }} : {{ value }} 
+						<div class="pull-right" ng-show="key=='BORRADO'">
+							<ui-switch class='cambio_usuario' ng-model='borrado' id="usuario_borrado" ng-click="buttonPositionBorrado();"><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch> 
+							<!-- <ui-switch ng-model='onOff' ng-click="buttonPosition();"></ui-switch> -->
+
+						</div>
+						<div class="pull-right" ng-show="key=='BANNEADO'">
+							<ui-switch class='cambio_usuario' ng-model='banneado' ng-click="buttonPositionBanneado();"
+							><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch>
+						</div>
+						<div class="pull-right" ng-show="key=='NIVEL'">
+							<ui-switch class='cambio_usuario' ng-model='nivel' ng-click="buttonPositionNivel();"><p><span class="pull-left es_no">A</span><span class=" es_si">U</span></p></ui-switch>
+						</div>
+						
+					  </li>
+					</ul> 
+				</div>
 			</div>
 		</div>
 	</div>

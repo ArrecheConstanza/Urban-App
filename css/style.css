@@ -448,7 +448,45 @@ hr{
 	color:#abb8b9;
 }
 
+/**************** un solo usuario *****************************/
 
+#foto_perfil{
+	width:100vw;
+}
+/* 
+*/
+.cambio_usuario .switch-handle{
+	width:1.5em;
+	height:1.5em;
+	background:#86ae2f;
+}/*
+.cambio_usuario{
+	width:3em;
+	height:1.5em;
+}
+*/
+.cambio_usuario.switch{
+	height:1.5em;
+	width:4em;
+}
+.cambio_usuario.switch.active{
+	background:white;
+	border:1px solid #cccccc;
+}
+.cambio_usuario.switch.active .switch-handle{
+	background:red;
+	border:none;
+	
+}
 
+.es_si{
+	/*padding-top:.3em;*/
+	padding-left:1.2em;
+}
+.es_no{
+	/*padding-top:.3em;*/
+	padding-left:.6em;
+}
 
-
+ 
+/*.switch-handle{*/
