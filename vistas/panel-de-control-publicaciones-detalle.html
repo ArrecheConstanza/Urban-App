@@ -1,0 +1,41 @@
+
+	<!--- ******CONTENIDO (VISTA PANEL DE CONTROL)****** -->
+	
+	
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/panel-de-control.css"); </style> 
+	
+	<!-- LISTADO -->
+	<div class="scrollable">
+		<div class="scrollable-content">
+		<!-- Titulo Perfil, Volver, foto-->
+			<div>
+				<!-- Icono -->
+				<div>
+					<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<span ng-click="back_publicaciones()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+					</div>
+					<!-- Texto -->
+					<h1 class="text-center subtitulo">Publicacion </h1>
+				</div>
+				
+			</div>
+		
+			<!-- Listado de publicacion -->
+			<div class="un_solo_usuario">
+				<img id="foto_perfil" alt="foto_perfil" ng-src="{{ imagen }}" />
+				<div>
+					<ul class="list-group" id="editar_usuario">
+					  <li ng-repeat="(key, value) in datosSQLpublicacion track by $index " class="list-group-item">
+						{{ key }} : {{ value }} 
+						<div class="pull-right" ng-show="key=='BORRADO'">
+							<ui-switch class='cambio_usuario' ng-model='borrado' id="usuario_borrado" ng-click="buttonPositionBorrado();"><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch> 
+							<!-- <ui-switch ng-model='onOff' ng-click="buttonPosition();"></ui-switch> -->
+
+						</div>
+					  </li>
+					</ul> 
+				</div>
+			</div>
+		</div>
+	</div>

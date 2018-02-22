@@ -19,12 +19,12 @@
 		//usuario creador
 		$usuario_nombre=$usuario->getNombreUsuario($unaEncuesta->getFkUsuario());
 		$usuario_apellido=$usuario->getApellidoUsuario($unaEncuesta->getFkUsuario());
-		$fecha= publicaciones_parsear_fecha($unaEncuesta->getFechaCreacion());
+		//$fecha= publicaciones_parsear_fecha($unaEncuesta->getFechaCreacion());
 
 			$array=[
 				"ID"=>$unaEncuesta->getCodigoEncuesta(),
 				"PREGUNTA"=>$unaEncuesta->getPregunta(),
-				"FECHA_CREACION"=>$fecha,
+				"FECHA_CREACION"=>$unaEncuesta->getFechaCreacion(),
 				"BORRADO"=>$unaEncuesta->getBorrado(),
 				"FK_GRUPO"=>$unaEncuesta->getFkGrupo(),
 				"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],

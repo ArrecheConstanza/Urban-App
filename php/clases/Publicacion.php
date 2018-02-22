@@ -112,7 +112,7 @@ class Publicacion{
 	}
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' " ;
+		$query = "SELECT * FROM " . static::$tabla ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -204,6 +204,12 @@ class Publicacion{
 		$query = "UPDATE " . static::$tabla . "  SET TITULO=?, DESCRIPCION=?, FKGRUPO=?, FKCATEGORIA=? WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["TITULO"],$array["DESCRIPCION"],$array["FKGRUPO"],$array["FKCATEGORIA"],$array["ID"]]);
+	}
+	
+	public function editar_publicacion_admin($variable,$array){
+		$query = "UPDATE " . static::$tabla . " SET $variable=? WHERE ID=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["VALOR"],$array["ID"]]);
 	}
 	
 	public function eliminar_publicacion($array){
