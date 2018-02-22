@@ -23,7 +23,7 @@
 		
 			<!-- Listado de usuarios -->
 			<div class="un_solo_usuario">
-				<img id="foto_perfil" alt="foto_perfil" ng-src="{{ imagen }}" />
+				<img id="foto_perfil" alt="foto_perfil" ng-src="{{ imagen }}" ng-show="estado_foto" />
 				<div>
 					<ul class="list-group" id="editar_usuario">
 					  <li ng-repeat="(key, value) in datosSQLusuario track by $index " class="list-group-item">

@@ -57,16 +57,16 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				//for(var i=0;i<data.length;i++){
 					if(data[0].FOTO.length){
 						data[0].FOTO=data[0].FOTO[0].DIR.replace("C:/xampp/htdocs/Urban-App/","");
+						$scope.estado_foto=true;
+						$scope.imagen= data[0]["FOTO"];
 					}
 					else{
-						data[0].FOTO="img/icons/png/newPublicacion.png";
+						$scope.estado_foto=false;
+						data[0].FOTO="";
 					}
 
-				//}
-				$scope.imagen= data[0]["FOTO"];
 				delete data[0]["FOTO"];
 				$scope.datosSQLpublicacion=angular.fromJson(data[0]);
 				

@@ -84,12 +84,15 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 				//corregir para host
 				if(data["FOTO"]!=null){
 					data["FOTO"]=data["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
+					$scope.estado_foto=true;
+					$scope.imagen= data["FOTO"];
 				}
 				else{
+					$scope.imagen= data["FOTO"];
 					data["FOTO"]="img/icons/png/usuario.png";
+					$scope.estado_foto=false;
 				}
 
-				$scope.imagen= data["FOTO"];
 				delete data["FKMULTIMEDIA"];
 				delete data["FOTO"];
 				delete data["CLAVE"];

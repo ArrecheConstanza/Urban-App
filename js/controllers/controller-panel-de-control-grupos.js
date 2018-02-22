@@ -71,11 +71,14 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				//corregir para host
 				if(data[0]["FOTO"]!=null){
 					data[0]["FOTO"]=data[0]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
+						$scope.estado_foto=true;
+						$scope.imagen=data[0]["FOTO"];
 				}
 				else{
-					data[0]["FOTO"]="img/icons/png/grupo.png";
+					//data[0]["FOTO"]="img/icons/png/grupo.png";
+						$scope.estado_foto=false;
 				}
-				$scope.imagen= data[0]["FOTO"];
+				//$scope.imagen= data[0]["FOTO"];
 				delete data[0]["FKMULTIMEDIA"];
 				delete data[0]["FOTO"];
 				$scope.datosSQLgrupo=angular.fromJson(data[0]);
