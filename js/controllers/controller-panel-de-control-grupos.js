@@ -9,7 +9,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 	
 	var estado_banneado, estado_borrado;
 	
-	$scope.back_usuarios = function() { 
+	$scope.back_grupos = function() { 
 		var data=[];
 		if(estado_borrado!="undefined"){
 			if(estado_borrado!=$scope.borrado){
@@ -44,7 +44,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				//corregir para host
+				console.log(data);
 				if(!data){
 					//modal error al editar, reload?
 				}
@@ -54,9 +54,8 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				
 			});
 		}
-		//console.log(data);
 			
-		//$location.path( "/panelDeControl/Grupos");
+		$location.path( "/panelDeControl/Grupos");
 	}
 	
 		//**** un grupo ****//
@@ -64,24 +63,22 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 			var datos="id="+$routeParams["id"];
 			$http({ 
 				method:"POST",
-				url:"php/abm/un.usuario.php",
+				url:"php/abm/un.grupo.php",
 				data : datos,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
 				//corregir para host
-				if(data["FOTO"]!=null){
-					data["FOTO"]=data["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
+				if(data[0]["FOTO"]!=null){
+					data[0]["FOTO"]=data[0]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
 				}
 				else{
-					data["FOTO"]="img/icons/png/usuario.png";
+					data[0]["FOTO"]="img/icons/png/grupo.png";
 				}
-
-				$scope.imagen= data["FOTO"];
-				delete data["FKMULTIMEDIA"];
-				delete data["FOTO"];
-				delete data["CLAVE"];
-				$scope.datosSQLusuario=angular.fromJson(data);
+				$scope.imagen= data[0]["FOTO"];
+				delete data[0]["FKMULTIMEDIA"];
+				delete data[0]["FOTO"];
+				$scope.datosSQLgrupo=angular.fromJson(data[0]);
 				
 				
 				$scope.buttonPositionBanneado=function(){
@@ -91,7 +88,6 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 					else{
 						$scope.banneado=true;
 					}
-					//console.log($scope.banneado);
 				}
 				$scope.buttonPositionBorrado=function(){
 					if($scope.borrado){
@@ -100,32 +96,19 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 					else{
 						$scope.borrado=true;
 					}
-					//console.log($scope.borrado);
-				}
-				$scope.buttonPositionNivel=function(){
-					if($scope.nivel){
-						$scope.nivel=false;
-					}
-					else{
-						$scope.nivel=true;
-					}
-					//console.log($scope.nivel);
 				}
 				
+				
 				//**** estado de switch ****//
-				if(data["BORRADO"]=="No"){
+				if(data[0]["BORRADO"]=="No"){
 					$scope.borrado=true;
 				}
-				if(data["BANNEADO"]=="No"){
+				if(data[0]["BANNEADO"]=="No"){
 					$scope.banneado=true;
-				}
-				if(data["NIVEL"]=="Admin"){
-					$scope.nivel=true;
 				}
 				
 				estado_banneado=$scope.banneado;
 				estado_borrado=$scope.borrado;
-				estado_nivel=$scope.nivel;
 			})
 			.error(function(data){
 				//sin internet, cargo datos locales

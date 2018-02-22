@@ -7,22 +7,34 @@
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Grupo.php');
+	require_once('../clases/Multimedia.php');
 	
 	$grupo = new Grupo();
 	$arrayFinal = array();
 	$grupo=$grupo->getByPk($_POST["id"]);
-	
-	foreach($grupo as $unGrupo){
-		$array=[
-			"ID"=>$unGrupo->getCodigoGrupo(),
-			"NOMBRE"=>$unGrupo->getNombre(),
-			"LONGITUD"=>$unGrupo->getLongitud(),
-			"LATITUD"=>$unGrupo->getLatitud(),
-			"ESTADO"=>$unGrupo->getEstado(),
-			"BORRADO"=>$unGrupo->getBorrado(),
-			"FKMULTIMEDIA"=>$unGrupo->getFkMultimedia()
+		if($grupo[0]->getFkMultimedia()!=null){
+			$multimedia = new Multimedia();
+			$multimedia=$multimedia->getByPk($grupo[0]->getFkMultimedia());
+			$array_foto=[
+				"ID"=>$multimedia[0]->getCodigoMultimedia(),
+				"PATH"=>$multimedia[0]->getPath()
+			];
+		}
+		else{
+			$array_foto=null;
+		}
+	$array=[
+			"ID"=>$grupo[0]->getCodigoGrupo(),
+			"NOMBRE"=>$grupo[0]->getNombre(),
+			"LONGITUD"=>$grupo[0]->getLongitud(),
+			"LATITUD"=>$grupo[0]->getLatitud(),
+			"ESTADO"=>$grupo[0]->getEstado(),
+			"BORRADO"=>$grupo[0]->getBorrado(),
+			"BANNEADO"=>$grupo[0]->getBanneado(),
+			"FKMULTIMEDIA"=>$grupo[0]->getFkMultimedia(),
+			"FOTO" => $array_foto
 		];
-		$arrayFinal[]=$array;
-	}
+		$arrayFinal[]=$array; 
+	
 	echo json_encode($arrayFinal);
 ?>

@@ -6,24 +6,12 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases/Usuario.php');
-	require_once('../clases/Validacion.php');
-	
-	/***** Validacion ******/
-	
-	$reglas = [
-		'EMAIL' => 'required|email',
-		'CLAVE' => 'required|clave',
-		'NOMBRE' => 'required|nombre',
-		'APELLIDO' => 'required|nombre',
-		'EDAD' => 'required|date'
-	];
-	
+	require_once('../clases/Grupo.php');
 	
 	// falta validar datos
 	
 	if(isset($_SESSION["s_id"])){
-		$usuario = new Usuario();
+		$grupo = new Grupo();
 		$arrayFinal=[];
 		foreach ($_POST as $key => $value){
 			if($key!="ID"){
@@ -31,7 +19,7 @@
 					"VALOR" => $value,
 					"ID" => $_POST["ID"],
 				];
-				$rta=$usuario->editar_usuario($key,$array);
+				$rta=$grupo->editar_grupo($key,$array);
 				if(!$rta){ return 0; } //error al editar
 			}
 		}

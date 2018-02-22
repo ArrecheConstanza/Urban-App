@@ -7,9 +7,10 @@ class Grupo{
 	private $latitud;
 	private $estado;
 	private $borrado;
+	private $banneado;
 	private $fk_multimedia;
 	public static $tabla = "grupo";
-	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA'];
+	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA','BANNEADO'];
 
 	public function setCodigoGrupo($a){
 		$this->codigo_grupo = $a;
@@ -44,6 +45,12 @@ class Grupo{
 	public function getBorrado(){
 		return $this->borrado;
 	}
+	public function setBanneado($a){
+		$this->banneado = $a;
+	}
+	public function getBanneado(){
+		return $this->banneado;
+	}
 	public function setFkMultimedia($a){
 		$this->fk_multimedia = $a;
 	}
@@ -64,6 +71,7 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
+				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
@@ -91,6 +99,9 @@ class Grupo{
 					break;
 					case "borrado":
 						$this->setBorrado($valor);
+					break;
+					case "banneado":
+						$this->setBanneado($valor);
 					break;
 					case "fk_multimedia":
 						$this->setFkMultimedia($valor);
@@ -136,7 +147,7 @@ class Grupo{
 	
 	public static function all(){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No'";
+		$query = "SELECT * FROM " . static::$tabla ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -147,6 +158,7 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
+				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
