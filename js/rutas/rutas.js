@@ -74,6 +74,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/panel-de-control.html',
 			controller : 'panelDeControlCtrl'
 		}) 
+		.when('/panelDeControl/Estadisticas', {
+			templateUrl : 'vistas/panel-de-control-estadisticas.html',
+			controller : 'panelDeControlEstadisticasCtrl'
+		}) 
 		.when('/panelDeControl/Usuarios', {
 			templateUrl : 'vistas/panel-de-control-usuarios.html',
 			controller : 'panelDeControlUsuariosCtrl'

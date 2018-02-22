@@ -238,6 +238,58 @@ class Usuario{
 		$json=json_encode($array);
 		return $json;
 	}
+	
+	/* public function usuario_estadistica_nivel($nivel){
+		$query = "SELECT * FROM " . static::$tabla . " WHERE NIVEL=?";
+		$stmt = DBcnx::getStatement($query);
+		$stmt->execute([$nivel]);
+		return /* $this->cargarDatos( /$stmt->fetch(PDO::FETCH_ASSOC)/ ) /;
+	} */
+	
+	public static function usuario_estadistica_user(){
+		$salida = [];
+		/*$query = "SELECT COUNT(ID) AS NIVEL_USUARIO FROM usuario WHERE usuario.NIVEL='Usuario' AND usuario.BORRADO='No'";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute();
+		/*if(
+		/*$stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$usuario = new Usuario;
+				$usuario->codigo_usuario = $fila['ID'];
+				//$usuario->cargarDatos($fila);
+				$salida[] = $usuario;
+			}
+		}
+		return $salida;*/
+	}
+	/*public static function usuario_estadistica_usuario(){
+		$salida = [];
+		$query = "SELECT ID FROM " . static::$tabla. " WHERE NIVEL='Usuario'";
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$usuario = new Usuario;
+				$usuario->codigo_usuario = $fila['ID'];
+				//$usuario->cargarDatos($fila);
+				$salida[] = $usuario;
+			}
+		}
+		return $salida;
+	}*/
+	
+	public function usuario_estadistica_fecha(){
+		$query = "SELECT ID, FECHA_CREACION FROM " . static::$tabla;
+		$stmt = DBcnx::getStatement($query);
+		$array=[];
+		if($stmt->execute()){
+			while($f = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$array=$f;
+			}
+		}
+		$json=json_encode($array);
+		return $json;
+	}
+	
 	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla;

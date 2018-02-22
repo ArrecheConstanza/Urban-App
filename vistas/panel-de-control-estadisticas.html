@@ -1,0 +1,52 @@
+
+	<!--- ******CONTENIDO (VISTA PANEL DE CONTROL)****** -->
+	
+	
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/panel-de-control-estadisticas.css"); </style> 
+	
+	<!-- LISTADO -->
+	<div class="scrollable">
+		<div class="scrollable-content">
+		<!-- Titulo Perfil, Volver, foto-->
+			<div>
+				<!-- Icono -->
+				<div>
+					<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<span ng-click="back()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+					</div>
+					<!-- Texto -->
+					<h1 class="text-center subtitulo">Estadisticas </h1>
+				</div>
+				
+			</div>
+		
+			<!-- Listado de estadisticas -->
+			<div>
+			<h2>Usuarios</h2>
+			 <canvas 
+			class="chart chart-bar" 
+			chart-data="datos" 
+			chart-labels="etiquetas" 
+			chart-series="series"></canvas>
+			<h2>Grupos</h2>
+			<!-- <canvas 
+			class="chart chart-pie" 
+			chart-data="datos2" 
+			chart-labels="etiquetas"></canvas> -->
+			<h2>Publicaciones</h2>
+			<h2>Encuestas</h2>
+				<!-- <ul class="list-group listado_usuarios">
+				  <li ng-repeat="item in datosSQLencuestas track by $index " class="list-group-item lista_encuestas"><a href='#/panelDeControl/Encuestas/{{ item.ID }}'>
+					<p class="pull-left">{{ item.PREGUNTA }}</p>
+					<span class="glyphicon glyphicon-chevron-right" id="glyphicon_listado_encuesta"></span>
+					<small class="pull-right encuestas_small">{{ item.FECHA_CREACION }}</small>
+					<p class=""> Grupo: {{ item.FK_GRUPO }}</p>
+					
+				  </a></li>
+				</ul>   -->
+			</div>
+		</div>
+	</div>
+			
+		
