@@ -1,6 +1,6 @@
 
 		<!--Alarmas container -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" ng-controller="alarmaCtrl">
 		<!-- Titulo Alarmas y Volver -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
 			<!-- Icono -->
@@ -13,6 +13,24 @@
 		
 		
 			<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 margin-bottom-sm seccion_alarma">
+			
+			
+			 <div>
+        <!-- <div><pre> Left swipes: {{model.left}}</pre></div>
+        <div><pre>Right swipes: {{model.right}}</pre></div>
+        <div><pre>Touch clicks: {{model.click}}</pre></div>
+    </div>
+    <div class="swipy"
+         ng-swipe-left="swipeLeft()"
+         ng-swipe-right="swipeRight()"
+         ng-click="touchClick()">
+        Swipe me !
+    </div> -->
+
+<!-- <input name='grados' type=text id='grados' value=0 size="5"> 
+<input type="button" value="-" onMouseDown=" timedCountMenos('grados', 1)" onMouseUp="stopCount()" onMouseOut="stopCount()"/>
+<input type="button" value="+" onMouseDown=" timedCountMas('grados', 1)" onMouseUp="stopCount()" onMouseOut="stopCount()"/> -->
+	
 				<div id="boton_alarma"  role="button" class="img-response" > <small>Manter presionado por 3 segundos para enviar una alerta a sus gurpos</small>
 				</div>				
 			</div>
