@@ -45,8 +45,11 @@
 				"LONGITUD"=>$unUsuario->getLongitud(),
 				"LATITUD"=>$unUsuario->getLatitud(),
 				"DIRECCION"=>$unUsuario->getDireccion(),
+				"DIRECCION_ESTADO"=>$unUsuario->getDireccionEstado(),
 				"NIVEL"=>$unUsuario->getNivel(),
+				"BORRADO"=>$unUsuario->getBorrado(),
 				"FK_MULTIMEDIA"=>$unUsuario->getFkMultimedia(),
+				"FECHA_ALTA"=>$unUsuario->getFechaAlta(),
 				"FOTO"=>$foto,
 			];
 		$arrayFinal[]=$array;

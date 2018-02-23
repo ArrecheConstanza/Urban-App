@@ -56,4 +56,15 @@ h2{
 	text-align:center;
 }
 
+h3{
+	font-size:1em;
+	font-weight:none;
+	padding-right:1em;
+	color:#0a3a49;
+	text-transform: capitalize;
+	font-family:'HelveticaNeueLTStd';
+}
+
+
+
 
