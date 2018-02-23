@@ -120,7 +120,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  datasets: [
 					{
 					  label: "Usuarios - Administradores",
-					  backgroundColor: ["#ffc107", "#48cfd0"],
+					  backgroundColor: ["#bf4c5b", "#805d6b"],
 					  data: [usuario,admin]
 					}
 				  ]
@@ -150,7 +150,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  datasets: [
 					{
 					  label: "Borrados - No Borrados",
-					  backgroundColor: ["#673ab7", "#b73a4a"],
+					  backgroundColor: ["#479aa4", "#6bcf9b"],
 					  data: [usr_borrado,user_no_borrado]
 					}
 				  ]
@@ -195,7 +195,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  datasets: [
 					{
 					  label: "Publicos/Privados",
-					  backgroundColor: ["#3e95cd", "#8e5ea2"],
+					  backgroundColor: ["#80808c", "#d2d9b7"],
 					  data: [grupo_publico,grupo_privado]
 					}
 				  ]
@@ -225,7 +225,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  datasets: [
 					{
 					  label: "Borrados - No Borrados",
-					  backgroundColor: ["#673ab7", "#b73a4a"],
+					  backgroundColor: ["#ae838a", "#ffe7cb"],
 					  data: [grupo_borrado,grupo_no_borrado]
 					}
 				  ]
@@ -242,57 +242,99 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 			
 		});
 			
+	//************************* PUBLICACIONES
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*datos_grupo_estado
-	/*console.log(newDate.getMonth());
-	
-	$scope.etiquetas = [meses[newDate.getMonth()-1], meses[newDate.getMonth()], meses[newDate.getMonth()+1]];*
-    $scope.series = ['1', '2'];
-    /* $scope.datos_nivel = [
-      [usuario, admin, 80, 81],
-      [28, 48, 40, 19],
-	  [123,12,123,12]
-    ]; */
-	
-	/* $scope.etiquetas = ['Gastos', 'Ventas', 'Compras'];
- 
-    $scope.datos2 = [1244, 1500, 2053];*/
-	
-	
-	
-	
-	
-	/* new Chart(document.getElementById("doughnut-chart"), {
-				type: 'doughnut',
-				data: {
-				  labels: ["Publicos", "Privados"],
-				  datasets: [
-					{
-					  label: "Publicos/Privados",
-					  backgroundColor: ["#3e95cd", "#8e5ea2"],
-					  data: [9,18]
+		$http({ 
+			method:"POST",
+			url:"php/abm/traer.publicaciones.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			var info_publicaciones=data;
+			$scope.categorias;
+			//////////// categorias
+				$http({ 
+					method:"POST",
+					url:"php/abm/traer.categorias.php",
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data, status){
+					$scope.categorias=data;
+					localStorage.setItem("categorias_urban",angular.toJson(data));
+				})
+				.error(function(data){
+					//sin internet, cargo datos locales
+					if(localStorage.getItem("categorias_urban")!=undefined){
+						$scope.categorias=localStorage.getItem("categorias_urban");
 					}
-				  ]
-				},
-				options: {
-				  title: {
-					display: true,
-					text: 'Publicos/Privados'
-				  }
+				}); 
+				var categorias_estadistica=[], ban=0;
+				var contador_estadisticas=[0,0,0,0,0,0,0,0,0];
+				console.log($scope.categorias);
+				for(var i=0;i<$scope.categorias.length;i++){
+					categorias_estadistica.push($scope.categorias[i].TITULO);
 				}
-			}); */
-
-
+					console.log(categorias_estadistica);
+					for(var j=0;j<info_publicaciones.length;j++){
+						for(var i=0;i<categorias_estadistica.length;i++){
+							if(info_publicaciones[j].CATEGORIA==categorias_estadistica[i]){
+								contador_estadisticas[i]++;
+							}
+						} 
+					} 
+				
+			new Chart(document.getElementById("datos_publi_categorias"), {
+					type: 'doughnut',
+					data: {
+					  labels: categorias_estadistica,
+					  datasets: [
+						{
+						  label: "Categorias",
+						  backgroundColor: ["#3e2c59", "#344e47","#019b86",'#f9de3c','#9d1f2a','#de3523','#f5e4b9','#61569f','#b1c7b2'],
+						  data: contador_estadisticas
+						}
+					  ]
+					},
+					options: {
+					  title: {
+						display: true,
+						text: 'Categorias'
+					  }
+					}
+				});
+		
+			
+			////////////borrados
+			var publi_borrado=0, publi_no_borrado=0;
+			for(var i=0;i<info_publicaciones.length;i++){
+				if(info_publicaciones[i]["BORRADO"]=="Si"){
+					publi_borrado++;
+				}
+				else{
+					publi_no_borrado++;
+				}
+			} 
+			new Chart(document.getElementById("datos_publi_borrado"), {
+					type: 'doughnut',
+					data: {
+					  labels: ["Borradas", "No Borradas"],
+					  datasets: [
+						{
+						  label: "Borradas - No Borradas",
+						  backgroundColor: ["#6a8c7e", "#f9e79d"],
+						  data: [publi_borrado,publi_no_borrado]
+						}
+					  ]
+					},
+					options: {
+					  title: {
+						display: true,
+						text: 'No Borradas - Borradas'
+					  }
+					}
+				});
+		})
+		.error(function(){
+			
+		});
 });
