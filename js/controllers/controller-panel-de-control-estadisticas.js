@@ -82,7 +82,6 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 					contar_meses[i]=0;
 				}
 			}
-			console.log(contar_meses);
 			
 			new Chart(document.getElementById("datos_crecimiento_usuario"), {
 			  type: 'line',
@@ -102,14 +101,6 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				}
 			  }
 			});
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			////////////niveles
 			var usuario=0, admin=0;
@@ -145,7 +136,6 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 			////////////borrados
 			var usr_borrado=0, user_no_borrado=0;
 			for(var i=0;i<info_usuarios.length;i++){
-				//console.log(info_usuarios);
 				if(info_usuarios[i]["BORRADO"]=="Si"){
 					usr_borrado++;
 				}
@@ -172,21 +162,100 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  }
 				}
 			});
-		
-			
-			/*$scope.etiquetas_nivel = ['Usuarios', 'Administradores'];
-			$scope.datos_nivel = [usuario, admin];
-			var c=id("canvas_nivel");
-			var ctx = c.getContext("2d");
-			//console.log(ctx);
-			ctx.fillText("Hello World!", 100, 500);
-		//	$scope.titulos= ['Usuarios']
-			//console.log(usuario,admin);*/
 		})
 		.error(function(){
 			//mensaje Sin conexion 
 		});
 	
+	
+	//************************* GRUPOS
+	
+		$http({ 
+			method:"POST",
+			url:"php/abm/traer.grupos.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			var info_grupos=data;
+
+			////////////estados
+			var grupo_publico=0, grupo_privado=0;
+			for(var i=0;i<info_grupos.length;i++){
+				if(info_grupos[i]["ESTADO"]=="Publico"){
+					grupo_publico++;
+				}
+				else{
+					grupo_privado++;
+				}
+			} 
+			new Chart(document.getElementById("datos_grupo_estado"), {
+				type: 'doughnut',
+				data: {
+				  labels: ["Publicos", "Privados"],
+				  datasets: [
+					{
+					  label: "Publicos/Privados",
+					  backgroundColor: ["#3e95cd", "#8e5ea2"],
+					  data: [grupo_publico,grupo_privado]
+					}
+				  ]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'Publicos/Privados'
+				  }
+				}
+			});
+			
+			////////////borrados
+			var grupo_borrado=0, grupo_no_borrado=0;
+			for(var i=0;i<info_grupos.length;i++){
+				if(info_grupos[i]["BORRADO"]=="Si"){
+					grupo_borrado++;
+				}
+				else{
+					grupo_no_borrado++;
+				}
+			} 
+			new Chart(document.getElementById("datos_grupo_borrado"), {
+				type: 'doughnut',
+				data: {
+				  labels: ["Borrados", "No Borrados"],
+				  datasets: [
+					{
+					  label: "Borrados - No Borrados",
+					  backgroundColor: ["#673ab7", "#b73a4a"],
+					  data: [grupo_borrado,grupo_no_borrado]
+					}
+				  ]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'No Borrados - Borrados'
+				  }
+				}
+			});
+		})
+		.error(function(){
+			
+		});
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*datos_grupo_estado
 	/*console.log(newDate.getMonth());
 	
 	$scope.etiquetas = [meses[newDate.getMonth()-1], meses[newDate.getMonth()], meses[newDate.getMonth()+1]];*
