@@ -21,16 +21,18 @@
 #listado-publicaciones li img:nth-child(1){
 	position:absolute;
 }
-#listado-publicaciones li img:nth-child(2){
-	padding-left:2%;
+
+#listado-publicaciones li{
+padding: .5em;
 }
+
 #listado-publicaciones li p{
-	display: block;
+	/* display: block;
     text-align: left;
-    margin-left: 32%;
+    margin-left: 32%; */
     color: #484848;
-    letter-spacing: 2.5px;
-	font-family:'HelveticaNeueLTStdLight';
+/*     letter-spacing: 2.5px;
+ */	font-family:'HelveticaNeueLTStdLight';
 	font-weight:600;
 	font-size:15px;
 }
@@ -45,14 +47,20 @@
 	bottom:0;
 	padding-bottom:.5em;
 }
+#listado-publicaciones li div{
+	display:inline-block;
+	padding-left:.3em;
+	
+}
 #listado-publicaciones li h2{
 	display:inline-block;
-	font-size:1.3em;
+	font-size:1em;
 	text-transform:none;
-	padding-left:.5em;
 	font-family:'HelveticaNeueLTStd';
     color: #0a384a;
     letter-spacing: 2px;
+	margin-top:0;
+	margin-bottom:.1em;
 }
 
 #detalle-publicacion #img-detalle{
@@ -140,8 +148,12 @@
 }
 
 .img-publi{
-	max-width:50px;
-	max-height:50px;
+	/* max-width:50px;
+	max-height:50px; */
+	vertical-align: top!important;
+	object-fit: cover;
+	width:70px;
+	height:70px;
 }
 
 #listado-comentario-publicaciones{
