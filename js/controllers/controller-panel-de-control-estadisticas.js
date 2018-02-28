@@ -337,4 +337,49 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		.error(function(){
 			
 		});
+		
+		//************************* ENCUESTA
+	
+		$http({ 
+			method:"POST",
+			url:"php/abm/traer.encuestas.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			var info_encuesta=data;
+			
+			////////////borrados
+			var encuesta_borrado=0, encuesta_no_borrado=0;
+			for(var i=0;i<info_grupos.length;i++){
+				if(info_grupos[i]["BORRADO"]=="Si"){
+					encuesta_borrado++;
+				}
+				else{
+					encuesta_no_borrado++;
+				}
+			} 
+			new Chart(document.getElementById("datos_encuesta_borrado"), {
+				type: 'doughnut',
+				data: {
+				  labels: ["Borrados", "No Borrados"],
+				  datasets: [
+					{
+					  label: "Borrados - No Borrados",
+					  backgroundColor: ["#ae838a", "#ffe7cb"],
+					  data: [encuesta_borrado,encuesta_no_borrado]
+					}
+				  ]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'No Borrados - Borrados'
+				  }
+				}
+			});
+		})
+		.error(function(){
+			
+		});
+			
 });
