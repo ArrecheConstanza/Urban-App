@@ -4,19 +4,17 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	
 	 // mantener presionado 2s
 	 
-	var tiempo=null;
+	$scope.tiempo=null;
 	$scope.iniciar_click=function(){
-		 tiempo = $timeout(function () {
+		$timeout.cancel($scope.tiempo);
+		 $scope.tiempo = $timeout(function () {
 			alert("aca pasa algo turbio");
-		}	, 2000);
+		}	, 3000);
 	}
 	
 	$scope.finalizar_click=function(){
 		console.log("ya no");
-		//console.log( $scope.tiempo);
-		$timeout.cancel(tiempo);
-
-		
+		$timeout.cancel($scope.tiempo);
 	}
 	 
 	
