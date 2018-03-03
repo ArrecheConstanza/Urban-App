@@ -350,8 +350,8 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 			
 			////////////borrados
 			var encuesta_borrado=0, encuesta_no_borrado=0;
-			for(var i=0;i<info_grupos.length;i++){
-				if(info_grupos[i]["BORRADO"]=="Si"){
+			for(var i=0;i<info_encuesta.length;i++){
+				if(info_encuesta[i]["BORRADO"]=="Si"){
 					encuesta_borrado++;
 				}
 				else{

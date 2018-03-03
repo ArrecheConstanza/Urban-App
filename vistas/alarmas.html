@@ -16,23 +16,17 @@
 			
 			
 			 <div>
-        <!-- <div><pre> Left swipes: {{model.left}}</pre></div>
-        <div><pre>Right swipes: {{model.right}}</pre></div>
-        <div><pre>Touch clicks: {{model.click}}</pre></div>
-    </div>
-    <div class="swipy"
-         ng-swipe-left="swipeLeft()"
-         ng-swipe-right="swipeRight()"
-         ng-click="touchClick()">
-        Swipe me !
-    </div> -->
-
-<!-- <input name='grados' type=text id='grados' value=0 size="5"> 
-<input type="button" value="-" onMouseDown=" timedCountMenos('grados', 1)" onMouseUp="stopCount()" onMouseOut="stopCount()"/>
-<input type="button" value="+" onMouseDown=" timedCountMas('grados', 1)" onMouseUp="stopCount()" onMouseOut="stopCount()"/> -->
+			 
+			 <!--  {{counter}} <br /> -->
+            <!-- <button ng-click="cancel()">Cancel</button> -->
 	
-				<div id="boton_alarma"  role="button" class="img-response" > <small>Manter presionado por 3 segundos para enviar una alerta a sus gurpos</small>
-				</div>				
+				<div id="boton_alarma"
+				role="button"
+				class="img-response"
+				ng-mouseup="finalizar_click()"
+				ng-click='iniciar_click()'> 
+<!-- 				<small>Manter presionado por 3 segundos para enviar una alerta a sus gurpos</small>
+ -->				</div>				
 			</div>
 
 			<div  class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

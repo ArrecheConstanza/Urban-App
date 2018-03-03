@@ -1,56 +1,41 @@
 /********************************************CONTROLLER SIDEBAR ***************************************/
 
-Urban.controller("alarmaCtrl", function ($location,$http,$scope) {
-	  $scope.model = {
-        left:  0,
-        right: 0,
-        click: 0
-    };
-    $scope.swipeLeft = function () {
-        $scope.model.left += 1;
-    };
-    $scope.swipeRight = function () {
-        $scope.model.right += 1;
-    };
-    $scope.touchClick = function () {
-        $scope.model.click += 1;
-    };
+Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interval) {
 	
+	 // mantener presionado 2s
+	 
+	var tiempo=null;
+	$scope.iniciar_click=function(){
+		 tiempo = $timeout(function () {
+			alert("aca pasa algo turbio");
+		}	, 2000);
+	}
 	
-	// mantener presionado 3s
-	$(document).ready(function(){
-		$("#boton_alarma").click(function(){
-			//$("#boton_alarma").hide();
+	$scope.finalizar_click=function(){
+		console.log("ya no");
+		//console.log( $scope.tiempo);
+		$timeout.cancel(tiempo);
+
 		
-			$( "#boton_alarma" ).mouseout(function() {
-			 console.log("sali");
-			});
-		});
-	});
-		/*var c=0;
-		var t;
-
-		function timedCountMas(inputName, vnum){
-		hola = inputName;
-		x = vnum;
-		document.getElementById(inputName).value=c;
-		c=c+x;
-		c=Math.round(c*100)/100;
-		t=setTimeout("timedCountMas(hola, x)", 66);
-		}
-
-		function timedCountMenos(inputName, vnum){
-		hola = inputName;
-		x = vnum;
-		document.getElementById(inputName).value=c;
-		if (c>0) 
-			{ c=c-x;
-			  c=Math.round(c*100)/100;
-			  t=setTimeout("timedCountMenos(hola, x)", 66); }
-		}
-
-		function stopCount(){
-		clearTimeout(t);
-		}*/
+	}
+	 
 	
+			/* $scope.counter = 0;
+			var promise;
+			$scope.iniciar_click=function(){
+				//var increaseCounter = function () {
+					$scope.counter = $scope.counter + 1;
+				//}
+				var promise = $interval($scope.iniciar_click, 3);
+			}
+
+        
+            $scope.cancel = function () {
+				if(promise!=undefined){
+					$interval.cancel(promise);
+				}
+				$scope.counter = "Cancelled!";
+			}; */
+			
+
 });
