@@ -1,14 +1,7 @@
 
 /**************************** ALARMA **********************/
 
-#boton_alarma{
-	border-radius:50%;
-	width:15em;
-	height:15em;
-	background:url('../img/icons/png/alarm-1.png') 50% 25% no-repeat white;
-	display:inline-block;
-	border: .9em solid #ff9828;
-}
+/***** alarma principal *****/
 
 #boton_alarma small{
 	float:left;
@@ -21,6 +14,122 @@
 	color:white;
 }
 
+	/* A N I M A C I O N */
+	#boton_alarma{
+	  width: 15em;
+	  height: 15em;
+	  margin: 30px auto;
+	  position: relative;
+	}
+
+	.inner-shadow-principal{
+		border-radius:50%;
+		width:14em;
+		height:14em;
+		background:url('../img/icons/png/alarm-1.png') 50% 25% no-repeat white;
+		display:inline-block;
+		right: .5em;
+		width: 14em;
+		height: 14em;
+		border-radius: 100%;
+		background-color: #ffffff;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+		margin-top:.5em;
+		z-index: 4;
+		position: absolute;
+	}
+
+	.hold-ppal {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  top:0;
+	  clip: rect(0px, 15em, 15em, 7.5em);
+	  border-radius: 100%;
+	  background-color: #fff;
+	}
+
+	.fill-ppal,
+	.dot span {
+	  background-color: #ff9828;
+	}
+
+	.fill-ppal {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  border-radius: 100%;
+	  clip: rect(0px, 7.5em, 15em, 0px);
+	}
+
+	.left-ppal .fill-ppal {
+	  z-index: 1;
+	  -webkit-animation: left 3s linear;
+	  -moz-animation: left 3s linear;
+	  animation: left 3s linear both;
+	}
+	@keyframes left-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		transform: rotate(180deg);
+	  }
+	}
+	@-webkit-keyframes left-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(180deg);
+	  }
+	}
+	.right-ppal {
+	  z-index: 3;
+	  -webkit-transform: rotate(180deg);
+	  -moz-transform: rotate(180deg);
+	  transform: rotate(180deg);
+	}
+	.right-ppal .fill-ppal {
+	  z-index: 3;
+	  -webkit-animation: right 3s linear;
+	  -moz-animation: right 3s linear;
+	  animation: right 3s linear both;
+	  -webkit-animation-delay: 3s;
+	  -moz-animation-delay: 3s;
+	  animation-delay: 3s;
+	}
+	@keyframes right-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		transform: rotate(180deg);
+	  }
+	}
+	@-webkit-keyframes right-ppal {
+	  0% {
+		transform: rotate(0deg);
+	  }
+	  100% {
+		transform: rotate(180deg);
+	  }
+	}
+	.inner-shadow-principal img {
+	  margin-left: 8px;
+	  margin-top: 7px;
+	}
+
+
+
+
+
+
+
+
+
+
+/******************************************************/
 .sidebar-right{
 	background:#f10303;
 }
