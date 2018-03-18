@@ -4,10 +4,11 @@
 /***** alarma principal *****/
 
 #boton_alarma small{
-	float:left;
+	left:15vw;
 	padding-top:9em;
 	width: 10em;
-    margin-left: 3em;
+	z-index: 7;
+    position: absolute;
 }
 
 .alarma_texto{
@@ -20,6 +21,7 @@
 	  height: 15em;
 	  margin: 30px auto;
 	  position: relative;
+	  box-shadow:none;
 	}
 
 	.inner-shadow-principal{
@@ -32,7 +34,7 @@
 		width: 14em;
 		height: 14em;
 		border-radius: 100%;
-		background-color: #ffffff;
+		background-color: #fff;
 		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
 		margin-top:.5em;
 		z-index: 4;
@@ -46,7 +48,6 @@
 	  top:0;
 	  clip: rect(0px, 15em, 15em, 7.5em);
 	  border-radius: 100%;
-	  background-color: #fff;
 	}
 
 	.fill-ppal,
@@ -64,9 +65,9 @@
 
 	.left-ppal .fill-ppal {
 	  z-index: 1;
-	  -webkit-animation: left 3s linear;
-	  -moz-animation: left 3s linear;
-	  animation: left 3s linear both;
+	  -webkit-animation: left 1.5s linear;
+	  -moz-animation: left 1.5s linear;
+	  animation: left 1.5s linear both;
 	}
 	@keyframes left-ppal {
 	  0% {
@@ -92,12 +93,12 @@
 	}
 	.right-ppal .fill-ppal {
 	  z-index: 3;
-	  -webkit-animation: right 3s linear;
-	  -moz-animation: right 3s linear;
-	  animation: right 3s linear both;
-	  -webkit-animation-delay: 3s;
-	  -moz-animation-delay: 3s;
-	  animation-delay: 3s;
+	  -webkit-animation: right 1.5s linear;
+	  -moz-animation: right 1.5s linear;
+	  animation: right 1.5s linear both;
+	  -webkit-animation-delay: 1.5s;
+	  -moz-animation-delay: 1.5s;
+	  animation-delay: 1.5s;
 	}
 	@keyframes right-ppal {
 	  0% {
