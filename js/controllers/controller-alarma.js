@@ -3,9 +3,16 @@
 Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interval) {
 
 	id("alarma_activa").style.display="none";
-
+	id("myProgress").style.display="none";
+	tn(id("title-container"),"h1",0).style.display="inline-block";
+	
 	//ALARMA ACTIVA 
 	function alarma_activa(){
+	
+	
+	//fondo 
+	console.log(id("alarma_activa").parentNode.parentNode.parentNode);
+	//id("alarma_activa").parentNode.parentNode.parentNode.className="alarma_activada";
 	
 	//cronometro
 	   var timeLimit = 5; //tiempo en minutos
@@ -14,7 +21,8 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 		  document.getElementById('cuenta').childNodes[0].nodeValue = 
 					  conteo.getMinutes() + ":" + conteo.getSeconds();
 	   }
-		
+		id("myProgress").style.display="inline-block";
+
 	   function cuenta(){
 	//progress bar
 		  var elem = document.getElementById("myBar");   
@@ -52,7 +60,6 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	
 	// mantener presionado 3s
 	id("fonto_boton").style.display="none";
-	id("alarma_activa").style.display="inline-block";
 
 	var myBtn= document.getElementById('boton_alarma');       
 	var timer, timePressed = 0;
@@ -63,12 +70,13 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				timePressed += 100;
 				if (timePressed > 3000){
 				   clearInterval(timer);
+				   tn(id("title-container"),"h1",0).style.display="none";
 				   id("fonto_boton").style.display="none";
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
-				   
-				   //ALARMA ACTIVA 
+/* 				   id("title-container").parentNode.style.backgroundColor="white";
+ */				   //ALARMA ACTIVA 
 				   alarma_activa();
 				}
 			}, 100);

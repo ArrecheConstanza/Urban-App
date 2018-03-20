@@ -253,18 +253,92 @@
 
 
 /************* loading alarma_activa ************/
+
 #myProgress {
   width: 100%;
-  background-color: #ddd;
+  background-color: #da0606;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  position: inherit;
+  /*#ddd;*/
 }
 
 #myBar {
   width: 1%;
-  height: 30px;
-  background-color: #4CAF50;
+  height: 2em;
+  background-color: #ff9828;
+ 
+}
+
+#cuenta{
+	text-align:center;
+	color:white;
+	font-size:3.5em;
+	padding-top:1em;
+	letter-spacing: .1em;
+	width: 82vw;
+}
+
+#alarma_activa p{
+	padding:3em;
+	padding-top:6em;
+	
 }
 
 
+/*fondo alarma_activada*/
+/* .alarma_activada{
+	-webkit-animation: color_change 1s infinite alternate;
+	-moz-animation: color_change 1s infinite alternate;
+	-ms-animation: color_change 1s infinite alternate;
+	-o-animation: color_change 1s infinite alternate;
+	animation: color_change 1s infinite alternate;
+}
+	@-webkit-keyframes color_change {
+			0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-moz-keyframes color_change {
+			0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-ms-keyframes color_change {
+				0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-o-keyframes color_change {
+		0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+	}
+	@keyframes color_change {
+		0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
 
 
 
@@ -273,3 +347,8 @@
 
 
 
+
+
+
+
+ */
