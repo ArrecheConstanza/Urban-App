@@ -15,10 +15,12 @@
 		
 		
 			<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 margin-bottom-sm seccion_alarma">
-		
-
+			
+				
+		<div id="alarma_inactiva">
 			<div>
 			 
+			<!-- <div id="overlay_alarma" ng-include="'vistas/overlay.html'"></div> -->
 			<div id="boton_alarma"
 				role="button"
 				class="img-response">
@@ -65,6 +67,25 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center alarma_footer">En caso de que se encuentre en peligro pulse el boton de panico, si quiere realice una seleccion mas especifica.</div>
 		</div>
+		
+		
+		<div id="alarma_activa">
+			<h2 class="text-center">ACTIVADA</h2>
+			<p>La alarma ha sido enviada a todos sus grupos.<br>Mantenga la calma y espere la ayuda.</p>
+			
+		<div id="myProgress">
+		  <div id="myBar"></div>
+		</div>
+			
+			<table border="0" cellspacing="0" cellpadding="0" >
+			<tr>
+			   <td><div id="cuenta">5:00</div></td>
+			</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
 		
 		
 		

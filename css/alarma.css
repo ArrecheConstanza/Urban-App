@@ -109,28 +109,20 @@
 	  }
 	}
 	@-webkit-keyframes right-ppal {
-	  0% {
-		transform: rotate(0deg);
-	  }
-	  100% {
-		transform: rotate(180deg);
-	  }
+		  0% {
+			transform: rotate(0deg);
+		  }
+		  100% {
+			transform: rotate(180deg);
+		  }
 	}
 	.inner-shadow-principal img {
 	  margin-left: 8px;
 	  margin-top: 7px;
 	}
 
+	/*************** fin animacion boton principal***************/
 
-
-
-
-
-
-
-
-
-/******************************************************/
 .sidebar-right{
 	background:#f10303;
 }
@@ -149,19 +141,6 @@
 .seccion_alarma{
 	margin-bottom:0;
 }
-/* 
-#boton_alarma {
-  border: 0;
-  box-sizing: border-box;
-  margin: 1em;
-  padding: 1em 2em;
-  box-shadow: inset 0 0 0 2px red;
-  
-  font-size: inherit;
-  font-weight: 700;
-  position: relative;
-  vertical-align: middle;
-} */
 
 #loading {
   width: 50px;
@@ -271,3 +250,26 @@
   margin-left: 8px;
   margin-top: 7px;
 }
+
+
+/************* loading alarma_activa ************/
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+
+
+
+
+
+
+
+
+
