@@ -36,7 +36,19 @@ Urban.controller("iniciarSesionCtrl", function ($scope, $http, $location, $windo
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
-				if(!isNaN(data.ID)){
+				if(data.BORRADO=="Si"){
+					var p=ce('p');
+					p.className='mensaje-validacion';
+					p.innerHTML='Usuario Eliminado';
+					datos_login[0].parentNode.insertBefore(p,datos_login[0]);
+				}
+				else if(data.BANNEADO=="Si"){
+					var p=ce('p');
+					p.className='mensaje-validacion';
+					p.innerHTML='Usuario Banneado';
+					datos_login[0].parentNode.insertBefore(p,datos_login[0]);
+				}
+				else if(!isNaN(data.ID)){
 					localStorage.setItem("user_urban",JSON.stringify(data));
 					//redireccion a home de usuario
 					$window.location.href = '/urban-app/index.html';

@@ -25,16 +25,25 @@ else{
 	$usuario = new Usuario();
 	/****** Verificacion de usuario existente ******/
 	$fin=json_decode($usuario->verificar_usuario($mail, $contrasenia),true);
+	$borrado_banneado=0;
 	if(count($fin)){
 		foreach ($fin as $k => $v) {
+			if($k=="BORRADO"&&$v=="Si"&&$k=="BANNEADO"&&$v=="Si"||$k=="BORRADO"&&$v=="Si"||$k=="BANNEADO"&&$v=="Si"){
+				$borrado_banneado=1;
+			}
+			
+		}
+		if(!$borrado_banneado){
+			foreach ($fin as $k => $v) {
 			/***** Guardado de datos en SESSION *******/
-			switch($k){
-				case "ID":
-					$_SESSION['s_id'] = $v;
-				break;
-				case "NIVEL":
-					$_SESSION['s_nivel'] = $v;
-				break;
+				switch($k){
+					case "ID":
+						$_SESSION['s_id'] = $v;
+					break;
+					case "NIVEL":
+						$_SESSION['s_nivel'] = $v;
+					break;
+				}
 			}
 		}
 		echo json_encode($fin);
@@ -43,4 +52,6 @@ else{
 		echo "Usuario no existente";
 	}
 }
+
+
 ?>
