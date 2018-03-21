@@ -7,13 +7,23 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	tn(id("title-container"),"h1",0).style.display="inline-block";
 	
 	//ALARMA ACTIVA 
-	function alarma_activa(){
-	
-	
-	//fondo 
-	console.log(id("alarma_activa").parentNode.parentNode.parentNode);
-	//id("alarma_activa").parentNode.parentNode.parentNode.className="alarma_activada";
-	
+	function alarma_activa(x){
+		document.getElementById("sub_alarm").style.display="none";
+		if(x!=undefined){
+			document.getElementById("sub_alarm").style.display="inline-block";
+			switch(x){
+				case "policia":
+					document.getElementById("sub_alarm").src="img/icons/png/alarm-2.png";
+				break;
+				case "ambulancia":
+					document.getElementById("sub_alarm").src="img/icons/png/alarm-3.png";
+				break;
+				case "bombero":
+					document.getElementById("sub_alarm").src="img/icons/png/alarm-4.png";
+				break;
+			}
+		}
+		
 	//cronometro
 	   var timeLimit = 5; //tiempo en minutos
 	   var conteo = new Date(timeLimit * 60000);
@@ -44,7 +54,12 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 			  }
 			  else{
 				 clearInterval(intervaloRegresivo);
-				 alert("Fin");
+				 tn(document.getElementById("title-container"),"h1",0).style.display="inline-block";
+				   //id("fonto_boton").style.display="none";
+				   document.getElementById("alarma_inactiva").style.display="inline-block";
+				  // document.getElementById("title-container").style.marginBottom="7em";
+				   document.getElementById("alarma_activa").style.display="none";
+				   document.getElementById("myProgress").style.display="none";
 			  }
 			  var segundos=conteo.getSeconds();
 			  if(segundos<=9){
@@ -58,7 +73,8 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 		onload = inicializar;  
 	}
 	
-	// mantener presionado 3s
+	//mantener presionado 3s
+	// BOTON PRINCIPAL 
 	id("fonto_boton").style.display="none";
 
 	var myBtn= document.getElementById('boton_alarma');       
@@ -75,8 +91,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
-/* 				   id("title-container").parentNode.style.backgroundColor="white";
- */				   //ALARMA ACTIVA 
+
 				   alarma_activa();
 				}
 			}, 100);
@@ -86,5 +101,90 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 		id("fonto_boton").style.display="none";
         clearInterval(timer);
     });
+	
+	var sub_botones=document.getElementsByClassName("sub_botones");
+	
+	// BOTON POLICIA 
+	document.getElementsByClassName("fondo_sub_boton")[0].style.display="none";
+	var myBtn= sub_botones[0].childNodes[1];       
+	var timer, timePressed = 0;
+	myBtn.addEventListener('touchstart', function(e){
+			timePressed = 0;
+			timer = setInterval(function(){
+				document.getElementsByClassName("fondo_sub_boton")[0].style.display="block";
+				timePressed += 100;
+				if (timePressed > 3000){
+				   clearInterval(timer);
+				   tn(id("title-container"),"h1",0).style.display="none";
+				   document.getElementsByClassName("fondo_sub_boton")[0].style.display="none";
+				   id("alarma_inactiva").style.display="none";
+				   id("title-container").style.marginBottom="1em";
+				   id("alarma_activa").style.display="inline-block";
+				   alarma_activa("policia");
+				}
+			}, 100);
+		});
+
+    myBtn.addEventListener('touchend', function(e){
+		document.getElementsByClassName("fondo_sub_boton")[0].style.display="none";
+        clearInterval(timer);
+    });	
+		
+	// BOTON AMBULANCIA 
+	
+	document.getElementsByClassName("fondo_sub_boton")[1].style.display="none";
+	var myBtn= sub_botones[0].childNodes[3];       
+	var timer, timePressed = 0;
+	myBtn.addEventListener('touchstart', function(e){
+			timePressed = 0;
+			timer = setInterval(function(){
+				document.getElementsByClassName("fondo_sub_boton")[1].style.display="block";
+				timePressed += 100;
+				if (timePressed > 3000){
+				   clearInterval(timer);
+				   tn(id("title-container"),"h1",0).style.display="none";
+				   document.getElementsByClassName("fondo_sub_boton")[1].style.display="none";
+				   id("alarma_inactiva").style.display="none";
+				   id("title-container").style.marginBottom="1em";
+				   id("alarma_activa").style.display="inline-block";
+				   alarma_activa("ambulancia");
+				}
+			}, 100);
+		});
+
+    myBtn.addEventListener('touchend', function(e){
+		document.getElementsByClassName("fondo_sub_boton")[1].style.display="none";
+        clearInterval(timer);
+    });
+	
+		
+	// BOTON AMBULANCIA 
+	
+	document.getElementsByClassName("fondo_sub_boton")[2].style.display="none";
+	var myBtn= sub_botones[0].childNodes[5];       
+	var timer, timePressed = 0;
+	myBtn.addEventListener('touchstart', function(e){
+			timePressed = 0;
+			timer = setInterval(function(){
+				document.getElementsByClassName("fondo_sub_boton")[2].style.display="block";
+				timePressed += 100;
+				if (timePressed > 3000){
+				   clearInterval(timer);
+				   tn(id("title-container"),"h1",0).style.display="none";
+				   document.getElementsByClassName("fondo_sub_boton")[2].style.display="none";
+				   id("alarma_inactiva").style.display="none";
+				   id("title-container").style.marginBottom="1em";
+				   id("alarma_activa").style.display="inline-block";
+				   alarma_activa("bombero");
+				}
+			}, 100);
+		});
+
+    myBtn.addEventListener('touchend', function(e){
+		document.getElementsByClassName("fondo_sub_boton")[2].style.display="none";
+        clearInterval(timer);
+    });
+
+
 
 });

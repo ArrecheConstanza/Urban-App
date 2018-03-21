@@ -1,5 +1,9 @@
 
-/**************************** ALARMA **********************/
+/**************************** ALARMA **************************/
+
+h1{
+	color:#ff9828!important;
+}
 
 /***** alarma principal *****/
 
@@ -123,6 +127,19 @@
 
 	/*************** fin animacion boton principal***************/
 
+.policia{
+	background:url('../img/icons/png/alarm-2.png') center no-repeat;
+}
+
+.bomberos{
+	background:url('../img/icons/png/alarm-3.png') center no-repeat;
+}
+
+.ambulancia{
+	background:url('../img/icons/png/alarm-4.png') center no-repeat;
+}
+
+
 .sidebar-right{
 	background:#f10303;
 }
@@ -134,7 +151,7 @@
 }
 
 .sub_alarma{
-	border: .3em solid #ff9828;
+	/*border: .3em solid #ff9828;*/
 	width:4em;
 	height:4em;
 }
@@ -142,11 +159,16 @@
 	margin-bottom:0;
 }
 
-#loading {
-  width: 50px;
-  height: 50px;
-  margin: 30px auto;
+.loading {
+  width: 60px;
+  height: 60px;
+  margin: .2em .5em;
   position: relative;
+}
+
+.sub_botones{
+	text-align:center;
+	display: inline-block;
 }
 
 .outer-shadow,
@@ -162,10 +184,10 @@
 .inner-shadow {
   top: 50%;
   left: 50%;
-  width: 40px;
-  height: 40px;
-  margin-left: -20px;
-  margin-top: -20px;
+  width: 50px;
+  height: 50px;
+  margin-left: -17px;
+  margin-top: -25px;
   border-radius: 100%;
   background-color: #ffffff;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -175,9 +197,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  clip: rect(0px, 50px, 50px, 25px);
+  clip: rect(0px, 60px, 60px, 30px);
   border-radius: 100%;
-  background-color: #fff;
 }
 
 .fill,
@@ -190,14 +211,14 @@
   width: 100%;
   height: 100%;
   border-radius: 100%;
-  clip: rect(0px, 25px, 50px, 0px);
+  clip: rect(0px, 30px, 60px, 0px);
 }
 
 .left .fill {
   z-index: 1;
-  -webkit-animation: left 3s linear;
-  -moz-animation: left 3s linear;
-  animation: left 3s linear both;
+  -webkit-animation: left 1.5s linear;
+  -moz-animation: left 1.5s linear;
+  animation: left 1.5s linear both;
 }
 @keyframes left {
   0% {
@@ -223,12 +244,12 @@
 }
 .right .fill {
   z-index: 3;
-  -webkit-animation: right 3s linear;
-  -moz-animation: right 3s linear;
-  animation: right 3s linear both;
-  -webkit-animation-delay: 3s;
-  -moz-animation-delay: 3s;
-  animation-delay: 3s;
+  -webkit-animation: right 1.5s linear;
+  -moz-animation: right 1.5s linear;
+  animation: right 1.5s linear both;
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+  animation-delay: 1.5s;
 }
 @keyframes right {
   0% {
@@ -251,6 +272,9 @@
   margin-top: 7px;
 }
 
+.margin-bottom-sm {
+   margin-bottom: 0; 
+}
 
 /************* loading alarma_activa ************/
 
@@ -261,7 +285,6 @@
   left: 0;
   margin: 0;
   position: inherit;
-  /*#ddd;*/
 }
 
 #myBar {
@@ -286,7 +309,9 @@
 	
 }
 
-
+#sub_alarm{
+	background:white;
+}
 /*fondo alarma_activada*/
 /* .alarma_activada{
 	-webkit-animation: color_change 1s infinite alternate;
@@ -339,16 +364,4 @@
 
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
  */
