@@ -55,9 +55,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 			  else{
 				 clearInterval(intervaloRegresivo);
 				 tn(document.getElementById("title-container"),"h1",0).style.display="inline-block";
-				   //id("fonto_boton").style.display="none";
 				   document.getElementById("alarma_inactiva").style.display="inline-block";
-				  // document.getElementById("title-container").style.marginBottom="7em";
 				   document.getElementById("alarma_activa").style.display="none";
 				   document.getElementById("myProgress").style.display="none";
 			  }
