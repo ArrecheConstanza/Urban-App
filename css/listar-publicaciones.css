@@ -114,6 +114,10 @@ padding: .5em;
 	margin-top: -15%;
     float: right;
 }
+#detalle-publicacion .edit-delete-container #link-reportar{
+	margin-top: -13%;
+    float: right;
+}
 
 #pref{
     width: 32px;
@@ -173,3 +177,4 @@ padding: .5em;
 	margin:0;
 	padding:0;
 }
+

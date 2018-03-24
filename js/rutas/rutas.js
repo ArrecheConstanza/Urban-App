@@ -62,6 +62,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/publicacion-editar.html',
 			controller : 'editarPublicacionCtrl'
 		})
+		.when('/reportarPublicacion/:id', {
+			templateUrl : 'vistas/publicacion-reportar.html',
+			controller : 'reportarPublicacionCtrl'
+		})
 		.when('/alarmas', {
 			templateUrl : 'vistas/alarmas.html',
 			controller : ''

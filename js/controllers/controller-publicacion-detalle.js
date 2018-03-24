@@ -12,6 +12,10 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
+				$scope.es_propietario=false;
+				if(angular.fromJson(localStorage.getItem("user_urban")).ID==data[0].FK_USUARIO){
+					$scope.es_propietario=true;
+				}
 				var rta=angular.fromJson(data[0]);
 				$scope.ID=data[0].ID;
 				$scope.TITULO=data[0].TITULO;
@@ -37,7 +41,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.success(function(data){
 						if(data){
 							var rta=angular.fromJson(data);
-							console.log(data);
 							$scope.datosSQLcomentario_publicacion=rta.reverse();
 						}
 					})
@@ -93,6 +96,12 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.error(function(){
 						//Sin conexion
 					});
+				}
+				
+				
+				/****Reportar****/
+				$scope.reportar=function(id){
+					$location.path("/reportarPublicacion/"+id);
 				}
 				
 				

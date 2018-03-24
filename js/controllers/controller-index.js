@@ -41,7 +41,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/newEncuesta":
 			case "/detallePublicacion":
 			case "/detalleEncuesta":
-			//case "/perfil":
 			case "/ajustes":
 			case "/editarDatosUsuario":
 				return 0;
@@ -127,10 +126,12 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 					$scope.categorias=localStorage.getItem("categorias_urban");
 				}
 			});
+			
 			//funcion filtrar publicaciones
 			  $scope.selection = [];
 			  //si las categorias ya estan filtradas mostrarlas en modal
 			  $scope.cat_publi=localStorage.getItem("categoria_publicacion");
+
 			  if($scope.cat_publi!=undefined&&$scope.cat_publi!=""){
 				  for(var i=0;i<$scope.cat_publi.length;i++){
 					$scope.selection.push($scope.cat_publi[i]);
@@ -146,12 +147,23 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				else {
 				  $scope.selection.push(categoria);
 				} 
+				var final_selection=[];
+				for(var i=0;i<$scope.selection.length;i++){
+					console.log($scope.selection[i]);
+					if($scope.selection[i]!=","){
+						final_selection.push($scope.selection[i]);
+					}
+				}
+				$scope.selection=final_selection;
 			  };
 			//accion filtrar
-			$scope.filtrar_publicaciones=function(){
+			$scope.filtrar_publicaciones=function(x){
 				localStorage.setItem("categoria_publicacion",$scope.selection);
+					//limpiar filtro
+					if(x=="limpiar"){
+						localStorage.removeItem("categoria_publicacion");
+					}
 				location.reload();
-				//modal_filtrar();
 			}
 			
 	
@@ -203,7 +215,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			})
 			.success(function(data, status){
 				if(data=="1"){
-					//console.log("entro");
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
 					$routeParams.id=id;
