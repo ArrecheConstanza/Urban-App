@@ -1,10 +1,10 @@
 /********************************************CONTROLLER PUBLICACION EDITAR**************************************/
 
-Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', '$routeParams', function  ($scope, $http, $location, Upload, $timeout, $routeParams) { 
-
+Urban.controller("reportarPublicacionCtrl",  ['$window','$scope', '$http', '$location', 'Upload', '$timeout', '$routeParams', function  ($window, $scope, $http, $location, Upload, $timeout, $routeParams) { 
+		var id_publi=$routeParams.id;
 	//************* REPORTAR *************//
 	$scope.reportar_publicacion=function(reporte){
-		var union="FKPUBLICACION="+$routeParams.id+"&DESCRIPCION="+reporte.DESCRIPCION;
+		var union="FKPUBLICACION="+id_publi+"&DESCRIPCION="+reporte.DESCRIPCION;
 		
 		//FALTA validacion de datos 
 		$http({
@@ -18,7 +18,7 @@ Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'U
 			if(data=="1"){ //exito creando denuncia
 						
 				//contar cantidad de denuncias
-				var union2="FKPUBLICACION="+$routeParams.id;
+				var union2="FKPUBLICACION="+id_publi;
 					$http({
 						method: 'POST',
 						url:"php/abm/publicacion.reportar.contar.php",
@@ -27,7 +27,8 @@ Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'U
 					})
 					.success(function(data2){
 						if(data2=="1"){ //eliminar publicacion
-							var union3="ID="+$routeParams.id;
+							var union3="ID="+id_publi;
+							console.log(union3);
 							$http({
 								method: 'POST',
 								url:"php/abm/publicacion.eliminar.php",
@@ -35,10 +36,10 @@ Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'U
 								headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 							})
 							.success(function(data3){ 
-								if(data3=="1"){ 
-									//modal publicacion eliminada con exito
-									console.log(localStorage.getItem("grupo_seleccionado_urban"));
-									$location.path("#/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
+								console.log(data3);
+								if(data3=="1"){ //publicacion eliminada
+									//modal denuncia con exito.
+									$window.location.hash="#/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban")+"";
 								}
 							})
 							.error(function(){
@@ -51,7 +52,6 @@ Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'U
 					});
 				
 				//modal denuncia con exito.
-				console.log("todo piola");						
 				window.location.href = localStorage.getItem("urban_url");
 			}
 			else if(data=="3"){
