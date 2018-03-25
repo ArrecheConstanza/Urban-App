@@ -8,43 +8,70 @@
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Usuario.php');
 	require_once('../clases/Publicacion.php');
+	require_once('../clases/Denuncia_Publicacion.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
 
-	$publicacion=Publicacion::all();
-	$arrayFinal=array();
-	foreach($publicacion as $unaPublicacion){
-		//Pido todo el contenido multimedia de la publicacion
-			$publicacion_multimedia = new Publicacion_Multimedia();
-			$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
-			$arraySemiFinal=[];
-			$array=[];
-			foreach($rta as $multi_publi){
-				if($multi_publi->getCodigoPublicacion()==$unaPublicacion->getCodigoPublicacion()){
-					$multimedia = new Multimedia();
-					$rta2=$multimedia->getByPk($multi_publi->getCodigoMultimedia());
-					foreach($rta2 as $multi){
-						$array=[
-							"DIR"=>$multi->getPath()
-						];
-						$arraySemiFinal[]=$array;
+	if(isset($_SESSION["s_id"])){
+		
+		$publicacion=Publicacion::all();
+		$arrayFinal=array();
+		foreach($publicacion as $unaPublicacion){
+			//Pido todo el contenido multimedia de la publicacion
+				$publicacion_multimedia = new Publicacion_Multimedia();
+				$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
+				$arraySemiFinal=[];
+				$array=[];
+				foreach($rta as $multi_publi){
+					if($multi_publi->getCodigoPublicacion()==$unaPublicacion->getCodigoPublicacion()){
+						$multimedia = new Multimedia();
+						$rta2=$multimedia->getByPk($multi_publi->getCodigoMultimedia());
+						foreach($rta2 as $multi){
+							$array=[
+								"DIR"=>$multi->getPath()
+							];
+							$arraySemiFinal[]=$array;
+						}
 					}
 				}
+				
+			if($unaPublicacion->getCodigoPublicacion()==$_POST['ID']){
+				$rta=[];
+				//Si es admin traer listado de denuncias de publicacion
+					if(isset($_SESSION["s_nivel"])&&$_SESSION["s_nivel"]=="Admin"){
+						$denuncia_publiacion= new Denuncia_Publicacion();
+						$denuncias=$denuncia_publiacion->all($unaPublicacion->getCodigoPublicacion());
+						$arrayFinalDenuncias=array();
+						foreach($denuncias as $unaDenuncia){
+							$arrayDenuncia=[
+								"ID"=>$unaDenuncia->getCodigoDenunciaPublicacion(),
+								"FKUSUARIO"=>$unaDenuncia->getFkUsuario(),
+								"FKPUBLICACION"=>$unaDenuncia->getFkPublicacion(),
+								"DESCRIPCION"=>$unaDenuncia->getDescripcion()
+							];
+							$arrayFinalDenuncias[]=$arrayDenuncia;
+						}
+						
+					}
+				//
+				$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
+				$array=[
+					"ID"=>$unaPublicacion->getCodigoPublicacion(),
+					"TITULO"=>$unaPublicacion->getTitulo(),
+					"DESCRIPCION"=>$unaPublicacion->getDescripcion(),
+					"FECHA_CREACION"=>$fecha,
+					"BORRADO"=>$unaPublicacion->getBorrado(),
+					"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
+					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
+					"FOTO"=>$arraySemiFinal,
+					"DENUNCIAS"=>$arrayFinalDenuncias
+				];
+				$arrayFinal[]=$array;
 			}
-		if($unaPublicacion->getCodigoPublicacion()==$_POST['ID']){
-			$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
-			$array=[
-				"ID"=>$unaPublicacion->getCodigoPublicacion(),
-				"TITULO"=>$unaPublicacion->getTitulo(),
-				"DESCRIPCION"=>$unaPublicacion->getDescripcion(),
-				"FECHA_CREACION"=>$fecha,
-				"BORRADO"=>$unaPublicacion->getBorrado(),
-				"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
-				"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
-				"FOTO"=>$arraySemiFinal,
-			];
-			$arrayFinal[]=$array;
 		}
+		echo json_encode($arrayFinal);
 	}
-	echo json_encode($arrayFinal);
+	else{
+		echo 0; //no logueado
+	}
 ?> 

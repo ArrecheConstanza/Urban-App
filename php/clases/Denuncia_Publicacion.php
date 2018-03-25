@@ -62,9 +62,9 @@ class Denuncia_Publicacion{
 		}
 	}
 	
-	public static function all(){
+	public static function all($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla ;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE FKPUBLICACION = '$id'" ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

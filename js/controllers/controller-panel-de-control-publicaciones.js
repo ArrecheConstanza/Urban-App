@@ -33,14 +33,12 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				console.log(data);
 				if(!data){
 					//modal error al editar, reload?
 				}
 			})
 			.error(function(data){
 				//sin internet, cargo datos locales
-				
 			});
 		}
 			
@@ -57,6 +55,8 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
+				
+					//foto
 					if(data[0].FOTO.length){
 						data[0].FOTO=data[0].FOTO[0].DIR.replace("C:/xampp/htdocs/Urban-App/","");
 						$scope.estado_foto=true;
@@ -66,8 +66,15 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 						$scope.estado_foto=false;
 						data[0].FOTO="";
 					}
+					//denuncias
+					if(data[0].DENUNCIAS.length){
+						/*data[0].FOTO=data[0].FOTO[0].DIR.replace("C:/xampp/htdocs/Urban-App/","");
+						$scope.estado_foto=true;
+						$scope.imagen= data[0]["FOTO"];*/
+					}
 
-				delete data[0]["FOTO"];
+					delete data[0]["FOTO"];
+				
 				$scope.datosSQLpublicacion=angular.fromJson(data[0]);
 				
 				
@@ -95,7 +102,7 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 		}
 		
 		
-		//**** Listado de encuestas ****//
+		//**** Listado de publicaciones ****//
 		else{
 			$http({ 
 				method:"POST",
