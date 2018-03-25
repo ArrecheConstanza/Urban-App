@@ -100,6 +100,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				
 				/****Reportar****/
 				$scope.reportar=function(id){
+					localStorage.setItem("urban_url",window.location.href);
 					$location.path("/reportarPublicacion/"+id);
 				}
 			})

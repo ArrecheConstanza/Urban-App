@@ -81,10 +81,32 @@ class Denuncia_Publicacion{
 	}
 	
 	public function crear_denuncia_publicacion($array){
-		$query = "INSERT INTO " . static::$tabla . " (FKUSUARIO, FKPUBLICACION, DESCRIPCION)
-				 VALUES (?,?,?)";
+		//fijarse si el usuario ya denuncio la publicacion
+		$salida=[];
+		$query = "SELECT * FROM " . static::$tabla . "
+					WHERE FKPUBLICACION = '$array[FKPUBLICACION]' AND FKUSUARIO = '$array[FKUSUARIO]'";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["FKUSUARIO"],$array["FKPUBLICACION"],$array["DESCRIPCION"]]);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$denuncia_publicacion = new Denuncia_Publicacion;
+				$denuncia_publicacion->codigo_denuncia_publicacion = $fila['ID'];
+				$denuncia_publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$denuncia_publicacion->fk_publicacion = $fila['FKPUBLICACION'];
+				$denuncia_publicacion->descripcion = $fila['DESCRIPCION'];
+				$denuncia_publicacion->cargarDatos($fila);
+				$salida[] = $denuncia_publicacion;
+			}
+		}
+		if(count($salida)){
+			return 3; //denuncia ya realizada
+		}
+		else{ 
+			//denunciar la publicacion
+			$query = "INSERT INTO " . static::$tabla . " (FKUSUARIO, FKPUBLICACION, DESCRIPCION)
+				 VALUES (?,?,?)";
+			$stmt = DBcnx::getStatement($query);
+			return $stmt->execute([$array["FKUSUARIO"],$array["FKPUBLICACION"],$array["DESCRIPCION"]]);
+		}
 	}
 	
 	/*public static function contar_denuncias($id){

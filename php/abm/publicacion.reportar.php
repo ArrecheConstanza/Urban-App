@@ -14,13 +14,12 @@
 		$denuncia_publicacion = new Denuncia_Publicacion();
 		
 		//FALTA VALIDACION DE DATOS 
-		$arrayFinal["FKUSUARIO"]=$_SESSION["s_id"];
+		$arrayFinal["FKUSUARIO"]= $_SESSION["s_id"];
 		$arrayFinal["FKPUBLICACION"]=$_POST["FKPUBLICACION"];
 		$arrayFinal["DESCRIPCION"]=$_POST["DESCRIPCION"];
 		$_POST=$arrayFinal;
-		var_dump($_POST);
 		$rta=$denuncia_publicacion->crear_denuncia_publicacion($_POST);
-		var_dump($rta);
+		echo $rta;
 	}
 	else{
 		echo 0;
