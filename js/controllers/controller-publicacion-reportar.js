@@ -7,7 +7,7 @@ Urban.controller("reportarPublicacionCtrl",  ['$scope', '$http', '$location', 'U
 	$scope.reportar_publicacion=function(reporte){
 		//console.log(reporte);
 		//console.log($routeParams.id);
-		var union="DESCRIPCION="+reporte.DESCRIPCION+"&FKPUBLICACION="+$routeParams.id;
+		var union="FKPUBLICACION="+$routeParams.id+"&DESCRIPCION="+reporte.DESCRIPCION;
 		
 		//FALTA validacion de datos 
 		$http({

@@ -3,10 +3,10 @@
 class Denuncia_Publicacion{
 	private $codigo_denuncia_publicacion;
 	private $fk_usuario;
-	private $fk_pulicacion;
+	private $fk_publicacion;
 	private $descripcion;
 	
-	public static $tabla = "denuncia_publiacion";
+	public static $tabla = "denuncia_publicacion";
 	private static $fila = ['FKUSUARIO', 'FKPUBLICACION', 'DESCRIPCION'];
 
 	public function setCodigoDenunciaPublicacion($a){
@@ -16,10 +16,10 @@ class Denuncia_Publicacion{
 		return $this->codigo_denuncia_publicacion;
 	}
 	public function setFkPublicacion($a){
-		$this->fk_pulicacion = $a;
+		$this->fk_publicacion = $a;
 	}
 	public function getFkPublicacion(){
-		return $this->fk_pulicacion;
+		return $this->fk_publicacion;
 	}
 	public function setFkUsuario($a){
 		$this->fk_usuario = $a;
@@ -51,7 +51,7 @@ class Denuncia_Publicacion{
 					case "fk_usuario":
 						$this->setFkUsuario($valor);
 					break;
-					case "fk_pulicacion":
+					case "fk_publicacion":
 						$this->setFkPublicacion($valor);
 					break;
 					case "descripcion":
@@ -82,30 +82,14 @@ class Denuncia_Publicacion{
 	
 	public function crear_denuncia_publicacion($array){
 		$query = "INSERT INTO " . static::$tabla . " (FKUSUARIO, FKPUBLICACION, DESCRIPCION)
-				VALUES (?,?,?)";
+				 VALUES (?,?,?)";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["FKUSUARIO"],$array["FKPUBLICACION"],$array["DESCRIPCION"]]);
 	}
 	
-	public static function contar_denuncias($id){
-	/*	$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKPUBLICACION='$id' " ;
-		$stmt = DBcnx::getStatement($query);
-		if($stmt->execute()) {
-			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$encuesta = new Encuesta;
-				$encuesta->codigo_encuesta = $fila['ID'];
-				$encuesta->pregunta = $fila['PREGUNTA'];
-				$encuesta->fecha_creacion = $fila['FECHA_CREACION'];
-				$encuesta->borrado = $fila['BORRADO'];
-				$encuesta->fk_grupo = $fila['FKGRUPO'];
-				$encuesta->fk_usuario = $fila['FKUSUARIO'];
-				$encuesta->cargarDatos($fila);
-				$salida[] = $encuesta;
-			}
-		}
-		return $salida;*/
-	}
+	/*public static function contar_denuncias($id){
+	
+	}*/
 }
 	
 
