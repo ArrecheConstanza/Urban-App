@@ -98,15 +98,10 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					});
 				}
 				
-				
 				/****Reportar****/
 				$scope.reportar=function(id){
 					$location.path("/reportarPublicacion/"+id);
 				}
-				
-				
-				
-				
 			})
 			.error(function(){
 				//mensaje Sin conexion 

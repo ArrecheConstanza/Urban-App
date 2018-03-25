@@ -4,9 +4,10 @@ class Denuncia_Publicacion{
 	private $codigo_denuncia_publicacion;
 	private $fk_usuario;
 	private $fk_pulicacion;
+	private $descripcion;
 	
 	public static $tabla = "denuncia_publiacion";
-	private static $fila = ['FKUSUARIO', 'FKPUBLICACION'];
+	private static $fila = ['FKUSUARIO', 'FKPUBLICACION', 'DESCRIPCION'];
 
 	public function setCodigoDenunciaPublicacion($a){
 		$this->codigo_denuncia_publicacion = $a;
@@ -25,6 +26,13 @@ class Denuncia_Publicacion{
 	}
 	public function getFkUsuario(){
 		return $this->fk_usuario;
+	}
+	
+	public function setDescripcion($a){
+		$this->descripcion = $a;
+	}
+	public function getDescripcion(){
+		return $this->descripcion;
 	}
 	
 	public function getByPk($id){
@@ -46,6 +54,9 @@ class Denuncia_Publicacion{
 					case "fk_pulicacion":
 						$this->setFkPublicacion($valor);
 					break;
+					case "descripcion":
+						$this->setDescripcion($valor);
+					break;
 				}
 			}
 		}
@@ -61,11 +72,19 @@ class Denuncia_Publicacion{
 				$denuncia_publicacion->codigo_denuncia_publicacion = $fila['ID'];
 				$denuncia_publicacion->fk_usuario = $fila['FKUSUARIO'];
 				$denuncia_publicacion->fk_publicacion = $fila['FKPUBLICACION'];
+				$denuncia_publicacion->descripcion = $fila['DESCRIPCION'];
 				$denuncia_publicacion->cargarDatos($fila);
 				$salida[] = $denuncia_publicacion;
 			}
 		}
 		return $salida;
+	}
+	
+	public function crear_denuncia_publicacion($array){
+		$query = "INSERT INTO " . static::$tabla . " (FKUSUARIO, FKPUBLICACION, DESCRIPCION)
+				VALUES (?,?,?)";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["FKUSUARIO"],$array["FKPUBLICACION"],$array["DESCRIPCION"]]);
 	}
 	
 	public static function contar_denuncias($id){
@@ -87,6 +106,7 @@ class Denuncia_Publicacion{
 		}
 		return $salida;*/
 	}
+}
 	
 
 ?>

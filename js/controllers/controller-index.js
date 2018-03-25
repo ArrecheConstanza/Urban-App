@@ -11,6 +11,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	
 	//funcion para cargar o no el header
 	$scope.header_footer=function(){
+		if(!$location.path().search("/reportarPublicacion/")){
+			return 0;
+		}
 		if(!$location.path().search("/detalleEncuesta/")){
 			return 0;
 		}
