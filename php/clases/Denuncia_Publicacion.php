@@ -80,6 +80,17 @@ class Denuncia_Publicacion{
 		return $salida;
 	}
 	
+	public static function contar_denuncias($id){
+		$denuncia_publicacion = new Denuncia_Publicacion;
+		$rta=$denuncia_publicacion->all($id);
+		if(count($rta)>=4){
+			return 1; //se borra la publi
+		}
+		else{
+			return 0; //no pasa nada
+		}
+	}
+	
 	public function crear_denuncia_publicacion($array){
 		//fijarse si el usuario ya denuncio la publicacion
 		$salida=[];
@@ -108,10 +119,6 @@ class Denuncia_Publicacion{
 			return $stmt->execute([$array["FKUSUARIO"],$array["FKPUBLICACION"],$array["DESCRIPCION"]]);
 		}
 	}
-	
-	/*public static function contar_denuncias($id){
-	
-	}*/
 }
 	
 

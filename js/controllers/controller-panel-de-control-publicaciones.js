@@ -66,15 +66,10 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 						$scope.estado_foto=false;
 						data[0].FOTO="";
 					}
-					//denuncias
-					if(data[0].DENUNCIAS.length){
-						/*data[0].FOTO=data[0].FOTO[0].DIR.replace("C:/xampp/htdocs/Urban-App/","");
-						$scope.estado_foto=true;
-						$scope.imagen= data[0]["FOTO"];*/
-					}
-
 					delete data[0]["FOTO"];
 				
+				
+				//cargo datos en vista
 				$scope.datosSQLpublicacion=angular.fromJson(data[0]);
 				
 				

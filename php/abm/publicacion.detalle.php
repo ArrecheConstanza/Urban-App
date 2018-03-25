@@ -36,12 +36,11 @@
 				}
 				
 			if($unaPublicacion->getCodigoPublicacion()==$_POST['ID']){
-				$rta=[];
+				$arrayFinalDenuncias=array();
 				//Si es admin traer listado de denuncias de publicacion
 					if(isset($_SESSION["s_nivel"])&&$_SESSION["s_nivel"]=="Admin"){
 						$denuncia_publiacion= new Denuncia_Publicacion();
 						$denuncias=$denuncia_publiacion->all($unaPublicacion->getCodigoPublicacion());
-						$arrayFinalDenuncias=array();
 						foreach($denuncias as $unaDenuncia){
 							$arrayDenuncia=[
 								"ID"=>$unaDenuncia->getCodigoDenunciaPublicacion(),
