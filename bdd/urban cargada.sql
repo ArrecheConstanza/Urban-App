@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `urban`
 --
+DROP DATABASE IF EXISTS urban;
+CREATE DATABASE urban;
+USE urban;
 
 -- --------------------------------------------------------
 

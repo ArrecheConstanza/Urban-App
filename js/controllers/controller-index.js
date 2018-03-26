@@ -33,6 +33,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			return 0;
 		}
 		switch($location.path()){
+			case "/ayuda":
 			case "/perfil":
 			case "/panelDeControl":
 			case "/panelDeControl/Usuarios":
