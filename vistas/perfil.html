@@ -30,8 +30,12 @@
 				<h2 class="text-center">Tus publiaciones</h2>
 				
 				<ul  class="list-group">
-					<li class="list-group-item" ng-repeat="item in listado_publicaciones track by $index" >
-					{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
+					<li class="list-group-item" ng-repeat="(key, value) in listado_publicaciones track by $index" >
+						<ul  class="list-group">
+							<li class="list-group-item" ng-repeat="(key2, value2) in listado_publicaciones[key] track by $index" >
+							{{ key2 }} : {{ value2 }} 
+							</li>
+						</ul>
 					</li>
 				</ul>
 			

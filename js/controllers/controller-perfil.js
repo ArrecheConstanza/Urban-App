@@ -13,7 +13,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 	})
 	.success(function(data){
-		console.log(data);
 		if(data=="0"){
 			//uruario no logueado cerrar sesion
 			$http({
@@ -27,6 +26,12 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 					$location.path("/");
 				}
 			});
+		}
+		else if(data){
+			$scope.listado_publicaciones=[];
+			for(var i=0;i<data.length;i++){
+				$scope.listado_publicaciones.push(angular.fromJson(data[i]));
+			}
 		}
 		
 	})
