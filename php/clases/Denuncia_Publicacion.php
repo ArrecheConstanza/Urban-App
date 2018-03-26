@@ -84,7 +84,7 @@ class Denuncia_Publicacion{
 		$denuncia_publicacion = new Denuncia_Publicacion;
 		$rta=$denuncia_publicacion->all($id);
 		if(count($rta)>=4){
-			return 1; //se borra la publi
+			return 1; //se borra la publicacion
 		}
 		else{
 			return 0; //no pasa nada

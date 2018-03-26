@@ -33,6 +33,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			return 0;
 		}
 		switch($location.path()){
+			case "/perfil":
 			case "/panelDeControl":
 			case "/panelDeControl/Usuarios":
 			case "/panelDeControl/Grupos":
@@ -86,7 +87,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		
 		//*** ir a chat ****//
 		if(this.item.id=="chat"){
-			console.log($window.location);
 			$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
 	}
@@ -160,12 +160,14 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				$scope.selection=final_selection;
 			  };
 			//accion filtrar
-			$scope.filtrar_publicaciones=function(x){
+			$scope.filtrar_publicaciones=function(){
 				localStorage.setItem("categoria_publicacion",$scope.selection);
-					//limpiar filtro
-					if(x=="limpiar"){
-						localStorage.removeItem("categoria_publicacion");
-					}
+				location.reload();
+			}
+			
+			//accion limpiar filtro
+			$scope.limpiar_filtro=function(){
+				localStorage.removeItem("categoria_publicacion");
 				location.reload();
 			}
 			

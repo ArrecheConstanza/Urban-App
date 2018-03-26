@@ -72,7 +72,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 			}
 		}
 		
-		//listar grupos
+		//listar grupos REVER
 		$http({
 			method: 'POST',
 			url:"php/abm/usuario.grupos.listado.php",
@@ -124,7 +124,6 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		
 		//preferencias
-		
 		id("nombre-menu").onclick=function(){
 			localStorage.setItem("urban_url",$window.location.href);
 		}
@@ -132,7 +131,9 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		
 		//ayuda
-		
+		id("ayuda").onclick=function(){
+			//localStorage.setItem("urban_url",-- inyectar vista ayuda aca--);
+		}
 		
 		
 		
@@ -153,17 +154,25 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		
 		
 		//panel admin
-		
 		if(angular.fromJson(localStorage.getItem("user_urban")).NIVEL=="Admin"){
 			$scope.es_admin=true;
 		}
 		else{
 			$scope.es_admin=false;
 		}
-		
-		
-		
-		
-		
+	}
+	else{
+		//uruario no logueado cerrar sesion
+		$http({
+				method: 'GET',
+				url:"php/abm/logout.usuario.php",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data){
+				if(data){
+					window.localStorage.removeItem("user_urban");
+					$location.path("/");
+				}
+			});
 	}
 });
