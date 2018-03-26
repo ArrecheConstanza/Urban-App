@@ -110,6 +110,7 @@ class Publicacion{
 			}
 		}
 	}
+	
 	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla ;
@@ -133,10 +134,33 @@ class Publicacion{
 		return $salida;
 	}
 
-	
 	public static function all_grupo($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKGRUPO='$id' " ;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$publicacion = new Publicacion;
+				$publicacion->codigo_publicacion = $fila['ID'];
+				$publicacion->titulo = $fila['TITULO'];
+				$publicacion->descripcion = $fila['DESCRIPCION'];
+				//$publicacion->avalado = $fila['AVALADO'];
+				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
+				$publicacion->borrado = $fila['BORRADO'];
+				$publicacion->fk_grupo = $fila['FKGRUPO'];
+				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->fk_categoria = $fila['FKCATEGORIA'];
+				$publicacion->cargarDatos($fila);
+				$salida[] = $publicacion;
+			}
+		}
+		return $salida;
+	}
+	
+	
+	public static function all_usuario($id){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKUSUARIO='$id' " ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

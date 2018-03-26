@@ -27,10 +27,10 @@
 		<!--Detalle grupos -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<hr>
-				<h2 class="text-center">Grupos</h2>
+				<h2 class="text-center">Tus publiaciones</h2>
 				
 				<ul  class="list-group">
-					<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
+					<li class="list-group-item" ng-repeat="item in listado_publicaciones track by $index" >
 					{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
 					</li>
 				</ul>
@@ -38,7 +38,8 @@
 			</div>
 		
 			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<hr>
+				<hr>
+				<h2 class="text-center">Tus encuestas</h2>
 				
 			</div>
 		</div>
