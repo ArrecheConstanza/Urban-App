@@ -5,8 +5,6 @@ Urban.controller("encuestasListadoCtrl", function ($scope,$http,$routeParams){
 		localStorage.setItem("urban_url",window.location.href);
 		
 		//saco icono de filtro
-		
-		console.log(id("buscador"));
 		id("buscador").style.display='none';
 		
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){

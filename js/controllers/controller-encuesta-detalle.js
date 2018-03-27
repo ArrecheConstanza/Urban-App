@@ -11,71 +11,105 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
-			for(var i=0;i<data.length;i++){
-				data[i]["cantidad_opciones"]=data[i]["OPCIONES"].length;
+			if(data=="No logueado"){
+				//cerrar sesion, redireccion a login
 			}
-			var rta=angular.fromJson(data[0]);
-			$scope.datosSQLencuestas=rta;
-			
-			//****** ESTADO DE ENCUESTA *****//
-				$http({ 
-					method:"POST",
-					url:"php/abm/contar.encuesta.php",
-					data: datos,	
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
-				})
-				.success(function(data, status){
-					var para_votacion_opcion=[];
-					for(var i=0;i<data.length;i++){
-						para_votacion_opcion.push(data[i]["FKOPCION"]);
-					}
-					para_votacion_opcion.sort();
-					var current = null;
-					var cnt = 0;
-					var array_votacion_final=[];
-					for (var i = 0; i < para_votacion_opcion.length; i++) {
-						if (para_votacion_opcion[i] != current) {
-							if (cnt > 0) {
-								var array_votos=[];
-								array_votos["VALOR"]=current;
-								array_votos["CANTIDAD"]=cnt;
-								array_votacion_final.push(array_votos);
-							}
-							current = para_votacion_opcion[i];
-							cnt = 1;
-						} 
-						else {
-							cnt++;
+				$scope.es_propietario=false;
+				if(angular.fromJson(localStorage.getItem("user_urban")).ID==data[0].FK_USUARIO){
+					$scope.es_propietario=true;
+				}
+				
+				for(var i=0;i<data.length;i++){
+					data[i]["cantidad_opciones"]=data[i]["OPCIONES"].length;
+				}
+				var rta=angular.fromJson(data[0]);
+				$scope.datosSQLencuestas=rta;
+				
+				//****** ESTADO DE ENCUESTA *****//
+					$http({ 
+						method:"POST",
+						url:"php/abm/contar.encuesta.php",
+						data: datos,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data, status){
+						var para_votacion_opcion=[];
+						for(var i=0;i<data.length;i++){
+							para_votacion_opcion.push(data[i]["FKOPCION"]);
 						}
-					}
-					if (cnt > 0) {
-						var array_votos=[];
-						array_votos["VALOR"]=current;
-						array_votos["CANTIDAD"]=cnt;
-						array_votacion_final.push(array_votos);
-					}
-					
-					//////porcentaje
-					$scope.estado_encuesta=array_votacion_final;
-					for(var i=0;i<array_votacion_final.length;i++){
-						var opcion;
-						console.log($scope.datosSQLencuestas);
-						for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){
-							if($scope.datosSQLencuestas["OPCIONES"][j]["ID"]==array_votacion_final[i]["VALOR"]){
-								array_votacion_final[i]["VALOR_OPCION"]=$scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"];
-								console.log($scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"]);
+						para_votacion_opcion.sort();
+						var current = null;
+						var cnt = 0;
+						var array_votacion_final=[];
+						for (var i = 0; i < para_votacion_opcion.length; i++) {
+							if (para_votacion_opcion[i] != current) {
+								if (cnt > 0) {
+									var array_votos=[];
+									array_votos["VALOR"]=current;
+									array_votos["CANTIDAD"]=cnt;
+									array_votacion_final.push(array_votos);
+								}
+								current = para_votacion_opcion[i];
+								cnt = 1;
+							} 
+							else {
+								cnt++;
 							}
 						}
-						array_votacion_final[i]["PORCENTAJE"]=(array_votacion_final[i]["CANTIDAD"]*100/data.length).toFixed(2)+"%";
-						array_votacion_final[i]["PORCENTAJE_CSS"]=parseInt(array_votacion_final[i]["PORCENTAJE"]);
-					}
-				})
-				.error(function(){
-					// sin internet
-				}); 
+						if (cnt > 0) {
+							var array_votos=[];
+							array_votos["VALOR"]=current;
+							array_votos["CANTIDAD"]=cnt;
+							array_votacion_final.push(array_votos);
+						}
+						
+						//////porcentaje
+						$scope.estado_encuesta=array_votacion_final;
+						for(var i=0;i<array_votacion_final.length;i++){
+							var opcion;
+							console.log($scope.datosSQLencuestas);
+							for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){
+								if($scope.datosSQLencuestas["OPCIONES"][j]["ID"]==array_votacion_final[i]["VALOR"]){
+									array_votacion_final[i]["VALOR_OPCION"]=$scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"];
+									console.log($scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"]);
+								}
+							}
+							array_votacion_final[i]["PORCENTAJE"]=(array_votacion_final[i]["CANTIDAD"]*100/data.length).toFixed(2)+"%";
+							array_votacion_final[i]["PORCENTAJE_CSS"]=parseInt(array_votacion_final[i]["PORCENTAJE"]);
+						}
+		})
+		.error(function(){
+			// sin internet
+		}); 
 			//////////////////
 			
-			
+				/****Eliminar****/
+				$scope.eliminar=function(){
+					var union="ID="+data[0].ID;
+					$http({
+						method: 'POST',
+						url:"php/abm/encuesta.eliminar.php",
+						data: union,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){ //ver si el usuario la elimina desde su perfil, cambiar path
+							$location.path("/encuestas/"+localStorage.getItem("grupo_seleccionado_urban"));
+						}
+						else{
+							//No se pudo borrar
+						}
+					})
+					.error(function(){
+						//Sin conexion
+					});
+				}
+				
+				/****Reportar****/
+				/*$scope.reportar=function(id){
+					localStorage.setItem("urban_url",window.location.href);
+					$location.path("/reportarPublicacion/"+id);
+				*/
 			
 			
 			

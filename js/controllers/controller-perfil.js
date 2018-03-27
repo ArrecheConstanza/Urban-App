@@ -51,18 +51,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 					localStorage.setItem("id_publi",num);
 					$location.path("/detallePublicacion");
 				}
-				
-				
-				/*var cada_publicacion=document.getElementsByClassName("publis");
-				console.log(cada_publicacion.length);
-				//tn(id("listado-publicaciones"),"a");
-				for(var i=0;i<cada_publicacion.length;i++){
-					console.log(cada_publicacion[i]);
-					cada_publicacion[i].onclick=function(){
-						console.log("click");
-					}
-				}*/
-				//$scope.detallePublicacion()
 			}
 			if(data[1].length){
 				$scope.listado_encuestas=[];

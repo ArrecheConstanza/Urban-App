@@ -28,17 +28,7 @@
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<hr>
 				<h2 class="text-center">Tus publiaciones</h2>
-				
-				<!-- <ul  class="list-group">
-					<li class="list-group-item" ng-repeat="(key, value) in listado_publicaciones track by $index" >
-						<ul  class="list-group">
-							<li class="list-group-item" ng-repeat="(key2, value2) in listado_publicaciones[key] track by $index" >
-							{{ key2 }} : {{ value2 }} 
-							</li>
-						</ul>
-					</li>
-				</ul> -->
-				
+
 				<ul class="list-group" id="listado-publicaciones">
 				  <li ng-repeat="item in listado_publicaciones track by $index " class="list-group-item">
 				  <a ng-click="detallePublicacion(item.ID)" class="publis">
@@ -57,15 +47,6 @@
 			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<hr>
 				<h2 class="text-center">Tus encuestas</h2>
-				<!-- <ul  class="list-group">
-					<li class="list-group-item" ng-repeat="(key, value) in listado_encuestas track by $index" >
-						<ul  class="list-group">
-							<li class="list-group-item" ng-repeat="(key2, value2) in listado_encuestas[key] track by $index" >
-							{{ key2 }} : {{ value2 }} 
-							</li>
-						</ul>
-					</li>
-				</ul> -->
 				
 				<ul class="list-group" id="listado-publicaciones">
 				  <li ng-repeat="item in listado_encuestas track by $index " class="list-group-item" id="listado_encuestas"><a href='#detalleEncuesta/{{item.ID}}'>
