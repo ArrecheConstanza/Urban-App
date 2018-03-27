@@ -16,11 +16,18 @@
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
 		$respuesta=new Respuesta();
 		
-		$respuesta=$respuesta->crear_respuesta($_POST);
+		/*$respuesta=$respuesta->crear_respuesta($_POST);
 		
 		var_dump($respuesta);
-		var_dump($_POST);
-	
+		var_dump($_POST);*/
+		$rta=$respuesta->ya_voto($_POST);
+		if(count($rta)==0){
+			$respuesta=$respuesta->crear_respuesta($_POST);
+			echo $respuesta;
+		}
+		else{
+			echo "Ya voto";
+		}
 	}
 	else{
 		echo 0; //usuario no logeado

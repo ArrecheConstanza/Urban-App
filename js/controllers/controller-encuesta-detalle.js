@@ -129,8 +129,17 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
 						.success(function(data, status){
-							console.log(data);
-							//modal exito;
+							if(data=="!"){
+								//modal exito;
+							}
+							else if(data=="Ya voto"){
+								//modal ya voto
+															console.log(data);
+
+							}
+							else{
+								//modal error. intentelo mas tarde
+							}
 						})
 						.error(function(){
 							// sin internet

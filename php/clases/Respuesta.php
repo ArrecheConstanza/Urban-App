@@ -52,6 +52,25 @@ class Respuesta{
 		return $stmt->execute([$array["FKOPCIONES"],$array["FKENCUESTA"],$array["FKUSUARIO"]]);
 	}
 	
+	
+	
+	public function ya_voto($array){
+		$query = "SELECT * FROM " . static::$tabla . "  WHERE FKENCUESTA='$array[FKENCUESTA]' AND FKUSUARIO='$array[FKUSUARIO]'";
+		$stmt = DBcnx::getStatement($query);
+		$salida = [];
+		if($stmt->execute()){
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$respuesta = new Respuesta;
+				$respuesta->fk_usuario = $fila['FKUSUARIO'];
+				$respuesta->fk_opcion = $fila['FKOPCIONES'];
+				$respuesta->fk_encuesta = $fila['FKENCUESTA'];
+				$respuesta->cargarDatos($fila);
+				$salida[] = $respuesta;
+			}
+		}
+		return $salida;
+	}
+	
 	public static function traer_respuesta_encuesta($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE FKENCUESTA='$id' " ;
