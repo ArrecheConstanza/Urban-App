@@ -35,14 +35,17 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 		});
 		
 	//************* FORM ***************//
-		
 		$scope.numero_opcion=0;
 		$scope.items=[];
+		$scope.mostrar_aniadir=true;
 		$scope.addInputItem = function() {
+			//console.log($scope.items);
 			if($scope.numero_opcion<=9){
 				$scope.numero_opcion++;
-				//console.log($scope.numero_opcion);
 				$scope.items.push({text:''});
+				if($scope.numero_opcion==10){
+					$scope.mostrar_aniadir=false;
+				}
 			}
 			else{
 				//MODAL MAXIMO 10 PREGUNTAS

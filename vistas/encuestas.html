@@ -30,12 +30,10 @@
 		
 			<div id="btn_opcion">
 				<label>Opciones</label>
-				  <div ng-repeat="item in items">
-					<input ng-model="item.opcion" type="text" class='form-control' placeholder='Opcion {{numero_opcion}}'>
+				  <div ng-repeat="(key,item) in items">
+					<input ng-model="item.opcion" type="text" class='form-control' placeholder='Opcion {{key+1}}'>
 				  </div>
-					<p>Añadir opcion</p><button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button>
-					 <!--  <pre>{{items | json}}</pre>
-					  <pre>{{json}}</pre> -->
+					<div ng-show="mostrar_aniadir"><p>Añadir opcion</p><button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button></div>
 			</div>
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
 			
