@@ -129,13 +129,11 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
 						.success(function(data, status){
-							if(data=="!"){
+							if(data=="1"){
 								//modal exito;
 							}
 							else if(data=="Ya voto"){
 								//modal ya voto
-															console.log(data);
-
 							}
 							else{
 								//modal error. intentelo mas tarde

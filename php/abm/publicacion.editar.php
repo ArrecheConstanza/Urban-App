@@ -17,7 +17,7 @@
 		$publicacion = new Publicacion();
 		$_POST["FKUSUARIO"]=$_SESSION["s_id"];
 		$rta=$publicacion->editar_publicacion($_POST);
-		if(!$rta){ //error al crear publicacion
+		if(!$rta){ //error al editar publicacion
 			echo $rta;
 		}
 		else{

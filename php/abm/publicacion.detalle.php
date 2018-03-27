@@ -62,6 +62,7 @@
 					"BORRADO"=>$unaPublicacion->getBorrado(),
 					"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
 					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
+					"FK_CATEGORIA"=>$unaPublicacion->getFkCategoria(),
 					"FOTO"=>$arraySemiFinal,
 					"DENUNCIAS"=>$arrayFinalDenuncias
 				];

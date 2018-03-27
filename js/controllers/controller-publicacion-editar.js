@@ -32,24 +32,23 @@ Urban.controller("editarPublicacionCtrl",  ['$scope', '$http', '$location', 'Upl
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 	})
 	.success(function(data){
+		console.log(data);
 		var rta=angular.fromJson(data[0]);
 		$scope.ID=data[0].ID;
 		$scope.publicacion.TITULO=data[0].TITULO;
 		$scope.publicacion.DESCRIPCION=data[0].DESCRIPCION;
 		$scope.publicacion.FKGRUPO=data[0].FK_GRUPO;
-		//FOTO principal
-		if(!data[0].FOTO[0].DIR.length){ //re-ver
-			var foto="/urban-app/img/fotos/muestra.jpg";
-		}
-		else{
+		$scope.publicacion.FKCATEGORIA=data[0].FK_CATEGORIA;
+		
+		//FOTO
+		if(data[0].FOTO.length!=0){ 
 			var foto=data[0].FOTO[0]["DIR"].substring(26,data[0].FOTO[0]["DIR"].length);
 		}
-		//$scope.publicacion.FILE=data[0].FOTO[0].DIR;
 		
-		$scope.editar_publicacion=function(publicacion){
-			
+		$scope.editar_publicacion=function(publicacion){	
 			datos_publicacion={
 				FKGRUPO: publicacion.FKGRUPO,
+				FKCATEGORIA: publicacion.FKCATEGORIA,
 				FOTO: publicacion.FILE,
 				TITULO: publicacion.TITULO,
 				DESCRIPCION: publicacion.DESCRIPCION,
@@ -65,8 +64,8 @@ Urban.controller("editarPublicacionCtrl",  ['$scope', '$http', '$location', 'Upl
 				data: datos_publicacion,
 			})
 			.then(function(response){
-				if(response.data){
-					//modal exito?
+				if(response.data=="1"){
+					//modal exito
 					$location.path("/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban"));
 				}
 				else{
