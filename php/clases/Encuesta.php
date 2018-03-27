@@ -80,6 +80,7 @@ class Encuesta{
 			}
 		}
 	}
+	
 	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla ;
@@ -104,6 +105,26 @@ class Encuesta{
 	public static function all_grupo($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKGRUPO='$id' " ;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$encuesta = new Encuesta;
+				$encuesta->codigo_encuesta = $fila['ID'];
+				$encuesta->pregunta = $fila['PREGUNTA'];
+				$encuesta->fecha_creacion = $fila['FECHA_CREACION'];
+				$encuesta->borrado = $fila['BORRADO'];
+				$encuesta->fk_grupo = $fila['FKGRUPO'];
+				$encuesta->fk_usuario = $fila['FKUSUARIO'];
+				$encuesta->cargarDatos($fila);
+				$salida[] = $encuesta;
+			}
+		}
+		return $salida;
+	}
+	
+		public static function all_usuario($id){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKUSUARIO='$id' " ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

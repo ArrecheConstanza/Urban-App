@@ -38,13 +38,32 @@
 						</ul>
 					</li>
 				</ul>
+				
+				<!--<ul class="list-group" id="listado-publicaciones">
+				  <li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
+					<input type="hidden" name="country" value="{{item.ID}}">
+					<img class='img-publi' ng-src="{{ item.FOTO }}" />
+					<div><h2>{{ item.TITULO }}</h2>  
+					<p>{{ item.DESCRIPCION }}</p>  </div>
+					<small calss="pull-left">{{ item.CATEGORIA }}</small>  
+					<small>{{ item.FECHA_CREACION }}</small>  
+				  </li>
+				</ul>-->
 			
 			</div>
 		
 			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<hr>
 				<h2 class="text-center">Tus encuestas</h2>
-				
+				<ul  class="list-group">
+					<li class="list-group-item" ng-repeat="(key, value) in listado_encuestas track by $index" >
+						<ul  class="list-group">
+							<li class="list-group-item" ng-repeat="(key2, value2) in listado_encuestas[key] track by $index" >
+							{{ key2 }} : {{ value2 }} 
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

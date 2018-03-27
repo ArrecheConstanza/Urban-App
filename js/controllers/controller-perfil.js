@@ -28,9 +28,17 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			});
 		}
 		else if(data){
-			$scope.listado_publicaciones=[];
-			for(var i=0;i<data.length;i++){
-				$scope.listado_publicaciones.push(angular.fromJson(data[i]));
+			if(data[0].length){
+				$scope.listado_publicaciones=[];
+				for(var i=0;i<data[0].length;i++){
+					$scope.listado_publicaciones.push(angular.fromJson(data[0][i]));
+				}
+			}
+			if(data[1].length){
+				$scope.listado_encuestas=[];
+				for(var i=0;i<data[1].length;i++){
+					$scope.listado_encuestas.push(angular.fromJson(data[1][i]));
+				}
 			}
 		}
 		

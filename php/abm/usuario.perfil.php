@@ -6,14 +6,14 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases//Publicacion.php');
+	require_once('../clases/Publicacion.php');
 	require_once('../clases//Categoria.php');
 	require_once('../clases/Encuesta.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
 	
 	if(isset($_SESSION["s_id"])){
-		//traer publicaciones con multimedia realizadas por el usuario 
+		//******* traer publicaciones con multimedia realizadas por el usuario 
 		$publicaciones_usuario = new Publicacion();
 		$publicaciones_usuario=$publicaciones_usuario->all_usuario($_SESSION["s_id"]);
 		$arrayFinal=[];
@@ -57,10 +57,33 @@
 				];
 				$arrayFinal[]=$array;
 		}
-			echo json_encode($arrayFinal);
+		
+		$respuesta[0]=$arrayFinal;
+		//echo json_encode($arrayFinal);
 
 		
-		//traer encuestas realizadas por el usuario
+		//******** traer encuestas realizadas por el usuario
+		
+		$encuestas_usuario = new Encuesta();
+		$encuestas_usuario=$encuestas_usuario->all_usuario($_SESSION["s_id"]);
+		$arrayFinal2=[];
+		$array=[];
+		foreach($encuestas_usuario as $unaEncuesta){
+			//$fecha= publicaciones_parsear_fecha($unaEncuesta->getFechaCreacion());
+
+				$array=[
+					"ID"=>$unaEncuesta->getCodigoEncuesta(),
+					"PREGUNTA"=>$unaEncuesta->getPregunta(),
+					"FECHA_CREACION"=>$unaEncuesta->getFechaCreacion(),
+					"BORRADO"=>$unaEncuesta->getBorrado(),
+					"FK_GRUPO"=>$unaEncuesta->getFkGrupo(),
+					"FK_USUARIO"=>$unaEncuesta->getFkUsuario(),
+				];
+			$arrayFinal2[]=$array;
+		}
+		$respuesta[1]=$arrayFinal2;
+		echo json_encode($respuesta);
+
 	}
 	else{ //no logueado
 		echo 0;
