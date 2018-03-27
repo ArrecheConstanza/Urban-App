@@ -109,6 +109,7 @@ div.chat-header h1{
 }
 .file-inputs:nth-child(1){
 	margin-bottom:0;
+	    width: 100%;
 }
 .file-inputs:nth-child(2){
 	float: right;
@@ -249,6 +250,12 @@ form.chat-input input[type="submit"].sending {
 	height:50px;
 	border-radius:50%;
 	margin-top:.5em;
+}
+
+.glyphicon-option-vertical{
+	color:white;
+	float:right;
+	height:50px;
 }
 
 
