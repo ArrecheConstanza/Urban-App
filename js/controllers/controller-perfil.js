@@ -31,8 +31,38 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			if(data[0].length){
 				$scope.listado_publicaciones=[];
 				for(var i=0;i<data[0].length;i++){
+					
+					//si tiene o no foto
+						if(!data[0][i].FOTO.length){
+							data[0][i].FOTO="/urban-app/img/fotos/muestra.jpg";
+						}
+						else{
+							//solo 1 foto, editar cuando se suban mas de una
+							var foto=data[0][i].FOTO[0]["DIR"].substring(26,data[0][i].FOTO[0]["DIR"].length);
+							data[0][i].FOTO=foto;
+						}
+						
+						
 					$scope.listado_publicaciones.push(angular.fromJson(data[0][i]));
 				}
+				
+				//boton ir a publicacion
+				$scope.detallePublicacion=function(num){
+					localStorage.setItem("id_publi",num);
+					$location.path("/detallePublicacion");
+				}
+				
+				
+				/*var cada_publicacion=document.getElementsByClassName("publis");
+				console.log(cada_publicacion.length);
+				//tn(id("listado-publicaciones"),"a");
+				for(var i=0;i<cada_publicacion.length;i++){
+					console.log(cada_publicacion[i]);
+					cada_publicacion[i].onclick=function(){
+						console.log("click");
+					}
+				}*/
+				//$scope.detallePublicacion()
 			}
 			if(data[1].length){
 				$scope.listado_encuestas=[];
