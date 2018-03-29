@@ -61,6 +61,21 @@ class Usuario_Grupo{
 		}
 		return $salida;
 	}
+	
+	public static function traer_usuarios_grupo($id){
+		$salida = [];
+		$query = "SELECT FKUSUARIO FROM " . static::$tabla . " WHERE FKGRUPO='$id'";
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$usuario_grupo = new Usuario_Grupo;
+				$usuario_grupo->codigo_usuario = $fila['FKUSUARIO'];
+				$usuario_grupo->cargarDatos($fila);
+				$salida[] = $usuario_grupo;
+			}
+		}
+		return $salida;
+	}
 }
 
 ?>

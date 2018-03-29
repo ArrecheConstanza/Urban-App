@@ -1,0 +1,18 @@
+<div class="modal" ng-show="estado_menu" id="filtro">
+	<div class="modal-backdrop in "></div>
+	  <div class="modal-dialog scrollable">
+		<div class="modal-content scrollable-content">
+			<div>
+				<ul>
+					<li ng-repeat="usuario in listado_usuarios track by $index" class="list-group-item">
+					<img src="{{ usuario.FOTO }}" alt="{{ usuario.NOMBRE }} {{ usuario.APELLIDO }}"/>
+						{{ usuario.NOMBRE }} {{ usuario.APELLIDO }}
+					</li>
+				</ul>
+				  <div id="filtro_botones">
+					<button ng-click="modal_menu()" class="btn btn-lg btn-danger">Cerrar</button>
+				  </div>
+			</div>
+		</div>
+	</div>
+</div>

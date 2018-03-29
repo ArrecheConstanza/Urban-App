@@ -22,13 +22,79 @@ var basicChat = angular.module( 'BasicChat', [
 
 /** controller **/
 basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$window', '$location', '$http' , function( Messages, Upload, $scope, $window, $location, $http) {
-	
+
+	if(localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
+		
 	//funcion volver atras
 	$scope.$back = function() { 
 		window.location.href=localStorage.getItem("urban_url");
 	};
 	
-	if(localStorage.getItem("user_urban")!=null&&localStorage.getItem("user_urban")!=""){
+	//boton menu de chat
+		$scope.estado_menu=false;
+		$scope.mostrar_menu = function(){
+			if($scope.estado_menu){
+				return "../vistas/modal-menu.html";
+			}
+			return "";
+		}
+		
+		$scope.modal_menu=function(){
+			if($scope.estado_menu){
+				$scope.estado_menu=false;
+			}
+			else{
+				$scope.estado_menu=true;
+			}
+			$scope.mostrar_menu();
+		}; 
+		
+		//****** controller menu *****//
+		
+		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban"); //preguntar si existe sino tirar error
+		var data="id="+$scope.id_grupo;
+		
+		$http({ 
+			method:"POST",
+			url:"../php/abm/traer.usuarios.un.grupo.php",
+			data: data,	
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			if(data!="0"){
+				for(var i=0;i<data.length;i++){
+					//si tiene o no foto
+					if(angular.fromJson(data[i].FOTO)!=null){
+						var foto=angular.fromJson(data[i].FOTO).PATH.substring(26,angular.fromJson(data[i].FOTO).PATH.length);
+						data[i].FOTO="../"+foto;
+					}
+					else{
+						data[i].FOTO="/urban-app/img/icons/png/menu-nombre.png";
+					} 
+				}
+				$scope.listado_usuarios = data;
+			}
+			else{
+				//error usuario no logeado
+			}
+		})
+		.error(function(data){
+			//no hay internet, usar datos de localstorage
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//$routeParams["id"]=angular.fromJson(localStorage.getItem("nombre_chat")).ID;
 
 		//$scope.titulo_chat=angular.fromJson(localStorage.getItem("nombre_chat")).NOMBRE; //preguntar si existe sino tirar error
@@ -56,14 +122,24 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					if(data){
-						var foto=data[0]["PATH"];
-						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
-						$scope.img=foto; //corregir para hosting
-
+					if(data=="0"){
+						//no logueado cerrar sesion
+						$http({
+							method: 'GET',
+							url:"php/abm/logout.usuario.php",
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data){
+							if(data){
+								window.localStorage.removeItem("user_urban");
+								$location.path("/");
+							}
+						});
 					}
 					else{
-						//error multimedia
+						var foto=data[0]["PATH"];
+						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
+						$scope.img=foto;
 					}
 				})
 				.error(function(data){
@@ -168,7 +244,6 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 					.then(function(response){
 						if(response.data){
 								console.log(response.data);
-							
 						}
 						else{
 							//modal error?
@@ -181,7 +256,7 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			};
 		})
 		.error(function(){
-			//mensaje Sin conexion mostrar datos de localstorage
+			//mensaje Sin conexion 
 		});
 		
 
