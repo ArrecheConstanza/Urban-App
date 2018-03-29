@@ -2,9 +2,77 @@
 
 Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$timeout', function  ($scope, $http, $location, Upload, $timeout) { 
 	
+	$scope.listado_grupos=[];
+	//boton volver
 	$scope.back=function(){
 		window.location.href=localStorage.getItem("urban_url");
 	}
+	
+	//boton abrir modal grupos
+		$scope.estado_modal=false;
+		$scope.mostrar_modal_grupo = function(){
+		var x = document.getElementsByTagName("body")[0];
+		if(x.className=="ng-scope has-sidebar-left has-sidebar-right has-modal"){
+			x.className="ng-scope has-sidebar-left has-sidebar-right";
+		}
+			if($scope.estado_modal){
+				return "vistas/modal-grupo.html";
+			}
+			return "";
+		}
+		
+		$scope.modal_grupo=function(num){
+			for(var i=0;i<$scope.listado_grupos.length;i++){
+				if($scope.listado_grupos[i].ID==num){
+					$scope.un_grupo=$scope.listado_grupos[i];
+				}
+			}
+			//Traigo listado de usuarios de ese grupo
+			if($scope.un_grupo!="undefined"){
+				var union="id="+$scope.un_grupo.ID;
+				 $http({
+						method: 'POST',
+						data: union,
+						url:"php/abm/traer.usuarios.un.grupo.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data!="0"){
+							for(var i=0;i<data.length;i++){
+								//si tiene o no foto
+								if(angular.fromJson(data[i].FOTO)!=null){
+									var foto=angular.fromJson(data[i].FOTO).PATH.substring(26,angular.fromJson(data[i].FOTO).PATH.length);
+									data[i].FOTO=foto;
+								}
+								else{
+									data[i].FOTO="/urban-app/img/icons/png/menu-nombre.png";
+								} 
+							}
+							$scope.listado_usuarios = data;
+						}
+						else{
+							//error usuario no logeado
+						}
+					})
+					.error(function(){ //sin acceso a intenret, cargo datos locales
+						
+					});
+	
+			}
+			//console.log($scope.un_grupo);
+		 	if($scope.estado_modal){
+				$scope.estado_modal=false;
+			}
+			else{
+				$scope.estado_modal=true;
+			}
+			$scope.mostrar_modal_grupo(); 
+		}; 
+		
+		//** controller modal**//
+		
+	
+	
 	
 	 //traigo contenido usuario de bdd
 	 $http({

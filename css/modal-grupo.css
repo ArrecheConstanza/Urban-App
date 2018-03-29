@@ -42,5 +42,7 @@ h2{
 	overflow:scroll;
 }
 
-/***/
 
+.modal .traer_al_frente{
+	 z-index: -1;
+}

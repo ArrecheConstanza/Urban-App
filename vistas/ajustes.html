@@ -1,10 +1,9 @@
-
+	<div ng-include="mostrar_modal_grupo()"></div>
 	<!-- Contenedor ajustes -->
 	
 	<div class="scrollable">
 	
 	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-	
 		<!-- Titulo Perfil, Volver, foto-->
 		<div  id="title-container-perfil">
 			<!-- Icono -->
@@ -14,7 +13,7 @@
 				</div>
 				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
 				<!-- Texto -->
-				<h1 class="text-center">Perfil</h1>
+				<h1 class="text-center">Ajustes</h1>
 			</div>
 			<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
 				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" /> 
@@ -31,7 +30,7 @@
 		-xs-12">
 
 		<!--datos usuario-->
-		<h2 class="text-center">Datos</h2>
+		<h2 class="text-center">Perfil</h2>
 		
 			<ul  class="list-group usuario_datos" id="editarUsuario"> 
 				<a href="#/editarDatosUsuario">
@@ -90,11 +89,11 @@
 				
 				<ul  class="list-group">
 					<li class="list-group-item" ng-repeat="item in listado_grupos track by $index" >
-					{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click='abandonar_grupo(item.NOMBRE,item.ID)' class="pull-right">X</a>
+					{{ item.NOMBRE }} <a href="javascript:void(0)" ng-click="modal_grupo(item.ID)" class="pull-right glyphicon glyphicon-new-window"></a>
 					</li>
 				</ul>
 			
-			</div>
+		</div>
 		
 			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<hr>
