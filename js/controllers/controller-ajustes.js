@@ -57,9 +57,48 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 					.error(function(){ //sin acceso a intenret, cargo datos locales
 						
 					});
+					
+					//*** traer admin y foto de grupo ***//
+					var union="id="+$scope.un_grupo.ID;
+					 $http({
+						method: 'POST',
+						data: union,
+						url:"php/abm/traer.admin.grupo.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data!="0"){
+							//si tiene o no foto
+							if(data[0].FOTO!=null){
+								var foto=data[0].FOTO.PATH.substring(26,data[0].FOTO.PATH.length);
+								data[0].FOTO=foto;
+							}
+							else{
+								data[0].FOTO="/urban-app/img/icons/png/menu-nombre.png";
+							} 
+							$scope.foto_grupo=data[0].FOTO;
+							$scope.admin_grupo=data[0].ADMIN;
+						}
+						else{
+							//error usuario no logeado
+							$http({
+								method: 'GET',
+								url:"php/abm/logout.usuario.php",
+								headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+							})
+							.success(function(data){
+								if(data){
+									window.localStorage.removeItem("user_urban");
+									$location.path("/");
+								}
+							});
+						}
+					})
+					.error(function(){ //sin acceso a intenret, cargo datos locales
+						
+					});
 	
 			}
-			//console.log($scope.un_grupo);
 		 	if($scope.estado_modal){
 				$scope.estado_modal=false;
 			}
