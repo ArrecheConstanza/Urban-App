@@ -6,19 +6,19 @@
 	  <div class="modal-dialog scrollable">
 		<div class="modal-content scrollable-content">
 			<div class="traer_al_frente">
-				<img ng-src='{{foto_grupo}}' alt="{{un_grupo.NOMBRE}}" class="imagen_grupo" />
+				<img ng-show="img_grupo" ng-src='{{foto_grupo}}' alt="{{un_grupo.NOMBRE}}" class="imagen_grupo" />
+				<form  ng-show="!img_grupo" role='form' name='grupo' ng-submit='editar_foto_grupo(grupo)'>
+					<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista_grupo" /> 
+					<div>
+						<button type="submit" ng-click="uploadPic(picFile)" class="btn botones_cambio_foto" id="envio_foto">&#10004;</button>
+						<button type="submit" ng-click="deletePic()" class="btn btn-danger botones_cambio_foto" id="no_envio_foto">x</button>
+					</div>
+				</form>
 				<span class='estado_grupo'>
 				<img ng-show="{{ un_grupo.ESTADO }} =='Privado'" ng-src="img/icons/png/privado-mini.png" alt="privado" />
 				<img ng-show="{{ un_grupo.ESTADO }} !='Publico'" ng-src="img/icons/png/publico-mini.png" alt="publico" />
 				</span>
-				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto">
-				<form  role='form' name='usuario' ng-submit='editar_foto_usuario(usuario)'>
-				<img ngf-src="picFile" class="thumb pre_vista" id="pre_vista" /> 
-				<div>
-					<button type="submit" ng-click="uploadPic(picFile)" class="btn"id="envio_foto">&#10004;</button>
-					<button type="submit" ng-click="deletePic()" class="btn btn-danger" id="no_envio_foto">x</button>
-				</div>
-			</form>
+				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFile" name="file" ngf-accept="'image/*'" id="foto_grupo">
 				<h2>{{ un_grupo.NOMBRE }} </h2>
 				<div> 
 				

@@ -47,7 +47,7 @@ h2{
 	 z-index: -1;
 }
 
-.imagen_grupo{
+.imagen_grupo, #pre_vista_grupo{
 	width:95vw!important;
 	height:auto!important;
 	border-radius:0!important;
@@ -66,3 +66,25 @@ h2{
 	height: 20px;
 	width:20px;
 }
+
+.botones_cambio_foto{
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: .5em;
+    border-radius: 50%;
+    box-shadow: none;
+    width: 2.4em;
+    height: 2.4em;
+    margin: 0 2.4em;
+}
+
+.traer_al_frente form>div {
+    display: inline-block;
+    width: 100vw;
+    text-align: center;
+    z-index: 1;
+    margin-top: -10em;
+}
+
+

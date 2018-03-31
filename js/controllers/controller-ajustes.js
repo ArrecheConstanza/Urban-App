@@ -8,13 +8,13 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		window.location.href=localStorage.getItem("urban_url");
 	}
 	
-	//boton abrir modal grupos
+	//****** C O N T R O L L E R   M O D A L ******//
 		$scope.estado_modal=false;
 		$scope.mostrar_modal_grupo = function(){
 		var x = document.getElementsByTagName("body")[0];
-		if(x.className=="ng-scope has-sidebar-left has-sidebar-right has-modal"){
-			x.className="ng-scope has-sidebar-left has-sidebar-right";
-		}
+			if(x.className=="ng-scope has-sidebar-left has-sidebar-right has-modal"){
+				x.className="ng-scope has-sidebar-left has-sidebar-right";
+			}
 			if($scope.estado_modal){
 				return "vistas/modal-grupo.html";
 			}
@@ -31,88 +31,148 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 			if($scope.un_grupo!="undefined"){
 				var union="id="+$scope.un_grupo.ID;
 				 $http({
-						method: 'POST',
-						data: union,
-						url:"php/abm/traer.usuarios.un.grupo.php",
-						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
-					})
-					.success(function(data){
-						if(data!="0"){
-							for(var i=0;i<data.length;i++){
-								//si tiene o no foto
-								if(angular.fromJson(data[i].FOTO)!=null){
-									var foto=angular.fromJson(data[i].FOTO).PATH.substring(26,angular.fromJson(data[i].FOTO).PATH.length);
-									data[i].FOTO=foto;
-								}
-								else{
-									data[i].FOTO="/urban-app/img/icons/png/menu-nombre.png";
-								} 
-							}
-							$scope.listado_usuarios = data;
-						}
-						else{
-							//error usuario no logeado
-						}
-					})
-					.error(function(){ //sin acceso a intenret, cargo datos locales
-						
-					});
-					
-					//*** traer admin y foto de grupo ***//
-					var union="id="+$scope.un_grupo.ID;
-					 $http({
-						method: 'POST',
-						data: union,
-						url:"php/abm/traer.admin.grupo.php",
-						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
-					})
-					.success(function(data){
-						if(data!="0"){
+					method: 'POST',
+					data: union,
+					url:"php/abm/traer.usuarios.un.grupo.php",
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data){
+					if(data!="0"){
+						for(var i=0;i<data.length;i++){
 							//si tiene o no foto
-							if(data[0].FOTO!=null){
-								var foto=data[0].FOTO.PATH.substring(26,data[0].FOTO.PATH.length);
-								data[0].FOTO=foto;
+							if(angular.fromJson(data[i].FOTO)!=null){
+								var foto=angular.fromJson(data[i].FOTO).PATH.substring(26,angular.fromJson(data[i].FOTO).PATH.length);
+								data[i].FOTO=foto;
 							}
 							else{
-								data[0].FOTO="/urban-app/img/icons/png/grupo.png";
+								data[i].FOTO="/urban-app/img/icons/png/menu-nombre.png";
 							} 
-							$scope.foto_grupo=data[0].FOTO;
-							$scope.admin_grupo=data[0].ADMIN;
+						}
+						$scope.listado_usuarios = data;
+					}
+					else{
+						//error usuario no logeado
+						$http({
+							method: 'GET',
+							url:"php/abm/logout.usuario.php",
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data){
+							if(data){
+								window.localStorage.removeItem("user_urban");
+								$location.path("/");
+							}
+						});
+					}
+				})
+				.error(function(){ 
+					//sin acceso a intenret, cargo datos locales	
+				});
+					
+				$scope.img_grupo=true;
+				// traer admin y foto de grupo
+				var union="id="+$scope.un_grupo.ID;
+				 $http({
+					method: 'POST',
+					data: union,
+					url:"php/abm/traer.admin.grupo.php",
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data){
+					if(data!="0"){
+						//si tiene o no foto
+						if(data[0].FOTO!=null){
+							var foto=data[0].FOTO.PATH.substring(26,data[0].FOTO.PATH.length);
+							data[0].FOTO=foto;
 						}
 						else{
-							//error usuario no logeado
-							$http({
-								method: 'GET',
-								url:"php/abm/logout.usuario.php",
-								headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
-							})
-							.success(function(data){
-								if(data){
-									window.localStorage.removeItem("user_urban");
-									$location.path("/");
-								}
-							});
-						}
-					})
-					.error(function(){ //sin acceso a intenret, cargo datos locales
+							data[0].FOTO="/urban-app/img/icons/png/grupo.png";
+						} 
+						$scope.foto_grupo=data[0].FOTO;
+						$scope.admin_grupo=data[0].ADMIN;
 						
-					});
-	
+						/**** cambiar foto de perfil ****/
+			
+						id("envio_foto").style.display="none";
+						id("no_envio_foto").style.display="none";
+						
+						if(id("foto_grupo")!=null){
+							id("foto_grupo").onchange=function(){
+								if(this.value!=""){
+									$scope.img_grupo=false;
+									id("pre_vista_grupo").style.display="inline-block";
+									id('envio_foto').style.display="inline-block";
+									id('no_envio_foto').style.display="inline-block";
+								}
+							}
+						}
+						
+						$scope.deletePic=function(){
+								$scope.img_grupo=true;
+							id("pre_vista_grupo").style.display="none";
+							id("envio_foto").style.display="none";
+							id("no_envio_foto").style.display="none";
+							
+						}
+						
+						$scope.uploadPic=function(foto){
+							foto_grupo={
+								FOTO: foto
+							}
+							foto_grupo.upload = Upload.upload({
+								method: 'POST',
+								data: foto_grupo,
+								url:"php/abm/foto.grupo.php",
+							})
+							.then(function(response){
+								if(response.data!=0){
+										localStorage.setItem("foto_final_usuario",response.data);
+										id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
+										id("title-container-perfil").style.backgroundSize="100vw";
+										location.reload();
+								}
+								else{
+									//modal error
+								}
+							}
+							,function(response){
+								//modal error
+								
+							});  
+						}
+					}
+					else{
+						//error usuario no logeado
+						$http({
+							method: 'GET',
+							url:"php/abm/logout.usuario.php",
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data){
+							if(data){
+								window.localStorage.removeItem("user_urban");
+								$location.path("/");
+							}
+						});
+					}
+				})
+				.error(function(){ //sin acceso a intenret, cargo datos locales
+					
+				});
 			}
-		 	if($scope.estado_modal){
-				$scope.estado_modal=false;
-			}
-			else{
-				$scope.estado_modal=true;
-			}
-			$scope.mostrar_modal_grupo(); 
-		}; 
+			
+		//abrir o cerrar modal
+		if($scope.estado_modal){
+			$scope.estado_modal=false;
+		}
+		else{
+			$scope.estado_modal=true;
+		}
+		$scope.mostrar_modal_grupo(); 
+	}; 
 		
-		//** controller modal**//
-		
-	
-	
-	
+//*******************************************************
+
 	 //traigo contenido usuario de bdd
 	 $http({
 		method: 'GET',
