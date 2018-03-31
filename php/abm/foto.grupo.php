@@ -14,8 +14,6 @@
 	
 	if(isset($_SESSION["s_id"])){
 		$grupo = new Grupo();
-		var_dump($_POST);
-		var_dump($_FILES);
 		//hay foto
 		if(!empty($_FILES)&&$_FILES['FOTO']['name']){
 			//creo carpeta para foto

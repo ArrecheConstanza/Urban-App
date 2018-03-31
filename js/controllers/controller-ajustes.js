@@ -126,16 +126,17 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 								url:"php/abm/foto.grupo.php",
 							})
 							.then(function(response){
-								console.log(response);
-								/*if(response.data!=0){
-										localStorage.setItem("foto_final_usuario",response.data);
-										id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
-										id("title-container-perfil").style.backgroundSize="100vw";
-										location.reload();
+								if(response.data!=0){
+									var foto=response.data.substring(26,response.data.length);
+									$scope.foto_grupo=foto;
+									$scope.img_grupo=true;
+									id("pre_vista_grupo").style.display="none";
+									id("envio_foto").style.display="none";
+									id("no_envio_foto").style.display="none";
 								}
 								else{
 									//modal error
-								}*/
+								}
 							}
 							,function(response){
 								//modal error
