@@ -70,7 +70,7 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 		//guardado de datos en bdd
 		$http({
 			method: 'POST',
-			url:"php/abm/usuario.editar.php",
+			url:"php/abm/grupo.borrar.php",
 			data: union,	
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})

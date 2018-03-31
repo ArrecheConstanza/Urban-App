@@ -57,8 +57,8 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 							url:"php/abm/logout.usuario.php",
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
-						.success(function(data){
-							if(data){
+						.success(function(data2){
+							if(data2){
 								window.localStorage.removeItem("user_urban");
 								$location.path("/");
 							}
@@ -140,8 +140,34 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 							}
 							,function(response){
 								//modal error
-								
 							});  
+						}
+						
+						//**** eliminar grupo. solo para admins ****//
+						$scope.estado_eliminar=false;
+						if(angular.fromJson(localStorage.getItem("user_urban")).ID==$scope.admin_grupo){
+							$scope.estado_eliminar=true;
+						}
+						$scope.eliminar_grupo=function(){
+							modal("¿Desea eliminar el grupo <b>"+$scope.un_grupo.NOMBRE+"</b>?","&#10004;");
+							var ventana_modal=id("ventana_modal");
+							var boton_si=tn(ventana_modal,"button",0);
+								boton_si.onclick=function(){
+									var union = 'ID='+$scope.un_grupo.ID;
+									$http({
+										method: 'POST',
+										data : union,
+										url:"php/abm/grupo.borrar.php",
+										headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+									})
+									.success(function(data){
+										console.log(data);
+										/* if(data){
+											window.localStorage.removeItem("user_urban");
+											$location.path("/");
+										} */
+									}); 
+								}
 						}
 					}
 					else{
