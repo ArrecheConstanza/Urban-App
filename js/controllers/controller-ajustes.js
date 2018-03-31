@@ -74,7 +74,7 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 								data[0].FOTO=foto;
 							}
 							else{
-								data[0].FOTO="/urban-app/img/icons/png/menu-nombre.png";
+								data[0].FOTO="/urban-app/img/icons/png/grupo.png";
 							} 
 							$scope.foto_grupo=data[0].FOTO;
 							$scope.admin_grupo=data[0].ADMIN;

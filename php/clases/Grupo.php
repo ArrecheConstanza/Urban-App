@@ -9,8 +9,9 @@ class Grupo{
 	private $borrado;
 	private $banneado;
 	private $fk_multimedia;
+	private $fk_usuario;
 	public static $tabla = "grupo";
-	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA','BANNEADO'];
+	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA','FKUSUARIO','BANNEADO'];
 
 	public function setCodigoGrupo($a){
 		$this->codigo_grupo = $a;
@@ -57,6 +58,12 @@ class Grupo{
 	public function getFkMultimedia(){
 		return $this->fk_multimedia;
 	}
+	public function setFkUsuario($a){
+		$this->fk_usuario = $a;
+	}
+	public function getFkUsuario(){
+		return $this->fk_usuario;
+	}
 	
 	public function getByPk($id){
 		$query = "SELECT * FROM " . static::$tabla . "
@@ -73,6 +80,7 @@ class Grupo{
 				$grupo->borrado = $fila['BORRADO'];
 				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}
@@ -106,6 +114,9 @@ class Grupo{
 					case "fk_multimedia":
 						$this->setFkMultimedia($valor);
 					break;
+					case "fk_usuario":
+						$this->setFkUsuario($valor);
+					break;
 				}
 			}
 		}
@@ -118,10 +129,10 @@ class Grupo{
 	}
 	
 	public function crear_grupo($array){
-		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO)
+		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO,FKUSUARIO)
 				VALUES (?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
-		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"]]);
+		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"],$array["FKUSUARIO"]]);
 	}
 
 	public function ultimo_grupo_creado(){
@@ -138,6 +149,7 @@ class Grupo{
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}
@@ -160,6 +172,7 @@ class Grupo{
 				$grupo->borrado = $fila['BORRADO'];
 				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);
 				$salida[] = $grupo;
 			}

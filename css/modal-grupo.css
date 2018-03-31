@@ -46,3 +46,23 @@ h2{
 .modal .traer_al_frente{
 	 z-index: -1;
 }
+
+.imagen_grupo{
+	width:95vw!important;
+	height:auto!important;
+	border-radius:0!important;
+}
+
+.list-group-item span{
+	color:#86ae2f;
+	border: 1px solid #86ae2f;
+	border-radius:.5em;
+	padding:.2em .5em;
+	margin-top:.5em;
+}
+
+.estado_grupo>img{
+	border-radius:0;
+	height: 20px;
+	width:20px;
+}
