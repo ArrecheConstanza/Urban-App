@@ -157,9 +157,33 @@ class Grupo{
 		return $salida;
 	}
 	
-	public static function all(){
+	public static function all_con_borrados(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla ;
+		$stmt = DBcnx::getStatement($query);
+		if($stmt->execute()) {
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$grupo = new Grupo;
+				$grupo->codigo_grupo = $fila['ID'];
+				$grupo->nombre = $fila['NOMBRE'];
+				$grupo->longitud = $fila['LONGITUD'];
+				$grupo->latitud = $fila['LATITUD'];
+				$grupo->estado = $fila['ESTADO'];
+				$grupo->borrado = $fila['BORRADO'];
+				$grupo->banneado = $fila['BANNEADO'];
+				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
+				$grupo->fk_usuario = $fila['FKUSUARIO'];
+				$grupo->cargarDatos($fila);
+				$salida[] = $grupo;
+			}
+		}
+		return $salida;
+	}
+	
+	
+	public static function all(){
+		$salida = [];
+		$query = "SELECT * FROM " . static::$tabla ." WHERE BORRADO='No'";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

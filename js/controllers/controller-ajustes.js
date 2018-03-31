@@ -161,11 +161,12 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 										headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 									})
 									.success(function(data){
-										console.log(data);
-										/* if(data){
-											window.localStorage.removeItem("user_urban");
-											$location.path("/");
-										} */
+										 if(data=='1'){ //modal eliminado con exito
+											location.reload();
+										} 
+										else{
+											//modal error al eliminar grupo
+										}
 									}); 
 								}
 						}

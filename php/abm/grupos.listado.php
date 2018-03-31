@@ -36,20 +36,22 @@
 			$ans=array();
 			$arraySemiFinal=array();
 			foreach($usuario_grupo as $elgrupo){
-				$grupo=new Grupo();
-				$ans[]=$grupo->getByPk($elgrupo->getCodigoGrupo());
+					$grupo=new Grupo();
+					$ans[]=$grupo->getByPk($elgrupo->getCodigoGrupo());
 			}
 			foreach($ans as $unGrupo){
-				$array=[
-					"ID"=>$unGrupo[0]->getCodigoGrupo(),
-					"NOMBRE"=>$unGrupo[0]->getNombre(),
-					"LONGITUD"=>$unGrupo[0]->getLongitud(),
-					"LATITUD"=>$unGrupo[0]->getLatitud(),
-					"ESTADO"=>$unGrupo[0]->getEstado(),
-					"BORRADO"=>$unGrupo[0]->getBorrado(),
-					"FKMULTIMEDIA"=>$unGrupo[0]->getFkMultimedia()
-				];
-				$arrayFinal[]=$array;
+				if($unGrupo[0]->getBorrado()=="No"){ //saco los borrados
+					$array=[
+						"ID"=>$unGrupo[0]->getCodigoGrupo(),
+						"NOMBRE"=>$unGrupo[0]->getNombre(),
+						"LONGITUD"=>$unGrupo[0]->getLongitud(),
+						"LATITUD"=>$unGrupo[0]->getLatitud(),
+						"ESTADO"=>$unGrupo[0]->getEstado(),
+						"BORRADO"=>$unGrupo[0]->getBorrado(),
+						"FKMULTIMEDIA"=>$unGrupo[0]->getFkMultimedia()
+					];
+					$arrayFinal[]=$array;
+				}
 			}
 			echo json_encode($arrayFinal);
 			return 0;
