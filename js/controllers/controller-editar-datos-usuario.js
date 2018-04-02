@@ -70,16 +70,16 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 		//guardado de datos en bdd
 		$http({
 			method: 'POST',
-			url:"php/abm/grupo.borrar.php",
+			url:"php/abm/usuario.editar.php",
 			data: union,	
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			if(data){ //exito. reruteo a ajustes
+			if(data!="0"){ //exito. reruteo a ajustes
 				$location.path("/ajustes");
 			}
 			else{
-				//error, vuelva a intentarlo mas tarde
+				//error, usuario no logueado
 			}
 		})
 		.error(function(){

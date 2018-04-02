@@ -21,7 +21,6 @@
 	
 	
 	// falta validar datos
-	
 	if(isset($_SESSION["s_id"])){
 		$usuario = new Usuario();
 		
@@ -55,10 +54,12 @@
 			if(isset($datos["edad"])){
 				$datos["EDAD"]=$datos["edad"];
 			}
+			
 			//direccion_estado
 			if(isset($datos["DIRECCION_ESTADO"])){
-				if($datos["DIRECCION_ESTADO"]){
+				if($datos["DIRECCION_ESTADO"]=='true'){
 					$valor="Oculta";
+				
 				}
 				else{
 					$valor="Visible";
@@ -76,7 +77,7 @@
 		} 
 	}
 	else{ //no logueado
-		return 0;
+		echo 0;
 	}
 	
 	
