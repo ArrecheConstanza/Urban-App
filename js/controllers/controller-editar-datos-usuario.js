@@ -80,6 +80,18 @@ Urban.controller("editarDatosUsuarioCtrl",  ['$scope', '$http', '$location', 'Up
 			}
 			else{
 				//error, usuario no logueado
+				$http({
+					method: 'GET',
+					url:"php/abm/logout.usuario.php",
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data){
+					if(data){
+						window.localStorage.removeItem("user_urban");
+						$location.path("/");
+					}
+				});
+
 			}
 		})
 		.error(function(){

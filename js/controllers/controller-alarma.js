@@ -8,6 +8,42 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	
 	//ALARMA ACTIVA 
 	function alarma_activa(x){
+		
+	//almacenamiento de datos en bdd	//['CUANDO', 'LONGITUD','LATITUD','FKUSUARIO','FKALARMA'];
+		function localizar(position) {
+			var latitud = position.coords.latitude;
+			var longitud = position.coords.longitude;
+		}
+		function error(error) {
+			switch(error.code) {
+				case error.UNKNOWN_ERROR:
+				alert("La geolocalización ha encontrado un error.");
+				break;
+					case error.PERMISSION_DENIED:
+					alert("El usuario no ha autorizado el acceso a su posición.");
+				break;
+					case error.POSITION_UNAVAILABLE:
+					alert("El usuario no puede ser localizado.");
+				break;
+					case error.TIMEOUT:
+					alert("La geolocalización ha excedido el tiempo límite.");
+				break;
+			}
+		}
+		function getLocalisation(){
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(localizar,error);
+			}
+			else {
+				alert("Lo sentimos, su navegador no soporta la geolocalización");
+			}
+		}
+			
+		//LATITUD Y LONGITUD	
+		getLocalisation();
+		
+//***********************************
+		
 		document.getElementById("sub_alarm").style.display="none";
 		if(x!=undefined){
 			document.getElementById("sub_alarm").style.display="inline-block";
@@ -69,6 +105,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	   }
 		cuenta();
 		onload = inicializar;  
+	
 	}
 	
 	//mantener presionado 3s
@@ -129,7 +166,6 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
     });	
 		
 	// BOTON AMBULANCIA 
-	
 	document.getElementsByClassName("fondo_sub_boton")[1].style.display="none";
 	var myBtn= sub_botones[0].childNodes[3];       
 	var timer, timePressed = 0;
@@ -156,8 +192,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
     });
 	
 		
-	// BOTON AMBULANCIA 
-	
+	// BOTON BOMBEROS 
 	document.getElementsByClassName("fondo_sub_boton")[2].style.display="none";
 	var myBtn= sub_botones[0].childNodes[5];       
 	var timer, timePressed = 0;

@@ -4,10 +4,9 @@ class Alarma{
 	private $codigo_alarma;
 	private $nombre;
 	private $icono;
-	private $color;
 	
 	public static $tabla = "alarma";
-	private static $fila = ['NOMBRE', 'ICONO', 'COLOR'];
+	private static $fila = ['NOMBRE', 'ICONO'];
 
 	public function setCodigoAlarma($a){
 		$this->codigo_alarma = $a;
@@ -27,13 +26,6 @@ class Alarma{
 	public function getIcono(){
 		return $this->icono;
 	}
-	public function setColor($a){
-		$this->color = $a;
-	}
-	public function getColor(){
-		return $this->color;
-	}
-	
 	public function getByPk($id){
 		$this->codigo_alarma = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
@@ -53,9 +45,6 @@ class Alarma{
 					case "icono":
 						$this->setIcono($valor);
 					break;
-					case "color":
-						$this->setColor($valor);
-					break;
 				}
 			}
 		}
@@ -70,7 +59,6 @@ class Alarma{
 				$alarma->codigo_alarma = $fila['ID'];
 				$alarma->nombre = $fila['NOMBRE'];
 				$alarma->icono = $fila['ICONO'];
-				$alarma->borrado = $fila['COLOR'];
 				$alarma->cargarDatos($fila);
 				$salida[] = $alarma;
 			}

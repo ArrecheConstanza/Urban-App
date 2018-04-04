@@ -8,7 +8,7 @@ class Usuario_Activo_Alarma{
 	private $fk_usuario;
 	private $fk_alarma;
 	
-	public static $tabla = "usuario_activo_alarma";
+	public static $tabla = "usuario_activo_alerta";
 	private static $fila = ['CUANDO', 'LONGITUD','LATITUD','FKUSUARIO','FKALARMA'];
 
 	public function setCodigoUsuarioActivoAlarma($a){
