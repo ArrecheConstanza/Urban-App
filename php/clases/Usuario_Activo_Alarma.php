@@ -9,7 +9,7 @@ class Usuario_Activo_Alarma{
 	private $fk_alarma;
 	
 	public static $tabla = "usuario_activo_alerta";
-	private static $fila = ['CUANDO', 'LONGITUD','LATITUD','FKUSUARIO','FKALARMA'];
+	private static $fila = ['CUANDO', 'LONGITUD','LATITUD','FKUSUARIO','FKALERTA'];
 
 	public function setCodigoUsuarioActivoAlarma($a){
 		$this->codigo_usuario_activo_alarma = $a;
@@ -93,11 +93,20 @@ class Usuario_Activo_Alarma{
 				$usuario_activo_alarma->cuando = $fila['CUANDO'];
 				$usuario_activo_alarma->longitud = $fila['LONGITUD'];
 				$usuario_activo_alarma->latitud = $fila['LATITUD'];
-				$usuario_activo_alarma->fk_alarma = $fila['FKALARMA'];
+				$usuario_activo_alarma->fk_alarma = $fila['FKALERTA'];
 				$usuario_activo_alarma->cargarDatos($fila);
 				$salida[] = $usuario_activo_alarma;
 			}
 		}
 		return $salida;
 	}
+	
+	public function crear_usuario_activo_alarma($array){
+		$query = "INSERT INTO " . static::$tabla . " (CUANDO, LONGITUD, LATITUD, FKALERTA ,FKUSUARIO)
+				VALUES (?, ?, ?, ?, ?)";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["CUANDO"],$array["LONGITUD"],$array["LATITUD"],$array["FKALERTA"],$array["FKUSUARIO"]]);
+	}
+
+}
 ?>

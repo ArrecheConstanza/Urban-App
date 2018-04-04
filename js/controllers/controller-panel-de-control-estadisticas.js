@@ -17,6 +17,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		})
 		.success(function(data, status){
 			var info_usuarios=data;
+			$scope.info_usuarios =data;
 			
 			////////////Crecimiento mes a mes
 			var newDate = new Date();
@@ -177,6 +178,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		})
 		.success(function(data, status){
 			var info_grupos=data;
+			$scope.info_grupos=data;
 
 			////////////estados
 			var grupo_publico=0, grupo_privado=0;
@@ -241,7 +243,60 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		.error(function(){
 			
 		});
+		
+	//************************* ALARMAS
+	
+		$http({ 
+			method:"POST",
+			url:"php/abm/traer.alarmas.activas.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data, status){
+			$scope.alarmas_activadas=data;
+			var alarma_activada_estadistica=["General","Policia","Ambulancia","Bomberos"], ban=0;
+			var contador_estadisticas=[0,0,0,0];
+			for(var j=0;j<$scope.alarmas_activadas.length;j++){
+				switch($scope.alarmas_activadas[j].FKALARMA){
+					case "1":
+						contador_estadisticas[0]++;
+					break;
+					case "2":
+						contador_estadisticas[1]++;
+					break;
+					case "3":
+						contador_estadisticas[2]++;
+					break;
+					case "4":
+						contador_estadisticas[3]++;
+					break;
+					
+				}
+			} 
+			new Chart(document.getElementById("datos_alarmas_activadas"), {
+				type: 'doughnut',
+				data: {
+				  labels: alarma_activada_estadistica,
+				  datasets: [
+					{
+					  label: "Alarmas activadas",
+					  backgroundColor: ["#3e2c59", "#344e47","#019b86",'#f9de3c'],
+					  data: contador_estadisticas
+					}
+				  ]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'Alarmas activadas'
+				  }
+				}
+			}); 
+		})
+		.error(function(data){
+			//sin internet, cargo datos locales
 			
+		}); 
+				
 	//************************* PUBLICACIONES
 	
 		$http({ 
@@ -251,6 +306,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		})
 		.success(function(data, status){
 			var info_publicaciones=data;
+			$scope.info_publicaciones=data;
 			$scope.categorias;
 			//////////// categorias
 				$http({ 
@@ -270,11 +326,10 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				}); 
 				var categorias_estadistica=[], ban=0;
 				var contador_estadisticas=[0,0,0,0,0,0,0,0,0];
-				console.log($scope.categorias);
 				for(var i=0;i<$scope.categorias.length;i++){
 					categorias_estadistica.push($scope.categorias[i].TITULO);
 				}
-					console.log(categorias_estadistica);
+					//console.log(categorias_estadistica);
 					for(var j=0;j<info_publicaciones.length;j++){
 						for(var i=0;i<categorias_estadistica.length;i++){
 							if(info_publicaciones[j].CATEGORIA==categorias_estadistica[i]){
@@ -347,6 +402,7 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 		})
 		.success(function(data, status){
 			var info_encuesta=data;
+			$scope.info_encuesta=data;
 			
 			////////////borrados
 			var encuesta_borrado=0, encuesta_no_borrado=0;

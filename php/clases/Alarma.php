@@ -5,7 +5,7 @@ class Alarma{
 	private $nombre;
 	private $icono;
 	
-	public static $tabla = "alarma";
+	public static $tabla = "alerta";
 	private static $fila = ['NOMBRE', 'ICONO'];
 
 	public function setCodigoAlarma($a){

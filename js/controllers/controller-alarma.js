@@ -1,4 +1,4 @@
-/********************************************CONTROLLER SIDEBAR ***************************************/
+/********************************************CONTROLLER ALARMA ***************************************/
 
 Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interval) {
 
@@ -8,11 +8,44 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 	
 	//ALARMA ACTIVA 
 	function alarma_activa(x){
-		
-	//almacenamiento de datos en bdd	//['CUANDO', 'LONGITUD','LATITUD','FKUSUARIO','FKALARMA'];
+		$scope.latitud;
+		$scope.longitud;
+		$scope.cual_alarma;
+
 		function localizar(position) {
-			var latitud = position.coords.latitude;
-			var longitud = position.coords.longitude;
+			$scope.latitud = position.coords.latitude;
+			$scope.longitud = position.coords.longitude;
+			
+			//guardado de datos en bdd
+			var datos = "LONGITUD="+$scope.longitud+"&LATITUD="+$scope.latitud+"&FKALERTA="+$scope.cual_alarma;
+			$http({ 
+				method:"POST",
+				url:"php/abm/usuario.activo.alarma.php",
+				data: datos,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data, status){
+				if(data=="no loguedo"){
+					//logout
+					$http({
+						method: 'GET',
+						url:"php/abm/logout.usuario.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							window.localStorage.removeItem("user_urban");
+							$location.path("/");
+						}
+					});
+				}
+				else if(data!="1"){
+					//error alamcenando alarma
+				}
+			})
+			.error(function(){
+				//mensaje Sin conexion 
+			});
 		}
 		function error(error) {
 			switch(error.code) {
@@ -126,7 +159,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
-
+				   $scope.cual_alarma=1;
 				   alarma_activa();
 				}
 			}, 100);
@@ -155,6 +188,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
+				   $scope.cual_alarma=2;
 				   alarma_activa("policia");
 				}
 			}, 100);
@@ -181,6 +215,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
+				   $scope.cual_alarma=3;
 				   alarma_activa("ambulancia");
 				}
 			}, 100);
@@ -208,6 +243,7 @@ Urban.controller("alarmaCtrl", function ($location,$http,$scope,$timeout,$interv
 				   id("alarma_inactiva").style.display="none";
 				   id("title-container").style.marginBottom="1em";
 				   id("alarma_activa").style.display="inline-block";
+				   $scope.cual_alarma=4;
 				   alarma_activa("bombero");
 				}
 			}, 100);

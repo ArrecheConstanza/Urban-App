@@ -89,7 +89,6 @@
 		//crear publicacion en un solo grupo
 		else{ 
 			$rta=$publicacion->crear_publicacion($_POST);
-			var_dump($_POST);
 			if(!$rta){ //error al crear publicacion
 				echo $rta;
 			}

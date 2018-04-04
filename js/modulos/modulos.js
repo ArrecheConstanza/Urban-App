@@ -6,7 +6,7 @@ var Urban = angular.module('Urban', [
   'mobile-angular-ui.gestures', //gestos 
   'ngFileUpload', //upload imagenes
   'uiGmapgoogle-maps', //mapa
-   'chart.js' // para estadisticas
+  'chart.js' // para estadisticas
 ])
 
 /////ADAPTACION DE PANTALLA
