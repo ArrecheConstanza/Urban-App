@@ -86,7 +86,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				});
 			}
 			else{
-				console.log("error no hay response data");
+				//console.log("error no hay response data");
 			}
 		}
 		,function(response){

@@ -118,8 +118,8 @@ class Grupo{
 	}
 	
 	public function crear_grupo($array){
-		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO,FKUSUARIO)
-				VALUES (?, ?, ?, ?)";
+		$query = "INSERT INTO " . static::$tabla . " (NOMBRE, LONGITUD, LATITUD, ESTADO, FKUSUARIO)
+				VALUES (?, ?, ?, ?, ?)";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["NOMBRE"],$array["LONGITUD"],$array["LATITUD"],$array["ESTADO"],$array["FKUSUARIO"]]);
 	}
