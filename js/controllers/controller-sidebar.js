@@ -2,11 +2,6 @@
 
 Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeParams) {
 	
-	if(localStorage.getItem("recien_creado")!=null&&localStorage.getItem("recien_creado")=="true"){
-		console.log("entre");
-		localStorage.removeItem("recien_creado");
-		location.reload();
-	}
 	if(localStorage.getItem("user_urban")!=null){
 		if(!(localStorage.getItem("en_proceso")!=null&&localStorage.getItem("en_proceso")=="true")){
 			//nombre de usuario

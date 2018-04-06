@@ -79,7 +79,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
 						localStorage.setItem("recien_creado","true");
-						$location.path("/publicaciones");
+						$location.path("/publicaciones/"+response.data);
 					}
 					else{
 						//modal, error al crear grupo

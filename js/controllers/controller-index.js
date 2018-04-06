@@ -7,8 +7,6 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		window.history.back();
 	};
 	
-	
-	
 	//funcion para cargar o no el header
 	$scope.header_footer=function(){
 		if(!$location.path().search("/reportarPublicacion/")){

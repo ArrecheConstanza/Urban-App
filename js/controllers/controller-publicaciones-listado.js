@@ -2,6 +2,11 @@
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
 	
+	if(localStorage.getItem("recien_creado")!=null&&localStorage.getItem("recien_creado")=="true"){
+		localStorage.removeItem("recien_creado");
+		location.reload();
+	}
+	
 	//icono filtro
 		id("buscador").style.display='inline-block';
 
