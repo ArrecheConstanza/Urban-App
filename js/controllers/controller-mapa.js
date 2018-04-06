@@ -1,23 +1,10 @@
 /**************************************CONTROLLER MAPA***************************************/
 
 Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
-	
-	
-	//**** para editar direccion usuario ****//
-	if(localStorage.getItem("editar_usuario")=="Direccion"){
-		if(localStorage.getItem("user_urban")!=undefined){ //else error
-			var datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
-			tn(id("title-container"),"p",0).innerHTML="Cambiar Dirección";
-			tn(id("title-container"),"input",0).placeholder=datos_usuario.DIRECCION;
-			posicion_usuario["LATITUD"]=datos_usuario.LATITUD;
-			posicion_usuario["LONGITUD"]=datos_usuario.LONGITUD;
-		}
-	}
-	
+
 	//**** listar grupos en mapa ****//
-	else{	
 		//pido datos de bdd
-		$http({ 
+			$http({ 
 				url:"../php/abm/grupos.listado.php",
 			})
 			.success(function(data, status){
@@ -51,5 +38,4 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				//variable global para listar grupos en google-maps
 				grupos=data;
 			});
-	}
 });

@@ -7,11 +7,10 @@ class Grupo{
 	private $latitud;
 	private $estado;
 	private $borrado;
-	private $banneado;
 	private $fk_multimedia;
 	private $fk_usuario;
 	public static $tabla = "grupo";
-	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA','FKUSUARIO','BANNEADO'];
+	private static $fila = ['NOMBRE', 'LONGITUD','LATITUD','ESTADO','BORRADO','FKMULTIMEDIA','FKUSUARIO'];
 
 	public function setCodigoGrupo($a){
 		$this->codigo_grupo = $a;
@@ -46,12 +45,6 @@ class Grupo{
 	public function getBorrado(){
 		return $this->borrado;
 	}
-	public function setBanneado($a){
-		$this->banneado = $a;
-	}
-	public function getBanneado(){
-		return $this->banneado;
-	}
 	public function setFkMultimedia($a){
 		$this->fk_multimedia = $a;
 	}
@@ -78,7 +71,6 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
-				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);
@@ -107,9 +99,6 @@ class Grupo{
 					break;
 					case "borrado":
 						$this->setBorrado($valor);
-					break;
-					case "banneado":
-						$this->setBanneado($valor);
 					break;
 					case "fk_multimedia":
 						$this->setFkMultimedia($valor);
@@ -170,7 +159,6 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
-				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);
@@ -194,7 +182,6 @@ class Grupo{
 				$grupo->latitud = $fila['LATITUD'];
 				$grupo->estado = $fila['ESTADO'];
 				$grupo->borrado = $fila['BORRADO'];
-				$grupo->banneado = $fila['BANNEADO'];
 				$grupo->fk_multimedia = $fila['FKMULTIMEDIA'];
 				$grupo->fk_usuario = $fila['FKUSUARIO'];
 				$grupo->cargarDatos($fila);

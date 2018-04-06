@@ -103,7 +103,7 @@
 			<!--Creacion del mapa-->
 			map = new google.maps.Map(id('map'), { 
 				center: {lat: -34.568101 , lng: -58.470378499999995},
-				zoom: 16,
+				zoom: 13,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
@@ -127,6 +127,18 @@
 			
 			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
 			id('registroMapa-continue-btn').onclick=function(){
+			
+			//**** para editar direccion usuario ****//
+	/* if(localStorage.getItem("editar_usuario")=="Direccion"){
+		if(localStorage.getItem("user_urban")!=undefined){ //else error
+			var datos_usuario=angular.fromJson(localStorage.getItem("user_urban"));
+			tn(id("title-container"),"p",0).innerHTML="Cambiar Dirección";
+			tn(id("title-container"),"input",0).placeholder=datos_usuario.DIRECCION;
+			posicion_usuario["LATITUD"]=datos_usuario.LATITUD;
+			posicion_usuario["LONGITUD"]=datos_usuario.LONGITUD;
+		}
+	} */
+	
 				<!--Saco la direc-->
 				var direc=places[0].name;
 				
