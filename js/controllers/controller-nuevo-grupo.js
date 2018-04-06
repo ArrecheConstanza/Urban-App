@@ -35,6 +35,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		})
 		.then(function(response){
 			if(response.data){
+				localStorage.removeItem("en_proceso");
+
 				//**** crear chat para grupo *****//
 				datos="id_grupo="+response.data;
 				$http({
@@ -76,6 +78,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				.success(function(data, status){
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
+						localStorage.setItem("recien_creado","true");
 						$location.path("/publicaciones");
 					}
 					else{
@@ -83,6 +86,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 						console.log("error no hay data en usuario_grupo");
 					}
 				});
+				//window.location.href="/urban-app/index.html#/";
 			}
 			else{
 				//console.log("error no hay response data");

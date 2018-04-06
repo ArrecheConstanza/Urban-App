@@ -255,6 +255,7 @@
 									
 									<!---------------REDIRECCION A INEDX newGrupo para guardado de datos en bdd----------------->
 									if(localStorage.getItem("nuevo_grupo_position")!=null){
+										localStorage.setItem("en_proceso","true");
 										window.location.href="/urban-app/index.html#/newGrupo";
 									}
 								}
