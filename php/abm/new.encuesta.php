@@ -8,8 +8,21 @@
 	require_once('../clases/DBcnx.php');
 	require_once('../clases/Encuesta.php');
 	require_once('../clases/Opciones.php');
+	require_once('../clases/Validacion.php');	
 	
+	/***** Validacion ******/
 	
+	$reglas = [
+		'PREGUNTA' => 'required|pregunta'
+	];
+
+$validacion = new Validacion($_POST, $reglas);
+$rta= json_encode($validacion->getErrores())."\n";
+
+//mensaje error
+if(count(json_decode($rta))){
+	echo $rta;
+}else{
 	/****** Creo encuesta ******/
 	
 	if(isset($_SESSION["s_id"])){
@@ -84,5 +97,5 @@
 	else{
 		echo 0; //no logueado
 	}	
-	
+}	
 ?>

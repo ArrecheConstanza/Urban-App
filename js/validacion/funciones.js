@@ -22,3 +22,7 @@
 		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,200})?$/;
 		return exp.test( val);
 	}
+	function validar_pregunta(val){
+		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/;
+		return exp.test( val);
+	}

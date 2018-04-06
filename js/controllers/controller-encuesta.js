@@ -48,13 +48,21 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				}
 			}
 			else{
-				//MODAL MAXIMO 10 PREGUNTAS
+				//MODAL MAXIMO 10 OPCIONES
 			}
 		};
 		
 		$scope.addInputItem();
 		
 	//************* CREAR *************//
+	
+		//valido onblur
+		var datos_encuesta=tn(tn(document,'form',0),'input');
+		for(var i=0;i<datos_encuesta.length;i++){
+			datos_encuesta[i].onblur=function(){
+				validar_encuesta(this);
+			}
+		}
 
 		$scope.crear_encuesta=function(encuesta){
 		//datos del form
@@ -65,8 +73,12 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				OPCIONES: $scope.items //array opciones
 			}
 			
+			//valido submit
+			for(var i=0;i<datos_encuesta.length;i++){
+				validar_form(datos_encuesta[i],"submit");
+			}
 			
-			//FALTA validacion de datos 
+			var mensaje=tn(tn(document,'form',0),'p');
 			
 			var pregunta=datos_encuesta["PREGUNTA"];
 			pregunta.upload = Upload.upload({
@@ -75,6 +87,7 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				data: datos_encuesta,
 			})
 			.then(function(response){
+			if(!mensaje.length){
 				if(response.data=="ok"){
 					//modal exito?
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
@@ -84,6 +97,7 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 				else{
 					//modal error
 				} 
+			}
 			}
 			,function(response){
 				//modal error

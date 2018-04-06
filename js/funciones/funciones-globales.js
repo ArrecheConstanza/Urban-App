@@ -191,6 +191,38 @@ function detallePublicacion(publi){
 
 
 
+/////////VALIDACION DE ENCUESTA
+function validar_encuesta(e,estado){
+		switch(e.name){
+			case 'pregunta':
+				if (e.value) {
+					if(!validar_pregunta(e.value)){
+						var tx=txt('Minimo 3 caracteres');
+					}
+				}
+			break;
+		}
+		if(tx){
+			e.style.borderBottom='solid red 1px';
+			var p=tn(e.parentNode,'p',0);
+			if(p==undefined){
+				p=ce('p');
+				p.className='mensaje-validacion';
+				ac(p,tx);
+				e.parentNode.insertBefore(p,e);
+			}
+		}
+		else{
+			if(!estado){
+				e.style.borderBottom='1px solid #aaa';
+				var p=tn(e.parentNode,'p',0);
+				if(p!=undefined){
+					rc(p.parentNode,p);
+				}
+			}
+		}
+}
+
 
 
 

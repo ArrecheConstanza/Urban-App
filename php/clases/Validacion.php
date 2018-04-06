@@ -103,4 +103,10 @@ class Validacion{
 			$this->addError($campo, "Minimo 3 caracteres.");
 		}
 	}
+	protected function _pregunta($campo){
+		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/";
+		if (!preg_match($exp,$this->dts[$campo])) {
+			$this->addError($campo, "Minimo 3 caracteres.");
+		}
+	}
 }
