@@ -30,7 +30,6 @@
 			"LATITUD"=>$grupo[0]->getLatitud(),
 			"ESTADO"=>$grupo[0]->getEstado(),
 			"BORRADO"=>$grupo[0]->getBorrado(),
-			"BANNEADO"=>$grupo[0]->getBanneado(),
 			"FKMULTIMEDIA"=>$grupo[0]->getFkMultimedia(),
 			"FOTO" => $array_foto
 		];

@@ -13,20 +13,26 @@
 	$grupo_obj= new Grupo();
 	$rta=$usuario_grupo->traer_grupos_usuario($_POST["id"]);
 	$arrayFinal=array();
+	//$array=array();
 	foreach($rta as $grupo){
 		$rta2=$grupo_obj->getByPk($grupo->getCodigoGrupo());
+		$array='';
 		foreach($rta2 as $ans){
-			$array=[
-				"ID"=>$ans->getCodigoGrupo(),
-				"NOMBRE"=>$ans->getNombre(),
-				"LONGITUD"=>$ans->getLongitud(),
-				"LATITUD"=>$ans->getLatitud(),
-				"ESTADO"=>$ans->getEstado(),
-				"BORRADO"=>$ans->getBorrado(),
-				"FKMULTIMEDIA"=>$ans->getFkMultimedia()
-			];
+			if($ans->getBorrado()=="No"){
+				$array=[
+					"ID"=>$ans->getCodigoGrupo(),
+					"NOMBRE"=>$ans->getNombre(),
+					"LONGITUD"=>$ans->getLongitud(),
+					"LATITUD"=>$ans->getLatitud(),
+					"ESTADO"=>$ans->getEstado(),
+					"BORRADO"=>$ans->getBorrado(),
+					"FKMULTIMEDIA"=>$ans->getFkMultimedia()
+				];
+			}
 		}
-		$arrayFinal[]=$array;
+		if($array!=''){
+			$arrayFinal[]=$array;
+		}
 	}
 	echo json_encode($arrayFinal);
 ?> 

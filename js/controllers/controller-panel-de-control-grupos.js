@@ -22,7 +22,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				data.push("BORRADO="+$scope.borrado);
 			}
 		}
-		if(estado_banneado!="undefined"){
+		/*if(estado_banneado!="undefined"){
 			if(estado_banneado!=$scope.banneado){
 				if($scope.banneado){
 					$scope.banneado="No";
@@ -32,7 +32,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				}
 				data.push("BANNEADO="+$scope.banneado);
 			}
-		}
+		}*/
 		
 		if(data.length){
 			data.push("ID="+$routeParams["id"]);
@@ -68,6 +68,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
+				console.log(data);
 				//corregir para host
 				if(data[0]["FOTO"]!=null){
 					data[0]["FOTO"]=data[0]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
@@ -84,14 +85,14 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				$scope.datosSQLgrupo=angular.fromJson(data[0]);
 				
 				
-				$scope.buttonPositionBanneado=function(){
+				/*$scope.buttonPositionBanneado=function(){
 					if($scope.banneado){
 						$scope.banneado=false;
 					}
 					else{
 						$scope.banneado=true;
 					}
-				}
+				}*/
 				$scope.buttonPositionBorrado=function(){
 					if($scope.borrado){
 						$scope.borrado=false;
@@ -106,11 +107,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				if(data[0]["BORRADO"]=="No"){
 					$scope.borrado=true;
 				}
-				if(data[0]["BANNEADO"]=="No"){
-					$scope.banneado=true;
-				}
 				
-				estado_banneado=$scope.banneado;
 				estado_borrado=$scope.borrado;
 			})
 			.error(function(data){
@@ -125,7 +122,7 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 
 			$http({ 
 				method:"POST",
-				url:"php/abm/traer.grupos.php",
+				url:"php/abm/traer.grupos.todos.php",
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){

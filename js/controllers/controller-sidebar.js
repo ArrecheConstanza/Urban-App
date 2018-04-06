@@ -80,6 +80,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data, status){
+			
 			//cambio fk_multimedia por la direccion de la foto
 				$http({ 
 					url:"/urban-app/php/abm/traer.multimedia.php"

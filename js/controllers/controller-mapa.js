@@ -4,8 +4,13 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 
 	//**** listar grupos en mapa ****//
 		//pido datos de bdd
+		
+		var datos="id_grupo="+id;
 			$http({ 
+				method:"POST",
 				url:"../php/abm/grupos.listado.php",
+				data: "mapa=true",	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
 				if(data=="0"){

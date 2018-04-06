@@ -220,7 +220,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				if(data=="1"){
+				if(data=="1 "){
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
 					$routeParams.id=id;

@@ -49,7 +49,7 @@ class Usuario_Grupo{
 	
 	public static function traer_grupos_usuario($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id'";
+		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id' ";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
