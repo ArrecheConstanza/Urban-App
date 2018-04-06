@@ -170,6 +170,28 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 									}); 
 								}
 						}
+						$scope.abandonar_grupo=function(){
+							modal("¿Desea abandonar el grupo <b>"+$scope.un_grupo.NOMBRE+"</b>?","&#10004;");
+							var ventana_modal=id("ventana_modal");
+							var boton_si=tn(ventana_modal,"button",0);
+								boton_si.onclick=function(){
+									var union = 'id_grupo='+$scope.un_grupo.ID;
+									$http({
+										method: 'POST',
+										data : union,
+										url:"php/abm/grupo.abandonar.php",
+										headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+									})
+									.success(function(data){
+										 if(data=='1'){ //modal eliminado con exito
+											location.reload();
+										} 
+										else{
+											//modal error al eliminar grupo
+										}
+									}); 
+								}
+						}
 					}
 					else{
 						//error usuario no logeado
