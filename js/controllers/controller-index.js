@@ -6,7 +6,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 	$scope.$back = function() { 
 		window.history.back();
 	};
-	
+		
 	//funcion para cargar o no el header
 	$scope.header_footer=function(){
 		if(!$location.path().search("/reportarPublicacion/")){
@@ -89,6 +89,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			$window.location.href= "../urban-app/vistas/chat.html" ;
 		}
 	}
+	
+		
+	//**** si no hay grupo 
+	if(localStorage.getItem("hay_grupo")!=null&&localStorage.getItem("hay_grupo")=="no"){
+		$location.path("sin_grupo");
+	}
+	
 
 	//**** FILTRO ****//
 
@@ -172,8 +179,8 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			
 	
 	//*************************
-
 	//nombre de grupo en footer
+	
 	if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 		$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
 		var datos="id="+$scope.id_grupo;
@@ -193,15 +200,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			//mensaje Sin conexion 
 		});
 		
-		if(localStorage.getItem("grupo_seleccionado_urban")!=null){
-		var id=localStorage.getItem("grupo_seleccionado_urban");
-		var datos="id="+id;
-		}
-		else{
-			//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
-		}
 	}
-	
 	
 	//Si ya esta logeado el usuario
 	if(localStorage.getItem("user_urban")!=null){
@@ -219,8 +218,31 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			})
 			.success(function(data, status){
 				if(data=="1 "){
+					if(localStorage.getItem("hay_grupo")!=null&&localStorage.getItem("hay_grupo")=="no"){
+						localStorage.removeItem("hay_grupo");
+					}
 					localStorage.removeItem("unir_a_grupo_id");
 					localStorage.setItem("grupo_seleccionado_urban",id);
+					
+					//nombre de grupo en footer
+					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+						$scope.id_grupo=localStorage.getItem("grupo_seleccionado_urban");
+						var datos="id="+$scope.id_grupo;
+						$routeParams.id=localStorage.getItem("grupo_seleccionado_urban");
+						$http({ 
+							method:"POST",
+							url:"php/abm/un.grupo.php",
+							data: datos,	
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data, status){
+							$scope.nombre_footer=data[0].NOMBRE;
+							$scope.id_grupo=$routeParams.id;
+						})
+						.error(function(){
+							//mensaje Sin conexion 
+						});
+					}
 					$routeParams.id=id;
 					$location.path("/publicaciones/"+id);
 				}
@@ -232,12 +254,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				//modal("error");
 			});
 		}
-		if($location.path()==""){ //usuario recien logueado enviado a listado de publicaciones (REVER, si no tiene grupo enviarlo a mapa para union o creacion de grupo)
+		if($location.path()==""){ //usuario recien logueado enviado a listado de publicaciones (REVER)
 			$location.path( "/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban") );
 		}
 		else{ //hay path, usuario enviado a esa locacion
 			var path=$location.path();
 			$location.path( path );
+		
 		}
 	}
 	else if(localStorage.getItem("user_urban")==null&&localStorage.getItem("dts_user")!=null&&localStorage.getItem("direc_user")!=null){

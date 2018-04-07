@@ -86,7 +86,6 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 						console.log("error no hay data en usuario_grupo");
 					}
 				});
-				//window.location.href="/urban-app/index.html#/";
 			}
 			else{
 				//console.log("error no hay response data");

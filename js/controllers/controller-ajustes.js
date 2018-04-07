@@ -4,8 +4,15 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	
 	$scope.listado_grupos=[];
 	//boton volver
+	$scope.unite_a_grupo=false;
+	
 	$scope.back=function(){
-		window.location.href=localStorage.getItem("urban_url");
+		if($scope.unite_a_grupo){
+			$location.path("/sin_grupo");
+		}
+		else{
+			window.location.href=localStorage.getItem("urban_url");
+		}
 	}
 	
 	//****** C O N T R O L L E R   M O D A L ******//
@@ -268,6 +275,14 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 	})
 	.success(function(data){
+		console.log(data);
+		if(data.length=="0"){
+			localStorage.setItem("hay_grupo","no");
+			$scope.unite_a_grupo=true;
+		}
+		else{
+			$scope.unite_a_grupo=false;
+		}
 		localStorage.setItem("grupos_usuario_urban",angular.toJson(data));
 		$scope.listado_grupos=data;
 		

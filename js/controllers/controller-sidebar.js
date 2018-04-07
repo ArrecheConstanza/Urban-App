@@ -94,7 +94,16 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					});
 				}
 				else if(data.length==0){ //redireccion a mapa para union de grupo
-					$window.location.href = '/urban-app/vistas/mapa.html';
+					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
+						localStorage.removeItem("grupo_seleccionado_urban");
+					}
+					localStorage.setItem("hay_grupo","no");
+					//$window.location.href = '/urban-app/vistas/mapa.html';
+				}
+				else{
+					if(localStorage.getItem("hay_grupo")!=null){
+						localStorage.removeItem("hay_grupo");
+					}
 				}
 				//cambio fk_multimedia por la direccion de la foto
 					$http({ 

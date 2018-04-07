@@ -52,6 +52,7 @@
 					$arrayFinal[]=$array;
 				}
 			}
+			//var_dump($usuario_grupo);
 			echo json_encode($arrayFinal);
 		}
 	}

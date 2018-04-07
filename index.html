@@ -101,7 +101,7 @@
 			</a>
 			
 			<!-- FILTRO -->
-			<a href="" class="pull-right menuIcon" ng-click="modal_filtrar()" > 
+			<a id="es_filtro" href="" class="pull-right menuIcon" ng-click="modal_filtrar()" > 
 			<div class="pull-right" id="buscador">
 				<!-- <span class="glyphicon glyphicon-search glyphicon-sm"></span> -->
 				 <img src="img/icons/png/filtro.png" alt="filtro" class="glyphicon" />
@@ -130,7 +130,7 @@
 	
 	<!--------  FOOTER  --------->
 	
-	<div ng-show="header_footer()" ng-include="'vistas/footer.html'"></div>
+	<div id="es_footer" ng-show="header_footer()" ng-include="'vistas/footer.html'"></div>
 	
 	<!--fin de body-->
 	
@@ -193,6 +193,9 @@
 	
 	<!--Controller ajustes-->
 	<script src="js/controllers/controller-ajustes.js"></script>
+
+	<!--Controller sin grupo-->
+	<script src="js/controllers/controller-sin-grupo.js"></script>
 
 	<!--Controller ayuda-->
 	<script src="js/controllers/controller-ayuda.js"></script>
