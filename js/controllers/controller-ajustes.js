@@ -183,11 +183,11 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 										headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 									})
 									.success(function(data){
-										 if(data=='1'){ //modal eliminado con exito
+										 if(data=='1'){ //modal abandonado con exito
 											location.reload();
 										} 
 										else{
-											//modal error al eliminar grupo
+											//modal error al abandonar grupo
 										}
 									}); 
 								}
