@@ -100,18 +100,18 @@
 		var map; 
 		function initMap() { 
 		
-			<!--Creacion del mapa-->
+			//Creacion del mapa
 			map = new google.maps.Map(id('map'), { 
 				center: {lat: -34.568101 , lng: -58.470378499999995},
 				zoom: 16,
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 
-			<!-- Buscador -->
+			//Buscador
 			var input=id('pac-input');
 			var searchBox = new google.maps.places.SearchBox(input);
 			
-			<!--Continuar-->
+			//Continuar
 			var continuar=id('registroMapa-continue-btn');
 			map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(continuar);
 
@@ -121,20 +121,20 @@
 			
 			var markers = [];
 			
-			<!-- Detalles del lugar -->
+			//Detalles del lugar
 			searchBox.addListener('places_changed', function() {
 			var places = searchBox.getPlaces(); //Objeto con datos de direccion Google Maps
 			
-			<!----------ONCLICK CONTINUAR, GUARDADO DE DIRECCION ----------!>
+			//ONCLICK CONTINUAR, GUARDADO DE DIRECCION 
 			id('registroMapa-continue-btn').onclick=function(){
-				<!--Saco la direc-->
+				//Saco la direc
 				var direc=places[0].name;
 				
-				<!-- Saco la lat y la long -->
+				// Saco la lat y la long
 				var lat=places[0].geometry.location.lat();
 				var lon=places[0].geometry.location.lng();
 				
-				<!--Guardo todo en localStorage-->
+				//Guardo todo en localStorage
 				var obj_direccion={
 					DIRECCION : direc,
 					LATITUD : lat,
@@ -142,7 +142,7 @@
 				}
 				localStorage.setItem("direc_user",JSON.stringify(obj_direccion));
 				
-				<!---------------REDIRECCION A INEDX registroUno para guardado de datos en bdd----------------->
+				//REDIRECCION A INEDX registroUno para guardado de datos en bdd
 				if(localStorage.getItem("direc_user")!=null){
 					window.location.href="/urban-app/index.html#/registroUno";	
 				}
@@ -151,13 +151,13 @@
 			  return;
 			}
 
-			<!-- Borrado de markers anteriores -->
+			//Borrado de markers anteriores
 			markers.forEach(function(marker) {
 			  marker.setMap(null);
 			});
 			markers = [];
 
-			<!-- Por cada lugar pedir el icono, nombre y location -->
+			//Por cada lugar pedir el icono, nombre y location
 			var bounds = new google.maps.LatLngBounds();
 			places.forEach(function(place) {
 			  var icon = {
@@ -168,7 +168,7 @@
 				scaledSize: new google.maps.Size(50, 60)
 			  };
 
-			  <!-- Crear un marker para ese lugar -->
+			  //Crear un marker para ese lugar
 			  markers.push(new google.maps.Marker({
 				map: map,
 				icon: icon,
