@@ -13,8 +13,18 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				if(data=="0"){
-					console.log("error, no esta iniciada la sesion");
+				if(data=="0"){ // no logueado
+					$http({
+						method: 'GET',
+						url:"php/abm/logout.usuario.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							window.localStorage.removeItem("user_urban");
+							$location.path("/");
+						}
+					});
 				}
 				else{
 					//cambio fk_multimedia por la direccion de la foto
@@ -38,7 +48,20 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 					.error(function(data){
 						//modal("error");
 					});
-				}
+						//******* si ya esta unido no aparece el boton para unirse
+						$http({ 
+							method:"POST",
+							url:"../php/abm/usuario.grupos.listado.php",
+							data: "id=este",	
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data3, status){
+							console.log(data3);
+						})
+						.error(function(data){
+							//modal("error");
+						});
+					}
 				
 				//variable global para listar grupos en google-maps
 				grupos=data;

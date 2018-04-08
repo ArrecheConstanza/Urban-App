@@ -12,6 +12,9 @@
 	if(isset($_SESSION["s_id"])){
 		$usuario_grupo= new Usuario_Grupo();
 		$grupo_obj= new Grupo();
+		if($_POST['id']=="este"){
+			$_POST["id"]=$_SESSION["s_id"];
+		}
 		$rta=$usuario_grupo->traer_grupos_usuario($_POST["id"]);
 		$arrayFinal=array();
 		foreach($rta as $grupo){
