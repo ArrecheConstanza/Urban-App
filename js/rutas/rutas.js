@@ -18,6 +18,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/perfil.html',
 			controller : 'perfilCtrl'
 		})
+		.when('/sin_grupo', {
+			templateUrl : 'vistas/sin_grupo.html',
+			controller : 'sinGrupoCtrl'
+		})
 		.when('/ayuda', {
 			templateUrl : 'vistas/ayuda.html',
 			controller : 'AyudaCtrl'
@@ -123,6 +127,6 @@ Urban.config(function($routeProvider) {
 			controller : 'panelDeControlPublicacionesCtrl'
 		}) 
 		.otherwise({
-			redirectTo: '/publicaciones'
+			redirectTo: '/'
 		});
 });

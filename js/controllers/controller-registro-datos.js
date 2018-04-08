@@ -58,11 +58,11 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 		})
 		.success(function(data){
 			if(!isNaN(data.ID)){
-				//redireccion a home de usuario
+				//redireccion a mapa para union de grupo
 				window.localStorage.removeItem("dts_user");
 				window.localStorage.removeItem("direc_user");
 				localStorage.setItem("user_urban",JSON.stringify(data));
-				$window.location.href= "../urban-app/index.html" ;
+				$window.location.href= "../urban-app/vistas/mapa.html" ;
 			}
 			else if(data===''){
 				var p=ce('p');

@@ -2,6 +2,16 @@
 
 Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams){
 	
+	if(localStorage.getItem("recien_creado")!=null&&localStorage.getItem("recien_creado")=="true"){
+		localStorage.removeItem("recien_creado");
+		location.reload();
+	}
+	id("es_footer").style.display="inline-block";
+			id("nav-bar").style.display="inline-block";
+			id("es_filtro").style.display="inline-block";
+	if(localStorage.getItem("hay_grupo")!=null&&localStorage.getItem("hay_grupo")=="no"){
+			localStorage.removeItem("hay_grupo");			
+		}
 	//icono filtro
 		id("buscador").style.display='inline-block';
 

@@ -177,9 +177,11 @@
 				  var titulo_grupo=grupos[i]["NOMBRE"];
 				  var estado_grupo=grupos[i]["ESTADO"];
 				  var foto_grupo=grupos[i]["FKMULTIMEDIA"]; 
+				  var id_grupo=grupos[i]["ID"]; 
 				  
+				  <!-- modal de mapa -->
 				  infowindow.push(new google.maps.InfoWindow({ 
-					content: '<div class="informacion"><img alt="'+estado_grupo+'" src="../img/icons/png/'+estado_grupo.toLowerCase()+'-mini.png"></img><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" id="'+markers.length+'" value="Unirme" class="form-control btn btn-default"></input></div>'
+					content: '<div class="informacion"><img alt="'+estado_grupo+'" src="../img/icons/png/'+estado_grupo.toLowerCase()+'-mini.png"></img><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" id="'+id_grupo+'" value="Unirme" class="form-control btn btn-default"></input></div>'
 				  }));  
 				  
 			  }
@@ -245,7 +247,7 @@
 										var lat=marker.getPosition().lat();
 										var lng=marker.getPosition().lng();
 										
-										<!--Guardo todo en un objeto-->
+									<!--Guardo todo en un objeto-->
 										var position={
 											LATITUD : lat,
 											LONGITUD : lng
@@ -254,6 +256,7 @@
 									
 									<!---------------REDIRECCION A INEDX newGrupo para guardado de datos en bdd----------------->
 									if(localStorage.getItem("nuevo_grupo_position")!=null){
+										localStorage.setItem("en_proceso","true");
 										window.location.href="/urban-app/index.html#/newGrupo";
 									}
 								}

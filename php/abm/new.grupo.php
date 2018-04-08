@@ -16,6 +16,7 @@
 	
 	if(isset($_SESSION["s_id"])){
 		$grupo = new Grupo();
+		$_POST['FKUSUARIO']=$_SESSION["s_id"];
 		$fin=json_decode($grupo->crear_grupo($_POST),true);
 
 		
@@ -54,14 +55,13 @@
 			}
 			
 			echo $ultimo_grupo[0]->getCodigoGrupo();
-			return 0;
 		}
 		else{ //error al crear grupo
 			echo 0;
 		}
 	}
 	else{
-		echo 0;
+		echo "no logueado";
 	}	
 	
 ?>

@@ -10,7 +10,7 @@
 	require_once('../clases/Usuario_Grupo.php');
 	
 	if(isset($_SESSION["s_id"])){
-		if(!isset($_POST)){
+		if(isset($_POST["mapa"])){
 			$grupo=Grupo::all();
 			$arrayFinal=array();
 			
@@ -27,7 +27,6 @@
 				$arrayFinal[]=$array;
 			}
 			echo json_encode($arrayFinal);
-			return 0;
 		}
 		else{
 			$usuario_grupo=new Usuario_Grupo();
@@ -53,13 +52,12 @@
 					$arrayFinal[]=$array;
 				}
 			}
+			//var_dump($usuario_grupo);
 			echo json_encode($arrayFinal);
-			return 0;
 		}
 	}
 	else{ //no logueado
 		echo 0;
-		return 0;
 	}
 ?> 
 

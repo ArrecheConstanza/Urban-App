@@ -1,11 +1,18 @@
 <?php
 
 class Usuario_Grupo{
+	private $codigo_usuario_grupo;
 	private $codigo_grupo;
 	private $codigo_usuario;
 	public static $tabla = "usuario_grupo";
 	private static $fila = ['FKUSUARIO', 'FKGRUPO'];
 
+	public function setCodigoUsuarioGrupo($a){
+		$this->codigo_usuario_grupo = $a;
+	}
+	public function getCodigoUsuarioGrupo(){
+		return $this->codigo_usuario_grupo;
+	}
 	public function setCodigoGrupo($a){
 		$this->codigo_grupo = $a;
 	}
@@ -23,6 +30,9 @@ class Usuario_Grupo{
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {
 				switch($prop){
+					case "codigo_usuario_grupo":
+						$this->setCodigoUsuarioGrupo($valor);
+					break;
 					case "codigo_grupo":
 						$this->setCodigoGrupo($valor);
 					break;
@@ -49,7 +59,7 @@ class Usuario_Grupo{
 	
 	public static function traer_grupos_usuario($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id'";
+		$query = "SELECT * FROM " . static::$tabla . " WHERE FKUSUARIO='$id' ";
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

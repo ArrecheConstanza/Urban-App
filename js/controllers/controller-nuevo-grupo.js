@@ -35,6 +35,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		})
 		.then(function(response){
 			if(response.data){
+				localStorage.removeItem("en_proceso");
+
 				//**** crear chat para grupo *****//
 				datos="id_grupo="+response.data;
 				$http({
@@ -76,8 +78,8 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				.success(function(data, status){
 					if(data!="0"){
 						localStorage.setItem("grupo_seleccionado_urban",data);
-						//localStorage.removeItem("unir_a_grupo_id");
-						$location.path("/publicaciones");
+						localStorage.setItem("recien_creado","true");
+						$location.path("/publicaciones/"+response.data);
 					}
 					else{
 						//modal, error al crear grupo
@@ -86,7 +88,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				});
 			}
 			else{
-				console.log("error no hay response data");
+				//console.log("error no hay response data");
 			}
 		}
 		,function(response){
