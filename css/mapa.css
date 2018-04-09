@@ -131,6 +131,36 @@ p{
 	margin:0;
 	padding:.2em;
 }
+
+
+.informacion_ya_unido{
+	text-align:center;
+	display:inline-block;
+}
+.informacion_ya_unido h3{
+	font-size:1em;
+	text-transform:none;
+	letter-spacing:normal;
+	margin:0;
+	text-align:left;
+}
+.informacion_ya_unido img:nth-child(2){  /**a editar**/
+	width:50px;
+	height:50px;
+	overflow:hidden;
+	border-radius:50%;
+	border:#e0dcdc 1px solid;
+}
+.informacion_ya_unido p{
+	text-align:left;
+	padding-top:.2em;
+	color:black!important;
+}
+.informacion_ya_unido input{
+	margin:0;
+	padding:.2em;
+}
+
 .nuevo_grupo{
 	padding:.3em .9em!important;
 }
