@@ -1,0 +1,180 @@
+/**************************STYLE LISTAR PUBLICACIONES***************************/
+*{margin:0;padding:0;}
+
+#publicaciones_listado_crear_publicacion{
+	display:inline-block;
+	background:grey;
+	text-transform:uppercase;
+	font-size:1.2em;
+	color:white;
+	box-shadow:2px 2px black;
+	padding:1em;
+	width:100%;
+	text-align:center;
+	letter-spacing:.1em;
+}
+
+#publicaciones{
+   padding-top:95px!important;
+}
+
+#listado-publicaciones li img:nth-child(1){
+	position:absolute;
+}
+
+#listado-publicaciones li{
+padding: .5em;
+}
+
+#listado-publicaciones li p{
+	/* display: block;
+    text-align: left;
+    margin-left: 32%; */
+    color: #484848;
+/*     letter-spacing: 2.5px;
+ */	font-family:'HelveticaNeueLTStdLight';
+	font-weight:600;
+	font-size:15px;
+}
+#listado-publicaciones li small{
+    text-align: right;
+    display: block;
+    color: #b3b3b3;
+	font-family:'HelveticaNeueLTStdLight';
+    letter-spacing: 1px;
+}
+#listado-publicaciones li span{
+	bottom:0;
+	padding-bottom:.5em;
+}
+#listado-publicaciones li div{
+	display:inline-block;
+	padding-left:.3em;
+	
+}
+#listado-publicaciones li h2{
+	display:inline-block;
+	font-size:1em;
+	text-transform:none;
+	font-family:'HelveticaNeueLTStd';
+    color: #0a384a;
+    letter-spacing: 2px;
+	margin-top:0;
+	margin-bottom:.1em;
+}
+
+#detalle-publicacion #img-detalle{
+	display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 10%;
+}
+#detalle-publicacion h2{
+    color: #8fb33f;
+    font-size: 25px;
+}
+
+#detalle-publicacion p{
+    margin-top: 8%;
+    color: #656464;
+	font-family:'HelveticaNeueLTStdLight';
+    letter-spacing: 2px;
+	font-size:15.5px;
+}
+
+#detalle-publicacion small{
+    display: block;
+    margin-top: 5%;
+    color: #a7a7a7;
+    letter-spacing: 1px;
+	font-family:'HelveticaNeueLTStdLight';
+}
+
+#detalle-publicacion .edit-delete-container img{
+    width: 40px;
+}
+
+#detalle-publicacion .edit-delete-container #borrar{
+    width: 50px;
+}
+
+#detalle-publicacion .edit-delete-container{
+	width: 350px;
+    display: block;
+    text-align: right;
+}
+
+#detalle-publicacion .edit-delete-container #link-editar{
+    margin-top: -14%;
+    float: right;
+    margin-right: 15%;
+}
+
+#detalle-publicacion .edit-delete-container #link-borrar{
+	margin-top: -15%;
+    float: right;
+}
+#detalle-publicacion .edit-delete-container #link-reportar{
+	margin-top: -13%;
+    float: right;
+}
+
+#pref{
+    width: 32px;
+    margin-right: 5%;
+}
+
+#ayuda{
+	width:30px;
+    margin-right: 5%;
+}
+
+#cerrar{
+	width:27px;
+    margin-right: 5%;
+}
+
+#mapa-menu{
+	width:27px;
+    margin-right: 5%;
+}
+
+.group-menu{
+	margin-right:3%;
+}
+
+.group-menu-2{
+	margin-right:5%;
+}
+
+#nombre-menu{
+    color: #0f5773;
+}
+
+.img-publi{
+	/* max-width:50px;
+	max-height:50px; */
+	vertical-align: top!important;
+	object-fit: cover;
+	width:70px;
+	height:70px;
+}
+
+#listado-comentario-publicaciones{
+	margin-top:4em;
+}
+#listado-comentario-publicaciones p{
+	display:inline-block;
+	margin:0;
+	padding:0;	
+}
+#listado-comentario-publicaciones span{
+	color:grey;
+	font-size:.9em;
+	display:inline-block;
+	text-align:right;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+

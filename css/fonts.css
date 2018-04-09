@@ -1,0 +1,41 @@
+
+/*******************************************
+********** ARCHIVO BLACK *************
+*******************************************/
+@font-face {
+    font-family: 'archivo_blackregular';
+    src: url('../fonts/archivoblack-webfont.woff2') format('woff2'),
+        url('../fonts/archivoblack-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*******************************************
+************* HELVÉTICA ****************
+*******************************************/
+/* Light */
+@font-face {
+    font-family: 'HelveticaNeueLTStdLight';
+    src: url('../fonts/HelveticaNeueLTStd-Lt.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Medium */
+@font-face {
+    font-family: 'HelveticaNeueLTStd';
+    src: url('../fonts/HelveticaNeueLTStd-Md.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Black */
+@font-face {
+    font-family: 'HelveticaNeueLTStdBlack';
+    src: url('../fonts/HelveticaNeueLTStd-Blk.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+

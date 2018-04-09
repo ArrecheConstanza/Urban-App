@@ -1,0 +1,58 @@
+
+	<!--- ******CONTENIDO (VISTA PANEL DE CONTROL)****** -->
+	
+	
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/panel-de-control-estadisticas.css"); </style> 
+	
+	<!-- LISTADO -->
+	<div class="scrollable">
+		<div class="scrollable-content">
+		<!-- Titulo Perfil, Volver, foto-->
+			<div>
+				<!-- Icono -->
+				<div>
+					<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+						<span ng-click="back()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+					</div>
+					<!-- Texto -->
+					<h1 class="text-center subtitulo">Estadisticas </h1>
+				</div>
+				
+			</div>
+		
+			<!-- Listado de estadisticas -->
+			<div>
+			<h2>Usuarios</h2>
+			<canvas id="datos_crecimiento_usuario" width="auto" height="auto"></canvas>
+			<h3>Cantidad: {{ info_usuarios.length }}</h3>
+			<canvas id="datos_nivel" width="auto" height="auto"></canvas>
+			<canvas id="datos_user_borrado" width="auto" height="auto"></canvas>
+			<hr>
+			
+			<h2>Grupos</h2>
+			<h3>Cantidad: {{ info_grupos.length }}</h3>
+			<canvas id="datos_grupo_estado" width="auto" height="auto"></canvas> 
+			<canvas id="datos_grupo_borrado" width="auto" height="auto"></canvas>
+			<hr>
+			
+			
+			<h2>Alarmas</h2><h3>Cantidad: {{ alarmas_activadas.length }}</h3>
+			<canvas id="datos_alarmas_activadas" width="auto" height="auto"></canvas>
+			<hr>
+			
+			<h2>Publicaciones</h2>
+			<h3>Cantidad: {{ info_publicaciones.length }}</h3>
+			<canvas id="datos_publi_categorias" width="auto" height="auto"></canvas>
+			<canvas id="datos_publi_borrado" width="auto" height="auto"></canvas>
+			
+			<hr>
+			<h2>Encuestas</h2>
+			<h3>Cantidad: {{ info_encuesta.length }}</h3>
+			<canvas id="datos_encuesta_borrado" width="auto" height="auto"></canvas> 
+				
+			</div>
+		</div>
+	</div>
+			
+		

@@ -1,0 +1,46 @@
+.modal img{
+	border-radius:50%;
+	width:40px;
+	height:40px;
+}
+.modal-backdrop{
+	z-index:auto;
+}
+
+.list-group-item{
+	border:none;
+}
+
+ul{
+	margin:0;
+	padding:0;
+	overflow: scroll;
+}
+
+h2{
+	padding:0 1em;
+}
+
+#filtro_botones button{
+	margin:1em;
+	padding:.5em;
+}
+
+.foto_grupo{
+	width:95vw!important;
+	height:auto!important;
+	border-radius:0!important;
+	margin:0!important;
+}
+
+.silenciar{
+	width:95vw;
+	
+}
+
+#filtro .scrollable-content{
+	overflow:scroll;
+}
+
+/***/
+

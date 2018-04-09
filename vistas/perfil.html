@@ -1,0 +1,63 @@
+
+	<!-- Contenedor perfil -->
+	
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/perfil.css"); </style> 
+	
+	<div class="scrollable">
+	
+	<div class="scrollable-content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+	
+		<!-- Titulo Perfil, Volver, foto-->
+		<div>
+			<!-- Icono -->
+				<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
+					<span ng-click="back()" class="glyphicon glyphicon-chevron-left" style="padding-left:.4em;padding-top:.3em;"></span>
+				</div>
+			
+				<!-- Texto -->
+				<h1 class="text-center">Actividad</h1>
+		</div>
+		
+	<div class="contenedor-perfil"> 
+		<!--Detalle perfil -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col
+		-xs-12">
+	
+		<!--Detalle grupos -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<hr>
+				<h2 class="text-center">Tus publiaciones</h2>
+
+				<ul class="list-group" id="listado-publicaciones">
+				  <li ng-repeat="item in listado_publicaciones track by $index " class="list-group-item">
+				  <a ng-click="detallePublicacion(item.ID)" class="publis">
+					<input type="hidden" name="country" value="{{item.ID}}">
+					<img class='img-publi' ng-src="{{ item.FOTO }}" />
+					<div><h2>{{ item.TITULO }}</h2>  
+					<p>{{ item.DESCRIPCION }}</p>  </div>
+					<small calss="pull-left">{{ item.CATEGORIA }}</small>  
+					<small>{{ item.FECHA_CREACION }}</small>  
+				  </a>
+				  </li>
+				</ul>
+			
+			</div>
+		
+			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<hr>
+				<h2 class="text-center">Tus encuestas</h2>
+				
+				<ul class="list-group" id="listado-publicaciones">
+				  <li ng-repeat="item in listado_encuestas track by $index " class="list-group-item" id="listado_encuestas"><a href='#detalleEncuesta/{{item.ID}}'>
+					<h2>{{ item.PREGUNTA }}</h2>  
+				<!-- 	<p>{{ item.cantidad_opciones }}</p>  --> 
+					<span class="glyphicon glyphicon-chevron-right" id="glyphicon_listado_encuesta"></span>
+					<small>{{ item.FECHA_CREACION }}</small>  
+					<small>Opciones: {{ item.cantidad_opciones }}</small>  
+				  </a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	</div>

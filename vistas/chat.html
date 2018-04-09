@@ -1,0 +1,95 @@
+<!doctype html>
+<html ng-app="BasicChat">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chatear.css">
+
+    <title>URBAN</title>
+	
+    <script src="../js/modulos/bower_components/angular/angular.js"></script>
+    <script src="../js/modulos/bower_components/angular-chat/angular-chat.js"></script>
+    <script src="../js/controllers/controller-chat.js"></script>
+	
+	<!-- script para upload de imagenes -->
+	<script>
+	
+	FileAPI = {
+        //only one of jsPath or jsUrl.
+        jsPath: '../js/FileAPI.min.js/',
+        //jsUrl: 'mgd-studio.com.ar/phps/js/FileAPI.min.js',
+
+        //only one of staticPath or flashUrl.
+        staticPath: '../js/FileAPI.flash.swf/',
+        //flashUrl: 'mgd-studio.com.ar/phps/js/FileAPI.flash.swf',
+
+        //forceLoad: true, html5: false //to debug flash in HTML5 browsers
+        //noContentTimeout: 10000 (see #528)
+    }
+	</script>
+	
+	<!-- angular-upload   -->
+	<script src="../js/modulos/ng-file-upload-shim.js"></script> <!--no html5 support -->
+	<script src="../js/modulos/ng-file-upload.js"></script>
+	
+</head>
+<body>
+
+    <div class="chat-container" ng-controller="BasicController as chat">
+
+		<!--overlay-->
+		
+		<div ng-hide="myForm.file.$valid" class="overlay chat-input ng-pristine ng-valid chat-header">
+			<div>
+				<img ng-hide="myForm.file.$valid||!picFile||myForm.file.$valid&&!picFile" ngf-src="picFile" class="img-upload"> 
+			</div>
+		</div>
+		
+		<!--header-->
+        <div class="chat-messages">
+            <div class="chat-header">
+				<div ng-include="mostrar_menu()"></div>
+				<div class="form-group file-inputs">
+					<img src="../img/icons/png/volver_chat.png" alt="volver" ng-click="$back();"/>
+					 <img ng-src="../img/{{ img }}" alt="imagen_grupo" id="imagen_grupo" class="angularjs-chat-logo"/> 
+					<h1>{{ titulo_chat }}</h1>
+					<span class="glyphicon glyphicon-sm glyphicon glyphicon-option-vertical" ng-click="modal_menu()"></span>
+				</div>
+				<!-- <div class="form-group file-inputs">
+					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" class='upload-file' ng-hide="picFile">
+ 						<i ng-show="myForm.file.$error.maxSize">Archivo muy pesado {picFile.size / 1000000|number:1}}MB: max 2M</i><!--convertir mensaje a modal--
+						<img ng-show="myForm.file.$valid" ngf-src="picFile" class="thumb"> 
+						<button ng-click="picFile = null" ng-show="picFile" class='delete-file'></button>
+						<!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>--
+				</div> -->
+					
+            </div>
+			<!--comentarios chats-->
+					<div ng-repeat="message in chat.messages track by $index" class="chat-body">
+						<div class="sent-message-{{ message.self }}">
+							<span class="username">{{ message.user.name }}:</span>
+							{{ message.data }}
+<!-- 							<img ng-src="{{ message.foto }}" class="img-responsive" id="img-detalle"/>
+ -->						</div>
+						<div class="clear"></div>
+					</div>
+        </div>
+		
+		<!--comentar-->
+        <form ng-submit="chat.send(picFile)" class="chat-input">
+            <input type="text" ng-model="chat.textbox" autofocus>
+            <input type="submit" class="send-icon" value=" ">
+            <input type="submit" value=" "
+                class="sent-indicator {{ chat.status }}">
+        </form>
+		
+    </div>
+	
+
+</body>
+</html>

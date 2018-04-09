@@ -1,0 +1,36 @@
+
+	<!-- Contenedor publicar -->
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="publicacion-datos">
+	
+		<!-- Titulo Publicar, Volver-->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
+			<!-- Icono -->
+			<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2"><span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span></div>
+		
+			<!-- Texto -->
+			<h1 class="text-center">Editar Publicacion</h1>
+		</div>
+		
+		<!--Campos container -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="container_form">
+		
+		<!-- Formulario -->
+		<form  role='form' name='publi' ng-submit='editar_publicacion(publicacion)'>
+			<!-- <select class='select' name='grupo' ng-model='publicacion.FKGRUPO' ng-init="publicacion.FKGRUPO='{{publicacion.FKGRUPO}}'">
+				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
+			</select> -->
+			<div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
+				<img ng-show='publi.FILE.$valid' ngf-src='FILE' class='thumb'>
+				<input class='upload-file'  type='file' ngf-select ng-model='publicacion.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
+			</div>
+			<input type='text' id='titulo_submit' name='titulo' class='form-control' required ng-model='publicacion.TITULO' >
+			<textarea cols='10' rows='6' name='descripcion' class='form-control' required ng-model='publicacion.DESCRIPCION' id='descripcion_submit'></textarea>
+			<select class='select' name='grupo' ng-model='publicacion.FKCATEGORIA' ng-init="publicacion.FKCATEGORIA='publicacion.FKCATEGORIA '">
+				<option ng-repeat="item in categorias track by $index "  value='{{ item.ID }}'>{{ item.TITULO }}</option>
+			</select>
+			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Editar'>
+		</form>
+		
+		</div>
+	
+	</div>

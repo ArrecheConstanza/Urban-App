@@ -1,0 +1,57 @@
+
+/********************************************* *************************************************************
+***************************************************CSS ***************************************************
+***********************************************************************************************************/
+
+/***HEADER***/
+
+#header{
+	z-index:2;
+	position:fixed;
+	width:100vw;
+	display:inline-block;
+	overflow:hidden;
+}
+/* navBar principal */
+#menu-hamburger{
+	margin-left:.2em;
+}
+
+@media (min-width: 768px){
+    .navbar-nav > li > a {
+        padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 505px){
+
+    .scrolleable-min {
+      width: 100%;
+      overflow:auto;
+    }
+     .navbar-nav {
+        width: 481px;
+    }
+    .navbar-nav > li {
+        width: auto;
+    }
+}
+
+.label-default{
+	/*font-size:1.2em!important;*/
+	margin-top:.8em!important;
+	background-color: #ffffff;
+    color: black;
+    font-size: 1em;
+}
+
+/**** footer ****/
+#masMenu a{
+    max-width: none!important;
+}
+#nombreGrupo p{
+	margin:0;
+}
+
+
+

@@ -1,0 +1,117 @@
+<!-- Estilos propios de la vista -->
+	<style> @import url("css/alarma.css"); </style> 
+	
+		<!--Alarmas container -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center la_activo" ng-controller="alarmaCtrl">
+		<!-- Titulo Alarmas y Volver -->
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12  margin-bottom-sm" id="title-container">
+			<!-- Icono -->
+		<!-- 	<a href="#/" class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2 volver-icon" ng-click="$back();"><span class="glyphicon glyphicon-chevron-left"></span></a> -->
+			
+			<!-- Texto -->
+			<h1 class="text-center">Alarma</h1>
+			
+		</div>
+		
+		
+		<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 margin-bottom-sm seccion_alarma">
+			
+				
+		<div id="alarma_inactiva">
+			<div>
+			 
+			<!-- <div id="overlay_alarma" ng-include="'vistas/overlay.html'"></div> -->
+			<div id="boton_alarma"
+				role="button"
+				class="img-response">
+
+				<div class='inner-shadow-principal'>
+				</div>
+ 				<small>Mantener presionado por 3 segundos para enviar una alerta a sus gurpos</small>
+				  <div id="fonto_boton">
+					  <div class='hold-ppal left-ppal'>
+						<div class='fill-ppal'></div>
+					  </div>
+					  <div class='hold-ppal right-ppal'>
+						<div class='fill-ppal'></div>
+					  </div>
+				  </div>
+			</div>				
+			</div>
+			
+			
+			<div class="sub_botones">
+				<div class=" loading col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				  <div class='inner-shadow policia' role="button">
+				  </div>
+				  <div class="fondo_sub_boton">
+					  <div class='hold left'>
+						<div class='fill'></div>
+					  </div>
+					  <div class='hold right'>
+						<div class='fill'></div>
+					  </div>
+					</div> 
+				</div> 
+				
+				<div class="loading col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				  <div class='inner-shadow bomberos' role="button">
+				  </div>
+					<div class="fondo_sub_boton">
+					  <div class='hold left'>
+						<div class='fill'></div>
+					  </div>
+					  <div class='hold right'>
+						<div class='fill'></div>
+					  </div>
+				  </div>
+
+				</div> 
+				
+				<div class="loading col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+				  <div class='inner-shadow ambulancia' role="button">
+				  </div>
+				  	<div class="fondo_sub_boton">
+					  <div class='hold left'>
+						<div class='fill'></div>
+					  </div>
+					  <div class='hold right'>
+						<div class='fill'></div>
+					  </div>
+				  </div>
+
+				</div> 
+			</div>
+			
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center alarma_footer">En caso de que se encuentre en peligro pulse el boton de panico, si quiere realice una seleccion mas especifica.</div>
+		</div>
+		
+		
+		<div id="alarma_activa">
+			<img alt="alarma_activada" src="img/icons/png/alarm.png"/>
+			<h2 class="text-center">ALARMA<br>ACTIVADA</h2>
+			
+			<img id="sub_alarm" alt="alarma_activada"/>
+			
+			
+			<p>La alarma ha sido enviada a <br>todos sus grupos.<br>Mantenga la calma y espere la ayuda.</p>
+			
+			<table border="0" cellspacing="0" cellpadding="0" >
+			<tr>
+			   <td><div id="cuenta">5:00</div></td>
+			</tr>
+			</table>
+		
+		</div>
+	</div>
+</div>
+	
+	<div id="myProgress">
+	  <div id="myBar"></div>
+	</div>
+			
+		
+		
+		
+		
+		

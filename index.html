@@ -1,0 +1,255 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Title -->
+	<title>URBAN</title>
+	
+	<!-- CSS -->
+	<link href="css/mobile-angular-ui-base.css" rel="stylesheet">
+	<link href="css/fonts.css" rel="stylesheet">
+
+	<!-- BOOTSTRAP CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/listar-publicaciones.css" rel="stylesheet">
+	<link href="css/listar-chats.css" rel="stylesheet">
+
+	<!-- COMPILADOR LESS  
+    <link rel="stylesheet/less" href="./css/less/bootstrap.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script> -->
+	
+	<!-- CSS que pisa al bootstrap-->
+	<link href="css/style.css" rel="stylesheet">
+	
+	<link href="css/home.css" rel="stylesheet">
+   <!-- <script src="assets/scripts/controllers/dragzoom.js"></script>-->
+	
+	<!-- AngularJS -->
+  	<script src="js/modulos/angular.js"></script> 
+
+	<!-- angular-google-maps -->
+    <script src="js/modulos/mapa/lodash.underscore.min.js"></script>
+    <script src="js/modulos/mapa/angular-google-maps.min.js"></script>
+	<script src="js/modulos/mapa/dev_deps.js"></script>
+	<script src="js/modulos/index.js"></script>
+    <!--<script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>-->
+	<script src="js/modulos/mapa/angular-google-maps_dev_mapped.js"></script>	
+
+	<!-- bower: scripts para chats -->
+	<script src="js/modulos/bower_components/angular-chat/angular-chat.js"></script>
+	
+	<!-- script para upload de imagenes -->
+	<script>
+	FileAPI = {
+        //only one of jsPath or jsUrl.
+        jsPath: 'js/FileAPI.min.js/',
+        //jsUrl: 'mgd-studio.com.ar/phps/js/FileAPI.min.js',
+
+        //only one of staticPath or flashUrl.
+        staticPath: 'js/FileAPI.flash.swf/',
+        //flashUrl: 'mgd-studio.com.ar/phps/js/FileAPI.flash.swf',
+
+        //forceLoad: true, html5: false //to debug flash in HTML5 browsers
+        //noContentTimeout: 10000 (see #528)
+    }
+	</script>
+	
+	<!-- angular-upload   -->
+	<script src="js/modulos/ng-file-upload-shim.js"></script> <!--no html5 support -->
+	<script src="js/modulos/ng-file-upload.js"></script>
+   
+</head>
+
+<body ng-app ='Urban'
+    ng-controller='indexCtrl'
+    ui-prevent-touchmove-defaults>
+	
+	<!---HEADER--->
+	
+		<!-- Sidebars -->
+		<div ng-include="'vistas/sidebar.html'" 
+			class="sidebar sidebar-left"></div>
+				
+	    <div ng-include="'vistas/alarmas.html'" 
+            class="sidebar sidebar-right"></div>
+		
+		<!-- body app -->
+		<div class="app" 
+         ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+         ui-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+		 
+		<div id="header" ng-show="header_footer()">
+		  
+			<!-- BOTON MENÚ SIDEBAR-LEFT -->
+			<div class="pull-left sidebar-toggle" ui-toggle="uiSidebarLeft" >
+	          <div class="menuIcon" id="menu-hamburger"
+	          		type="button">
+	            <span class="glyphicon glyphicon-sm glyphicon-menu-hamburger"></span>
+	          </div>
+	        </div>
+
+			<!-- ALARMA -->
+			<a class="pull-right sidebar-toggle" id="alarma" ui-toggle="uiSidebarRight">
+			<div class="pull-right alarm-icon">
+				 <img src="img/icons/png/alarm-1.png" alt="alarma" />
+			</div>
+			</a>
+			
+			<!-- FILTRO -->
+			<a id="es_filtro" href="" class="pull-right menuIcon" ng-click="modal_filtrar()" > 
+			<div class="pull-right" id="buscador">
+				<!-- <span class="glyphicon glyphicon-search glyphicon-sm"></span> -->
+				 <img src="img/icons/png/filtro.png" alt="filtro" class="glyphicon" />
+			</div>
+			</a>
+			
+		
+		<!-- navBar --> 
+		<div class="scrolleable-min" id="nav-bar">
+		<ul class="nav navbar-nav col-lg-12 col-xs-12 col-sm-12 text-center">
+			<li class=" col-lg-4 col-xs-4 col-sm-4"  ng-repeat="item in items_navbar">  
+				<a href="#/{{item.id}}/{{id_grupo}}" class="item" ng-class="{'active': item.id == estado.activo}" ng-click='cambiar_seccion(item.id)' ng-click="estado.activo=item.id">{{item.titulo}}</a>
+			</li>
+		</ul>	
+		</div>
+		
+
+		</div>
+	
+	<!--------  MAIN  --------->
+	<main>
+		<div ng-view>
+		
+		</div>
+	</main>	
+	
+	<!--------  FOOTER  --------->
+	
+	<div id="es_footer" ng-show="header_footer()" ng-include="'vistas/footer.html'"></div>
+	
+	<!--fin de body-->
+	
+	</div>
+	
+	<!---- MODAL ---->
+ 	<div ng-include="mostrar_filtros()"></div>
+ 
+
+	<!-- BOOTSTRAP JS -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+	<script src="js/modulos/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<!-- PARA ESTADISTICAS -->
+
+	<script type="text/javascript" src="js/modulos/Chart.min.js"></script>
+	<script type="text/javascript" src="js/modulos/angular-chart.min.js"></script>
+  
+	<!--Modulos angular-->
+	<script src="js/modulos/mobile-angular-ui.min.js"></script>
+	<script src="js/modulos/mobile-angular-ui.gestures.min.js"></script>
+  	<script src="js/modulos/angular-route.js"></script> 
+  	<script src="js/validacion/funciones.js"></script> 
+	
+	<!--Funciones globales-->
+	<script src="js/funciones/funciones-globales.js"></script>
+	
+	<!--Modulos-->
+	<script src="js/modulos/modulos.js"></script>
+	
+	<!--Rutas-->
+	<script src="js/rutas/rutas.js"></script>
+	
+	<!-------- CONTROLLERS --------->
+	
+	<!--Controller index-->
+	<script src="js/controllers/controller-index.js"></script> 
+	
+	<!--Controller login-->
+	<script src="js/controllers/controller-login.js"></script>
+	
+	<!--Controller panel de control -->
+	<script src="js/controllers/controller-panel-de-control.js"></script>
+	
+	<!--Controller panel de control estadisticas -->
+	<script src="js/controllers/controller-panel-de-control-estadisticas.js"></script>
+	
+	<!--Controller panel de control usuarios -->
+	<script src="js/controllers/controller-panel-de-control-usuarios.js"></script>
+	
+	<!--Controller panel de control grupos -->
+	<script src="js/controllers/controller-panel-de-control-grupos.js"></script>
+	
+	<!--Controller panel de control publicaciones -->
+	<script src="js/controllers/controller-panel-de-control-publicaciones.js"></script>
+	
+	<!--Controller panel de control encuestas -->
+	<script src="js/controllers/controller-panel-de-control-encuestas.js"></script>
+	
+	<!--Controller ajustes-->
+	<script src="js/controllers/controller-ajustes.js"></script>
+
+	<!--Controller sin grupo-->
+	<script src="js/controllers/controller-sin-grupo.js"></script>
+
+	<!--Controller ayuda-->
+	<script src="js/controllers/controller-ayuda.js"></script>
+
+	<!--Controller perfil-->
+	<script src="js/controllers/controller-perfil.js"></script>
+	
+	<!--Controller registro-datos-->
+	<script src="js/controllers/controller-registro-datos.js"></script>
+	
+	<!--Controller editar-datos-usuario-->
+	<script src="js/controllers/controller-editar-datos-usuario.js"></script>
+	
+	<!--Controller new publicacion-->
+	<script src="js/controllers/controller-publicacion.js"></script>
+
+	<!--Controller detalle publicacion-->
+	<script src="js/controllers/controller-publicacion-detalle.js"></script>
+	
+	<!--Controller editar publicacion-->
+	<script src="js/controllers/controller-publicacion-editar.js"></script>
+	
+	<!--Controller reportar publicacion-->
+	<script src="js/controllers/controller-publicacion-reportar.js"></script>
+	
+	<!--Controller publicaciones-listado-->
+	<script src="js/controllers/controller-publicaciones-listado.js"></script>
+	
+	<!--Controller chats-listado-->
+	<script src="js/controllers/controller-chats-listado.js"></script>
+	
+	<!--Controller chat-->
+	<script src="js/controllers/controller-chat.js"></script>
+	
+	<!--Controller nuevo-grupo-->
+	<script src="js/controllers/controller-nuevo-grupo.js"></script>
+	
+	<!--Controller encuesta-->
+	<script src="js/controllers/controller-encuesta.js"></script>
+	
+	<!--Controller encuesta-listar-->
+	<script src="js/controllers/controller-encuesta-listado.js"></script>
+	
+	<!--Controller detalle encuesta-->
+	<script src="js/controllers/controller-encuesta-detalle.js"></script>
+	
+	<!--Controller footer-->
+	<script src="js/controllers/controller-footer.js"></script>
+	
+	<!--Controller sidebar-->
+	<script src="js/controllers/controller-sidebar.js"></script>
+	
+	<!--Controller alarma-->
+	<script src="js/controllers/controller-alarma.js"></script>
+
+</body>
+</html>

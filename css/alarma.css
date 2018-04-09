@@ -1,0 +1,367 @@
+
+/**************************** ALARMA **************************/
+
+h1{
+	color:#ff9828!important;
+}
+
+/***** alarma principal *****/
+
+#boton_alarma small{
+	left:15vw;
+	padding-top:9em;
+	width: 10em;
+	z-index: 7;
+    position: absolute;
+}
+
+.alarma_texto{
+	color:white;
+}
+
+	/* A N I M A C I O N */
+	#boton_alarma{
+	  width: 15em;
+	  height: 15em;
+	  margin: 30px auto;
+	  position: relative;
+	  box-shadow:none;
+	}
+
+	.inner-shadow-principal{
+		border-radius:50%;
+		width:14em;
+		height:14em;
+		background:url('../img/icons/png/alarm-1.png') 50% 25% no-repeat white;
+		display:inline-block;
+		right: .5em;
+		width: 14em;
+		height: 14em;
+		border-radius: 100%;
+		background-color: #fff;
+		box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+		margin-top:.5em;
+		z-index: 4;
+		position: absolute;
+	}
+
+	.hold-ppal {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  top:0;
+	  clip: rect(0px, 15em, 15em, 7.5em);
+	  border-radius: 100%;
+	}
+
+	.fill-ppal,
+	.dot span {
+	  background-color: #ff9828;
+	}
+
+	.fill-ppal {
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  border-radius: 100%;
+	  clip: rect(0px, 7.5em, 15em, 0px);
+	}
+
+	.left-ppal .fill-ppal {
+	  z-index: 1;
+	  -webkit-animation: left 1.5s linear;
+	  -moz-animation: left 1.5s linear;
+	  animation: left 1.5s linear both;
+	}
+	@keyframes left-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		transform: rotate(180deg);
+	  }
+	}
+	@-webkit-keyframes left-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		-webkit-transform: rotate(180deg);
+	  }
+	}
+	.right-ppal {
+	  z-index: 3;
+	  -webkit-transform: rotate(180deg);
+	  -moz-transform: rotate(180deg);
+	  transform: rotate(180deg);
+	}
+	.right-ppal .fill-ppal {
+	  z-index: 3;
+	  -webkit-animation: right 1.5s linear;
+	  -moz-animation: right 1.5s linear;
+	  animation: right 1.5s linear both;
+	  -webkit-animation-delay: 1.5s;
+	  -moz-animation-delay: 1.5s;
+	  animation-delay: 1.5s;
+	}
+	@keyframes right-ppal {
+	  0% {
+		-webkit-transform: rotate(0deg);
+	  }
+	  100% {
+		transform: rotate(180deg);
+	  }
+	}
+	@-webkit-keyframes right-ppal {
+		  0% {
+			transform: rotate(0deg);
+		  }
+		  100% {
+			transform: rotate(180deg);
+		  }
+	}
+	.inner-shadow-principal img {
+	  margin-left: 8px;
+	  margin-top: 7px;
+	}
+
+	/*************** fin animacion boton principal***************/
+
+.policia{
+	background:url('../img/icons/png/alarm-2.png') center no-repeat;
+}
+
+.bomberos{
+	background:url('../img/icons/png/alarm-3.png') center no-repeat;
+}
+
+.ambulancia{
+	background:url('../img/icons/png/alarm-4.png') center no-repeat;
+}
+
+
+.sidebar-right{
+	background:#f10303;
+}
+
+.alarma_footer{
+	text-align:left;
+	padding-top:4em;
+	color:white;
+}
+
+.sub_alarma{
+	/*border: .3em solid #ff9828;*/
+	width:4em;
+	height:4em;
+}
+.seccion_alarma{
+	margin-bottom:0;
+}
+
+.loading {
+  width: 60px;
+  height: 60px;
+  margin: .2em .5em;
+  position: relative;
+}
+
+.sub_botones{
+	text-align:center;
+	display: inline-block;
+}
+
+.outer-shadow,
+.inner-shadow {
+  z-index: 4;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.inner-shadow {
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: -17px;
+  margin-top: -25px;
+  border-radius: 100%;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.hold {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, 60px, 60px, 30px);
+  border-radius: 100%;
+}
+
+.fill,
+.dot span {
+  background-color: #ff9828;
+}
+
+.fill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  clip: rect(0px, 30px, 60px, 0px);
+}
+
+.left .fill {
+  z-index: 1;
+  -webkit-animation: left 1.5s linear;
+  -moz-animation: left 1.5s linear;
+  animation: left 1.5s linear both;
+}
+@keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes left {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+  }
+}
+.right {
+  z-index: 3;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.right .fill {
+  z-index: 3;
+  -webkit-animation: right 1.5s linear;
+  -moz-animation: right 1.5s linear;
+  animation: right 1.5s linear both;
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+  animation-delay: 1.5s;
+}
+@keyframes right {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes right {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.inner-shadow img {
+  margin-left: 8px;
+  margin-top: 7px;
+}
+
+.margin-bottom-sm {
+   margin-bottom: 0; 
+}
+
+/************* loading alarma_activa ************/
+
+#myProgress {
+  width: 100%;
+  background-color: #da0606;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  position: inherit;
+}
+
+#myBar {
+  width: 1%;
+  height: 2em;
+  background-color: #ff9828;
+ 
+}
+
+#cuenta{
+	text-align:center;
+	color:white;
+	font-size:3.5em;
+	padding-top:1em;
+	letter-spacing: .1em;
+	width: 82vw;
+}
+
+#alarma_activa p{
+	padding:3em;
+	padding-top:6em;
+	
+}
+
+#sub_alarm{
+	background:white;
+}
+/*fondo alarma_activada*/
+/* .alarma_activada{
+	-webkit-animation: color_change 1s infinite alternate;
+	-moz-animation: color_change 1s infinite alternate;
+	-ms-animation: color_change 1s infinite alternate;
+	-o-animation: color_change 1s infinite alternate;
+	animation: color_change 1s infinite alternate;
+}
+	@-webkit-keyframes color_change {
+			0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-moz-keyframes color_change {
+			0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-ms-keyframes color_change {
+				0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+	@-o-keyframes color_change {
+		0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+	}
+	@keyframes color_change {
+		0% { background-color: #d20303; }
+		25% { background-color: #d20303; }
+		50% { background-color: #f10303; }
+		75% { background-color: #f10303; }
+		100% { background-color: #f10303; }
+
+
+	}
+ */
