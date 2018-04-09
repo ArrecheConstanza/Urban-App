@@ -225,6 +225,12 @@ class Usuario{
 		return $stmt->execute([$contrasenia,$id]);
 	}
 	
+	public function editar_direccion($array){
+		$query = "UPDATE " . static::$tabla . " SET DIRECCION=?, LONGITUD=?, LATITUD=? WHERE ID=?";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array['DIRECCION'],$array['LONGITUD'],$array['LATITUD'],$array['ID']]);
+	}
+	
 	
 	public function foto_usuario($array){
 		$query = "UPDATE " . static::$tabla . "  SET FKMULTIMEDIA=? WHERE ID=? ";

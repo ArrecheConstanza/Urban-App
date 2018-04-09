@@ -232,7 +232,35 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		
 //*******************************************************
 
-	 //traigo contenido usuario de bdd
+	//editar direccion usuario
+	if(localStorage.getItem("direc_user_cambiar")!=null){
+		var datos=JSON.parse(localStorage.getItem("direc_user_cambiar"));
+		var item = [];
+		for(var i in datos){
+			item.push( i+'='+datos[i] ); 
+		}
+		var union = item.join('&');	
+		$http({
+			method: 'POST',
+			data: union,
+			url:"php/abm/usuario.editar.direccion.php",
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+		})
+		.success(function(data){
+			if(data){
+				//modal exito al cambiar direc
+			}
+			else{
+				//modal erro cambiando direc, intentar mas tarde
+			}
+				localStorage.removeItem("direc_user_cambiar");
+		})
+		.error(function(){ 
+		
+		});
+	}
+	
+	//traigo contenido usuario de bdd
 	 $http({
 		method: 'GET',
 		url:"php/abm/usuario.datos.php",
@@ -275,7 +303,6 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 	})
 	.success(function(data){
-		console.log(data);
 		if(data.length=="0"){
 			localStorage.setItem("hay_grupo","no");
 			$scope.unite_a_grupo=true;
@@ -357,7 +384,8 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 			titulo=tn(titulo,'span',0).innerHTML;
 			localStorage.setItem("editar_usuario",titulo);
 			if(titulo=="Direccion"){
-				window.location.href = '/urban-app/vistas/mapa.html';
+				localStorage.setItem("cambiar_direc","si");
+				window.location.href = '/urban-app/vistas/registro-mapa.html';
 			}
 		} 
 	}
