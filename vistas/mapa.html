@@ -179,10 +179,25 @@
 				  var foto_grupo=grupos[i]["FKMULTIMEDIA"]; 
 				  var id_grupo=grupos[i]["ID"]; 
 				  
-				  <!-- modal de mapa -->
-				  infowindow.push(new google.maps.InfoWindow({ 
-					content: '<div class="informacion"><img alt="'+estado_grupo+'" src="../img/icons/png/'+estado_grupo.toLowerCase()+'-mini.png"></img><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" id="'+id_grupo+'" value="Unirme" class="form-control btn btn-default"></input></div>'
-				  }));  
+				  var ya_se_unio=0;
+					for(var j=0;j<grupos_ya_unido.length;j++){
+						if(grupos[i]["ID"]==grupos_ya_unido[j]["ID"]){
+							ya_se_unio=1;
+						}
+					}
+					
+					if(!ya_se_unio){
+						 <!-- modal de mapa -->
+						  infowindow.push(new google.maps.InfoWindow({ 
+							content: '<div class="informacion"><img alt="'+estado_grupo+'" src="../img/icons/png/'+estado_grupo.toLowerCase()+'-mini.png"></img><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p><input type="button" id="'+id_grupo+'" value="Unirme" class="form-control btn btn-default"></input></div>'
+						  }));  
+					}
+					else{ //ya pertenece a este grupo, saco el imput para que no se pueda unir nuevamente
+						  <!-- modal de mapa -->
+						  infowindow.push(new google.maps.InfoWindow({ 
+							content: '<div class="informacion"><img alt="'+estado_grupo+'" src="../img/icons/png/'+estado_grupo.toLowerCase()+'-mini.png"></img><img alt="imagen de grupo" src="'+foto_grupo+'"></img><h3>'+titulo_grupo+'</h3><p>Usuarios: '+cantidad_usuarios+'</p></div>'
+						  }));  
+					}
 				  
 			  }
 			  
