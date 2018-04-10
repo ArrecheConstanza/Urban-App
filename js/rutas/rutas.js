@@ -22,6 +22,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/sin_grupo.html',
 			controller : 'sinGrupoCtrl'
 		})
+		.when('/recuperar-clave', {
+			templateUrl : 'vistas/recuperar-clave.html',
+			controller : 'recuperarClaveCtrl'
+		})
 		.when('/ayuda', {
 			templateUrl : 'vistas/ayuda.html',
 			controller : 'AyudaCtrl'

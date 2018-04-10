@@ -251,6 +251,21 @@ class Usuario{
 		return $json;
 	}
 	
+	
+	public function verificar_usuario_recuperar_clave($mail){
+		$query = "SELECT * FROM " . static::$tabla . " WHERE EMAIL=? LIMIT 1";
+		$stmt = DBcnx::getStatement($query);
+		$array=[];
+		if($stmt->execute([$mail])){
+			while($f = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$array=$f;
+			}
+		}
+		$json=json_encode($array);
+		return $json;
+	}
+	
+	
 	public static function all(){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla;

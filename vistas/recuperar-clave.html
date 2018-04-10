@@ -1,0 +1,21 @@
+
+<!-- Estilos propios de la vista -->
+	<style> @import url("css/recuperar-clave.css"); </style>  
+	
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+	<!-- Titulo container -->
+	<div  class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-0 col-lg-10 col-md-10 col-sm-10 col-xs-12 margin-bottom-sm title-app text-center" >
+		<!-- Icono -->
+			<figure >
+				<img src="img/icons/png/urban.png" alt="Urban-icon" class="img-responsive" />
+			</figure>
+			<!-- Texto -->
+			<h1>Urban</h1>
+			<form role='form' name='recuperar' ng-submit='recuperar_clave(usuario)' >
+				<div><input type="email" required name="email" placeholder="Tu mail"  ng-model='usuario.EMAIL' class='form-control'  /></div>
+				<div><input type="submit" value="Recuperar" id='button_submit'  class='form-control btn btn-default' /></div>
+			</form>
+
+	</div>
+</div>
