@@ -11,15 +11,15 @@ Urban.controller("recuperarClaveCtrl", function ($location,$http,$scope,$window)
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			console.log(data);
 			if(data=='0'){
-				//sim datos
+				//sin datos
 			}
 			else if(data=='usuario inexistente'){
 				//usuario inexistente
 			}
-			else{
+			else if(data=='1'){
 				//modal mail enviado para recuperar clave
+				$location.path("/iniciar-sesion");
 			}
 		})
 		.error(function(){ 

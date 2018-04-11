@@ -68,7 +68,7 @@ class Pedidos{
 	}
 	
 	public function crear_pedido($array){
-		$query = "INSERT INTO " . static::$tabla . " SET NUEVA_CLAVE=sha2(?, 224) , EMAIL=?, TOKEN=? ON DUPLICATE KEY UPDATE NUEVA_CLAVE=sha2(?, 224), TOKEN=?";
+		$query = "INSERT INTO " . static::$tabla . " SET NUEVA_CLAVE=sha2(?, 224) , EMAIL=?, TOKEN=? , BORRADO='No' ON DUPLICATE KEY UPDATE NUEVA_CLAVE=sha2(?, 224), TOKEN=?, BORRADO='No'";
 		$stmt = DBcnx::getStatement($query);
 		return $stmt->execute([$array["NUEVA_CLAVE"],$array["EMAIL"],$array["TOKEN"],$array["NUEVA_CLAVE"],$array["TOKEN"]]);
 	}
