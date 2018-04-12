@@ -2,7 +2,8 @@
 <!-- Estilos propios de la vista -->
 	<style> @import url("css/circle.css"); </style> 
 
-	
+	<div ng-include="mostrar_modal_usuario()"></div>
+
 	<!-- Contenedor publicacion detalle -->
 	<div class="scrollable">
 	
@@ -25,8 +26,10 @@
 			
 			<div>
 				<ul class="ul-encuesta">
-					<li>Creada por {{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</li>
-					<li>Hace {{ datosSQLencuestas.FECHA_CREACION }}</li>
+					<li>Creada por 
+						<a ng-click='modal_usuario()'>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</a>
+					</li>
+					<li>{{ datosSQLencuestas.FECHA_CREACION }}</li>
 				</ul>
 			</div>
 			<!-- <p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>

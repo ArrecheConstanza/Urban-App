@@ -99,7 +99,8 @@
 	
 	<!--Funciones Validacion Js-->
   	<script src="../js/validacion/funciones.js"></script> 
-	
+  	<script src="../js/funciones/funciones-globales.js"></script> 
+
 	<!-- Google Maps Javascript API -->
 
 	<script>
@@ -147,7 +148,6 @@
 			var bounds = new google.maps.LatLngBounds();
 			
 		places.forEach(function(place) {
-			  
 			 //TRAER LOS GRUPOS
 			  for(var i=0;i<grupos.length;i++){
 			  
@@ -185,6 +185,8 @@
 							ya_se_unio=1;
 						}
 					}
+				  
+				  
 					
 					if(!ya_se_unio){
 						 <!-- modal de mapa -->
@@ -310,8 +312,6 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuu2muyyLJjvAAmi3JEzmA3IT9NKalS9A&amp;libraries=places&amp;callback=initMap"
          async defer></script>
 
-    <!--Funciones globales-->
-	<script src="../js/funciones/funciones-globales.js"></script>
 	
 	<!--Modulos-->
 	<script src="../js/modulos/modulos.js"></script>
@@ -321,9 +321,6 @@
 	<!--Rutas-->
 	<script src="../js/rutas/rutas.js"></script>
 	
-	
-	<!-- PARA ESTADISTICAS -->
-
  <script type="text/javascript" src="../js/modulos/Chart.min.js"></script>
  <script type="text/javascript" src="../js/modulos/angular-chart.min.js"></script>
 	

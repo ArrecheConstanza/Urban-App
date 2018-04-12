@@ -1,6 +1,6 @@
 <?php
 
-class Denuncia_Publicacion{
+class Denuncia_Usuario{
 	private $codigo_denuncia_usuario;
 	private $fk_usuario;
 	private $fk_usuario_denunciado;

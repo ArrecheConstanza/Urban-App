@@ -1,0 +1,21 @@
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/modal-usuario.css"); </style> 
+	
+	<div class="modal" ng-show="estado_modal" id="filtro" ng-controller='modalUsuarioCtrl'>
+	<div class="modal-backdrop in"></div>
+	  <div class="modal-dialog scrollable">
+		<div class="modal-content scrollable-content">
+			<div class="traer_al_frente">
+				<img ng-show="hay_foto" ng-src='{{datos_usuario.FOTO.PATH}}' alt="{{datos_usuario.NOMBRE}} {{datos_usuario.APELLIDO}}" class="imagen_grupo" />
+				<p>{{datos_usuario.NOMBRE}} {{datos_usuario.APELLIDO}}</p>
+				
+				  <div id="filtro_botones">
+					<a href="#/reportarUsuario/{{datos_usuario.ID}}" class="btn btn-lg r">Denunciar Usuario</a>
+					<button  ng-click="bloquear_usuario()" class="btn btn-lg r">Bloquear usuario</button>
+					<button ng-click="modal_usuario()" class="btn btn-lg btn-danger">Cerrar</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

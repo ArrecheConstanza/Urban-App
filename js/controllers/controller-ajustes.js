@@ -294,6 +294,7 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
 		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting
 		id("title-container-perfil").style.backgroundSize="100vw"; 
+		localStorage.removeItem("foto_final_usuario");
 	} 
 	
 	/****listado de grupos ****/

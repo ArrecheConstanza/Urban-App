@@ -56,9 +56,7 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
 						.success(function(data3, status){
-							if(data3.length){
-								grupos_ya_unido=data3;
-							}
+							grupos_ya_unido=data3;
 						})
 						.error(function(data){
 							//modal("error");

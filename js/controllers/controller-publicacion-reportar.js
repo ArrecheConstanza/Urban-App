@@ -55,12 +55,12 @@ Urban.controller("reportarPublicacionCtrl",  ['$window','$scope', '$http', '$loc
 				window.location.href = localStorage.getItem("urban_url");
 			}
 			else if(data=="3"){
-						console.log("ya denunciaste");						
+				console.log("ya denunciaste");						
 				//modal denuncia ya realizada
 				window.location.href = localStorage.getItem("urban_url");
 			}
 			else{
-						console.log("error");						
+				console.log("error");						
 				//modal no se pudo denunciar.
 				window.location.href = localStorage.getItem("urban_url");
 			}

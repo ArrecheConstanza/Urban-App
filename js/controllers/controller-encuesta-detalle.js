@@ -2,7 +2,7 @@
 
 Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeParams){
 	var datos="id="+$routeParams["id"];
-			
+	
 	//una encuesta
 		$http({ 
 			method:"POST",
@@ -13,8 +13,20 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 		.success(function(data, status){
 			if(data=="No logueado"){
 				//cerrar sesion, redireccion a login
+				$http({
+					method: 'GET',
+					url:"php/abm/logout.usuario.php",
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data){
+					if(data){
+						window.localStorage.removeItem("user_urban");
+						$location.path("/");
+					}
+				});
 			}
-				$scope.es_propietario=false;
+			
+			$scope.es_propietario=false;
 				if(angular.fromJson(localStorage.getItem("user_urban")).ID==data[0].FK_USUARIO){
 					$scope.es_propietario=true;
 				}
@@ -24,6 +36,31 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 				}
 				var rta=angular.fromJson(data[0]);
 				$scope.datosSQLencuestas=rta;
+				
+				//****** C O N T R O L L E R   M O D A L ******//
+					$scope.estado_modal=false;
+					$scope.mostrar_modal_usuario = function(){
+					var x = document.getElementsByTagName("body")[0];
+						if(x.className=="ng-scope has-sidebar-left has-sidebar-right has-modal"){
+							x.className="ng-scope has-sidebar-left has-sidebar-right";
+						}
+						if($scope.estado_modal){
+							localStorage.setItem("usuario_ver",$scope.datosSQLencuestas.FK_USUARIO);
+							return "vistas/modal-usuario.html";
+						}
+						return "";
+					}
+					
+					$scope.modal_usuario = function(){
+						//abrir o cerrar modal
+						if($scope.estado_modal){
+							$scope.estado_modal=false;
+						}
+						else{
+							$scope.estado_modal=true;
+						}
+						$scope.mostrar_modal_usuario(); 
+					}
 				
 				//****** ESTADO DE ENCUESTA *****//
 					$http({ 
@@ -67,11 +104,9 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						$scope.estado_encuesta=array_votacion_final;
 						for(var i=0;i<array_votacion_final.length;i++){
 							var opcion;
-							console.log($scope.datosSQLencuestas);
 							for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){
 								if($scope.datosSQLencuestas["OPCIONES"][j]["ID"]==array_votacion_final[i]["VALOR"]){
 									array_votacion_final[i]["VALOR_OPCION"]=$scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"];
-									console.log($scope.datosSQLencuestas["OPCIONES"][j]["RESPUESTA"]);
 								}
 							}
 							array_votacion_final[i]["PORCENTAJE"]=(array_votacion_final[i]["CANTIDAD"]*100/data.length).toFixed(2)+"%";

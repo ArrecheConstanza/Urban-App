@@ -12,6 +12,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		if(!$location.path().search("/reportarPublicacion/")){
 			return 0;
 		}
+		if(!$location.path().search("/reportarUsuario/")){
+			return 0;
+		}
 		if(!$location.path().search("/detalleEncuesta/")){
 			return 0;
 		}
