@@ -28,8 +28,9 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 			});
 		}
 		else if(data){
-			if(data[0].length){
 				$scope.listado_publicaciones=[];
+				$scope.listado_encuestas=[];
+			if(data[0].length){
 				for(var i=0;i<data[0].length;i++){
 					
 					//si tiene o no foto
@@ -45,7 +46,6 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 						
 					$scope.listado_publicaciones.push(angular.fromJson(data[0][i]));
 				}
-				
 				//boton ir a publicacion
 				$scope.detallePublicacion=function(num){
 					localStorage.setItem("id_publi",num);
@@ -53,11 +53,12 @@ Urban.controller("perfilCtrl",  ['$scope', '$http', '$location', 'Upload', '$tim
 				}
 			}
 			if(data[1].length){
-				$scope.listado_encuestas=[];
 				for(var i=0;i<data[1].length;i++){
 					$scope.listado_encuestas.push(angular.fromJson(data[1][i]));
 				}
 			}
+			if(!$scope.listado_publicaciones.length)
+			console.log($scope.listado_publicaciones.length);
 		}
 		
 	})

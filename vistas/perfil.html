@@ -25,26 +25,29 @@
 		-xs-12">
 	
 		<!--Detalle grupos -->
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<hr>
-				<h2 class="text-center">Tus publiaciones</h2>
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="listado_publicaciones.length==0&&listado_encuestas.length==0">
+			<h3>No hay actividad reciente.</h3>
+		</div>
+		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="listado_publicaciones.length!=0">
+				<hr>
+					<h2 class="text-center">Tus publiaciones</h2>
 
-				<ul class="list-group" id="listado-publicaciones">
-				  <li ng-repeat="item in listado_publicaciones track by $index " class="list-group-item">
-				  <a ng-click="detallePublicacion(item.ID)" class="publis">
-					<input type="hidden" name="country" value="{{item.ID}}">
-					<img class='img-publi' ng-src="{{ item.FOTO }}" />
-					<div><h2>{{ item.TITULO }}</h2>  
-					<p>{{ item.DESCRIPCION }}</p>  </div>
-					<small calss="pull-left">{{ item.CATEGORIA }}</small>  
-					<small>{{ item.FECHA_CREACION }}</small>  
-				  </a>
-				  </li>
-				</ul>
-			
+					<ul class="list-group" id="listado-publicaciones">
+					  <li ng-repeat="item in listado_publicaciones track by $index " class="list-group-item">
+					  <a ng-click="detallePublicacion(item.ID)" class="publis">
+						<input type="hidden" name="country" value="{{item.ID}}">
+						<img class='img-publi' ng-src="{{ item.FOTO }}" />
+						<div><h2>{{ item.TITULO }}</h2>  
+						<p>{{ item.DESCRIPCION }}</p>  </div>
+						<small calss="pull-left">{{ item.CATEGORIA }}</small>  
+						<small>{{ item.FECHA_CREACION }}</small>  
+					  </a>
+					  </li>
+					</ul>
+				
 			</div>
 		
-			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="listado_encuestas.length!=0">
 				<hr>
 				<h2 class="text-center">Tus encuestas</h2>
 				

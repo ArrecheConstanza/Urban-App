@@ -13,7 +13,6 @@ Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				console.log(data);
 				if(data=="0"){ // no logueado
 					$http({
 						method: 'GET',
