@@ -83,20 +83,16 @@ Urban.controller("modalUsuarioCtrl", function ($scope,$http,$location,$routePara
 						.error(function(){
 							//mensaje Sin conexion 
 						});
-				};
+					};
 							
-							//bloquear usuario
-							$scope.bloquear_usuario=function(){
-								
-							};
-						}
-						else{
-							//modal error al cargar usuario
-						}
-					})
-					.error(function(){
-
-					});
-					
 				}
+				else{
+					//modal error al cargar usuario
+				}
+			})
+			.error(function(){
+
+			});
+			
+		}
 });

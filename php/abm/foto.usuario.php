@@ -40,8 +40,11 @@
 				return 0;
 			}
 			else{
-				$foto_final=$ultima_multimedia[0]->getPath();
-				echo $foto_final;
+				$foto_final=[
+					"ID"=>$array["FKMULTIMEDIA"],
+					"PATH"=>$ultima_multimedia[0]->getPath()
+				];
+				echo json_encode($foto_final);
 			}
 		}		
 		else{ //no hay foto

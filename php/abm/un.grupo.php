@@ -11,17 +11,17 @@
 	
 	$grupo = new Grupo();
 	$arrayFinal = array();
+			$array_foto=null;
 	$grupo=$grupo->getByPk($_POST["id"]);
 		if($grupo[0]->getFkMultimedia()!=null){
 			$multimedia = new Multimedia();
 			$multimedia=$multimedia->getByPk($grupo[0]->getFkMultimedia());
-			$array_foto=[
-				"ID"=>$multimedia[0]->getCodigoMultimedia(),
-				"PATH"=>$multimedia[0]->getPath()
-			];
-		}
-		else{
-			$array_foto=null;
+			if(count($multimedia)){
+				$array_foto=[
+					"ID"=>$multimedia[0]->getCodigoMultimedia(),
+					"PATH"=>$multimedia[0]->getPath()
+				];
+			}
 		}
 	$array=[
 			"ID"=>$grupo[0]->getCodigoGrupo(),

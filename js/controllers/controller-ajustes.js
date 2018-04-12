@@ -85,18 +85,47 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 					url:"php/abm/traer.admin.grupo.php",
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
-				.success(function(data){
+				.success(function(data){ 
+					$scope.hay_foto_grupo=false;
+					console.log(data);
 					if(data!="0"){
 						//si tiene o no foto
 						if(data[0].FOTO!=null){
 							var foto=data[0].FOTO.PATH.substring(26,data[0].FOTO.PATH.length);
 							data[0].FOTO=foto;
+							$scope.hay_foto_grupo=true;
 						}
 						else{
 							data[0].FOTO="/urban-app/img/icons/png/grupo.png";
 						} 
 						$scope.foto_grupo=data[0].FOTO;
 						$scope.admin_grupo=data[0].ADMIN;
+						
+						//********** BORRAR MULTIMEDIA GRUPO *********//
+							$scope.borrar_multimedia_grupo=function(){
+								$http({
+									method: 'POST',
+									url:"php/abm/eliminar.multimedia.php",
+									data: "id="+$scope.un_grupo.FKMULTIMEDIA,
+									headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+								})
+								.success(function(data2){
+									if(data2=="0"){
+										//cerrar sesion
+									}
+									else if(data2=="1"){
+										//modal exito eliminando foto
+										$scope.hay_foto_grupo=false;
+										$scope.foto_grupo="/urban-app/img/icons/png/grupo.png";
+										location.reload();
+									}
+								})
+								.error(function(){
+									//modal sin conexion, intentar mas tarde
+								});
+							}
+		
+		
 						
 						/**** cambiar foto de perfil ****/
 			
@@ -140,6 +169,8 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 									id("pre_vista_grupo").style.display="none";
 									id("envio_foto").style.display="none";
 									id("no_envio_foto").style.display="none";
+									$scope.hay_foto_grupo=true;
+									location.reload();
 								}
 								else{
 									//modal error
@@ -177,6 +208,8 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 									}); 
 								}
 						}
+						
+						//**** abandonar grupo. ****//
 						$scope.abandonar_grupo=function(){
 							modal("¿Desea abandonar el grupo <b>"+$scope.un_grupo.NOMBRE+"</b>?","&#10004;");
 							var ventana_modal=id("ventana_modal");
@@ -289,12 +322,39 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 			} 
 	});
 	
-	
 	/**** cargo foto perfil de usuario ****/
+	$scope.hay_foto=false;
 	if(localStorage.getItem("foto_final_usuario")!=undefined){
 		id("title-container-perfil").style.background="url('"+localStorage.getItem("foto_final_usuario").replace("C:/xampp/htdocs/Urban-App/","")+"') center 100% no-repeat";// <- despues se reemplaza para hosting
 		id("title-container-perfil").style.backgroundSize="100vw"; 
-		localStorage.removeItem("foto_final_usuario");
+		$scope.hay_foto=true;
+		//localStorage.removeItem("foto_final_usuario");
+		
+		//********** BORRAR MULTIMEDIA USUARIO *********//
+			$scope.borrar_multimedia=function(id){
+				$http({
+					method: 'POST',
+					url:"php/abm/eliminar.multimedia.php",
+					data: "id="+id,
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+				})
+				.success(function(data){
+					if(data=="0"){
+						//cerrar sesion
+					}
+					else if(data=="1"){
+						//modal exito eliminando foto
+						localStorage.removeItem("foto_final_usuario");
+						var guardar_foto=(localStorage.getItem("user_urban"));
+						guardar_foto.FKMULTIMEDIA=null;
+						localStorage.setItem("user_urban",guardar_foto);
+						location.reload();
+					}
+				})
+				.error(function(){
+					//modal sin conexion, intentar mas tarde
+				});
+		}
 	} 
 	
 	/****listado de grupos ****/
@@ -359,10 +419,13 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 		})
 		.then(function(response){
 			if(response.data!=0){
-					localStorage.setItem("foto_final_usuario",response.data);
-					id("title-container-perfil").style.background="url('"+response.data.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
+					localStorage.setItem("foto_final_usuario",response.data.PATH);
+					id("title-container-perfil").style.background="url('"+response.data.PATH.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
 					id("title-container-perfil").style.backgroundSize="100vw";
-					location.reload();
+					var guardar_foto=angular.fromJson(localStorage.getItem("user_urban"));
+						guardar_foto.FKMULTIMEDIA=response.data.ID;
+						localStorage.setItem("user_urban",angular.toJson(guardar_foto));
+						location.reload();
 			}
 			else{
 				//modal error

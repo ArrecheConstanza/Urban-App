@@ -1,4 +1,4 @@
-/********************************************CONTROLLER SIDEBAR ***************************************/
+/******************************************** CONTROLLER SIDEBAR ***************************************/
 
 Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeParams) {
 	
@@ -20,14 +20,15 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					if(data!=0){
+					console.log(data);
+					if(data!=0&&data.length){
 						var foto=data[0]["PATH"];
 						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
 						$scope.img=foto; //corregir para hosting
 
 					}
 					else{
-						//error multimedia
+						//error multimedia o sin multimedia
 						$scope.img="icons/png/usuario.png";
 					}
 				})
@@ -38,11 +39,6 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 			else{ //sin imagen
 				$scope.img="icons/png/usuario.png";
 			}
-			
-			
-			
-			
-			
 			
 			//funcion cambiar de grupos
 			$scope.estado = {};
@@ -79,8 +75,8 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				console.log(data);
-				if(data=="0"){
+					//no logueado
+				if(data=="0 "){
 					$http({
 						method: 'GET',
 						url:"php/abm/logout.usuario.php",
@@ -93,7 +89,8 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 						}
 					});
 				}
-				else if(data.length==0){ //redireccion a mapa para union de grupo
+					//redireccion a mapa para union de grupo
+				else if(data.length==0){ 
 					if(localStorage.getItem("grupo_seleccionado_urban")!=null){
 						localStorage.removeItem("grupo_seleccionado_urban");
 					}
@@ -106,26 +103,23 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					}
 				}
 				//cambio fk_multimedia por la direccion de la foto
-					$http({ 
-						url:"/urban-app/php/abm/traer.multimedia.php"
+				 	$http({ 
+						method: "POST",
+						data: "fkmultimedia="+data[0].FKMULTIMEDIA,
+						url:"/urban-app/php/abm/traer.una.multimedia.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data2, status){
-						for(var j in data2){
-							for(var i in data){
-								if(data[i]["FKMULTIMEDIA"]==data2[j]["ID"]){
-									foto=data2[j]["PATH"].substring(25,data2[j]["PATH"].length);
-									data[i]["FOTO"]="/urban-app"+foto;
-								}
-								else if(data[i]["FKMULTIMEDIA"]==null){ //foto por defecto si no tiene
-									data[i]["FOTO"]="/urban-app/img/fotos/muestra.jpg"; 
-								}
-							}
-							
+						if(data2.length){
+							data[0].FOTO="/urban-app"+data2[0]["PATH"].substring(25,data2[0]["PATH"].length);
+						}
+						else{ //sin foto
+							data[0].FOTO="/urban-app/img/fotos/muestra.jpg"; 
 						}
 					})
 					.error(function(data){
 						//modal("error");
-					});
+					}); 
 					var rta=angular.fromJson(data);
 					$scope.datosSQLgrupos=rta.reverse();
 					

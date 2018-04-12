@@ -22,11 +22,13 @@
 		if($unUsuario["FKMULTIMEDIA"]!=null){
 			$multimedia = new Multimedia();
 			$multimedia=$multimedia->getByPk($unUsuario["FKMULTIMEDIA"]);
-					$array=[
+			if(count($multimedia)){
+				$array=[
 						"ID"=>$multimedia[0]->getCodigoMultimedia(),
 						"PATH"=>$multimedia[0]->getPath()
 					];
-			$foto=$array;
+				$foto=$array;
+			}
 		}
 		else{
 			$foto=null;

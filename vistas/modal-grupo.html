@@ -18,6 +18,7 @@
 				<img ng-show="{{ un_grupo.ESTADO }} =='Privado'" ng-src="img/icons/png/privado-mini.png" alt="privado" />
 				<img ng-show="{{ un_grupo.ESTADO }} !='Publico'" ng-src="img/icons/png/publico-mini.png" alt="publico" />
 				</span>
+				<button type="submit" ng-click="borrar_multimedia_grupo()" class="btn btn-link" ng-show="hay_foto_grupo">Eliminar foto</button>
 				<input type="file" class='upload-file usuario-file ' ngf-select ng-model="picFileGrupo" name="file" ngf-accept="'image/*'" id="foto_grupo">
 				<h2>{{ un_grupo.NOMBRE }} </h2>
 				<div> 
