@@ -53,12 +53,12 @@
 						
 					}
 				//
-				$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
+				//$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
 				$array=[
 					"ID"=>$unaPublicacion->getCodigoPublicacion(),
 					"TITULO"=>$unaPublicacion->getTitulo(),
 					"DESCRIPCION"=>$unaPublicacion->getDescripcion(),
-					"FECHA_CREACION"=>$fecha,
+					"FECHA_CREACION"=>$unaPublicacion->getFechaCreacion(),
 					"BORRADO"=>$unaPublicacion->getBorrado(),
 					"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
 					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),

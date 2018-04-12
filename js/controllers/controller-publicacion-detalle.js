@@ -14,6 +14,17 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 			.success(function(data){
 				if(data=="0"){ //no logueado
 					//redireccionar a login
+					$http({
+						method: 'GET',
+						url:"php/abm/logout.usuario.php",
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data){
+						if(data){
+							window.localStorage.removeItem("user_urban");
+							$location.path("/");
+						}
+					});
 				}
 				$scope.es_propietario=false;
 				if(angular.fromJson(localStorage.getItem("user_urban")).ID==data[0].FK_USUARIO){

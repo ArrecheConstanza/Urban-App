@@ -139,14 +139,6 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						//Sin conexion
 					});
 				}
-				
-				/****Reportar****/
-				/*$scope.reportar=function(id){
-					localStorage.setItem("urban_url",window.location.href);
-					$location.path("/reportarPublicacion/"+id);
-				*/
-			
-			
 			
 			//****** VOTAR ******//
 			$scope.votar=function(opcion){
@@ -180,12 +172,7 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 					}
 				}
 			};
-			//////////////////////
-			
-			
-			
-			
-			
+			//////////////////////	
 		})
 		.error(function(){
 			// sin internet

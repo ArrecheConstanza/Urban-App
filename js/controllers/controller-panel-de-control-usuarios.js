@@ -97,7 +97,7 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 				delete data["FOTO"];
 				delete data["CLAVE"];
 				$scope.datosSQLusuario=angular.fromJson(data);
-				
+				//console.log(data);
 				
 				$scope.buttonPositionBanneado=function(){
 					if($scope.banneado){
@@ -106,7 +106,6 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 					else{
 						$scope.banneado=true;
 					}
-					//console.log($scope.banneado);
 				}
 				$scope.buttonPositionBorrado=function(){
 					if($scope.borrado){
@@ -115,7 +114,6 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 					else{
 						$scope.borrado=true;
 					}
-					//console.log($scope.borrado);
 				}
 				$scope.buttonPositionNivel=function(){
 					if($scope.nivel){
