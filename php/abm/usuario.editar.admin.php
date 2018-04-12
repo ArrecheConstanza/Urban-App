@@ -32,12 +32,12 @@
 					"ID" => $_POST["ID"],
 				];
 				$rta=$usuario->editar_usuario($key,$array);
-				if(!$rta){ return 0; } //error al editar
+				if(!$rta){ echo 0; } //error al editar
 			}
 		}
-		return 1;
+		echo 1;
 	}
 	else{ //no logueado
-		return 0;
+		echo 0;
 	}
 ?>

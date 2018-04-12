@@ -6,15 +6,15 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases/Denuncia_Publicacion.php');
+	require_once('../clases/Denuncia_Usuario.php');
 	
 	/****** ******/
 	
 	if(isset($_SESSION["s_id"])){
-		$denuncia_publicacion = new Denuncia_Publicacion();
+		$Denuncia_Usuario = new Denuncia_Usuario();
 		
 		//FALTA VALIDACION DE DATOS 
-		$rta=$denuncia_publicacion->contar_denuncias($_POST["FKPUBLICACION"]);
+		$rta=$Denuncia_Usuario->contar_denuncias($_POST["FKUSUARIO_DENUNCIADO"]);
 		echo $rta;
 	}
 	else{

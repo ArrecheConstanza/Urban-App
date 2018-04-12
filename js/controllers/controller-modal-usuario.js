@@ -32,11 +32,9 @@ Urban.controller("modalUsuarioCtrl", function ($scope,$http,$location,$routePara
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 						})
 						.success(function(data){
-							console.log(data);
 							if(data=="1"){ //exito creando denuncia
-										
 								//contar cantidad de denuncias
-								/*var union2="FKPUBLICACION="+id_publi;
+								var union2="FKUSUARIO_DENUNCIADO="+id_user;
 									$http({
 										method: 'POST',
 										url:"php/abm/usuario.reportar.contar.php",
@@ -44,20 +42,19 @@ Urban.controller("modalUsuarioCtrl", function ($scope,$http,$location,$routePara
 										headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 									})
 									.success(function(data2){
-										if(data2=="1"){ //eliminar publicacion
-											var union3="ID="+id_publi;
-											console.log(union3);
+										if(data2=="1"){ //bannea usuario
+											var union3="ID="+id_user;
 											$http({
 												method: 'POST',
-												url:"php/abm/publicacion.eliminar.php",
+												url:"php/abm/usuario.bannear.php",
 												data: union3,	
 												headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 											})
 											.success(function(data3){ 
 												console.log(data3);
-												if(data3=="1"){ //publicacion eliminada
+												if(data3=="1"){ 
 													//modal denuncia con exito.
-													$window.location.hash="#/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban")+"";
+													//$window.location.hash="#/publicaciones/"+localStorage.getItem("grupo_seleccionado_urban")+"";
 												}
 											})
 											.error(function(){
@@ -70,7 +67,7 @@ Urban.controller("modalUsuarioCtrl", function ($scope,$http,$location,$routePara
 									});
 								
 								//modal denuncia con exito.
-								window.location.href = localStorage.getItem("urban_url");*/
+								window.location.href = localStorage.getItem("urban_url");
 							}
 							else if(data=="3"){
 								console.log("ya denunciaste");						

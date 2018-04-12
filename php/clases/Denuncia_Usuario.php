@@ -68,21 +68,21 @@ class Denuncia_Usuario{
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$denuncia_publicacion = new Denuncia_Usuario;
-				$denuncia_publicacion->codigo_denuncia_usuario = $fila['ID'];
-				$denuncia_publicacion->fk_usuario = $fila['FKUSUARIO'];
-				$denuncia_publicacion->fk_usuario_denunciado = $fila['FKUSUARIO_DENUNCIADO'];
-				$denuncia_publicacion->descripcion = $fila['DESCRIPCION'];
-				$denuncia_publicacion->cargarDatos($fila);
-				$salida[] = $denuncia_publicacion;
+				$Denuncia_Usuario = new Denuncia_Usuario;
+				$Denuncia_Usuario->codigo_denuncia_usuario = $fila['ID'];
+				$Denuncia_Usuario->fk_usuario = $fila['FKUSUARIO'];
+				$Denuncia_Usuario->fk_usuario_denunciado = $fila['FKUSUARIO_DENUNCIADO'];
+				$Denuncia_Usuario->descripcion = $fila['DESCRIPCION'];
+				$Denuncia_Usuario->cargarDatos($fila);
+				$salida[] = $Denuncia_Usuario;
 			}
 		}
 		return $salida;
 	}
 	
 	public static function contar_denuncias($id){
-		$denuncia_publicacion = new Denuncia_Usuario;
-		$rta=$denuncia_publicacion->all($id);
+		$Denuncia_Usuario = new Denuncia_Usuario;
+		$rta=$Denuncia_Usuario->all($id);
 		if(count($rta)>=4){
 			return 1; //se bannea el usuario
 		}
@@ -99,13 +99,13 @@ class Denuncia_Usuario{
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				$denuncia_publicacion = new Denuncia_Usuario;
-				$denuncia_publicacion->codigo_denuncia_usuario = $fila['ID'];
-				$denuncia_publicacion->fk_usuario = $fila['FKUSUARIO'];
-				$denuncia_publicacion->fk_usuario_denunciado = $fila['FKUSUARIO_DENUNCIADO'];
-				$denuncia_publicacion->descripcion = $fila['DESCRIPCION'];
-				$denuncia_publicacion->cargarDatos($fila);
-				$salida[] = $denuncia_publicacion;
+				$Denuncia_Usuario = new Denuncia_Usuario;
+				$Denuncia_Usuario->codigo_denuncia_usuario = $fila['ID'];
+				$Denuncia_Usuario->fk_usuario = $fila['FKUSUARIO'];
+				$Denuncia_Usuario->fk_usuario_denunciado = $fila['FKUSUARIO_DENUNCIADO'];
+				$Denuncia_Usuario->descripcion = $fila['DESCRIPCION'];
+				$Denuncia_Usuario->cargarDatos($fila);
+				$salida[] = $Denuncia_Usuario;
 			}
 		}
 		if(count($salida)){

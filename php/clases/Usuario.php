@@ -206,6 +206,12 @@ class Usuario{
 		return $stmt->execute([$array["BORRADO"],$array["ID"]]);
 	}
 	
+	public function bannear_usuario($array){
+		$query = "UPDATE " . static::$tabla . "  SET BANNEADO=? WHERE ID=? ";
+		$stmt = DBcnx::getStatement($query);
+		return $stmt->execute([$array["BANNEADO"],$array["ID"]]);
+	}
+	
 	public function editar_usuario($variable,$array){
 		$query = "UPDATE " . static::$tabla . " SET $variable=? WHERE ID=?";
 		$stmt = DBcnx::getStatement($query);
