@@ -1,3 +1,4 @@
+	<div ng-include="mostrar_modal_usuario()"></div>
 
 	<!-- Contenedor publicacion detalle -->
 	<div class="scrollable">
@@ -20,14 +21,19 @@
 		
 		<!--Detalle publicacion -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		
+			<div>
+				<ul class="ul-encuesta">
+					<li>Creada por 
+						<a ng-click='modal_usuario()'>{{ USUARIO_NOMBRE }} {{ USUARIO_APELLIDO }}</a>
+					</li>
+					<li>{{ FECHA_CREACION }}</li>
+				</ul>
+			</div>
 			<h2 class="text-center">{{TITULO}}</h2>
 
 			<img ng-src="{{ FOTO }}" class="img-responsive" id="img-detalle"/>
 			<p>{{ DESCRIPCION }}</p>  
 		
-			<small class="pull-right  margin-bottom-sm">{{ FECHA_CREACION }}</small>  
-			
 			<!--Listado de comentarios-->
 			<ul class="list-group" id="listado-comentario-publicaciones">
 				<li ng-repeat="item in datosSQLcomentario_publicacion track by $index" class="list-group-item">

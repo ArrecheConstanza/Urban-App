@@ -163,6 +163,37 @@ Urban.controller("panelDeControlEstadisticasCtrl", function ($scope,$http,$locat
 				  }
 				}
 			});
+			
+			////////////bannados
+			var usr_bannados=0, user_no_bannados=0;
+			for(var i=0;i<info_usuarios.length;i++){
+				console.log(info_usuarios[i]);
+				if(info_usuarios[i]["BANNEADO"]=="Si"){
+					usr_bannados++;
+				}
+				else{
+					user_no_bannados++;
+				}
+			} 
+			new Chart(document.getElementById("datos_user_banneado"), {
+				type: 'doughnut',
+				data: {
+				  labels: ["Banneados", "No Banneados"],
+				  datasets: [
+					{
+					  label: "Banneados - No Banneados",
+					  backgroundColor: ["#4722a4", "#6bc0eb"],
+					  data: [usr_bannados,user_no_bannados]
+					}
+				  ]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'No Banneados - Banneados'
+				  }
+				}
+			});
 		})
 		.error(function(){
 			//mensaje Sin conexion 

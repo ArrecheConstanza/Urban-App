@@ -35,6 +35,8 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				$scope.TITULO=data[0].TITULO;
 				$scope.DESCRIPCION=data[0].DESCRIPCION;
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
+				$scope.USUARIO_NOMBRE=data[0].USUARIO_NOMBRE;
+				$scope.USUARIO_APELLIDO=data[0].USUARIO_APELLIDO;
 				//FOTO principal
 				if(!data[0].FOTO.length){
 					var foto="/urban-app/img/fotos/muestra.jpg";
@@ -43,6 +45,31 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					var foto=data[0].FOTO[0]["DIR"].substring(26,data[0].FOTO[0]["DIR"].length);
 				}
 				$scope.FOTO=foto;
+				
+				//****** C O N T R O L L E R   M O D A L ******//
+					$scope.estado_modal=false;
+					$scope.mostrar_modal_usuario = function(){
+					var x = document.getElementsByTagName("body")[0];
+						if(x.className=="ng-scope has-sidebar-left has-sidebar-right has-modal"){
+							x.className="ng-scope has-sidebar-left has-sidebar-right";
+						}
+						if($scope.estado_modal){
+							localStorage.setItem("usuario_ver",data[0].FK_USUARIO);
+							return "vistas/modal-usuario.html";
+						}
+						return "";
+					}
+					
+					$scope.modal_usuario = function(){
+						//abrir o cerrar modal
+						if($scope.estado_modal){
+							$scope.estado_modal=false;
+						}
+						else{
+							$scope.estado_modal=true;
+						}
+						$scope.mostrar_modal_usuario(); 
+					}
 				
 				/**** Listar comentarios ****/
 				var union="ID="+data[0].ID;

@@ -53,17 +53,27 @@
 						
 					}
 				//
-				//$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
+				
+				//usuario creador
+						$usuario=new Usuario();
+			//usuario creador
+			$usuario_nombre=$usuario->getNombreUsuario($unaPublicacion->getFkUsuario());
+			$usuario_apellido=$usuario->getApellidoUsuario($unaPublicacion->getFkUsuario());
+				
+				
+				$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
 				$array=[
 					"ID"=>$unaPublicacion->getCodigoPublicacion(),
 					"TITULO"=>$unaPublicacion->getTitulo(),
 					"DESCRIPCION"=>$unaPublicacion->getDescripcion(),
-					"FECHA_CREACION"=>$unaPublicacion->getFechaCreacion(),
+					"FECHA_CREACION"=>$fecha,
 					"BORRADO"=>$unaPublicacion->getBorrado(),
 					"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
 					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
 					"FK_CATEGORIA"=>$unaPublicacion->getFkCategoria(),
 					"FOTO"=>$arraySemiFinal,
+					"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
+					"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
 					"DENUNCIAS"=>$arrayFinalDenuncias
 				];
 				$arrayFinal[]=$array;

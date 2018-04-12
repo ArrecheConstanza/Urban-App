@@ -48,6 +48,7 @@
 				"DIRECCION_ESTADO"=>$unUsuario->getDireccionEstado(),
 				"NIVEL"=>$unUsuario->getNivel(),
 				"BORRADO"=>$unUsuario->getBorrado(),
+				"BANNEADO"=>$unUsuario->getBanneado(),
 				"FK_MULTIMEDIA"=>$unUsuario->getFkMultimedia(),
 				"FECHA_ALTA"=>$unUsuario->getFechaAlta(),
 				"FOTO"=>$foto,
