@@ -22,17 +22,6 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				data.push("BORRADO="+$scope.borrado);
 			}
 		}
-		/*if(estado_banneado!="undefined"){
-			if(estado_banneado!=$scope.banneado){
-				if($scope.banneado){
-					$scope.banneado="No";
-				}
-				else{
-					$scope.banneado="Si";
-				}
-				data.push("BANNEADO="+$scope.banneado);
-			}
-		}*/
 		
 		if(data.length){
 			data.push("ID="+$routeParams["id"]);

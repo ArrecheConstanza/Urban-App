@@ -13,10 +13,15 @@
 	$arrayFinal=[];
 	$array=[];
 	foreach($multimedia as $unaMultimedia){
+		if(count($multimedia)){
 			$array=[
 				"ID"=>$unaMultimedia->getCodigoMultimedia(),
-				"PATH"=>$unaMultimedia->getPath()
+				"PATH"=>$unaMultimedia->getPath(),
 			];
+		}
+		else{ //borrada
+			
+		}
 		$arrayFinal[]=$array;
 	}
 	echo json_encode($arrayFinal);

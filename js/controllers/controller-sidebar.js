@@ -20,7 +20,6 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					console.log(data);
 					if(data!=0&&data.length){
 						var foto=data[0]["PATH"];
 						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
@@ -104,17 +103,22 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 				}
 				//cambio fk_multimedia por la direccion de la foto
 				 	$http({ 
-						method: "POST",
-						data: "fkmultimedia="+data[0].FKMULTIMEDIA,
-						url:"/urban-app/php/abm/traer.una.multimedia.php",
+						method: "GET",
+						url:"/urban-app/php/abm/traer.multimedia.php",
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data2, status){
-						if(data2.length){
-							data[0].FOTO="/urban-app"+data2[0]["PATH"].substring(25,data2[0]["PATH"].length);
-						}
-						else{ //sin foto
-							data[0].FOTO="/urban-app/img/fotos/muestra.jpg"; 
+						for(var j in data2){
+							for(var i in data){
+								//console.log(data[i]["FKMULTIMEDIA"]);
+								data[i]["FOTO"]="/urban-app/img/fotos/muestra.jpg"; 
+								if(data[i]["FKMULTIMEDIA"]==data2[j]["ID"]){
+									foto=data2[j]["PATH"].substring(25,data2[j]["PATH"].length);
+									data[i]["FOTO"]="/urban-app"+foto;
+								}
+							}
+							
+							console.log(data);
 						}
 					})
 					.error(function(data){

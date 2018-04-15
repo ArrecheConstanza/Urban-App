@@ -13,22 +13,21 @@
 	$grupo = Grupo::all();
 	$arrayFinal=[];
 	$array=[];
-			foreach($grupo as $unGrupo){
+	$foto=null;
+	
+	foreach($grupo as $unGrupo){
 		
 		//traer imagen de grupo
 		if($unGrupo->getFkMultimedia()!=null){
 			$multimedia = new Multimedia();
 			$multimedia=$multimedia->getByPk($unGrupo->getFkMultimedia());
-			//foreach($multimedia as $unaMultimedia){
+			if(count($multimedia)){
 					$array=[
 						"ID"=>$multimedia[0]->getCodigoMultimedia(),
 						"PATH"=>$multimedia[0]->getPath()
 					];
-		//	}
-			$foto=$array;
-		}
-		else{
-			$foto=null;
+				$foto=$array;
+			}
 		}
 		/*$grupo=Grupo::all();
 			$arrayFinal=array();

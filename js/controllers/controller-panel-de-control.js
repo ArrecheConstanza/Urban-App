@@ -20,14 +20,15 @@ Urban.controller("panelDeControlCtrl", function ($scope,$http){
 		.success(function(data, status){
 			usuarios=data.length;
 			//************************* GRUPOS 
-				var grupos;
+				var grupos_panel;
 				$http({ 
 					method:"POST",
 					url:"php/abm/traer.grupos.php",
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
-					grupos=data.length;
+					grupos_panel=data.length;
+					console.log(grupos_panel);
 					//************************* PUBLICACIONES
 						var publicaciones;
 						$http({ 
@@ -48,7 +49,6 @@ Urban.controller("panelDeControlCtrl", function ($scope,$http){
 							.success(function(data, status){
 								encuestas=data.length;
 								
-								
 								/****Grafico****/
 								 new Chart(document.getElementById("bar-chart-horizontal"), {
 									type: 'horizontalBar',
@@ -58,7 +58,7 @@ Urban.controller("panelDeControlCtrl", function ($scope,$http){
 										{
 										  label: "Cantidad",
 										  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-										  data: [usuarios,grupos,publicaciones,encuestas]
+										  data: [usuarios,grupos_panel,publicaciones,encuestas]
 										}
 									  ]
 									},

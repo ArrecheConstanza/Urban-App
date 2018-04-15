@@ -137,9 +137,14 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 						});
 					}
 					else{
-						var foto=data[0]["PATH"];
-						foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
-						$scope.img=foto;
+						if(data.length){
+							var foto=data[0]["PATH"];
+							foto=foto.replace("C:/xampp/htdocs/Urban-App/img/","");
+							$scope.img=foto;
+						}
+						else{ //imagen borrada
+							$scope.img="icons/png/newChat.png";
+						}
 					}
 				})
 				.error(function(data){
