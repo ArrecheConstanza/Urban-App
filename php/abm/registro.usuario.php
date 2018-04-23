@@ -6,9 +6,8 @@
 	require_once('../config.php');
 	require_once('../funciones.php');
 	require_once('../clases/DBcnx.php');
-	require_once('../clases/Validacion.php');
 	require_once('../clases/Usuario.php');
-
+	require_once('../clases/Validacion.php');
 	
 	/***** Validacion ******/
 	
