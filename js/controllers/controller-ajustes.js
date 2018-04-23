@@ -418,6 +418,7 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 			url:"php/abm/foto.usuario.php",
 		})
 		.then(function(response){
+			console.log(response);
 			if(response.data!=0){
 					localStorage.setItem("foto_final_usuario",response.data.PATH);
 					id("title-container-perfil").style.background="url('"+response.data.PATH.replace("C:/xampp/htdocs/Urban-App/","")+"') no-repeat 100% "; // <- despues se reemplaza para hosting
