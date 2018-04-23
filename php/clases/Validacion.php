@@ -78,6 +78,12 @@ class Validacion{
 			$this->addError($campo, "El campo " . $campo . " debe ser correcto. ");
 		}
 	}
+	protected function _pregunta($campo){
+		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/";
+		if (!preg_match($exp,$this->dts[$campo])) {
+			$this->addError($campo, "Mínimo debe poseer 3 caracteres.");
+		}
+	}
 	protected function _nombre($campo){
 		$exp="/^[a-záéíóúñ\s]{3,60}$/i";
 		if (!preg_match($exp,$this->dts[$campo])) {
@@ -103,10 +109,5 @@ class Validacion{
 			$this->addError($campo, "Minimo 3 caracteres.");
 		}
 	}
-	protected function _pregunta($campo){
-		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/";
-		if (!preg_match($exp,$this->dts[$campo])) {
-			$this->addError($campo, "Minimo 3 caracteres.");
-		}
-	}
+
 }

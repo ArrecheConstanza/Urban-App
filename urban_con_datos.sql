@@ -21,7 +21,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP DATABASE IF EXISTS urban;
+CREATE DATABASE urban;
+USE urban;
 --
 -- Estructura de tabla para la tabla `alarma`
 --

@@ -16,9 +16,9 @@
 		'PREGUNTA' => 'required|pregunta'
 	];
 
-$validacion = new Validacion($_POST, $reglas);
-$rta= json_encode($validacion->getErrores())."\n";
 
+$rta= json_encode($validacion->getErrores())."\n";
+$validacion = new Validacion($_POST, $reglas);
 //mensaje error
 if(count(json_decode($rta))){
 	echo $rta;
