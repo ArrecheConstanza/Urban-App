@@ -110,15 +110,18 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 					.success(function(data2, status){
 						for(var j in data2){
 							for(var i in data){
-								//console.log(data[i]["FKMULTIMEDIA"]);
-								data[i]["FOTO"]="/urban-app/img/fotos/muestra.jpg"; 
 								if(data[i]["FKMULTIMEDIA"]==data2[j]["ID"]){
 									foto=data2[j]["PATH"].substring(25,data2[j]["PATH"].length);
 									data[i]["FOTO"]="/urban-app"+foto;
 								}
+								//console.log(data[i]["FOTO"]);
 							}
 							
-							console.log(data);
+						}
+						for(var i in data){
+							if(data[i]["FOTO"]===undefined){
+								data[i]["FOTO"]="/urban-app/img/fotos/muestra.jpg"; 
+							}
 						}
 					})
 					.error(function(data){
