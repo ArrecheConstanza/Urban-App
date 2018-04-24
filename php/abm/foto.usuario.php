@@ -55,7 +55,6 @@
 			
 			/***************/
 			
-			$destino_grande = 'C:/xampp/htdocs/Urban-App/img/usuarios/'.$_SESSION["s_id"].'/'.$foto; 
 			//move_uploaded_file( $copia , $destino );
 			$multimedia = new Multimedia();
 			$rta2=$multimedia->crear_multimedia($destino);
