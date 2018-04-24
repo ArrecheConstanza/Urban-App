@@ -24,11 +24,11 @@
 			$_POST['TOKEN'] = md5( rand( 0 , 100000) );
 			$pedido = new Pedidos();
 			$pedido=$pedido->crear_pedido($_POST);
-			$vinculo_recuperar = "http://localhost/urban-app/php/abm/confirmar_clave.php?u=$_POST[EMAIL]&token=$_POST[TOKEN]";
+			$vinculo_recuperar = "http://localhost/urban-app/recuperar_clave/confirmar_clave.php?u=$_POST[EMAIL]&token=$_POST[TOKEN]";
 			$headers = "MIME-Version: 1.0\r\n";
 			$headers .="Content-type: text/html; charst=iso-8859-1\r\n";
 			$headers .="To : <$usuario[EMAIL]> \r\n";
-			$headers .="From: Urban-App <Urbanaplicacion@gmail.com> \r\n";
+			$headers .="From: Urban-App <urbanaplicacion@gmail.com> \r\n";
 			$asunto="Recuperar Clave";
 $mensaje = <<<MAIL
 Hola, $usuario[NOMBRE]!<br />
@@ -40,7 +40,7 @@ Saludos,
 Equipo Urban!
 MAIL;
 			mail($usuario['EMAIL'],$asunto,$mensaje,$headers);
-			echo 1; //ok
+			echo $mensaje; //ok
 		}
 		else{
 			echo "usuario inexistente";
