@@ -38,6 +38,10 @@ Urban.config(function($routeProvider) {
 			templateUrl : 'vistas/nuevo-grupo.html',
 			controller : 'newGrupoCtrl'
 		})
+		.when('/terminosCondiciones', {
+			templateUrl : 'vistas/terminos-condiciones.html',
+			//controller : 'newGrupoCtrl'
+		})
 		/* .when('/newChat', {
 			templateUrl : 'vistas/nuevo-chat.html',
 			controller : 'chatsListadoCtrl'

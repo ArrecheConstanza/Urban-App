@@ -30,6 +30,20 @@
 				<!-- Edad -->
 				<label>Edad</label>
 				<input type="date" name="edad" placeholder="Edad" class="form-control  margin-bottom-sm" required ng-model="usuario.EDAD">
+				
+				<!-- aceptar terminos y condiciones --->
+				<label for="terminos_condiciones" >
+						  <input
+							type="checkbox"
+							class="form-check-input" 
+							name="terminos_condiciones"
+							id="terminos_condiciones"
+							value="terminos_condiciones"
+							required
+							ng-model="usuario.terminos_condiciones"
+						  > Aceptar los <a href="#/terminosCondiciones">Términos y condiciones</a>
+						</label>
+				
 				<!-- Continuar-->
 				<input type="submit" class="form-control btn btn-default" value="Continuar" id="continue-registro">
 			</form>

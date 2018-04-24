@@ -21,6 +21,11 @@
 
 $validacion = new Validacion($_POST, $reglas);
 $rta= json_encode($validacion->getErrores())."\n";
+/* 
+if(!isset($_POST['terminos_condiciones'])){
+	echo "Debes haceptar los terminos y condiciones";
+	return 0;
+} */
 
 //si hay un error
 if(count(json_decode($rta))){
