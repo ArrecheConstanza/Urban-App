@@ -197,10 +197,17 @@ function validar_encuesta(e,estado){
 			case 'pregunta':
 				if (e.value) {
 					if(!validar_pregunta(e.value)){
-						var tx=txt('Minimo 3 caracteres');
+						var tx=txt('Debe tener mínimo de 10 caracteres');
 					}
 				}
 			break;
+			case 'opciones':
+				if (e.value) {
+					if(!validar_opcion(e.value)){
+						var tx=txt('Debe tener mínimo de 1 caracter');
+					}
+				}
+			break;			
 		}
 		if(tx){
 			e.style.borderBottom='solid red 1px';

@@ -13,7 +13,8 @@
 	/***** Validacion ******/
 	
 	$reglas = [
-		'PREGUNTA' => 'required|pregunta'
+		'PREGUNTA' => 'required|pregunta',
+		'OPCIONES' => 'required|opciones'
 	];
 
 $validacion = new Validacion($_POST, $reglas);

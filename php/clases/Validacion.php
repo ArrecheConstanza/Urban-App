@@ -24,6 +24,12 @@ class Validacion{
 						$this->{$forma}($campo);
 					}
 				}
+				else if($unaValidacion=="pregunta"){
+					$forma = '_' . $unaValidacion;
+					if(method_exists($this, $forma)) {
+						$this->{$forma}($campo);
+					}
+				}
 				else if($unaValidacion=="nombre"||$unaValidacion=="apellido"){
 					$forma = '_nombre';
 					if(method_exists($this, $forma)) {
@@ -79,9 +85,9 @@ class Validacion{
 		}
 	}
 	protected function _pregunta($campo){
-		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/";
+		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{10,500})?$/";
 		if (!preg_match($exp,$this->dts[$campo])) {
-			$this->addError($campo, "Mínimo debe poseer 3 caracteres.");
+			$this->addError($campo, "Mínimo debe poseer 10 caracteres.");
 		}
 	}
 	protected function _nombre($campo){
@@ -95,6 +101,12 @@ class Validacion{
 		$exp='/^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])(\/|\-)(0?[1-9]|1[0-2])(\/|\-)(19[2-9][0-9]|2000)$/';
 		if (!preg_match($exp,$campo)) {
 			$this->addError($campo, "Debes ser mayor de 16 años.");
+		}
+	}
+	protected function _opciones($campo){
+		$exp="/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{1,100})?$/";
+		if (!preg_match($exp,$this->dts[$campo])) {
+			$this->addError($campo, "Mínimo debe poseer 1 caracter.");
 		}
 	}
 	protected function _clave($campo){

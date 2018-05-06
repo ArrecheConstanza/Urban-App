@@ -23,6 +23,10 @@
 		return exp.test( val);
 	}
 	function validar_pregunta(val){
-		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/;
+		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{10,500})?$/;
+		return exp.test( val);
+	}
+	function validar_opcion(val){
+		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{1,500})?$/;
 		return exp.test( val);
 	}

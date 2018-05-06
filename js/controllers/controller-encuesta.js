@@ -57,7 +57,7 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 	//************* CREAR *************//
 	
 		//valido onblur
-		var datos_encuesta=tn(tn(document,'form',0),'input');
+		var datos_encuesta=tn(tn(document,'form',0),'textarea','input');
 		for(var i=0;i<datos_encuesta.length;i++){
 			datos_encuesta[i].onblur=function(){
 				validar_encuesta(this);
@@ -75,7 +75,7 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 			
 			//valido submit
 			for(var i=0;i<datos_encuesta.length;i++){
-				validar_form(datos_encuesta[i],"submit");
+				validar_encuesta(datos_encuesta[i],"submit");
 			}
 			
 			var mensaje=tn(tn(document,'form',0),'p');
@@ -95,7 +95,6 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 					}
 				}
 				else{
-					//modal error
 				} 
 			}
 			}

@@ -17,7 +17,7 @@
 		
 		<!-- Formulario -->
 		<form  role='form' name='publi' ng-submit='crear_encuesta(encuesta)'>
-			<select class='select' name='grupo' ng-model='encuesta.FKGRUPO' ng-init="encuesta.FKGRUPO='0'">
+			<select class='select' name='grupo' ng-model='encuesta.FKGRUPO' required ng-init="encuesta.FKGRUPO='0'">
 				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
 			</select>
 			
@@ -26,15 +26,16 @@
 				<input class='upload-file'  type='file' ngf-select ng-model='encuesta.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
 			</div> -->
  
-			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
+			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' required ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
 		
 			<div id="btn_opcion">
 				<label>Opciones</label>
 				  <div ng-repeat="(key,item) in items">
-					<input ng-model="item.opcion" type="text" class='form-control' placeholder='Opcion {{key+1}}'>
+					<input ng-model="item.opcion" type="text" name="opciones" class='form-control' required placeholder='Opcion {{key+1}}'>
 				  </div>
 					<div ng-show="mostrar_aniadir"><p>Añadir opcion</p><button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button></div>
 			</div>
+			<div id="error-msg"></div>
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>
 			
 		</form>
