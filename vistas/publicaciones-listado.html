@@ -1,4 +1,6 @@
-
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/publicaciones-listado.css"); </style> 
+	
 	<!--- ******CONTENIDO (VISTA PUBLICACIONES)****** -->
 	
 	<!-- PUBLICACIONES -->
@@ -12,14 +14,23 @@
 		</ul>
 		<a href="#newPublicacion" id="publicaciones_listado_crear_publicacion">Crear publicacion</a>	
 			<ul class="list-group" id="listado-publicaciones">
-			  <li ng-repeat="item in datosSQLpublicaciones track by $index " onclick="detallePublicacion(this)" class="list-group-item">
-				<input type="hidden" name="country" value="{{item.ID}}">
-				<!--<img src="img/icons/png/temaAnimal.png" alt="todo" class="temaChat"/>-->
-				<img class='img-publi' ng-src="{{ item.FOTO }}" />
-				<div><h2>{{ item.TITULO }}</h2>  
-				<p>{{ item.DESCRIPCION }}</p>  </div>
-				<small calss="pull-left">{{ item.CATEGORIA }}</small>  
-				<small>{{ item.FECHA_CREACION }}</small>  
+			  <li ng-repeat="item in datosSQLpublicaciones track by $index " class="list-group-item">
+				<div ng-click="detallePublicacion(item.ID)" >
+					<p calss="pull-left">{{ item.USUARIO_NOMBRE }} {{ item.USUARIO_APELLIDO }}</p>
+					<small calss="pull-right">#{{ item.CATEGORIA }}</small>  
+					<input type="hidden" name="country" value="{{item.ID}}">
+					<img class='img-publi' ng-src="{{ item.FOTO }}" />
+					<div>
+						<h2>{{ item.TITULO }}</h2>  
+						<p>{{ item.DESCRIPCION }}</p>
+					</div>
+				</div>	
+				<div>
+					<button type="button" ng-click="me_gusta()" class="btn btn-link pull-right" >
+					<img src="img/icons/png/like.png" /></button>
+					<button type="submit" ng-click="detallePublicacion(item.ID)" class="btn btn-link pull-right" ><img src="img/icons/png/comentario.png" /></button>
+				</div>	
+				<small class="fecha">{{ item.FECHA_CREACION }}</small>
 			  </li>
 			</ul>
 		</div>

@@ -39,7 +39,12 @@
 		//Pido todo el contenido categoria de la publicacion
 			$categoria = new Categoria();
 			$rta2 = $categoria->getByPk($unaPublicacion->getFkCategoria());
-		
+			//usuario creador
+			$usuario=new Usuario();
+			//usuario creador
+			$usuario_nombre=$usuario->getNombreUsuario($unaPublicacion->getFkUsuario());
+			$usuario_apellido=$usuario->getApellidoUsuario($unaPublicacion->getFkUsuario());
+			
 		//
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),
@@ -50,6 +55,8 @@
 				"FK_GRUPO"=>$unaPublicacion->getFkGrupo(),
 				"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
 				"FK_CATEGORIA"=>$unaPublicacion->getFkCategoria(),
+				"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
+				"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
 				"FOTO"=>$arraySemiFinal,
 				"CATEGORIA"=>$rta2[0]->getTitulo(),
 			];

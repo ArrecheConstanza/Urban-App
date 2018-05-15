@@ -1,0 +1,62 @@
+#listado-publicaciones{
+	margin-bottom:6em;
+}
+
+#listado-publicaciones li>div img{
+	width:100vw;
+	height:auto;
+}
+
+
+#listado-publicaciones li>div{
+	display:inline-block;
+	width:92vw;
+	padding:0;
+}
+
+
+#listado-publicaciones li>div>p{
+	display:inline-block;
+	padding-left:1em;
+}
+
+#listado-publicaciones li>div>small{
+	display:inline-block;
+	float:right;
+	font-size:1em;
+	color:grey;
+	font-weight:bold;
+	letter-spacing:.2em;
+}
+
+#listado-publicaciones li>div>div h2{
+	font-size:1.2em;
+	padding:.5em 1em;
+}
+
+#listado-publicaciones li>div>div p{
+	padding:0 1em;
+
+}
+
+#listado-publicaciones li div button img{
+	width:auto;
+	height:auto;
+}
+
+#listado-publicaciones li div button{
+	width:2.3em;
+	padding-bottom:1em;
+}
+
+#listado-publicaciones li{
+	padding:1em 0;
+	margin:0;
+}
+
+
+.fecha{
+	padding-right:1em;
+}
+
+

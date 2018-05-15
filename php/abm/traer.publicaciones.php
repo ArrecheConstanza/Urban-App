@@ -40,7 +40,7 @@
 		//Pido todo el contenido categoria de la publicacion
 			$categoria = new Categoria();
 			$rta2 = $categoria->getByPk($unaPublicacion->getFkCategoria());
-		
+			
 		//
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),

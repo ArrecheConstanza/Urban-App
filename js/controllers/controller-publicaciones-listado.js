@@ -105,6 +105,32 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 				.error(function(){
 					// sin internet
 				});
+				
+				/////////////detallePublicacion
+
+				$scope.detallePublicacion=function(publi){
+					localStorage.setItem("id_publi",publi);
+					window.location.href="/urban-app/index.html#/detallePublicacion";
+				}
+				
+				/////////////me gusta
+
+				$scope.me_gusta=function(publi){
+					/*var datos="id="+publi;
+					$http({ 
+						method:"POST",
+						url:"php/abm/publicacion.me.gusta.php",
+						data: datos,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data, status){
+						
+					})
+					.error(function({
+						
+					}));*/
+				}
+
 		}
 		else{
 			//modal de error, no hay grupo, redireccion a mapa para union a grupo o creacion de grupo
