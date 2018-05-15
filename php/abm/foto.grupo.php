@@ -20,10 +20,36 @@
 			if(!is_dir("../../img/grupos/".$_POST["ID"])){
 				mkdir("../../img/grupos/".$_POST["ID"]);
 			}
+			
 			$foto = $_FILES['FOTO']['name'];
 			$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$_POST["ID"].'/'.$foto; //<- este despues se cambia por el de abajo
 			//$destino='http://urban-app.com.ar/'.$destino; <- para guardarlo en hosting
-			move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
+			
+			/**** RESIZE ****/
+			$ruta_temporal = $_FILES['FOTO']['tmp_name']; 
+			if($_FILES['FOTO']['type']=='image/png'){
+				$original=imagecreatefrompng( $ruta_temporal );
+			}
+			else if($_FILES['FOTO']['type']=='image/jpeg'||$_FILES['FOTO']['type']=='image/jpg'){
+				$original=imagecreatefromjpeg( $ruta_temporal );
+			}
+			else{
+				//error formato no permitido
+			}
+			
+			$ancho_o = imagesx( $original );
+			$alto_o = imagesy( $original );
+			$alto_n = 300; //300px de alto
+			$ancho_n = round($alto_n  *$ancho_o / $alto_o) ;
+			$copia = imagecreatetruecolor( $ancho_n, $alto_n );
+			imagecopyresampled( $copia, $original, 0,0, 0,0, $ancho_n, $alto_n, $ancho_o, $alto_o );
+			
+			imagejpeg( $copia, $destino, 100 );
+			imagedestroy($copia);
+			imagedestroy($original);
+			/***************/
+							
+			//move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
 			$multimedia = new Multimedia();
 			$rta2=$multimedia->crear_multimedia($destino);
 			if(!$rta2){

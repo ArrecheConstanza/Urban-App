@@ -35,7 +35,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 			}
 		});
 	
-	//**** LISTADO PUBLICACIONES *****//
+	//**** LISTADO PUBLICACIONES ****//
 		
 		localStorage.setItem("urban_url",window.location.href);
 		if(localStorage.getItem("grupo_seleccionado_urban")!=null){

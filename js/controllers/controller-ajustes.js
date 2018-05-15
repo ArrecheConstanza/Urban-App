@@ -170,7 +170,7 @@ Urban.controller("ajustesCtrl",  ['$scope', '$http', '$location', 'Upload', '$ti
 									id("envio_foto").style.display="none";
 									id("no_envio_foto").style.display="none";
 									$scope.hay_foto_grupo=true;
-									location.reload();
+									//location.reload();
 								}
 								else{
 									//modal error
