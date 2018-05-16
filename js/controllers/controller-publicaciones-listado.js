@@ -49,6 +49,8 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
 				.success(function(data, status){
+					console.log(data);
+					
 					var nuevo_array=[];
 					for(var i in data){
 						var es_categoria=false;
@@ -70,6 +72,16 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 							//solo 1 foto, editar cuando se suban mas de una
 							var foto=data[i].FOTO[0]["DIR"].substring(26,data[i].FOTO[0]["DIR"].length);
 							data[i].FOTO=foto;
+						}
+						
+						//si tiene o no foto el usuario creador
+						if(!data[i].FOTO_USUARIO.length){
+							data[i].FOTO_USUARIO="/urban-app/img/fotos/usuario.jpg";
+						}
+						else{
+							//solo 1 foto, editar cuando se suban mas de una
+							var foto=data[i].FOTO_USUARIO[0]["DIR"].substring(26,data[i].FOTO_USUARIO[0]["DIR"].length);
+							data[i].FOTO_USUARIO=foto;
 						}
 						
 						//es categoria, lo cargo
@@ -101,34 +113,43 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					
 					//cargo datos en vista
 					$scope.datosSQLpublicaciones=rta.reverse();
+					
 				})
 				.error(function(){
 					// sin internet
 				});
 				
-				/////////////detallePublicacion
-
+				//**** VER PUBLICACION ****//
 				$scope.detallePublicacion=function(publi){
 					localStorage.setItem("id_publi",publi);
 					window.location.href="/urban-app/index.html#/detallePublicacion";
 				}
 				
-				/////////////me gusta
-
-				$scope.me_gusta=function(publi){
-					/*var datos="id="+publi;
+				//**** LIKE PUBLICACION ****//
+				$scope.dar_like=function(publi){
+					var datos="FKPUBLICACION="+publi;
 					$http({ 
 						method:"POST",
-						url:"php/abm/publicacion.me.gusta.php",
+						url:"php/abm/publicacion.like.php",
 						data: datos,	
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data, status){
+						if(data=='1'){
+							//mostrar o sacar corazon
+							if(id("corazon").src.substr(id("corazon").src.length-8,id("corazon").src.length)=="like.png"){
+								//corazon verde 
+								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-8)+"like-on.png";
+							}
+							else{
+								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-11)+"like.png";
+							}
+						}
 						
 					})
-					.error(function({
-						
-					}));*/
+					.error(function(){
+						//sin internet, modal intentar mas tarde
+					});
 				}
 
 		}

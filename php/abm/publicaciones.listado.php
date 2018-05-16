@@ -11,6 +11,8 @@
 	require_once('../clases/Publicacion.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
+	require_once('../clases/Publicacion_Comentario.php');
+	require_once('../clases/Publicacion_Like.php');
 	
 	$publicacion=new Publicacion();
 	$publicacion=$publicacion->all_grupo($_POST["id"]);
@@ -45,6 +47,19 @@
 			$usuario_nombre=$usuario->getNombreUsuario($unaPublicacion->getFkUsuario());
 			$usuario_apellido=$usuario->getApellidoUsuario($unaPublicacion->getFkUsuario());
 			
+			//foto usuario
+			$usuario_multimedia=[];
+			if($usuario->getFkMultimediaUsuario($unaPublicacion->getFkUsuario())["FKMULTIMEDIA"]!=null){
+				$multimedia = new Multimedia();
+				$foto_usuario=$multimedia->getByPk($usuario->getFkMultimediaUsuario($unaPublicacion->getFkUsuario())["FKMULTIMEDIA"]);
+					foreach($foto_usuario as $multi){
+						$array=[
+							"DIR"=>$multi->getPath()
+						];
+						$usuario_multimedia[]=$array;
+					}
+			}
+			
 		//
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),
@@ -58,6 +73,7 @@
 				"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
 				"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
 				"FOTO"=>$arraySemiFinal,
+				"FOTO_USUARIO"=>$usuario_multimedia,
 				"CATEGORIA"=>$rta2[0]->getTitulo(),
 			];
 			$arrayFinal[]=$array;

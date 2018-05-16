@@ -16,8 +16,11 @@
 			<ul class="list-group" id="listado-publicaciones">
 			  <li ng-repeat="item in datosSQLpublicaciones track by $index " class="list-group-item">
 				<div ng-click="detallePublicacion(item.ID)" >
-					<p calss="pull-left">{{ item.USUARIO_NOMBRE }} {{ item.USUARIO_APELLIDO }}</p>
-					<small calss="pull-right">#{{ item.CATEGORIA }}</small>  
+					<div class="head-publi">
+						<img class='img-user pull-right' ng-src="{{ item.FOTO_USUARIO }}" />
+						<p calss="pull-left">{{ item.USUARIO_NOMBRE }} {{ item.USUARIO_APELLIDO }}</p>
+						<small calss="pull-right">#{{ item.CATEGORIA }}</small>  
+					</div>
 					<input type="hidden" name="country" value="{{item.ID}}">
 					<img class='img-publi' ng-src="{{ item.FOTO }}" />
 					<div>
@@ -26,9 +29,12 @@
 					</div>
 				</div>	
 				<div>
-					<button type="button" ng-click="me_gusta()" class="btn btn-link pull-right" >
-					<img src="img/icons/png/like.png" /></button>
-					<button type="submit" ng-click="detallePublicacion(item.ID)" class="btn btn-link pull-right" ><img src="img/icons/png/comentario.png" /></button>
+					<button type="button" ng-click="dar_like(item.ID)" class="btn btn-link pull-right" >
+					<p class="pull-right">3</p>
+					<img src="img/icons/png/like.png" id="corazon"/></button>
+					<button type="submit" ng-click="detallePublicacion(item.ID)" class="btn btn-link pull-right" >
+					<p class="pull-right">6</p>
+					<img src="img/icons/png/comentario.png" /></button>
 				</div>	
 				<small class="fecha">{{ item.FECHA_CREACION }}</small>
 			  </li>

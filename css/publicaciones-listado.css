@@ -34,11 +34,6 @@
 	padding:.5em 1em;
 }
 
-#listado-publicaciones li>div>div p{
-	padding:0 1em;
-
-}
-
 #listado-publicaciones li div button img{
 	width:auto;
 	height:auto;
@@ -58,5 +53,50 @@
 .fecha{
 	padding-right:1em;
 }
+
+.img-user{
+	border-radius:50%;
+	width:2.5em!important;
+	height:2.5em!important;
+}
+
+.head-publi {
+	width:100vw;
+	vertical-align:middle;
+	min-height:3em;
+}
+
+.head-publi p {
+	padding-left:3em;
+	margin:0;
+	display:inline-block;
+	width:auto;
+	vertical-align: bottom;
+
+}
+
+.head-publi small {
+	display:inline-block!important;
+	float:right;
+	padding-right:1em;
+	font-size:1em;
+	vertical-align: bottom;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
