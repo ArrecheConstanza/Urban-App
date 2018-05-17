@@ -88,6 +88,18 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 						if(es_categoria){
 							nuevo_array.push(data[i]);
 						}
+						
+						//si el usuario likeo esta publicacion
+						data[i].LIKEADA=false;
+						if(data[i].LIKES.length){
+							for(var j=0;j<data[i].LIKES.length;j++){
+								if(data[i].LIKES[j]["FK_USUARIO"]==data[i].USUARIO_ID){
+									//corazon verde 
+									data[i].LIKEADA=true;
+								}
+							}
+						}
+						
 					} 
 					
 					//si esta filtrado por categorias
@@ -111,8 +123,12 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 						$scope.hay_filtrado=false;
 					}
 					
+					
+					
 					//cargo datos en vista
 					$scope.datosSQLpublicaciones=rta.reverse();
+					
+					
 					
 				})
 				.error(function(){
@@ -127,7 +143,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 				
 				//**** LIKE PUBLICACION ****//
 				$scope.dar_like=function(publi){
-					var datos="FKPUBLICACION="+publi;
+					var datos="FKPUBLICACION="+publi.ID;
 					$http({ 
 						method:"POST",
 						url:"php/abm/publicacion.like.php",
@@ -136,14 +152,22 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					})
 					.success(function(data, status){
 						if(data=='1'){
-							//mostrar o sacar corazon
-							if(id("corazon").src.substr(id("corazon").src.length-8,id("corazon").src.length)=="like.png"){
+							 //mostrar o sacar corazon
+							 if(publi.LIKEADA){
+								 publi.LIKEADA=false;
+								 publi.LIKES.length-=1;
+							 }
+							 else{
+								publi.LIKEADA=true;
+								 publi.LIKES.length+=1;
+							 }
+							/*if(id("corazon").src.substr(id("corazon").src.length-8,id("corazon").src.length)=="like.png"){
 								//corazon verde 
 								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-8)+"like-on.png";
 							}
 							else{
 								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-11)+"like.png";
-							}
+							} */
 						}
 						
 					})

@@ -83,6 +83,7 @@ class Publicacion_Comentario{
 			}
 		}
 	}
+	
 	public static function listar_comentario_publicacion($id){
 		$salida = [];
 		$query = "SELECT * FROM " . static::$tabla . " WHERE BORRADO='No' AND FKPUBLICACION='$id' ";

@@ -79,7 +79,10 @@ basicChat.controller( 'BasicController', [ 'Messages', 'Upload', '$scope', '$win
 			}
 		})
 		.error(function(data){
-			//no hay internet, usar datos de localstorage
+			
+			window.location.href=localStorage.getItem("urban_url");
+			
+			
 		});
 		
 		

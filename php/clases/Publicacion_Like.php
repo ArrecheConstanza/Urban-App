@@ -55,7 +55,7 @@ class Publicacion_Like{
 	
 	public static function all_likes($id){
 		$salida = [];
-		$query = "SELECT * FROM " . static::$tabla . " WHERE FKPUBLICACION = '$id'" ;
+		$query = "SELECT * FROM " . static::$tabla . " WHERE FKPUBLICACION = '$id' AND BORRADO='No'" ;
 		$stmt = DBcnx::getStatement($query);
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {

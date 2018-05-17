@@ -60,6 +60,31 @@
 					}
 			}
 			
+			//traigo cantidad de likes
+			$publicacion_like = new Publicacion_Like();
+			$likes = $publicacion_like->all_likes($unaPublicacion->getCodigoPublicacion());
+			$listado_likes=[];
+			foreach($likes as $like){
+					$array=[
+						"ID"=>$like->getCodigoPublicacionLike(),
+						"BORRADO"=>$like->getBorrado(),
+						"FK_USUARIO"=>$like->getFkUsuario(),
+						"FK_PUBLICACION"=>$like->getFkPublicacion()
+					];
+					$listado_likes[]=$array;
+			}
+						
+			//traigo cantidad de comentarios
+			$publicacion_comentario = new Publicacion_Comentario();
+			$comentarios = $publicacion_comentario->listar_comentario_publicacion($unaPublicacion->getCodigoPublicacion());
+			$listado_comentarios=[];
+			foreach($comentarios as $comentario){
+					$array=[
+						"ID"=>$comentario->getCodigoComentarioPublicacion()
+					];
+					$listado_comentarios[]=$array;
+			}
+			
 		//
 			$array=[
 				"ID"=>$unaPublicacion->getCodigoPublicacion(),
@@ -74,7 +99,10 @@
 				"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
 				"FOTO"=>$arraySemiFinal,
 				"FOTO_USUARIO"=>$usuario_multimedia,
+				"LIKES"=>$listado_likes,
+				"COMENTARIOS"=>$listado_comentarios,
 				"CATEGORIA"=>$rta2[0]->getTitulo(),
+				"USUARIO_ID"=>$_SESSION["s_id"]
 			];
 			$arrayFinal[]=$array;
 	}
