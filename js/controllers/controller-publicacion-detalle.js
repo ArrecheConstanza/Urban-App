@@ -37,6 +37,8 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
 				$scope.USUARIO_NOMBRE=data[0].USUARIO_NOMBRE;
 				$scope.USUARIO_APELLIDO=data[0].USUARIO_APELLIDO;
+				
+				
 				//FOTO principal
 				if(!data[0].FOTO.length){
 					var foto="/urban-app/img/fotos/muestra.jpg";
@@ -81,8 +83,20 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data){
-						if(data){
+						if(data.length){
+							for(var i =0;i<data.length;i++){
+								//si tiene o no foto el usuario creador
+								if(!data[i].FOTO_USUARIO.length){
+									data[i].FOTO_USUARIO="/urban-app/img/fotos/usuario.jpg";
+								}
+								else{
+									var foto=data[i].FOTO_USUARIO[0]["DIR"].substring(26,data[i].FOTO_USUARIO[0]["DIR"].length);
+									data[i].FOTO_USUARIO=foto;
+								}
+							}
+						
 							var rta=angular.fromJson(data);
+						console.log(data);
 							$scope.datosSQLcomentario_publicacion=rta.reverse();
 						}
 					})

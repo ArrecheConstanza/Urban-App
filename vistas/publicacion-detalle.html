@@ -1,3 +1,6 @@
+		<!-- Estilos propios de la vista -->
+	<style> @import url("css/publicacion-detalle.css"); </style> 
+	
 	<div ng-include="mostrar_modal_usuario()"></div>
 
 	<!-- Contenedor publicacion detalle -->
@@ -37,10 +40,14 @@
 			<!--Listado de comentarios-->
 			<ul class="list-group" id="listado-comentario-publicaciones">
 				<li ng-repeat="item in datosSQLcomentario_publicacion track by $index" class="list-group-item">
-				<!--<img class='img-comentario-publicacion' ng-src="{{ item.FOTO }}" />-->
-				<img src="img/icons/png/menu-nombre.png" alt="nombre" />
-				<p>{{item.COMENTARIO}}</p>
-				<span>{{item.FECHA_CREACION}}</span>
+				<div>
+				<img class='img-comentario-publicacion' ng-src="{{ item.FOTO_USUARIO }}" />
+				<p class="nombre">{{ item.USUARIO_NOMBRE}} {{ item.USUARIO_APELLIDO }}</p>
+				<!-- <img src="img/icons/png/menu-nombre.png" alt="nombre" /> -->
+				<p class="comentario">{{item.COMENTARIO}}</p>
+				</div>
+				<span class="tiempo pull-right" ng-show='item.FECHA_CREACION == "Hace "'> 1 s</span>
+				<span class="tiempo pull-right" >{{item.FECHA_CREACION}}</span>
 				</li>
 			</ul>
 			

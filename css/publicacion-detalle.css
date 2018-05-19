@@ -1,0 +1,27 @@
+.tiempo{
+	display:inline-block!important;
+	width:auto!important;
+}
+
+.list-group-item{
+	padding-bottom:2em;
+}
+
+.img-comentario-publicacion{
+	border-radius:50%;
+	width:2.5em;
+	height:2.5em;
+}
+
+.nombre{
+	font-weight:bold;
+	font-size:1em!important;
+	padding:0 .3em!important;
+	color:black!important;
+}
+
+.comentario{
+	font-size:1em!important;
+	color:black!important;
+
+} 
