@@ -98,11 +98,11 @@
 					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
 					"FK_CATEGORIA"=>$unaPublicacion->getFkCategoria(),
 					"FOTO"=>$arraySemiFinal,
-					"LIKES"=>$listado_likes,
 					"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
 					"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
+					"LIKES"=>$listado_likes,
 					"DENUNCIAS"=>$arrayFinalDenuncias,
-					"USUARIO_ID"=>$_SESSION["s_id"]
+					"USUARIO_ID"=>$_SESSION["s_id"],
 				];
 				$arrayFinal[]=$array;
 		echo json_encode($arrayFinal);

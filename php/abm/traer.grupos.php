@@ -29,27 +29,6 @@
 				$foto=$array;
 			}
 		}
-		/*$grupo=Grupo::all();
-			$arrayFinal=array();
-			
-			foreach($grupo as $unGrupo){
-				$array=[
-					"ID"=>$unGrupo->getCodigoGrupo(),
-					"NOMBRE"=>$unGrupo->getNombre(),
-					"LONGITUD"=>$unGrupo->getLongitud(),
-					"LATITUD"=>$unGrupo->getLatitud(),
-					"ESTADO"=>$unGrupo->getEstado(),
-					"BORRADO"=>$unGrupo->getBorrado(),
-					"FKMULTIMEDIA"=>$unGrupo->getFkMultimedia()
-				];
-				$arrayFinal[]=$array;
-			}
-			echo json_encode($arrayFinal);
-			return 0;*/
-		
-		
-		
-		//
 			$array=[
 				"ID"=>$unGrupo->getCodigoGrupo(),
 					"NOMBRE"=>$unGrupo->getNombre(),

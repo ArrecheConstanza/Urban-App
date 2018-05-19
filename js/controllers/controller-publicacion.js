@@ -23,11 +23,12 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 	
 	//**** GRUPOS ****//
 	
-	//listar grupos de usuario
-	var datos="usuario=true";
+	if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+		localStorage.removeItem("admin");
+	//MODO ADMIN. listado completo de grupos 
 		$http({ 
 			method:"POST",
-			url:"php/abm/grupos.listado.php",
+			url:"php/abm/traer.grupos.php",
 			data: datos,	
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
@@ -54,6 +55,40 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 			//mensaje Sin conexion 
 		});
 	
+	}
+	else{
+		//listar grupos de usuario
+		var datos="usuario=true";
+			$http({ 
+				method:"POST",
+				url:"php/abm/grupos.listado.php",
+				data: datos,	
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+			})
+			.success(function(data, status){
+				if(data!="0"){
+					todos={
+						ID : "0",
+						NOMBRE : "Todos"
+					};
+					var rta=angular.fromJson(data);
+					//genero array para guardar todos los grupos en caso de que se quiera publicar en todos los grupos
+						var id_grupo=[];
+						for (var i=0;i<data.length;i++){
+							id_grupo.push(data[i].ID);
+						}
+						$scope.grupos=id_grupo;
+					//
+					rta.push(todos);
+					$scope.listado_grupos=rta.reverse();
+				}
+				//else logout
+			})
+			.error(function(){
+				//mensaje Sin conexion 
+			});
+	}
+			
 	//************* CREAR *************//
 
 		$scope.crear_publicacion=function(publicacion){

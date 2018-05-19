@@ -44,11 +44,10 @@
 							</div>
 						</div>
 						<div ng-show="key=='DENUNCIAS'">
-							Denuncias : 
+							Denuncias : {{ datosSQLusuario.DENUNCIAS.length }}
 							<ul class="list-group sub-opciones">
 								<li ng-repeat="item in datosSQLusuario.DENUNCIAS track by $index " class="list-group-item">
 									ID: {{ item.ID }}<br>
-									NUM USUARIO DENUNCIADO: {{ item.FKUSUARIO_DENUNCIADO }}<br>
 									NUM USUARIO: {{ item.FKUSUARIO }}<br>
 									<p>DESCRIPCION: {{ item.DESCRIPCION }}</p>
 								</li>

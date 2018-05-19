@@ -3,11 +3,18 @@
 Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$location,$routeParams){
 
 	//funcion volver atras
-	$scope.back = function() { 
+	 $scope.back = function() { 
 		$location.path( "/panelDeControl");
 	}
-	
+	 
 	var estado_borrado;
+	
+	//**** crear publicacion como admin ****//
+	
+	$scope.admin_crea_publi=function(){
+		localStorage.setItem("admin","on");
+	}
+	
 	
 	$scope.back_publicaciones = function() { 
 		var data=[];

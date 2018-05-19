@@ -32,7 +32,7 @@
 						</div>
 						</div>
 						<div ng-show="key=='OPCIONES'">
-							Opciones : 
+							Opciones : {{ datosSQLencuesta.OPCIONES.length }}
 							<ul class="list-group sub-opciones">
 								<li ng-repeat="item in datosSQLencuesta.OPCIONES track by $index " class="list-group-item">
 									({{ item.ID }})  {{ item.RESPUESTA }} 

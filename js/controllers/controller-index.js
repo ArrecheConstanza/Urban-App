@@ -15,6 +15,9 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 		if(!$location.path().search("/reportarUsuario/")){
 			return 0;
 		}
+		if(!$location.path().search("/registroUno/")){
+			return 0;
+		}
 		if(!$location.path().search("/detalleEncuesta/")){
 			return 0;
 		}
@@ -45,6 +48,7 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 			case "/newPublicacion":
 			case "/newGrupo":
 			case "/newEncuesta":
+			case "/registroUno":
 			case "/detallePublicacion":
 			case "/detalleEncuesta":
 			case "/ajustes":
