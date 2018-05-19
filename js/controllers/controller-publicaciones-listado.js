@@ -64,7 +64,8 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 				
 						//si tiene o no foto
 						if(!data[i].FOTO.length){
-							data[i].FOTO="/urban-app/img/fotos/muestra.jpg";
+							//data[i].FOTO="/urban-app/img/fotos/muestra.jpg";
+							data[i].FOTO="";
 						}
 						else{
 							//solo 1 foto, editar cuando se suban mas de una

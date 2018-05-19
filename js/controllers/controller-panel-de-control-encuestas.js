@@ -7,6 +7,11 @@ Urban.controller("panelDeControlEncuestasCtrl", function ($scope,$http,$location
 		$location.path( "/panelDeControl");
 	}
 	
+	//**** crear encuesta como admin ****//
+	$scope.admin_crea_encuesta=function(){
+		localStorage.setItem("admin","on");
+	}
+	
 	var estado_borrado;
 	
 	$scope.back_encuestas = function() { 
