@@ -123,12 +123,8 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 						$scope.hay_filtrado=false;
 					}
 					
-					
-					
 					//cargo datos en vista
 					$scope.datosSQLpublicaciones=rta.reverse();
-					
-					
 					
 				})
 				.error(function(){
@@ -159,15 +155,8 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 							 }
 							 else{
 								publi.LIKEADA=true;
-								 publi.LIKES.length+=1;
+								publi.LIKES.length+=1;
 							 }
-							/*if(id("corazon").src.substr(id("corazon").src.length-8,id("corazon").src.length)=="like.png"){
-								//corazon verde 
-								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-8)+"like-on.png";
-							}
-							else{
-								id("corazon").src=id("corazon").src.substr(0,id("corazon").src.length-11)+"like.png";
-							} */
 						}
 						
 					})

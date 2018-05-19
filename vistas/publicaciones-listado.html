@@ -20,7 +20,7 @@
 						<img class='img-user pull-right' ng-src="{{ item.FOTO_USUARIO }}" />
 						<p calss="pull-left">{{ item.USUARIO_NOMBRE }} {{ item.USUARIO_APELLIDO }}</p>
 						
-						<small calss="pull-right">#{{ item.CATEGORIA }}</small>  
+						<small calss="pull-right" ng-show='item.CATEGORIA!="Otro"'>#{{ item.CATEGORIA }}</small>  
 					</div>
 					<input type="hidden" name="country" value="{{item.ID}}">
 					<img class='img-publi' ng-src="{{ item.FOTO }}" />

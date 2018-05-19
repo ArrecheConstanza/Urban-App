@@ -72,7 +72,8 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					}
 				
 				/**** Listar comentarios ****/
-				var union="ID="+data[0].ID;
+				function listar_comentarios(){
+					var union="ID="+data[0].ID;
 					$http({
 						method: 'POST',
 						url:"php/abm/publicacion.comentario.listar.php",
@@ -88,6 +89,8 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					.error(function(){
 						//Sin conexion
 					});
+				}
+				listar_comentarios();
 				
 				/****Comentar****/
 				$scope.comentar=function(comentario){
@@ -100,8 +103,11 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					})
 					.success(function(data){
 						if(data!="0"){
-							//modal ok?
-							location.reload();
+							listar_comentarios();
+							$scope.comentario.DESCRIPCION="Comentar";
+							$(document).ready(function(){
+								$('#comentar_input').blur();
+							});
 						}
 						else{
 							//mensaje No se pudo comentar

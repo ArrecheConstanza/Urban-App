@@ -46,10 +46,10 @@
 			
 			<!-- Comentar -->
 			<form  ng-submit="comentar(comentario)" enctype="multipart/form-data" name="publi">
-				<textarea cols='10' rows='6' name="descripcion" placeholder='COMENTAR' class="form-control" required ng-model="comentario.DESCRIPCION"></textarea>
+				<textarea cols='10' rows='6' name="descripcion" class="form-control" required ng-model="comentario.DESCRIPCION" placeholder='Comentar' id="comentar"></textarea>
 				
 				<!-- Enviar-->
-				<input type="submit" class="form-control btn btn-default" value="Enviar">
+				<input  id="comentar_input" type="submit" class="form-control btn btn-default" value="Enviar">
 				
 			</form>
 		</div>
