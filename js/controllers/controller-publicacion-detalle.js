@@ -12,6 +12,7 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
+				console.log(data);
 				if(data=="0"){ //no logueado
 					//redireccionar a login
 					$http({
@@ -37,8 +38,20 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				$scope.FECHA_CREACION=data[0].FECHA_CREACION;
 				$scope.USUARIO_NOMBRE=data[0].USUARIO_NOMBRE;
 				$scope.USUARIO_APELLIDO=data[0].USUARIO_APELLIDO;
+				$scope.LIKES=data[0].LIKES;
+
 				
-				
+				//si el usuario likeo esta publicacion
+						data[0].LIKEADA=false;
+						if(data[0].LIKES.length){
+							for(var j=0;j<data[0].LIKES.length;j++){
+								if(data[0].LIKES[j]["FK_USUARIO"]==data[0].USUARIO_ID){
+									//corazon verde 
+									data[0].LIKEADA=true;
+								}
+							}
+						}
+				$scope.LIKEADA=data[0].LIKEADA;
 				//FOTO principal
 				if(!data[0].FOTO.length){
 					var foto="/urban-app/img/fotos/muestra.jpg";
@@ -96,7 +109,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 							}
 						
 							var rta=angular.fromJson(data);
-						console.log(data);
 							$scope.datosSQLcomentario_publicacion=rta.reverse();
 						}
 					})
@@ -164,6 +176,35 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 					localStorage.setItem("urban_url",window.location.href);
 					$location.path("/reportarPublicacion/"+id);
 				}
+				
+				//**** LIKE PUBLICACION ****//
+				$scope.dar_like=function(){
+					var datos="FKPUBLICACION="+$scope.ID;
+					$http({ 
+						method:"POST",
+						url:"php/abm/publicacion.like.php",
+						data: datos,	
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+					})
+					.success(function(data, status){
+						if(data=='1'){
+							 //mostrar o sacar corazon
+							 if($scope.LIKEADA){
+								 $scope.LIKEADA=false;
+								 $scope.LIKES.length-=1;
+							 }
+							 else{
+								$scope.LIKEADA=true;
+								$scope.LIKES.length+=1;
+							 }
+						}
+						
+					})
+					.error(function(){
+						//sin internet, modal intentar mas tarde
+					});
+				}
+				
 			})
 			.error(function(){
 				//mensaje Sin conexion 

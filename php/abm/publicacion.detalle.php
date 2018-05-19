@@ -11,12 +11,11 @@
 	require_once('../clases/Denuncia_Publicacion.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
+	require_once('../clases/Publicacion_Like.php');
 
 	if(isset($_SESSION["s_id"])){
-		
-		$publicacion=Publicacion::all();
-		$arrayFinal=array();
-		foreach($publicacion as $unaPublicacion){
+		$publicacion = new Publicacion();
+		$unaPublicacion=$publicacion->getByPk($_POST["ID"])[0];
 			//Pido todo el contenido multimedia de la publicacion
 				$publicacion_multimedia = new Publicacion_Multimedia();
 				$rta = $publicacion_multimedia->traer_publicacion_multimedia($unaPublicacion->getCodigoPublicacion());
@@ -52,13 +51,40 @@
 						}
 						
 					}
-				//
+			}
 				
-				//usuario creador
-						$usuario=new Usuario();
+			//usuario creador
+			$usuario=new Usuario();
 			//usuario creador
 			$usuario_nombre=$usuario->getNombreUsuario($unaPublicacion->getFkUsuario());
 			$usuario_apellido=$usuario->getApellidoUsuario($unaPublicacion->getFkUsuario());
+		
+			//foto usuario
+			$usuario_multimedia=[];
+			if($usuario->getFkMultimediaUsuario($unaPublicacion->getFkUsuario())["FKMULTIMEDIA"]!=null){
+				$multimedia = new Multimedia();
+				$foto_usuario=$multimedia->getByPk($usuario->getFkMultimediaUsuario($unaPublicacion->getFkUsuario())["FKMULTIMEDIA"]);
+					foreach($foto_usuario as $multi){
+						$array=[
+							"DIR"=>$multi->getPath()
+						];
+						$usuario_multimedia[]=$array;
+					}
+			}
+			
+			//traigo likes
+			$publicacion_like = new Publicacion_Like();
+			$likes = $publicacion_like->all_likes($unaPublicacion->getCodigoPublicacion());
+			$listado_likes=[];
+			foreach($likes as $like){
+					$array=[
+						"ID"=>$like->getCodigoPublicacionLike(),
+						"BORRADO"=>$like->getBorrado(),
+						"FK_USUARIO"=>$like->getFkUsuario(),
+						"FK_PUBLICACION"=>$like->getFkPublicacion()
+					];
+					$listado_likes[]=$array;
+			}
 				
 				
 				$fecha= publicaciones_parsear_fecha($unaPublicacion->getFechaCreacion());
@@ -72,13 +98,13 @@
 					"FK_USUARIO"=>$unaPublicacion->getFkUsuario(),
 					"FK_CATEGORIA"=>$unaPublicacion->getFkCategoria(),
 					"FOTO"=>$arraySemiFinal,
+					"LIKES"=>$listado_likes,
 					"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
 					"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
-					"DENUNCIAS"=>$arrayFinalDenuncias
+					"DENUNCIAS"=>$arrayFinalDenuncias,
+					"USUARIO_ID"=>$_SESSION["s_id"]
 				];
 				$arrayFinal[]=$array;
-			}
-		}
 		echo json_encode($arrayFinal);
 	}
 	else{

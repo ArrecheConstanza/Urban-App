@@ -12,8 +12,13 @@
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " id="title-container">
 			<!-- Icono -->
 			<div class="volver-icon col-lg-2 col-md-2 col-sm-2 col-xs-2">
-					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
+				<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
 				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 edit-delete-container">
+					<p class="pull-right cant_likes">{{ LIKES.length }}</p>
+					<a ng-click="dar_like()"  class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " id="link-like">
+						<img ng-show='!LIKEADA' src="img/icons/png/like.png" class="corazon"/>
+						<img ng-show='LIKEADA' src="img/icons/png/like-on.png" class="corazon"/>
+					</a>
 					<a ng-show="es_propietario" ng-click="eliminar()" id="link-borrar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img id="borrar" src="img/icons/png/borrar.png" alt="Eliminar" /></a>
 					<a ng-show="es_propietario" ng-click="editar(ID)" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a>
 					<a ng-show="!es_propietario" ng-click="reportar(ID)" id="link-reportar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/reportar.png" alt="Reportar" /></a>
@@ -43,7 +48,6 @@
 				<div>
 				<img class='img-comentario-publicacion' ng-src="{{ item.FOTO_USUARIO }}" />
 				<p class="nombre">{{ item.USUARIO_NOMBRE}} {{ item.USUARIO_APELLIDO }}</p>
-				<!-- <img src="img/icons/png/menu-nombre.png" alt="nombre" /> -->
 				<p class="comentario">{{item.COMENTARIO}}</p>
 				</div>
 				<span class="tiempo pull-right" ng-show='item.FECHA_CREACION == "Hace "'> 1 s</span>

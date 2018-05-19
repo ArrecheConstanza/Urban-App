@@ -48,9 +48,7 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					data: datos,	
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 				})
-				.success(function(data, status){
-					console.log(data);
-					
+				.success(function(data, status){					
 					var nuevo_array=[];
 					for(var i in data){
 						var es_categoria=false;

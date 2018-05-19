@@ -72,12 +72,28 @@ class Publicacion{
 	public function getByPk($id){
 		$this->codigo_publicacion = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					WHERE ID = ?";
+					 WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$id]);
-		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		if($stmt->execute([$id])) {
+			$salida=[];
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$publicacion = new Publicacion;
+				$publicacion->codigo_publicacion = $fila['ID'];
+				$publicacion->titulo = $fila['TITULO'];
+				$publicacion->descripcion = $fila['DESCRIPCION'];
+				//$publicacion->avalado = $fila['AVALADO'];
+				$publicacion->fecha_creacion = $fila['FECHA_CREACION'];
+				$publicacion->borrado = $fila['BORRADO'];
+				$publicacion->fk_grupo = $fila['FKGRUPO'];
+				$publicacion->fk_usuario = $fila['FKUSUARIO'];
+				$publicacion->fk_categoria = $fila['FKCATEGORIA'];
+				$publicacion->cargarDatos($fila);
+				$salida[] = $publicacion;
+			}
+		}
+		return $salida;
 	}
-	
+
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {
 			if(in_array($prop, static::$fila)) {

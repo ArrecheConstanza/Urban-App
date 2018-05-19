@@ -23,5 +23,28 @@
 .comentario{
 	font-size:1em!important;
 	color:black!important;
-
 } 
+
+#link-like img{
+	width:36px!important;
+}
+#link-like{
+	margin-top: -12.5%!important;
+    float: right!important;
+	margin-bottom: 0!important;
+	margin-right:4%;
+}
+
+#link-editar{
+	margin-right: 31%!important;
+}
+
+#link-borrar{
+	margin-right: 19%!important;
+}
+
+.cant_likes{
+	display:inline-block;
+	width:auto!important;
+	margin-top: -10%!important;
+}

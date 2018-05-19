@@ -373,3 +373,27 @@ ON list_item (NOMBRE); */
 
 /* CREATE INDEX index_fecha_desde_list_item
 ON list_item (FECHA_DESDE); */
+
+/******** contenido alarma *********/
+
+INSERT INTO `alarma` (`ID`, `NOMBRE`, `ICONO`) VALUES
+(1, 'General', 'C:\\xampp\\htdocs\\Urban-App\\img\\icons\\png\\alarm-1.png'),
+(2, 'Policia', 'C:\\xampp\\htdocs\\Urban-App\\img\\icons\\png\\alarm-2.png'),
+(3, 'Ambulancia', 'C:\\xampp\\htdocs\\Urban-App\\img\\icons\\png\\alarm-3.png'),
+(4, 'Bomberos', 'C:\\xampp\\htdocs\\Urban-App\\img\\icons\\png\\alarm-4.png');
+
+/******** contenido categoria *********/
+
+INSERT INTO `categoria` (`ID`, `TITULO`) VALUES
+(1, 'Venta'),
+(2, 'Oferta'),
+(3, 'Descuento'),
+(4, 'Noticias'),
+(5, 'Servicio'),
+(6, 'Permutación'),
+(7, 'Encontrado'),
+(8, 'Extraviado'),
+(9, 'Otro');
+
+
+
