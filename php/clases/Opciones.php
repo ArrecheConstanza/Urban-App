@@ -26,15 +26,26 @@ class Opciones{
 	public function getFkEncuesta(){
 		return $this->fk_encuesta;
 	}
-	
+		
 	public function getByPk($id){
 		$this->codigo_opcion = $id;
 		$query = "SELECT * FROM " . static::$tabla . "
-					WHERE ID = ?";
+					 WHERE ID=? ";
 		$stmt = DBcnx::getStatement($query);
-		$stmt->execute([$id]);
-		return $this->cargarDatos($stmt->fetch(PDO::FETCH_ASSOC));
+		if($stmt->execute([$id])) {
+			$salida=[];
+			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				$opciones = new Opciones;
+				$opciones->codigo_opcion = $fila['ID'];
+				$opciones->respuesta = $fila['RESPUESTA'];
+				$opciones->fk_encuesta = $fila['FKENCUESTA'];
+				$opciones->cargarDatos($fila);
+				$salida[] = $opciones;
+			}
+		}
+		return $salida;
 	}
+	
 	
 	public function cargarDatos($fila){
 		foreach($fila as $prop => $valor) {

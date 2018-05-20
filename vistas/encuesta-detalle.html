@@ -1,6 +1,7 @@
 
 <!-- Estilos propios de la vista -->
 	<style> @import url("css/circle.css"); </style> 
+	<style> @import url("css/encuesta-detalle.css"); </style> 
 
 	<div ng-include="mostrar_modal_usuario()"></div>
 
@@ -16,7 +17,6 @@
 					<span ng-click="$back();" class="glyphicon glyphicon-chevron-left"></span>
 				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 edit-delete-container">
 					<a ng-show="es_propietario" ng-click="eliminar()" id="link-borrar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img id="borrar" src="img/icons/png/borrar.png" alt="Eliminar" /></a>
-					<!-- <a ng-click="editar(ID)" id="link-editar" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "><img src="img/icons/png/editar.png" alt="Editar" /></a> -->
 				</div> 
 			</div>
 
@@ -84,6 +84,28 @@
 			</form>
 			
 		</div>
-	
+		
+		
+		<!-- votantes -->
+		
+		<div class="votantes"> 
+				<h3 class="encuesta-detalle">Votantes {{ votantes.length }}</h3>
+				<div>
+					<ul class="list-group">
+						<li ng-repeat="item in votantes track by $index " 
+						class="list-group-item form-control">
+							<img class="foto_votante" src="{{ item.FOTO_USUARIO }}" alt="foto_usuario"/>	
+							<span>{{ item.USUARIO_NOMBRE }}  {{ item.USUARIO_APELLIDO }}</span>
+							<span>{{ item.OPCION }}</span>
+						</li>
+					</ul>
+				</div>
 	</div>
 </div>
+
+
+
+
+
+
+

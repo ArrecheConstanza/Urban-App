@@ -34,7 +34,7 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 				for(var i=0;i<data.length;i++){
 					data[i]["cantidad_opciones"]=data[i]["OPCIONES"].length;
 				}
-				var rta=angular.fromJson(data[0]);
+				var rta=angular.fromJson(data[0]);				
 				$scope.datosSQLencuestas=rta;
 				
 				//****** C O N T R O L L E R   M O D A L ******//
@@ -70,6 +70,20 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data, status){
+						console.log(data);
+						//si tiene o no foto el usuario creador
+						for(var i=0;i<data.length;i++){
+							if(!data[i].FOTO_USUARIO.length){
+								data[i].FOTO_USUARIO="/urban-app/img/fotos/usuario.jpg";
+							}
+							else{
+								var foto=data[i].FOTO_USUARIO[0]["DIR"].substring(26,data[i].FOTO_USUARIO[0]["DIR"].length);
+								data[i].FOTO_USUARIO=foto;
+							}
+						}
+						
+						
+						$scope.votantes=data;
 						var para_votacion_opcion=[];
 						for(var i=0;i<data.length;i++){
 							para_votacion_opcion.push(data[i]["FKOPCION"]);
@@ -102,6 +116,7 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						
 						//////porcentaje
 						$scope.estado_encuesta=array_votacion_final;
+						console.log($scope.estado_encuesta);
 						for(var i=0;i<array_votacion_final.length;i++){
 							var opcion;
 							for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){

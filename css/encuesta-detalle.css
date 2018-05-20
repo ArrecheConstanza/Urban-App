@@ -1,0 +1,25 @@
+.foto_votante{
+	width:30px;
+	height:auto;
+	border-radius:50%;
+}
+
+.votantes{
+	margin-bottom:4em;
+}
+
+.votantes li>span:nth-last-child(2){
+	font-weight:bold;
+	color:black;
+}
+
+.votantes li{
+	min-height:4em;
+	padding:1em;
+}
+
+.votantes img{
+	width:30px;
+	height:auto;
+	border-radius:50%;
+}

@@ -12,7 +12,6 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data){
-				console.log(data);
 				if(data=="0"){ //no logueado
 					//redireccionar a login
 					$http({
