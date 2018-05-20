@@ -41,15 +41,15 @@ Urban.controller("publicacionDetalleCtrl", function ($scope,$http,$location){
 
 				
 				//si el usuario likeo esta publicacion
-						data[0].LIKEADA=false;
-						if(data[0].LIKES.length){
-							for(var j=0;j<data[0].LIKES.length;j++){
-								if(data[0].LIKES[j]["FK_USUARIO"]==data[0].USUARIO_ID){
-									//corazon verde 
-									data[0].LIKEADA=true;
-								}
-							}
+				data[0].LIKEADA=false;
+				if(data[0].LIKES.length){
+					for(var j=0;j<data[0].LIKES.length;j++){
+						if(data[0].LIKES[j]["FK_USUARIO"]==data[0].USUARIO_ID){
+							//corazon verde 
+							data[0].LIKEADA=true;
 						}
+					}
+				}
 				$scope.LIKEADA=data[0].LIKEADA;
 				//FOTO principal
 				if(!data[0].FOTO.length){

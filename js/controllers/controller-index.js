@@ -224,7 +224,13 @@ Urban.controller("indexCtrl", function ($location,$http,$scope,$window,$routePar
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				if(data=="1 "){
+				if(data=="Privado "){
+					//MODAL SOLICITUD ENVIADA PARA UNION DE GRUPO PRIVADO
+					localStorage.removeItem("unir_a_grupo_id");
+					//window.location.href="/urban-app/index.html#/newGrupo";
+					//reenviar a mapa o a donde?
+				}
+				else if(data=="1 "){
 					if(localStorage.getItem("hay_grupo")!=null&&localStorage.getItem("hay_grupo")=="no"){
 						localStorage.removeItem("hay_grupo");
 					}

@@ -1,9 +1,12 @@
-<div class="scrollable" ng-controller="sidebarCtrl">
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/sidebar.css"); </style> 
+	
+	<div class="scrollable" ng-controller="sidebarCtrl">
 		  <div class="scrollable-content">
 			<div class="list-group sidebar-left" ui-turn-off='uiSidebarLeft'>
 
 				 <span class="h4 app-name list-group-item" id="nombre-menu">
-					<a class="list-group-item" href="#/perfil" id="nombre-menu" > 
+					<a class="list-group-item" href="#/perfil"  > 
 						<img src="img/{{img}}" alt="nombre" id="foto_usuario" /> {{ nombre_usuario }} 
  						<span class="glyphicon glyphicon-chevron-right pull-right"></span>
  						

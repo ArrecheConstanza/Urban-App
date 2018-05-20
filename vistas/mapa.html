@@ -73,7 +73,6 @@
 				<form>
 					<!-- Dirección  -->
 					<p>Unite a un grupo o crea uno nuevo</p>
-					<!--<input id='nuevo_grupo' title='Nuevo Grupo' value='Nuevo Grupo' type='button' class='form-control btn btn-default'></input>-->
 					<input type="text" name="Direccion" id="pac-input" class="form-control" placeholder="Dirección" required> 
 				</form>
 			</div>
@@ -150,6 +149,7 @@
 		places.forEach(function(place) {
 			 //TRAER LOS GRUPOS
 			  for(var i=0;i<grupos.length;i++){
+			  console.log(grupos[i]);
 				//creo el lugar del grupo
 				var lugar = {lat: parseFloat(grupos[i]["LATITUD"]), lng: parseFloat(grupos[i]["LONGITUD"])};
 
