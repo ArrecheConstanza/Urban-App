@@ -1,10 +1,21 @@
 /********************************************CONTROLLER PANEL DE CONTROL Grupos **************************************/
 
-Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$routeParams){
+Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$routeParams,$window){
 
 	//funcion volver atras
 	$scope.back = function() { 
 		$location.path( "/panelDeControl");
+	}
+	
+	//******** admin crea grupo *******//
+	$scope.admin_crea_grupo=function(){
+		localStorage.setItem("admin","on");
+	}
+	
+	if(localStorage.getItem("admin_crea_ok")!=null){
+		//modal con msje:
+		console.log("grupo creado con exito");
+		localStorage.removeItem("admin_crea_ok");
 	}
 	
 	var estado_banneado, estado_borrado;
@@ -65,23 +76,12 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 						$scope.imagen=data[0]["FOTO"];
 				}
 				else{
-					//data[0]["FOTO"]="img/icons/png/grupo.png";
 						$scope.estado_foto=false;
 				}
-				//$scope.imagen= data[0]["FOTO"];
 				delete data[0]["FKMULTIMEDIA"];
 				delete data[0]["FOTO"];
 				$scope.datosSQLgrupo=angular.fromJson(data[0]);
 				
-				
-				/*$scope.buttonPositionBanneado=function(){
-					if($scope.banneado){
-						$scope.banneado=false;
-					}
-					else{
-						$scope.banneado=true;
-					}
-				}*/
 				$scope.buttonPositionBorrado=function(){
 					if($scope.borrado){
 						$scope.borrado=false;
@@ -115,7 +115,6 @@ Urban.controller("panelDeControlGruposCtrl", function ($scope,$http,$location,$r
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				//corregir para host 
 				for(var i=0;i<data.length;i++){
 					if(data[i]["FOTO"]!=null){
 						data[i]["FOTO"]=data[i]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");

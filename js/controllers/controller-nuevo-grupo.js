@@ -9,7 +9,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 		localStorage.removeItem("nuevo_grupo_position");
 	}
 	else{
-		//modal("error");
+		//modal con error : 
 		console.log("error no hay lat y long de nuevo grupo");
 	}
 	
@@ -57,12 +57,12 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 						})
 						.success(function(data, status){
 							if(!data){
-								//error no se pudo unir el usuario con el chat
+								//error no se pudo unir el usuario con el chat?
 							}
 						});
 					}
 					else{
-						//error, no se pudo crear chat. 
+						//error, no se pudo crear chat?
 					}
 				});
 
@@ -77,9 +77,17 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				})
 				.success(function(data, status){
 					if(data!="0"){
-						localStorage.setItem("grupo_seleccionado_urban",data);
-						localStorage.setItem("recien_creado","true");
-						$location.path("/publicaciones/"+response.data);
+						//MODO ADMIN crea usuario
+						if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+							localStorage.removeItem("admin");
+							localStorage.setItem("admin_crea_ok","1");
+							$location.path("/panelDeControl/Grupos/");
+						}
+						else{
+							localStorage.setItem("grupo_seleccionado_urban",data);
+							localStorage.setItem("recien_creado","true");
+							$location.path("/publicaciones/"+response.data);
+						}
 					}
 					else{
 						//modal, error al crear grupo

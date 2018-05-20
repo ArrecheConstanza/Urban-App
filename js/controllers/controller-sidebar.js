@@ -6,7 +6,7 @@ Urban.controller("sidebarCtrl", function ($location,$http,$scope,$window,$routeP
 		if(!(localStorage.getItem("en_proceso")!=null&&localStorage.getItem("en_proceso")=="true")){
 			//nombre de usuario
 			
-			$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE;
+			$scope.nombre_usuario=angular.fromJson(localStorage.getItem("user_urban")).NOMBRE+" "+angular.fromJson(localStorage.getItem("user_urban")).APELLIDO;
 			
 			var datos="id="+angular.fromJson(localStorage.getItem("user_urban")).ID;
 			

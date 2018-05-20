@@ -3,8 +3,8 @@
 Urban.controller("mapaCtrl", function ($location,$http,$scope,$window) {
 
 	//**** listar grupos en mapa ****//
-		//pido datos de bdd
 		
+		//pido datos de bdd
 		var datos="id_grupo="+id;
 			$http({ 
 				method:"POST",
