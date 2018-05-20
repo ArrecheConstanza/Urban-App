@@ -109,6 +109,13 @@
 			localStorage.removeItem("cambiar_direc");
 		}
 		
+		//MODO ADMIN crea usuario
+		if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+			//	localStorage.removeItem("admin");
+			document.getElementsByTagName("h1")[0].innerHTML="Dirección usuario";
+		}
+	
+	
 		var map; 
 		function initMap() { 
 		

@@ -21,11 +21,6 @@
 
 $validacion = new Validacion($_POST, $reglas);
 $rta= json_encode($validacion->getErrores())."\n";
-/* 
-if(!isset($_POST['terminos_condiciones'])){
-	echo "Debes haceptar los terminos y condiciones";
-	return 0;
-} */
 
 //si hay un error
 if(count(json_decode($rta))){
@@ -39,21 +34,28 @@ else{
 	$_POST["FECHA_ALTA"]=getDatetimeNow();
 	$fin=json_decode($usuario->crear_usuario($_POST),true);
 	if($fin){
-		/****** Logeo al usuario ******/
-		$fin2=json_decode($usuario->verificar_usuario($_POST["EMAIL"], $_POST["CLAVE"]),true);
-		if(count($fin2)){
-			foreach ($fin2 as $k => $v) {
-				/***** Guardado de datos en SESSION ****/
-				switch($k){
-					case "ID":
-						$_SESSION['s_id'] = $v;
-					break;
-					case "NIVEL":
-						$_SESSION['s_nivel'] = $v;
-					break;
+		
+		/****** modo admin crea usuario *****/
+		if(isset($_POST["Admin"])){
+			echo "ok";
+		}
+		else{
+			/****** Logeo al usuario ******/
+			$fin2=json_decode($usuario->verificar_usuario($_POST["EMAIL"], $_POST["CLAVE"]),true);
+			if(count($fin2)){
+				foreach ($fin2 as $k => $v) {
+					/***** Guardado de datos en SESSION ****/
+					switch($k){
+						case "ID":
+							$_SESSION['s_id'] = $v;
+						break;
+						case "NIVEL":
+							$_SESSION['s_nivel'] = $v;
+						break;
+					}
 				}
+				echo json_encode($fin2);
 			}
-			echo json_encode($fin2);
 		}
 	}
 }

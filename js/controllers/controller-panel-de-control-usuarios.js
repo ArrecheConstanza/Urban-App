@@ -9,6 +9,16 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 	
 	var estado_banneado, estado_borrado, estado_nivel;
 	
+	if(localStorage.getItem("admin_crea_ok")!=null){
+		//modal admin creo usuario ok
+		localStorage.removeItem("admin_crea_ok");
+	}
+	//**** crear usuario como admin ****//
+	
+	$scope.admin_crea_usuario=function(){
+		localStorage.setItem("admin","on");
+	}
+	
 	$scope.back_usuarios = function() { 
 		var data=[];
 		if(estado_borrado!="undefined"){

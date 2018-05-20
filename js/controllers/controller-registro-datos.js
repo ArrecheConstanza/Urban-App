@@ -10,8 +10,17 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 		}
 	}
 	
+	$scope.titulo="Registro";
+	//MODO ADMIN crea usuario
+	if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+		//	localStorage.removeItem("admin");
+		$scope.titulo="Crear usuario";
+		id("terminos_condiciones").parentNode.style.display="none";
+	}
+	
 	//envio del form
 	$scope.submit = function (usuario){
+		console.log(usuario);
 		var datos={
 			EMAIL : usuario.EMAIL,
 			CLAVE : usuario.CLAVE,
@@ -48,7 +57,12 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 		for(var i in direc_user){
 			item.push( i+'='+direc_user[i] ); 
 		}
-		var union = item.join('&');	
+		var union = item.join('&');		
+		//MODO ADMIN crea usuario
+			if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+				union=union+'&Admin=Si';
+			}
+		
 		//ABM: registro
 		$http({
 			method: 'POST',
@@ -57,12 +71,21 @@ Urban.controller("registroUnoCtrl", function ($scope, $window, $http, $location)
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 		})
 		.success(function(data){
-			if(!isNaN(data.ID)){
-				//redireccion a mapa para union de grupo
-				window.localStorage.removeItem("dts_user");
-				window.localStorage.removeItem("direc_user");
-				localStorage.setItem("user_urban",JSON.stringify(data));
-				$window.location.href= "../urban-app/vistas/mapa.html" ;
+			if(data=="ok"){
+				//MODO ADMIN crea usuario
+				if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
+					localStorage.removeItem("admin");
+					localStorage.setItem("admin_crea_ok","1");
+					$window.location.href= "http://localhost:8080/urban-app/index.html#/panelDeControl/Usuarios" ;
+				}
+			}
+			else if(!isNaN(data.ID)){
+					//redireccion a mapa para union de grupo
+					window.localStorage.removeItem("dts_user");
+					window.localStorage.removeItem("direc_user");
+					localStorage.setItem("user_urban",JSON.stringify(data));
+					$window.location.href= "../urban-app/vistas/mapa.html" ;
+				
 			}
 			else if(data===''){
 				var p=ce('p');
