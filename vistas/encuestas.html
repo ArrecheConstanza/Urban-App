@@ -1,4 +1,6 @@
-
+<!-- Estilos propios de la vista -->
+	<style> @import url("css/encuestas.css"); </style> 
+	
 	<!-- Contenedor Encuesta -->
 	<div class="scrollable">
 		<div class="scrollable-content">
@@ -20,20 +22,17 @@
 			<select class='select' name='grupo' ng-model='encuesta.FKGRUPO' required ng-init="encuesta.FKGRUPO='0'">
 				<option ng-repeat="item in listado_grupos track by $index "  value='{{ item.ID }}'>{{ item.NOMBRE }}</option>
 			</select>
-			
-			<!-- <div class='col-lg-offset-10 col-md-offset-10 col-sm-offset-8 col-xs-offset-6 col-lg-2 col-md-2 col-sm-4 col-xs-6'> 
-				<img ng-show='publi.FILE.$valid' ngf-src='FILE' class='thumb'>
-				<input class='upload-file'  type='file' ngf-select ng-model='encuesta.FILE' name='file' accept='image/*' ngf-max-size='2MB' id='foto'>
-			</div> -->
  
 			<textarea cols='10' rows='6' name='pregunta' placeholder='Pregunta' class='form-control' required ng-model='encuesta.PREGUNTA' id='descripcion_submit'></textarea>
 		
 			<div id="btn_opcion">
 				<label>Opciones</label>
 				  <div ng-repeat="(key,item) in items">
-					<input ng-model="item.opcion" type="text" name="opciones" class='form-control' required placeholder='Opcion {{key+1}}'>
+					<input ng-model="item.opcion" type="text" name="opciones" class='form-control' required placeholder='Opcion {{key+1}}'><button type="button" class="close eliminar_opcion" aria-label="Close" ng-click="eliminar_opcion(this)">
+					  <span aria-hidden="true">&times;</span>
+					</button>
 				  </div>
-					<div ng-show="mostrar_aniadir"><p>Añadir opcion</p><button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button></div>
+				  <div ng-show="mostrar_aniadir"><p>Añadir opcion</p><button ng-click="addInputItem()" type="button" id="nueva_opcion" >Añadir</button></div>
 			</div>
 			<div id="error-msg"></div>
 			<input id='button_submit' type='submit' class='form-control btn btn-default' value='Enviar'>

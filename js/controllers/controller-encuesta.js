@@ -35,11 +35,6 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 			.error(function(){
 				//mensaje Sin conexion 
 			});
-		
-		
-		
-		
-		
 	}
 	else{
 		//listar grupos de usuario
@@ -75,11 +70,12 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 	}
 			
 		//************* FORM ***************//
+		
 			$scope.numero_opcion=0;
 			$scope.items=[];
 			$scope.mostrar_aniadir=true;
+			$scope.opciones=document.getElementsByClassName("eliminar_opcion");
 			$scope.addInputItem = function() {
-				//console.log($scope.items);
 				if($scope.numero_opcion<=9){
 					$scope.numero_opcion++;
 					$scope.items.push({text:''});
@@ -93,6 +89,24 @@ Urban.controller("newEncuestaCtrl",  ['$scope', '$http', '$location', 'Upload', 
 			};
 		
 		$scope.addInputItem();
+		
+		$scope.eliminar_opcion=function(x){
+			if(x.item.opcion!=undefined){
+				if(x.item.opcion!=""){
+					x.item.opcion="";
+				}
+				else{
+					for(var i=0;i<$scope.items.length;i++){
+						if($scope.items[i]["$$hashKey"]==x.item["$$hashKey"]){
+							if($scope.items.length-1>=1){
+								$scope.items.splice(i, 1);
+							}
+						}
+					}
+				} 
+			}
+		}
+		
 		
 	//************* CREAR *************//
 	
