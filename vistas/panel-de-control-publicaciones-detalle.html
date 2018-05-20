@@ -27,7 +27,7 @@
 				<div>
 					<ul class="list-group" id="editar_usuario">
 					  <li ng-repeat="(key, value) in datosSQLpublicacion track by $index " class="list-group-item">
-						<div ng-show="key!='DENUNCIAS'&&key!='USUARIO_ID'&&key!='LIKES'">
+						<div ng-show="key!='DENUNCIAS'&&key!='USUARIO_ID'&&key!='LIKES'&&key!='COMENTARIOS'">
 							{{ key }} : {{ value }} 
 							<div class="pull-right" ng-show="key=='BORRADO'">
 								<ui-switch class='cambio_usuario' ng-model='borrado' id="usuario_borrado" ng-click="buttonPositionBorrado();"><p><span class="pull-left es_no">X</span><span class=" es_si">&#10004;</span></p></ui-switch> 
@@ -51,7 +51,17 @@
 									<p>DESCRIPCION: {{ item.DESCRIPCION }}</p>
 								</li>
 							</ul>
-						</div>					
+						</div>
+						<div ng-show="key=='COMENTARIOS'">
+							Comentarios : {{ datosSQLpublicacion.COMENTARIOS.length }}
+							<ul class="list-group sub-opciones">
+								<li ng-repeat="item in datosSQLpublicacion.COMENTARIOS track by $index " class="list-group-item">
+									ID: {{ item.ID }}<br>
+									USUARIO: {{ item.USUARIO_NOMBRE }} {{ item.USUARIO_APELLIDO }}<br>
+									COMENTARIO: {{ item.COMENTARIO }}<br>
+								</li>
+							</ul>
+						</div>										
 					  </li>
 					</ul> 
 				</div>

@@ -21,65 +21,100 @@
 		<div class="contenedor-perfil"> 
 		<!--Detalle perfil -->
 		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<h2>Info de la App</h2>
-			<p>Urban es una aplicación que te permite poder conectarte con tus vecinos.</p>
+		
+		 <div class="section">
+      <div class="panel-group" 
+        
+        ui-state='myAccordion' 
+        >
 
-			<p>A través de nosotros podrás:</p>
+        <div class="panel panel-default" ng-repeat="i in [1,2,3]">
+          <div class="panel-heading" ui-set="{'myAccordion': i}">
+        
+            <h4 ng-show="i==1" class="panel-title">
+                Info de la app
+            </h4>
+			 <h4 ng-show="i==2" class="panel-title">
+                Términos y condiciones
+            </h4>
+			 <h4 ng-show="i==3" class="panel-title">
+                Políticas de privacidad
+            </h4>
+          </div>
 
-			<p><strong>Dónde estás:</strong> Ubicás dónde te encontrás en el mapa, para poder ayudarte a conectarte con grupos de vecinos cercanos de tu barrio o comunidad.</p>
+          <div ui-if="myAccordion == {{i}}">
+            <div ng-show="i==1" class="panel-body">
+					  <p>Urban es una aplicación que te permite poder conectarte con tus vecinos.</p>
 
- 			<p><strong>Crear publicaciones y ver las de los demás en la sección “Publicaciones”:</strong> Allí podrás crear contenido, responder al de los demás a través de comentarios, además de permitirte filtrar todas las publicaciones.</p>
+					<p>A través de nosotros podrás:</p>
 
-			<p><strong>Chatear con tus vecinos:</strong> Interactuar con quienes quieras a través de un chat propiciado por la opción “Chat”. Te damos la opción de crear grupos para que la comunicación sea más ágil y directa.</p>
+					<p><strong>Dónde estás:</strong> Ubicás dónde te encontrás en el mapa, para poder ayudarte a conectarte con grupos de vecinos cercanos de tu barrio o comunidad.</p>
 
-			<p><strong>Votar:</strong> Te damos la opción de “Encuestas” donde preguntar, ponerse de acuerdo y conocer las demás opiniones es mucho más fácil y rápido.</p>
+					<p><strong>Crear publicaciones y ver las de los demás en la sección “Publicaciones”:</strong> Allí podrás crear contenido, responder al de los demás a través de comentarios, además de permitirte filtrar todas las publicaciones.</p>
 
-			<p><strong>Seguridad:</strong> Una de nuestras principales preocupaciones es poder proteger dentro de nuestro alcance a los vecinos de todas las comunidades. Por eso, brindamos un sistema de alarma. Esta funciona de la siguiente manera: En el caso de alerta, de peligro o de situación riesgosa debés mantener presionado el botón durante tres segundos para enviarle un aviso a todos tus vecinos. También te proporcionamos alertas específicas como: bomberos, policía y ambulancia, en el caso de que te encuentres con algo de tiempo a tu favor.</p>
+					<p><strong>Chatear con tus vecinos:</strong> Interactuar con quienes quieras a través de un chat propiciado por la opción “Chat”. Te damos la opción de crear grupos para que la comunicación sea más ágil y directa.</p>
 
-			<p><strong>Personalizarte desde “Ajustes”:</strong> Con Urban podés customizar tus datos, editar y agregar. Cargar tu foto o tomarla. Ver grupos en los que participás.</p>
-		</div>
+					<p><strong>Votar:</strong> Te damos la opción de “Encuestas” donde preguntar, ponerse de acuerdo y conocer las demás opiniones es mucho más fácil y rápido.</p>
 
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h2>Políticas de privacidad</h2>
-			<p>Políticas de privacidad de URBAN: La privacidad de los usuarios es muy importante para URBAN. A los usuarios se les solicita una cantidad limitada de información en el registro (se pedirá: nombre, apellido, email, contraseña y dirección, la cual puede o no ser visible) y en el caso de los usuarios Premium en la creación de su Negocio o Servicio (se pedirá: nombre, dirección, la cual puede ser visible o no). Es posible que en futuro se pida más. Esta información es totalmente confidencial, será almacenada en la base de datos de URBAN. Es probable que el usuario reciba newsletters, el mismo podrá darse de baja de este servicio en cualquier momento o circunstancia. Así como también podrá volver a suscribirse con la misma dirección de correo electrónico. </p>
-			<p>El usuario puede acceder a esta información para actualizarla, corregirla o eliminarla a través de la misma aplicación web URBAN.
-			Esta información no será compartida ni accedida por terceros.
-			El usuario acepta la posibilidad de que estas políticas de URBAN cambien, las mismas se encuentran sujetas a modificaciones, el usuario será notificado cuando las mismas ocurran. El uso de la aplicación web URBAN por parte del usuario significa que el mismo acepta las nuevas políticas de privacidad. <br>
-			Para comunicarse con URBAN por consultas respecto a estas políticas escribir a <em>politicasurban@urban-app.com.ar</em></p>
-		</div>
-	
-		<div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h2>Términos y condiciones</h2>
-			<p>
-			<b>Normas generales:</b>
-			El usuario es responsable del uso del servicio proporcionado por URBAN, por cualquier contenido que publique en dicha aplicación web y de las consecuencias derivadas. El contenido que envíe, publique o muestre podrá ser visto por ciertos usuarios del mismo servicios. Sólo se deberá proporcionar el contenido que se quiera compartir en estos términos. URBAN se reserva el derecho de investigar violaciones a los presentes Términos y Condiciones y a denunciar ante los organismos competentes o a terceros cualquier actividad considerada ilegal o clandestina y a revelar cualquier información necesaria o útil para dichos organismos o personas relacionadas con las fichas personales.
-			<br>
-			La utilización de URBAN implica su aceptación plena y sin reservas a todas y cada una de las disposiciones incluidas en este Aviso Legal; Si el usuario no está de acuerdo con cualquiera de las condiciones aquí establecidas, no deberá usar este sitio.
-			<br>			
-			<br>			
-			<b>Reservas de URBAN:</b>
-			URBAN se reserva el derecho de cambiar, modificar, actualizar y revisar los términos y condiciones en cualquier momento, actualizando el presente archivo. Los cambios que se realicen en el mismo tendrán vigencia a partir del momento en que sean publicados en la aplicación web. Cada acción que se realice a través de ésta por el usuario será considerada una aceptación de los términos y condiciones vigentes. 
-			<br>
-			<br>
-			<b>Protección de datos:</b>
-			Quienes creen un usuario en la aplicación URBAN aceptan expresamente que los datos personales solicitados para registrarse serán incluidos en una base de datos inscripta en el Registro Nacional de bases de Datos por URBAN para establecer perfiles determinados con fines promocionales y de marketing en general. El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita en intervalos no inferiores a seis (6) meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14 inciso 3 de la Ley Nº 25.326. A tal efecto, el titular de los datos personales podrá dirigir una carta a Corrientes 2049,Ciudad Autónoma de Buenos Aires, Argentina, o un correo electrónico a <em>daccesodp@urban-app.com.ar</em>, solicitando el acceso a sus datos y, en su caso, requerir la actualización, modificación o eliminación de los datos que considere erróneamente registrados. La Dirección Nacional de Protección de Datos Personales, Órgano de control de la ley Nº 25.326, tiene la atribución de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales. URBAN será el único titular de la Base de Datos mencionada y la almacenará en Corrientes 2049,Ciudad Autónoma de Buenos Aires, Argentina, por el plazo que sea de utilidad a los efectos de cumplir con los fines indicados precedentemente. URBAN protegerá la Base de Datos de acuerdo con los estándares impuestos por la normativa vigente y las reglas del arte que razonablemente brinden integridad y seguridad a los datos personales que contiene. Los Usuarios entregarán los datos personales requeridos de manera voluntaria, completa y sin errores, como condición para crear una cuenta en la aplicación web. Al momento de facilitar a URBAN sus datos personales, los Usuarios prestan expreso consentimiento para que tales datos puedan ser utilizados por URBAN con fines publicitarios y de marketing en general. La información de los Usuarios será tratada en los términos previstos por la Ley Nacional de Protección de Datos Personales Nº 25.326. El titular de los datos podrá, en cualquier momento, solicitar el retiro o bloqueo de su nombre de la base de datos, enviando un correo electrónico a <em>atencionalcliente@urban-app.com.ar</em>. 
-			<br>
-			<br>
+					<p><strong>Seguridad:</strong> Una de nuestras principales preocupaciones es poder proteger dentro de nuestro alcance a los vecinos de todas las comunidades. Por eso, brindamos un sistema de alarma. Esta funciona de la siguiente manera: En el caso de alerta, de peligro o de situación riesgosa debés mantener presionado el botón durante tres segundos para enviarle un aviso a todos tus vecinos. También te proporcionamos alertas específicas como: bomberos, policía y ambulancia, en el caso de que te encuentres con algo de tiempo a tu favor.</p>
 
-			<b>Publicidad:</b> URBAN puede incluir anuncios, los cuales pueden estar referidos al contenido, la promoción o la información de los usuarios pagos (Negocios o Servicios). A su vez el usuario acepta que los servicios AdSense (Para ver las politicas de este servicio visitar ,<a href="http://www.google.com/intl/es_ALL/privacypolicy.html">http://www.google.com/intl/es_ALL/privacypolicy.html)</a> emplacen publicidad en URBAN. El tipo y extensión de la publicidad se encuentra sujeto a cambios. URBAN no se responsabiliza por ningún tipo de publicidad.
-			<br>
-			<br>
-
-			<b>Uso de Cookies:</b>  El usuario acepta el uso de cookies efectuado por URBAN con el fin de lograr que el servicio funcione de manera eficiente, así como para recopilar estadísticas a fin de optimizar la funcionalidad de la aplicación web y con el propósito de ofrecer contenido adaptado al interés de cada usuario. URBAN utiliza cookies propias de sesión y persistentes, también cookies limitadas de terceros, puede tratarse de cookies de sesión o persistentes que establecen entidades diferentes a URBAN. Esta información es totalmente confidencial.
-			<br>
-			<br>
-			<b>Uso de URBAN:</b> Mediante el uso de dicha aplicación web el usuario acepta los Términos y Condiciones, y declara bajo juramento tener 16 años de edad o más (Caso contrario no se podrá utilizar este servicio). Los padres, tutores o responsables de los menores de 16 años que utilicen el servicio son plena y exclusivamente responsables por el uso del mismo por parte de éstos, incluyendo, y sin limitar, cualquier cargo o costo en que se pueda incurrir como consecuencia de tal uso.
-			<br>
-			<br>
+					<p><strong>Personalizarte desde “Ajustes”:</strong> Con Urban podés customizar tus datos, editar y agregar. Cargar tu foto o tomarla. Ver grupos en los que participás.</p>
+            </div>
 			
-			<b>Contenido de URBAN:</b>
-			Las presentes Condiciones de uso de las marcas y derechos de autor de URBAN obligan a los socios, el público y los terceros que deseen hacer uso de las obras y elementos que componen la aplicación y el sitio web (www.urban-app.com.ar) y que son objeto de propiedad industrial e intelectual. Tanto la aplicación URBAN como sitio web pertenecen en exclusiva propiedad de URBAN y en ellos quedan comprendidos asimismo los sitios de Internet, las aplicaciones y las funciones creados expresamente para ser usados con el teléfono celular y cuya titularidad también pertenece a la institución. Salvo que se estipule lo contrario, las señaladas obras y elementos de la aplicación y sitio de Internet, así como los productos y servicios brindados vía online, son propiedad de URBAN, los cedentes o los socios de aquella o, en su defecto, están amparados por la correspondiente licencia de uso. La utilización de la aplicación y  sitio web  de URBAN se rigen por las respectivas Condiciones Generales de Uso.</p>
-			</div>
-		</div>
-	</div>
-</div>
+			
+			<div ng-show="i==2" class="panel-body">
+					<p>
+					<b>Normas generales:</b>
+					El usuario es responsable del uso del servicio proporcionado por URBAN, por cualquier contenido que publique en dicha aplicación web y de las consecuencias derivadas. El contenido que envíe, publique o muestre podrá ser visto por ciertos usuarios del mismo servicios. Sólo se deberá proporcionar el contenido que se quiera compartir en estos términos. URBAN se reserva el derecho de investigar violaciones a los presentes Términos y Condiciones y a denunciar ante los organismos competentes o a terceros cualquier actividad considerada ilegal o clandestina y a revelar cualquier información necesaria o útil para dichos organismos o personas relacionadas con las fichas personales.
+					</p>
+					<p>La utilización de URBAN implica su aceptación plena y sin reservas a todas y cada una de las disposiciones incluidas en este Aviso Legal; Si el usuario no está de acuerdo con cualquiera de las condiciones aquí establecidas, no deberá usar este sitio.
+					<br>			
+					</p>	
+					<p>					
+					<b>Reservas de URBAN:</b>
+					URBAN se reserva el derecho de cambiar, modificar, actualizar y revisar los términos y condiciones en cualquier momento, actualizando el presente archivo. Los cambios que se realicen en el mismo tendrán vigencia a partir del momento en que sean publicados en la aplicación web. Cada acción que se realice a través de ésta por el usuario será considerada una aceptación de los términos y condiciones vigentes. 
+					</p>
+					<p>					
+					<br>
+					<b>Protección de datos:</b>
+					Quienes creen un usuario en la aplicación URBAN aceptan expresamente que los datos personales solicitados para registrarse serán incluidos en una base de datos inscripta en el Registro Nacional de bases de Datos por URBAN para establecer perfiles determinados con fines promocionales y de marketing en general. El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita en intervalos no inferiores a seis (6) meses, salvo que se acredite un interés legítimo al efecto conforme lo establecido en el artículo 14 inciso 3 de la Ley Nº 25.326. A tal efecto, el titular de los datos personales podrá dirigir una carta a Corrientes 2049,Ciudad Autónoma de Buenos Aires, Argentina, o un correo electrónico a <em>daccesodp@urban-app.com.ar</em>, solicitando el acceso a sus datos y, en su caso, requerir la actualización, modificación o eliminación de los datos que considere erróneamente registrados. La Dirección Nacional de Protección de Datos Personales, Órgano de control de la ley Nº 25.326, tiene la atribución de atender las denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección de datos personales. URBAN será el único titular de la Base de Datos mencionada y la almacenará en Corrientes 2049,Ciudad Autónoma de Buenos Aires, Argentina, por el plazo que sea de utilidad a los efectos de cumplir con los fines indicados precedentemente. URBAN protegerá la Base de Datos de acuerdo con los estándares impuestos por la normativa vigente y las reglas del arte que razonablemente brinden integridad y seguridad a los datos personales que contiene. Los Usuarios entregarán los datos personales requeridos de manera voluntaria, completa y sin errores, como condición para crear una cuenta en la aplicación web. Al momento de facilitar a URBAN sus datos personales, los Usuarios prestan expreso consentimiento para que tales datos puedan ser utilizados por URBAN con fines publicitarios y de marketing en general. La información de los Usuarios será tratada en los términos previstos por la Ley Nacional de Protección de Datos Personales Nº 25.326. El titular de los datos podrá, en cualquier momento, solicitar el retiro o bloqueo de su nombre de la base de datos, enviando un correo electrónico a <em>atencionalcliente@urban-app.com.ar</em>. 
+					</p>
+					<p>
+					<br>
+					<b>Publicidad:</b> URBAN puede incluir anuncios, los cuales pueden estar referidos al contenido, la promoción o la información de los usuarios pagos (Negocios o Servicios). A su vez el usuario acepta que los servicios AdSense (Para ver las politicas de este servicio visitar ,<a href="http://www.google.com/intl/es_ALL/privacypolicy.html">http://www.google.com/intl/es_ALL/privacypolicy.html)</a> emplacen publicidad en URBAN. El tipo y extensión de la publicidad se encuentra sujeto a cambios. URBAN no se responsabiliza por ningún tipo de publicidad.
+					</p>
+					<p>
+					<br>
+					<b>Uso de Cookies:</b>  El usuario acepta el uso de cookies efectuado por URBAN con el fin de lograr que el servicio funcione de manera eficiente, así como para recopilar estadísticas a fin de optimizar la funcionalidad de la aplicación web y con el propósito de ofrecer contenido adaptado al interés de cada usuario. URBAN utiliza cookies propias de sesión y persistentes, también cookies limitadas de terceros, puede tratarse de cookies de sesión o persistentes que establecen entidades diferentes a URBAN. Esta información es totalmente confidencial.
+					</p>
+					<p>
+					<br>
+					<b>Uso de URBAN:</b> Mediante el uso de dicha aplicación web el usuario acepta los Términos y Condiciones, y declara bajo juramento tener 16 años de edad o más (Caso contrario no se podrá utilizar este servicio). Los padres, tutores o responsables de los menores de 16 años que utilicen el servicio son plena y exclusivamente responsables por el uso del mismo por parte de éstos, incluyendo, y sin limitar, cualquier cargo o costo en que se pueda incurrir como consecuencia de tal uso.
+					</p>
+					<p>
+					<br>
+					<b>Contenido de URBAN:</b>
+					Las presentes Condiciones de uso de las marcas y derechos de autor de URBAN obligan a los socios, el público y los terceros que deseen hacer uso de las obras y elementos que componen la aplicación y el sitio web (www.urban-app.com.ar) y que son objeto de propiedad industrial e intelectual. Tanto la aplicación URBAN como sitio web pertenecen en exclusiva propiedad de URBAN y en ellos quedan comprendidos asimismo los sitios de Internet, las aplicaciones y las funciones creados expresamente para ser usados con el teléfono celular y cuya titularidad también pertenece a la institución. Salvo que se estipule lo contrario, las señaladas obras y elementos de la aplicación y sitio de Internet, así como los productos y servicios brindados vía online, son propiedad de URBAN, los cedentes o los socios de aquella o, en su defecto, están amparados por la correspondiente licencia de uso. La utilización de la aplicación y  sitio web  de URBAN se rigen por las respectivas Condiciones Generales de Uso.</p>
+            </div>
+			
+			
+			
+			
+			<div ng-show="i==3" class="panel-body">
+					<p>Políticas de privacidad de URBAN: La privacidad de los usuarios es muy importante para URBAN. A los usuarios se les solicita una cantidad limitada de información en el registro (se pedirá: nombre, apellido, email, contraseña y dirección, la cual puede o no ser visible) y en el caso de los usuarios Premium en la creación de su Negocio o Servicio (se pedirá: nombre, dirección, la cual puede ser visible o no). Es posible que en futuro se pida más. Esta información es totalmente confidencial, será almacenada en la base de datos de URBAN. Es probable que el usuario reciba newsletters, el mismo podrá darse de baja de este servicio en cualquier momento o circunstancia. Así como también podrá volver a suscribirse con la misma dirección de correo electrónico. </p>
+					<p>El usuario puede acceder a esta información para actualizarla, corregirla o eliminarla a través de la misma aplicación web URBAN.
+					Esta información no será compartida ni accedida por terceros.
+					El usuario acepta la posibilidad de que estas políticas de URBAN cambien, las mismas se encuentran sujetas a modificaciones, el usuario será notificado cuando las mismas ocurran. El uso de la aplicación web URBAN por parte del usuario significa que el mismo acepta las nuevas políticas de privacidad. <br>
+					Para comunicarse con URBAN por consultas respecto a estas políticas escribir a <em>politicasurban@urban-app.com.ar</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		  
+        </div>
+        </div>
+      </div>
+    </div>
+
+	

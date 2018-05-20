@@ -1,3 +1,5 @@
+	<!-- Estilos propios de la vista -->
+	<style> @import url("css/encuestas-listado.css"); </style> 
 	
 	<!--- ******CONTENIDO (VISTA ENCUESTAS)****** -->
 	
@@ -6,6 +8,8 @@
 		<div class="scrollable-content" id="publicaciones">
 		<a href="#newEncuesta" id="publicaciones_listado_crear_publicacion">Crear encuesta</a>	
 			
+			<p class='sin_contenido' ng-show="datosSQLencuestas.length==0">Aún no hay encuestas</p>
+
 			<ul class="list-group" id="listado-publicaciones">
 			  <li ng-repeat="item in datosSQLencuestas track by $index " class="list-group-item" id="listado_encuestas"><a href='#detalleEncuesta/{{item.ID}}'>
 				<h2>{{ item.PREGUNTA }}</h2>  

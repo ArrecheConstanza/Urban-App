@@ -62,7 +62,8 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				
+				console.log(data);
+				if(data.length){
 					//foto
 					if(data[0].FOTO.length){
 						data[0].FOTO=data[0].FOTO[0].DIR.replace("C:/xampp/htdocs/Urban-App/","");
@@ -74,7 +75,26 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 						data[0].FOTO="";
 					}
 					delete data[0]["FOTO"];
-				
+					/*** traer comentarios ***/
+					data[0].COMENTARIOS=[];
+						var datos2="ID="+data[0].ID;
+						$http({ 
+							method:"POST",
+							url:"php/abm/publicacion.comentario.listar.php",
+							data : datos2,
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
+						})
+						.success(function(data2, status){
+							if(data2.length){
+								data[0].COMENTARIOS=angular.fromJson(data2);
+							}
+						})
+						.error(function(){
+							
+						})
+					
+					
+					
 				
 				//cargo datos en vista
 				$scope.datosSQLpublicacion=angular.fromJson(data[0]);
@@ -88,14 +108,13 @@ Urban.controller("panelDeControlPublicacionesCtrl", function ($scope,$http,$loca
 						$scope.borrado=true;
 					}
 				} 
-				
-				
-				//**** estado de switch ****//
-				if(data[0]["BORRADO"]=="No"){
-					$scope.borrado=true;
+			
+					//**** estado de switch ****//
+					if(data[0]["BORRADO"]=="No"){
+						$scope.borrado=true;
+					}
+					estado_borrado=$scope.borrado;
 				}
-				
-				estado_borrado=$scope.borrado;
 			})
 			.error(function(data){
 				//sin internet, cargo datos locales

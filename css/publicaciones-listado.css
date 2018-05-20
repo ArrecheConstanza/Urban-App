@@ -7,6 +7,11 @@
 	height:auto;
 }
 
+.sin_contenido{
+	font-size:3em;
+	text-align:center;
+	padding:1em;
+}
 
 #listado-publicaciones li>div{
 	display:inline-block;

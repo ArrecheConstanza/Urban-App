@@ -32,29 +32,29 @@
 					<li>{{ datosSQLencuestas.FECHA_CREACION }}</li>
 				</ul>
 			</div>
-			<!-- <p>Creada por<br><span>{{datosSQLencuestas.USUARIO_NOMBRE}} {{ datosSQLencuestas.USUARIO_APELLIDO }}</span></p>
+			
+			<p ng-show='estado_encuesta.length==0'>No se han realizado votos aún</p>
+			<div ng-show='estado_encuesta.length!=0'> 
+				<h3 class="encuesta-detalle">Estado de encuesta</h3>
+			
+				<!--- estado de encuesta --->
+				<div class="clearfix">
+				<hr>
 
-			<div><small class="pull-right margin-bottom-sm">{{ datosSQLencuestas.FECHA_CREACION }}</small></div>
-			 -->
-			<h3 class="encuesta-detalle">Estado de encuesta</h3>
-		
-			<!--- estado de encuesta --->
-			<div class="clearfix">
-			<hr>
-
-			<div ng-repeat="item in estado_encuesta track by $index ">
-			<div id="estado_encuesta">
-					<h4>{{ item.VALOR_OPCION }}</h4>
-				<div class="c100 p{{ item.PORCENTAJE_CSS }}">
-					<span>{{ item.PORCENTAJE }}</span>
-						<div class="slice">
-							<div class="bar"></div>
-							<div class="fill"></div>
+				<div ng-repeat="item in estado_encuesta track by $index ">
+				<div id="estado_encuesta">
+						<h4>{{ item.VALOR_OPCION }}</h4>
+					<div class="c100 p{{ item.PORCENTAJE_CSS }}">
+						<span>{{ item.PORCENTAJE }}</span>
+							<div class="slice">
+								<div class="bar"></div>
+								<div class="fill"></div>
+							</div>
 						</div>
 					</div>
+				<hr>
 				</div>
-			<hr>
-			</div>
+				</div>
 			</div>
 			
 		<!--Detalle encuesta -->

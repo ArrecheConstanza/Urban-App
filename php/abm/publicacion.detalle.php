@@ -55,7 +55,6 @@
 				
 			//usuario creador
 			$usuario=new Usuario();
-			//usuario creador
 			$usuario_nombre=$usuario->getNombreUsuario($unaPublicacion->getFkUsuario());
 			$usuario_apellido=$usuario->getApellidoUsuario($unaPublicacion->getFkUsuario());
 		
@@ -100,8 +99,8 @@
 					"FOTO"=>$arraySemiFinal,
 					"USUARIO_NOMBRE"=>$usuario_nombre["NOMBRE"],
 					"USUARIO_APELLIDO"=>$usuario_apellido['APELLIDO'],
-					"LIKES"=>$listado_likes,
 					"DENUNCIAS"=>$arrayFinalDenuncias,
+					"LIKES"=>$listado_likes,
 					"USUARIO_ID"=>$_SESSION["s_id"],
 				];
 				$arrayFinal[]=$array;

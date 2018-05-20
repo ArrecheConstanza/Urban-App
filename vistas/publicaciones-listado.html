@@ -13,6 +13,7 @@
 			</li>
 		</ul>
 		<a href="#newPublicacion" id="publicaciones_listado_crear_publicacion">Crear publicacion</a>	
+			<p class='sin_contenido' ng-show="datosSQLpublicaciones.length==0">Aún no hay publicaciónes</p>
 			<ul class="list-group" id="listado-publicaciones">
 			  <li ng-repeat="item in datosSQLpublicaciones track by $index " class="list-group-item">
 				<div ng-click="detallePublicacion(item.ID)" >
