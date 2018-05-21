@@ -17,6 +17,7 @@
 					</div>
 					<!-- Texto -->
 					<h1 class="text-center subtitulo">Encuestas </h1>
+					<label>Search: <input ng-model="searchText"></label>
 					<a ng-click="admin_crea_encuesta()" href="#newEncuesta" id="publicaciones_listado_crear_publicacion">Crear encuesta</a>	
 
 				</div>
@@ -26,7 +27,7 @@
 			<!-- Listado de encuestas -->
 			<div>
 				<ul class="list-group listado_usuarios">
-				  <li ng-repeat="item in datosSQLencuestas track by $index " class="list-group-item lista_encuestas"><a href='#/panelDeControl/Encuestas/{{ item.ID }}'>
+				  <li ng-repeat="item in datosSQLencuestas  | filter:searchText" class="list-group-item lista_encuestas"><a href='#/panelDeControl/Encuestas/{{ item.ID }}'>
 					<p class="pull-left">{{ item.PREGUNTA }}</p>
 					<span class="glyphicon glyphicon-chevron-right" id="glyphicon_listado_encuesta"></span>
 					<small class="pull-right encuestas_small">{{ item.FECHA_CREACION }}</small>

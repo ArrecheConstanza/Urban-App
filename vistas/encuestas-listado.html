@@ -11,7 +11,7 @@
 			<p class='sin_contenido' ng-show="datosSQLencuestas.length==0">Aún no hay encuestas</p>
 
 			<ul class="list-group" id="listado-publicaciones">
-			  <li ng-repeat="item in datosSQLencuestas track by $index " class="list-group-item" id="listado_encuestas"><a href='#detalleEncuesta/{{item.ID}}'>
+			  <li ng-repeat="item in datosSQLencuestas  | filter:searchText" class="list-group-item" id="listado_encuestas"><a href='#detalleEncuesta/{{item.ID}}'>
 				<h2>{{ item.PREGUNTA }}</h2>  
 			<!-- 	<p>{{ item.cantidad_opciones }}</p>  --> 
 				<span class="glyphicon glyphicon-chevron-right" id="glyphicon_listado_encuesta"></span>
