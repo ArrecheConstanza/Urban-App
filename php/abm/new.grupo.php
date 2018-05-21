@@ -28,9 +28,9 @@
 			//crear carpeta para grupo "grupos/id"
 			if(!is_dir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo())){
 				mkdir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo());
-				if(!is_dir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo()."/chats")){
+				/* if(!is_dir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo()."/chats")){
 					mkdir("../../img/grupos/".$ultimo_grupo[0]->getCodigoGrupo()."/chats");
-				}
+				} */
 			}			
 			
 			//si hay foto
@@ -41,6 +41,30 @@
 				$destino = 'C:/xampp/htdocs/Urban-App/img/grupos/'.$ultimo_grupo[0]->getCodigoGrupo().'/'.$foto; //<- este despues se cambia por el de abajo
 				// $destino='http://urban-app.com.ar/'.$destino; <- para guardarlo en hosting
 				
+				/**** RESIZE ****/
+				$ruta_temporal = $_FILES['FOTO']['tmp_name']; 
+				if($_FILES['FOTO']['type']=='image/png'){
+					$original=imagecreatefrompng( $ruta_temporal );
+				}
+				else if($_FILES['FOTO']['type']=='image/jpeg'||$_FILES['FOTO']['type']=='image/jpg'){
+					$original=imagecreatefromjpeg( $ruta_temporal );
+				}
+				else{
+					//error formato no permitido
+				}
+				
+				$ancho_o = imagesx( $original );
+				$alto_o = imagesy( $original );
+				$alto_n = 300; //300px de alto
+				$ancho_n = round($alto_n  *$ancho_o / $alto_o) ;
+				$copia = imagecreatetruecolor( $ancho_n, $alto_n );
+				imagecopyresampled( $copia, $original, 0,0, 0,0, $ancho_n, $alto_n, $ancho_o, $alto_o );
+				
+				imagejpeg( $copia, $destino, 100 );
+				imagedestroy($copia);
+				imagedestroy($original);
+				/****************/			
+			
 				//Guardado de foto en tabla multimedia
 				$multimedia = new Multimedia();
 				$multimedia->crear_multimedia($destino);
@@ -49,9 +73,9 @@
 				$ids["fk_multimedia"]=$ultima_multimedia[0]->getCodigoMultimedia();
 				$ids["id"]=$ultimo_grupo[0]->getCodigoGrupo();
 				$rta=$ultima_multimedia[0]->cambiar_fkmultimedia($ids,"grupo");
-
+	
 				//mover foto a carpeta
-				move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
+				//move_uploaded_file( $_FILES['FOTO']['tmp_name'] , $destino );
 			}
 			
 			echo $ultimo_grupo[0]->getCodigoGrupo();

@@ -77,7 +77,7 @@ Urban.controller("newGrupoCtrl",  ['$scope', '$http', '$location', 'Upload', '$t
 				})
 				.success(function(data, status){
 					if(data!="0"){
-						//MODO ADMIN crea usuario
+						//MODO ADMIN crea grupo
 						if(localStorage.getItem("admin")!=null&&localStorage.getItem("admin")=="on"){
 							localStorage.removeItem("admin");
 							localStorage.setItem("admin_crea_ok","1");
