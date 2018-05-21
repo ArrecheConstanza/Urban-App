@@ -13,6 +13,7 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 		//modal admin creo usuario ok
 		localStorage.removeItem("admin_crea_ok");
 	}
+	
 	//**** crear usuario como admin ****//
 	
 	$scope.admin_crea_usuario=function(){
@@ -167,7 +168,15 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 			})
 			.success(function(data, status){
-				//corregir para host 
+				//$scope.lista=angular.toJson(data);
+				$scope.friends=angular.toJson([{name:'John', phone:'555-1276'},
+									 {name:'Mary', phone:'800-BIG-MARY'},
+									 {name:'Mike', phone:'555-4321'},
+									 {name:'Adam', phone:'555-5678'},
+									 {name:'Julie', phone:'555-8765'},
+									 {name:'Juliette', phone:'555-5678'}]);
+				
+				
 				for(var i=0;i<data.length;i++){
 					if(data[i]["FOTO"]!=null){
 						data[i]["FOTO"]=data[i]["FOTO"]["PATH"].replace("C:/xampp/htdocs/Urban-App/","");
@@ -177,6 +186,10 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 					}
 				}
 				$scope.datosSQLusuarios=angular.fromJson(data);
+				//$scope.datosSQLusuariosArray=angular.toJson(data);
+				//console.log($scope.datosSQLusuariosArray);
+				/* $scope.friends=" [{name:'John', phone:'555-1276'},{name:'Mary', phone:'800-BIG-MARY'},{name:'Mike', phone:'555-4321'}, {name:'Adam', phone:'555-5678'},{name:'Julie', phone:'555-8765'}, {name:'Juliette', phone:'555-5678'}]"; */
+				
 				
 			})
 			.error(function(data){
@@ -184,4 +197,15 @@ Urban.controller("panelDeControlUsuariosCtrl", function ($scope,$http,$location,
 				
 			});
 		}	
+		
+		
+		
+		/* var expectFriendNames = function(expectedNames, key) {
+		  element.all(by.repeater(key + ' in friends').column(key + '.name')).then(function(arr) {
+			arr.forEach(function(wd, i) {
+			  expect(wd.getText()).toMatch(expectedNames[i]);
+			});
+		  });
+		};  */
+
 });
