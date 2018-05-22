@@ -16,7 +16,6 @@
 		$opciones=new Opciones();
 		$usuario=new Usuario();
 		$encuesta=$encuesta->detalle($_POST["id"]);
-		//$arrayFinal=array();
 		
 		foreach($encuesta as $unaEncuesta){
 			$fecha= publicaciones_parsear_fecha($unaEncuesta->getFechaCreacion());
@@ -38,8 +37,6 @@
 			$usuario_apellido=$usuario->getApellidoUsuario($unaEncuesta->getFkUsuario());
 			
 			//Pido todo el contenido categoria de la encuesta
-				/* $categoria = new Categoria();
-				$rta2 = $categoria->getByPk($unaEncuesta->getFkCategoria()); */
 
 				$array=[
 					"ID"=>$unaEncuesta->getCodigoEncuesta(),
@@ -51,8 +48,6 @@
 					"FK_GRUPO"=>$unaEncuesta->getFkGrupo(),
 					"BORRADO"=>$unaEncuesta->getBorrado(),
 					"OPCIONES"=>$array_opciones
-					//"FK_CATEGORIA"=>$unaEncuesta->getFkCategoria(),
-					//"CATEGORIA"=>$rta2[0]->getTitulo(),
 				];
 				$arrayFinal[]=$array;
 		}

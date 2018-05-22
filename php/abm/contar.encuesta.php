@@ -26,7 +26,6 @@
 
 			//usuario creador
 			$usuario=new Usuario();
-			//usuario creador
 			$usuario_nombre=$usuario->getNombreUsuario($unaRespuesta->getFkUsuario());
 			$usuario_apellido=$usuario->getApellidoUsuario($unaRespuesta->getFkUsuario());
 			//foto usuario

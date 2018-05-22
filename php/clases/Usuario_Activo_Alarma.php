@@ -88,7 +88,7 @@ class Usuario_Activo_Alarma{
 		if($stmt->execute()) {
 			while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
 				$usuario_activo_alarma = new Usuario_Activo_Alarma;
-				$usuario_activo_alarma->codigo_usuario_activo_alarma = $fila['ID'];
+				//$usuario_activo_alarma->codigo_usuario_activo_alarma = $fila['ID'];
 				$usuario_activo_alarma->fk_usuario = $fila['FKUSUARIO'];
 				$usuario_activo_alarma->cuando = $fila['CUANDO'];
 				$usuario_activo_alarma->longitud = $fila['LONGITUD'];

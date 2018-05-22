@@ -94,7 +94,7 @@
 					<ul class="list-group">
 						<li ng-repeat="item in votantes track by $index " 
 						class="list-group-item form-control">
-							<img class="foto_votante" src="{{ item.FOTO_USUARIO }}" alt="foto_usuario"/>	
+							<img class="foto_votante" ng-src="{{ item.FOTO_USUARIO }}" alt="foto_usuario"/>	
 							<span>{{ item.USUARIO_NOMBRE }}  {{ item.USUARIO_APELLIDO }}</span>
 							<span>{{ item.OPCION }}</span>
 						</li>

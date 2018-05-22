@@ -125,9 +125,93 @@ Urban.controller("publicacionesListadoCtrl", function ($scope,$http,$routeParams
 					//cargo datos en vista
 					$scope.datosSQLpublicaciones=rta.reverse();
 					
+					//almacenamiento local. sin internet
+					localStorage.setItem("listado_publicaciones",angular.toJson(rta));
+
 				})
-				.error(function(){
-					// sin internet
+				.error(function(){	// sin internet
+					//CARGO DATOS LOCALES
+					if(localStorage.getItem("listado_publicaciones")!=null){
+						console.log("entre");
+						data=angular.fromJson(localStorage.getItem("listado_publicaciones"));
+											var nuevo_array=[];
+					for(var i in data){
+						var es_categoria=false;
+						//si se filtra por categoria
+						if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
+							var categorias=localStorage.getItem("categoria_publicacion");
+							for(var j=0;j<categorias.length;j++){
+								if(data[i].FK_CATEGORIA==categorias[j]){
+									es_categoria=true;
+								}
+							}
+						}
+				
+						//si tiene o no foto
+						if(!data[i].FOTO.length){
+							//data[i].FOTO="/urban-app/img/fotos/muestra.jpg";
+							data[i].FOTO="";
+						}
+						else{
+							//solo 1 foto, editar cuando se suban mas de una
+							var foto=data[i].FOTO[0]["DIR"].substring(26,data[i].FOTO[0]["DIR"].length);
+							data[i].FOTO=foto;
+						}
+						
+						//si tiene o no foto el usuario creador
+						if(!data[i].FOTO_USUARIO.length){
+							data[i].FOTO_USUARIO="/urban-app/img/fotos/usuario.jpg";
+						}
+						else{
+							//solo 1 foto, editar cuando se suban mas de una
+							var foto=data[i].FOTO_USUARIO[0]["DIR"].substring(26,data[i].FOTO_USUARIO[0]["DIR"].length);
+							data[i].FOTO_USUARIO=foto;
+						}
+						
+						//es categoria, lo cargo
+						if(es_categoria){
+							nuevo_array.push(data[i]);
+						}
+						
+						//si el usuario likeo esta publicacion
+						data[i].LIKEADA=false;
+						if(data[i].LIKES.length){
+							for(var j=0;j<data[i].LIKES.length;j++){
+								if(data[i].LIKES[j]["FK_USUARIO"]==data[i].USUARIO_ID){
+									//corazon verde 
+									data[i].LIKEADA=true;
+								}
+							}
+						}
+						
+					} 
+					
+					//si esta filtrado por categorias
+					var rta;
+					if(localStorage.getItem("categoria_publicacion")!=null&&localStorage.getItem("categoria_publicacion")!=""){
+							rta=angular.fromJson(nuevo_array);
+							$scope.hay_filtrado=true;
+							var listado_categorias=localStorage.getItem("categoria_publicacion");
+							for (i in $scope.categorias){
+								for (j in listado_categorias){
+									if($scope.categorias[i].ID==listado_categorias[j]){
+										$scope.listado_categorias_seleccionadas.push($scope.categorias[i].TITULO);
+									}
+								}
+							}
+							id("filtrado_categorias").style.padding=".5em";
+					}
+					else{
+						id("filtrado_categorias").style.padding="0";
+						rta=angular.fromJson(data);
+						$scope.hay_filtrado=false;
+					}
+					
+					//cargo datos en vista
+					$scope.datosSQLpublicaciones=rta.reverse();
+					}
+					
+					
 				});
 				
 				//**** VER PUBLICACION ****//

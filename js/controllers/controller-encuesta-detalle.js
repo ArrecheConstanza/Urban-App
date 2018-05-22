@@ -70,6 +70,7 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						headers: {'Content-Type': 'application/x-www-form-urlencoded'}  
 					})
 					.success(function(data, status){
+						console.log(data);
 						//si tiene o no foto el usuario creador
 						for(var i=0;i<data.length;i++){
 							if(!data[i].FOTO_USUARIO.length){
@@ -115,7 +116,6 @@ Urban.controller("encuestaDetalleCtrl", function ($scope,$http,$location,$routeP
 						
 						//////porcentaje
 						$scope.estado_encuesta=array_votacion_final;
-						console.log($scope.estado_encuesta);
 						for(var i=0;i<array_votacion_final.length;i++){
 							var opcion;
 							for(var j=0;j<$scope.datosSQLencuestas["OPCIONES"].length;j++){
