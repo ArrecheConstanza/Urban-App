@@ -90,6 +90,14 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 	}
 			
 	//************* CREAR *************//
+	
+		//valido onblur
+		var datos_publicacion=tn(tn(document,'form',0),'textarea','input');
+		for(var i=0;i<datos_publicacion.length;i++){
+			datos_publicacion[i].onblur=function(){
+				validar_publicacion(this);
+			}
+		}
 
 		$scope.crear_publicacion=function(publicacion){
 			datos_publicacion={
@@ -101,8 +109,12 @@ Urban.controller("newPublicacionCtrl",  ['$scope', '$http', '$location', 'Upload
 				FKCATEGORIA : publicacion.FKCATEGORIA
 			}
 			
-			//FALTA validacion de datos 
+			//valido submit
+			for(var i=0;i<datos_publicacion.length;i++){
+				validar_publicacion(datos_publicacion[i],"submit");
+			}
 			
+			var mensaje=tn(tn(document,'form',0),'p');
 			
 			var titulo=datos_publicacion["TITULO"];
 			titulo.upload = Upload.upload({

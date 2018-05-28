@@ -29,4 +29,8 @@
 	function validar_opcion(val){
 		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{1,500})?$/;
 		return exp.test( val);
+	}	
+	function validar_descripcion(val){
+		var exp=/^([a-zA-Z\d\s_#,;@%&\\\!\$\*\(\)\-\+\=\{\}\[\]\:\'\\<\>\.\?\|]{3,500})?$/;
+		return exp.test( val);
 	}

@@ -8,7 +8,22 @@
 	require_once('../clases/Publicacion.php');
 	require_once('../clases/Multimedia.php');
 	require_once('../clases/Publicacion_Multimedia.php');
+	require_once('../clases/Validacion.php');	
 	
+	/***** Validacion ******/
+	
+	$reglas = [
+		'TITULO' => 'required|titulo',
+		'DESCRIPCION' => 'required|descripcion'
+	];
+
+$validacion = new Validacion($_POST, $reglas);
+$rta= json_encode($validacion->getErrores())."\n";
+
+//mensaje error
+if(count(json_decode($rta))){
+	echo $rta;
+}else{
 // guardado de datos en bdd
 
 	/****** Edito publicacion ******/
@@ -56,4 +71,5 @@
 	else{
 		echo 0;
 	}	
+}
 ?>

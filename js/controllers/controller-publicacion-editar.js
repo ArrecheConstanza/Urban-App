@@ -45,6 +45,19 @@ Urban.controller("editarPublicacionCtrl",  ['$scope', '$http', '$location', 'Upl
 			var foto=data[0].FOTO[0]["DIR"].substring(26,data[0].FOTO[0]["DIR"].length);
 		}
 		
+		//valido onblur
+		var datos_publicacion=tn(tn(document,'form',0),'textarea','input');
+		for(var i=0;i<datos_publicacion.length;i++){
+			datos_publicacion[i].onblur=function(){
+				editar_publicacion(this);
+			}
+		}
+		//valido submit
+		for(var i=0;i<datos_publicacion.length;i++){
+				editar_publicacion(datos_publicacion[i],"submit");
+		}
+			
+		var mensaje=tn(tn(document,'form',0),'p');
 		$scope.editar_publicacion=function(publicacion){	
 			datos_publicacion={
 				FKGRUPO: publicacion.FKGRUPO,
